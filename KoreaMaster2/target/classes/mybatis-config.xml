@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+                          "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- MyBatis XML 설정 파일(MyBatis설정의 중앙 허브 역할) -->
+<configuration>
+	
+	<!-- Database properties 설정파일 경로 설정 -->
+	<properties resource="db-config.properties"/>
+	
+	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->
+	<environments default="development"> <!-- ex) 개발기간에 쓰는거라 development -->
+		
+		<!-- Database당 하나의 SqlSessionFactory 객체가 필요하며, Environment는 SqlSessionFactory 생성시 필요 -->
+		<environment id="development">
+			<!-- 트랜잭션 관리 방법 설정
+			  - JDBC : JDBC API의 commit(), rollback() 메소드를 이용하여 MyBatis 자체에서 트랜잭션 관리
+			  - MANAGED : WAS(WebLogic, WebSphere, JBoss 등)에서 지원하는 트랜잭션 관리 기능 이용 
+			  - 아파치톰캣은 jdbc 자체적으로 서버에서 관리를 해주지 않기 때문에 JDBC를 쓴다.  	
+			 -->
+			<transactionManager type="JDBC" />
+			
+			<!-- MyBatis는 JDBC 표준 규약인 DataSource 구현체를 이용하여 DB 연결(Connection 생성) -->
+			<!-- MyBatis가 지원하는 DataSource 유형
+			  - UNPOOLED : DB 커넥션 요청할 때마다 DriverManager를 이용하여 Connection 객체 생성, 단순한 애플리케이션 개발 시 적합
+			  - POOLED   : ConnectionPool로 부터 Connection 취득, 엔터프라이즈 웹 애플리케이션 개발 시 적합
+			  - JNDI     : WAS에서 제공하는 DataSource 사용, 엔터프라이즈 웹 애플리케이션 개발 시 적합 (DB 연결을 서버가 해준다)
+			 -->
+			<dataSource type="POOLED">
+			<!-- POOLED가 되려면 반드시 commons-jbcp2-2.1jar commons-pool2-2.3.jar commons-logging-1.2.jar이 꼭 필요 -->
+				<!-- db-config.properties 설정 참조 -->
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+				<property name="poolMaximumActiveConnections" value="5"/> <!-- Default 10 -->
+				<property name="poolMaximumIdleConnections" value="2"/>   <!-- Default 5 -->
+				<property name="poolMaximumCheckoutTime" value="10000"/>  <!-- Default 20000 -->
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- SQL XML Mapper 파일 경로 설정 -->
+	<mappers>
+		<!-- 클래스패스에 위치한 XML 매퍼 파일 지정 -->
+	<!-- 	<mapper resource="mappers/functionMapper.xml"  /> -->
+	</mappers>
+
+</configuration>
