@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>	
+	<!-- 장바구니 관련 세부컨트롤러  등록 -->
+	<bean name="/cart/list" class="kr.or.gobooke.cart.controller.CartListController"></bean>
+	<bean name="/cart/add" class="kr.or.gobooke.cart.controller.AddCartController"></bean>
+	
+	<!-- 주문 관련 세부 컨트롤러 등록 -->
+	<bean name="/order" class="kr.or.gobooke.orders.controller.OrdersController"></bean>
+	<bean name="/order/list" class="kr.or.gobooke.orders.controller.OrderListController"></bean> 
+	<bean name="/order/userorderlist" class="kr.or.gobooke.orders.controller.UserOrderListController"></bean> 
+	
+	<!-- 관리자 관련 세부컨트롤러 등록 -->
+	<bean name="/admin/adminbookorder" class="kr.or.gobooke.ownerorder.controller.BookOrderController" /><!-- 발주 -->
+	<bean name="/admin/adminbookorderlist" class="kr.or.gobooke.ownerorder.controller.OwnerOrderListController" /><!-- 발주 리스트 -->
+	
+	<!-- 책관련 리스트 -->
+	<bean name="/book/bookregist" class="kr.or.gobooke.book.controller.BookRegistController" /><!-- 관리자 도서 저장 -->
+	<bean name="/book/searchbookname" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 북제목 리스트 -->
+	<bean name="/book/bookstock" class="kr.or.gobooke.book.controller.BookStockListController" /><!-- 북재고 리스트 -->
+	<bean name="/book/bookimgupload" class="kr.or.gobooke.book.controller.BookNameController" /><!-- 사진업로드 -->
+	<bean name="/book/getpublisher" class="kr.or.gobooke.book.controller.BookPublisherController" /><!-- 출판사명가져오기 -->
+	<bean name="/book/inexBookList" class="kr.or.gobooke.book.controller.InexBookListController"/>
+	<bean name="/book/bookDetail" class="kr.or.gobooke.book.controller.BookDetailController"/>
+	<bean name="/book/bestSellerList" class="kr.or.gobooke.book.controller.BookBestSellerController"/>
+	<bean name="/book/bestSellerDetail" class="kr.or.gobooke.book.controller.BookBestSellerDetailController"/>
+	<bean name="/book/newBookList" class="kr.or.gobooke.book.controller.NewBookController"/>
+	
+	<!-- 리뷰 관련 컨트롤러 등록 -->
+	<bean name="/review/bookreview" class="kr.or.gobooke.review.controller.BookReviewController"/>
+	<bean name="/review/reviewWrite" class="kr.or.gobooke.review.controller.BookReviewWriteController"/>
+	<bean name="/review/reviewDelete" class="kr.or.gobooke.review.controller.BookReviewDeleteController"/>
+	
+	<!-- 회원 관련 컨트롤러 등록  -->
+	<bean name="/user/certify" class="kr.or.gobooke.users.controller.UserCertifyController"/>
+	<bean name="/user/regist" class="kr.or.gobooke.users.controller.RegistController"/>
+	<bean name="/user/info" class="kr.or.gobooke.users.controller.UserInfoController"/>
+	<bean name="/user/update" class="kr.or.gobooke.users.controller.UserUpdateController"/>
+	
+	<!-- 메인페이지 이동 -->
+	<bean name="/index" class="kr.or.gobooke.main.controller.MainController" />
+	
+	
+</beans>
