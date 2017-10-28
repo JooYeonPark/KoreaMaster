@@ -1,12 +1,6 @@
 package kr.or.koreaMaster.travel.dao;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
-
-import kr.or.koreaMaster.place.domain.DomainName;
 
 public class FunctionDaoImpl implements FunctionDao {
 	
