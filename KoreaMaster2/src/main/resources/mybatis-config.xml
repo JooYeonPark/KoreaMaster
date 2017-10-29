@@ -13,6 +13,9 @@
 		<typeAlias type="kr.or.koreaMaster.spot.domain.Spot" alias="Spot"/>
 		<typeAlias type="kr.or.koreaMaster.sido.domain.Sido" alias="Sido"/>
 		<typeAlias type="kr.or.koreaMaster.sigungu.domain.Sigungu" alias="Sigungu"/>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.SmallTrip" alias="SmallTrip"></typeAlias>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.Route" alias="Route"></typeAlias>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.Trip" alias="Trip"></typeAlias>
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->

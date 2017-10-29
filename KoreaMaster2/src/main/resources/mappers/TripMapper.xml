@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+       
+<mapper namespace = "kr.or.kosta.koreaMaster.travel.trip">
+
+<!-- 생성 -->
+<insert id="create" parameterType="Trip">
+	INSERT INTO trip 
+            (trip_no, 
+             trip_name, 
+             trip_start_date, 
+             trip_end_date, 
+             personal_flag) 
+	VALUES     (trip_seq.NEXTVAL, 
+	            #{name}, 
+	            To_date(#{startDate}, 'YYYY-MM-DD'), 
+	            To_date(#{endDate}, 'YYYY-MM-DD'), 
+	            'Y') 
+</insert>
+
+<!-- 조회 -->
+<select id="read" parameterType="int" resultType="Trip">
+	SELECT trip_no 			AS 	"no", 
+      		trip_name 		AS	"name",
+      		trip_start_date AS  "startDate", 
+       		trip_end_date   AS	"endDate", 
+       		personal_flag 	AS	"personalFlag"
+	FROM   trip
+	WHERE  trip_no = #{value}
+</select>
+
+<!-- 전체 조회 -->
+<select id="listAll" resultType="Trip">
+	SELECT trip_no 			AS 	"no", 
+      		trip_name 		AS	"name",
+      		trip_start_date AS  "startDate", 
+       		trip_end_date   AS	"endDate", 
+       		personal_flag 	AS	"personalFlag"
+	FROM   trip
+</select>
+
+<!-- 수정 -->
+<update id="update" parameterType="Trip">
+	UPDATE TRIP
+	SET trip_name = #{name}, trip_start_date = #{startDate}, trip_end_date = #{endDate}
+	WHERE trip_no = #{no}
+</update>
+
+<!-- 삭제 -->
+<delete id="delete" parameterType="int">
+	DELETE FROM trip
+	WHERE TRIP_NO = #{value}
+</delete>
+
+</mapper>

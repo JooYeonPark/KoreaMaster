@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+       
+<mapper namespace = "kr.or.kosta.koreaMaster.travel.route">
+
+<!-- 생성 -->
+<insert id="create" parameterType="Route">
+	INSERT INTO route 
+			(route_no, 
+             spot_no, 
+             next_route_no, 
+             start_time, 
+             end_time) 
+	VALUES     (route_seq.NEXTVAL, 
+	            #{spotNo}, 
+	            #{nextRouteNo},
+	           	TO_DATE(#{startTime},'YYYYMMDDHH24MISS'),
+	            TO_DATE(#{endTime},'YYYYMMDDHH24MISS')) 
+</insert>
+
+<!-- 조회 -->
+<select id="read" parameterType="int" resultType="Route">
+	SELECT 	route_no		AS	"no", 
+             spot_no		AS	"spotNo", 
+             next_route_no	AS	"nextRouteNo", 
+             start_time		AS	"startTime", 
+             end_time		AS	"endTime"
+	FROM   route
+	WHERE  route_no = #{value}
+</select>
+
+<!-- 전체 조회 -->
+<select id="listAll" resultType="Route">
+	SELECT 	route_no		AS	"no", 
+             spot_no		AS	"spotNo", 
+             next_route_no	AS	"nextRouteNo", 
+             start_time		AS	"startTime", 
+             end_time		AS	"endTime"
+	FROM   route
+</select>
+
+<!-- 수정 -->
+<update id="update" parameterType="Route">
+	UPDATE 	route
+	SET 	spot_no = #{spotNo}, 
+			next_route_no = #{nextRouteNo},
+			start_time = TO_DATE(#{startTime},'YYYYMMDDHH24MISS'),
+			end_time = TO_DATE(#{endTime},'YYYYMMDDHH24MISS')
+	WHERE route_no = #{no}
+</update>
+
+<!-- 나의 spot_no을 다음장소로 가지고 있는 행을 변경 나를 삭제 한다-->
+<!-- 삭제 전 수행 할 것 -->
+<update id="deleteUpdate" parameterType="int">
+	<!-- 나의 spot_no을 다음장소로 가지고 있는 행을 변경 나를 삭제 한다-->
+	UPDATE route 
+	SET    next_route_no = (SELECT next_route_no 
+	                        FROM   route 
+	                        WHERE  route_no = #{value}) 
+	WHERE  next_route_no = (SELECT spot_no 
+	                        FROM   route 
+	                        WHERE  route_no = #{value}) 
+</update>
+
+<!-- 업데이트 후 삭제 -->
+<delete id="delete" parameterType="int">
+	DELETE FROM route 
+	WHERE  route_no = #{value}
+</delete>
+
+</mapper>
