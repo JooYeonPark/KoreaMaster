@@ -1,6 +1,7 @@
 package kr.or.koreaMaster.spot.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -35,6 +36,10 @@ public class SpotDaoImpl implements SpotDao {
 		return sqlSession.selectOne(NAMESPACE+".read", no);
 	}
 	
+	@Override
+	public List<Integer> getSpotByCity(int cityNo){
+		return sqlSession.selectList(NAMESPACE+".getSpotByCity", cityNo);
+	}
 	
 }
 

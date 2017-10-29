@@ -1,6 +1,7 @@
 package kr.or.koreaMaster.spot.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.koreaMaster.spot.domain.Spot;
 
@@ -21,6 +22,9 @@ public interface SpotDao {
 	
 	/** 장소 번호로 장소 조회 */
 	public Spot read(int no);
+	
+	/** 도시에 따른 목록 반환 */
+	public List<Integer> getSpotByCity(int cityNo);
 	
 }
 

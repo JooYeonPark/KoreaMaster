@@ -44,7 +44,13 @@
 		       spot_longitude as "longitude", 
 		       spot_use_num   as "useNum"
 		FROM   spot
-		WHERE  spot_no = #{vlaue}
+		WHERE  spot_no = #{value}
+	</select>
+	
+	<select id="getSpotByCity" parameterType="int" resultType="int">
+		SELECT spot_no as "no" 
+		FROM   spot
+		WHERE  city_no = #{value}
 	</select>
 	
 	<update id="update" parameterType="Spot">

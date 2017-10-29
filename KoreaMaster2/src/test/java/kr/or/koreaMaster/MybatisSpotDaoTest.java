@@ -30,4 +30,10 @@ public class MybatisSpotDaoTest {
 		Spot spot = dao.read(1);
 		logger.info(spot);
 	}
+	
+//	@Test
+	public void listByCity() {
+		List<Spot> list = dao.listByCity(2);
+		logger.debug(list);
+	}
 }
