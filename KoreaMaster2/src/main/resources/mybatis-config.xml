@@ -11,6 +11,8 @@
 	<!--  MyBatis에서 사용할 자바클래스(패키지명 포함 풀네임)에 대한 짧은 별칭 등록 -->
 	<typeAliases>
 		<typeAlias type="kr.or.koreaMaster.spot.domain.Spot" alias="Spot"/>
+		<typeAlias type="kr.or.koreaMaster.sido.domain.Sido" alias="Sido"/>
+		<typeAlias type="kr.or.koreaMaster.sigungu.domain.Sigungu" alias="Sigungu"/>
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->
@@ -50,6 +52,8 @@
 		<!-- 클래스패스에 위치한 XML 매퍼 파일 지정 -->
 	<!-- 	<mapper resource="mappers/functionMapper.xml"  /> -->
 	<mapper resource="mappers/SpotMapper.xml"  />
+	<mapper resource="mappers/SidoMapper.xml"  />
+	<mapper resource="mappers/SigunguMapper.xml"  /> 
 	</mappers>
 	
 

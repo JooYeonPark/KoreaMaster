@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.koreaMaster.sido.mapper.SidoMapper">
+	
+	<insert id="create" parameterType="Sido">
+		insert into sido(sido_no, sido_name)
+		values(sido_seq.nextval, #{name})
+	</insert>
+		
+	<select id="listAll" resultType="Sido">
+		SELECT sido_no as "no", 
+		       sido_name as "name"
+		FROM   sido
+	</select>
+	
+	<select id="read" parameterType="int" resultType="Sido">
+		SELECT sido_no as "no", 
+		       sido_name as "name"
+		FROM   sido
+		WHERE  sido_no = #{vlaue}
+	</select>
+	
+	<update id="update" parameterType="Sido">
+		update sido
+		set sido_name = #{name}
+		where sido_no = #{no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM Sido
+		WHERE sido_no = #{value}
+	</delete>
+
+</mapper>
