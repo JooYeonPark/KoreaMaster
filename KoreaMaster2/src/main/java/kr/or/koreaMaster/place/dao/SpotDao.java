@@ -1,9 +1,9 @@
-package kr.or.koreaMaster.spot.dao;
+package kr.or.koreaMaster.place.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import kr.or.koreaMaster.spot.domain.Spot;
+import kr.or.koreaMaster.place.domain.Spot;
 
 /**
  * 장소 관련 Dao

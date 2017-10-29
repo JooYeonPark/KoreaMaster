@@ -1,4 +1,4 @@
-package kr.or.koreaMaster.spot.domain;
+package kr.or.koreaMaster.place.domain;
 
 public class Spot {
 	

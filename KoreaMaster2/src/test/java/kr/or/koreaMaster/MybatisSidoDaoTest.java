@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import kr.or.koreaMaster.common.db.DaoFactory;
 import kr.or.koreaMaster.common.db.MyBatisDaoFactory;
-import kr.or.koreaMaster.sido.dao.SidoDao;
-import kr.or.koreaMaster.sido.dao.SidoDaoImpl;
-import kr.or.koreaMaster.sido.domain.Sido;
+import kr.or.koreaMaster.place.dao.SidoDao;
+import kr.or.koreaMaster.place.dao.SidoDaoImpl;
+import kr.or.koreaMaster.place.domain.Sido;
 
 public class MybatisSidoDaoTest {
 	Logger logger = Logger.getLogger(MybatisSidoDaoTest.class);

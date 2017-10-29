@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import kr.or.koreaMaster.common.db.DaoFactory;
 import kr.or.koreaMaster.common.db.MyBatisDaoFactory;
-import kr.or.koreaMaster.spot.dao.SpotDao;
-import kr.or.koreaMaster.spot.dao.SpotDaoImpl;
-import kr.or.koreaMaster.spot.domain.Spot;
+import kr.or.koreaMaster.place.dao.SpotDao;
+import kr.or.koreaMaster.place.dao.SpotDaoImpl;
+import kr.or.koreaMaster.place.domain.Spot;
 
 public class MybatisSpotDaoTest {
 	Logger logger = Logger.getLogger(MybatisSpotDaoTest.class);

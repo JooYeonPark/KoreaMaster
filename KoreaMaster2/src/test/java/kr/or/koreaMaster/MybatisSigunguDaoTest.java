@@ -7,10 +7,10 @@ import org.junit.Test;
 
 import kr.or.koreaMaster.common.db.DaoFactory;
 import kr.or.koreaMaster.common.db.MyBatisDaoFactory;
-import kr.or.koreaMaster.sigungu.dao.SigunguDao;
-import kr.or.koreaMaster.sigungu.dao.SigunguDaoImpl;
-import kr.or.koreaMaster.sigungu.domain.Sigungu;
-import kr.or.koreaMaster.spot.domain.Spot;
+import kr.or.koreaMaster.place.dao.SigunguDao;
+import kr.or.koreaMaster.place.dao.SigunguDaoImpl;
+import kr.or.koreaMaster.place.domain.Sigungu;
+import kr.or.koreaMaster.place.domain.Spot;
 
 public class MybatisSigunguDaoTest {
 	Logger logger = Logger.getLogger(MybatisSigunguDaoTest.class);

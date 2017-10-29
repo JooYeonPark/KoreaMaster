@@ -1,8 +1,8 @@
-package kr.or.koreaMaster.sigungu.dao;
+package kr.or.koreaMaster.place.dao;
 
 import java.util.List;
 
-import kr.or.koreaMaster.sigungu.domain.Sigungu;
+import kr.or.koreaMaster.place.domain.Sigungu;
 
 /**
  * 시군구(Sigungu) 관련 Dao

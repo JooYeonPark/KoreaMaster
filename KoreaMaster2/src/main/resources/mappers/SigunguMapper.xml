@@ -4,7 +4,7 @@
                         
 
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="kr.or.koreaMaster.sigungu.mapper.SigunguMapper">
+<mapper namespace="kr.or.koreaMaster.place.mapper.SigunguMapper">
 	
 	<insert id="create" parameterType="Sigungu">
 		insert into Sigungu(city_no, sigun_name, gu_name, sido_num)

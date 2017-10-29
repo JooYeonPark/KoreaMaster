@@ -1,14 +1,14 @@
-package kr.or.koreaMaster.sigungu.dao;
+package kr.or.koreaMaster.place.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import kr.or.koreaMaster.sigungu.domain.Sigungu;
+import kr.or.koreaMaster.place.domain.Sigungu;
 
 public class SigunguDaoImpl implements SigunguDao {
 	
-	private static final String NAMESPACE = "kr.or.koreaMaster.sigungu.mapper.SigunguMapper";
+	private static final String NAMESPACE = "kr.or.koreaMaster.place.mapper.SigunguMapper";
 	
 	private SqlSession sqlSession;
 	

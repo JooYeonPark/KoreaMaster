@@ -1,8 +1,8 @@
-package kr.or.koreaMaster.sido.dao;
+package kr.or.koreaMaster.place.dao;
 
 import java.util.List;
 
-import kr.or.koreaMaster.sido.domain.Sido;
+import kr.or.koreaMaster.place.domain.Sido;
 
 /**
  * 시도(sido) 관련 Dao

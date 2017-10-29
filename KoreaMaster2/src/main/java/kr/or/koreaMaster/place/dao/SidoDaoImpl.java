@@ -1,15 +1,15 @@
-package kr.or.koreaMaster.sido.dao;
+package kr.or.koreaMaster.place.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import kr.or.koreaMaster.sido.domain.Sido;
-import kr.or.koreaMaster.spot.domain.Spot;
+import kr.or.koreaMaster.place.domain.Sido;
+import kr.or.koreaMaster.place.domain.Spot;
 
 public class SidoDaoImpl implements SidoDao {
 	
-	private static final String NAMESPACE = "kr.or.koreaMaster.sido.mapper.SidoMapper";
+	private static final String NAMESPACE = "kr.or.koreaMaster.place.mapper.SidoMapper";
 	
 	private SqlSession sqlSession;
 	

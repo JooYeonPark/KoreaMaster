@@ -1,15 +1,15 @@
-package kr.or.koreaMaster.spot.dao;
+package kr.or.koreaMaster.place.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import kr.or.koreaMaster.spot.domain.Spot;
+import kr.or.koreaMaster.place.domain.Spot;
 
 public class SpotDaoImpl implements SpotDao {
 	
-	private static final String NAMESPACE = "kr.or.koreaMaster.spot.mapper.SpotMapper";
+	private static final String NAMESPACE = "kr.or.koreaMaster.place.mapper.SpotMapper";
 	
 	private SqlSession sqlSession;
 	
