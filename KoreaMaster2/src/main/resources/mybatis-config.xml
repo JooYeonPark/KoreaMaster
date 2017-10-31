@@ -17,6 +17,8 @@
 		<typeAlias type="kr.or.koreaMaster.travel.domain.SmallTrip" alias="SmallTrip"></typeAlias>
 		<typeAlias type="kr.or.koreaMaster.travel.domain.Route" alias="Route"></typeAlias>
 		<typeAlias type="kr.or.koreaMaster.travel.domain.Trip" alias="Trip"></typeAlias>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.RouteTheme" alias="RouteTheme"></typeAlias>
+		
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->
@@ -63,7 +65,7 @@
 	 	<mapper resource="mappers/TripMapper.xml"  /> 
 	 	<mapper resource="mappers/RouteMapper.xml"  />
 	 	<mapper resource="mappers/SpotThemeMapper.xml"  />
-	 	
+	 	<mapper resource="mappers/RouteThemeMapper.xml"  />
 	</mappers>
 	
 
