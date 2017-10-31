@@ -2,22 +2,18 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>MavenWebStudy</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
    <!-- 웹브라우저 모든 요청에 대한 단일 진입점 역할의 Front Controller Servlet(메인서블릿) 등록 -->
 	<servlet>
 		<servlet-name>frontController</servlet-name>
-		<servlet-class>kr.or.gobooke.common.controller.SimpleFrontControllerServlet_V4</servlet-class> 
+		<servlet-class>kr.or.koreanMaster.common.controller.SimpleFrontControllerServlet_V4</servlet-class> 
 		<!-- 초기파라미터를 전달하기 위해 init을 설정해줘야함 -->
 		<init-param>
 			<param-name>controllerMapperLocation</param-name>
-			<param-value>C:/Users/kosta/Documents/KoreaMaster/KoreaMaster2/src/main/webapp/WEB-INF/controller-mapper.xml</param-value>
+			<param-value>C:/Users/JooYeon/Documents/KoreaMaster/KoreaMaster2/src/main/webapp/WEB-INF/controller-mapper.xml</param-value>
 		</init-param>
 		
 		<load-on-startup>1</load-on-startup>
