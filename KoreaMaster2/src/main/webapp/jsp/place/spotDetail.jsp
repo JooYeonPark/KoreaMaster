@@ -1,5 +1,8 @@
-<!doctype html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
 
 <head>
 
@@ -54,7 +57,7 @@
 		<header id="header">
 
 			<!-- start Navbar (Header) -->
-			<!-- 나중에 메뉴 정리후 추가 -->
+			<jsp:include page="/include/navigation.jsp"/>
 			<!-- end Navbar (Header) -->
 
 		</header>
@@ -150,6 +153,23 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-8">
 								<div class="content-wrapper">
+								
+								<!-- 여행지 사진 갤러리 START -->
+									<div id="detail-content-sticky-nav-02">
+										<h2 class="font-lg">Gallery</h2>
+
+										<div class="gallery-grid-3-2-wrapper mb-30">
+											<div id="gallery1"></div>
+										</div>
+
+										<div class="mb-25"></div>
+										<div class="bb"></div>
+										<div class="mb-25"></div>
+
+									</div>
+									<!-- 여행지 사진 갤러리  END -->
+									
+									
 									<h3 class="section-title">Tour Title</h3>
 									<div id="detail-content-sticky-nav-01">
 										<!-- 여행 설명 : 문장으로  START-->
@@ -160,48 +180,7 @@
 											properly saw entirely sir why laughter endeavor.</p>
 										<!-- 여행 설명 : 문장으로 END -->
 
-										<div class="bt mt-30 mb-30"></div>
 
-										<!-- 여행에 일수, 도시 등 설명   START -->
-										<div class="featured-icon-simple-wrapper">
-											<div class="GridLex-gap-30">
-												<div class="GridLex-grid-noGutter-equalHeight">
-													<div class="GridLex-col-4_sm-4_xs-12_xss-12">
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-suitcase-1"></i>
-															</div>
-															5 days &amp; 4 nights<br />tour
-														</div>
-													</div>
-
-													<div class="GridLex-col-4_sm-4_xs-12_xss-12">
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-map"></i>
-															</div>
-															Visit 4 citied:<br />Bangkok, Pattaya, Chonburi, &amp;
-															Sattaheeb
-														</div>
-													</div>
-
-													<div class="GridLex-col-4_sm-4_xs-12_xss-12">
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-bus"></i>
-															</div>
-															Travel with exclusive bus <br />all the trip
-														</div>
-													</div>
-
-												</div>
-											</div>
-										</div>
-										<!-- 여행에 일수, 도시 등 설명   END -->
-
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
 
 										<!-- 여행 테마 아이콘으로 START -->
 										<div class="featured-icon-simple-wrapper">
@@ -211,7 +190,7 @@
 
 													<div class="GridLex-col">
 														<div class="featured-icon-simple-item">
-															<div class="icon">
+															<div class="icon text-primary">
 																<i class="flaticon-travel-icons-mountain"></i>
 															</div>
 															Adventure
@@ -220,7 +199,7 @@
 
 													<div class="GridLex-col">
 														<div class="featured-icon-simple-item">
-															<div class="icon">
+															<div class="icon text-primary">
 																<i class="flaticon-travel-icons-island"></i>
 															</div>
 															Beach
@@ -229,7 +208,7 @@
 
 													<div class="GridLex-col">
 														<div class="featured-icon-simple-item">
-															<div class="icon">
+															<div class="icon text-primary">
 																<i class="flaticon-travel-icons-kayak"></i>
 															</div>
 															Kayak
@@ -238,7 +217,7 @@
 
 													<div class="GridLex-col">
 														<div class="featured-icon-simple-item">
-															<div class="icon">
+															<div class="icon text-primary">
 																<i class="flaticon-travel-icons-cocktail"></i>
 															</div>
 															Sweet
@@ -261,8 +240,7 @@
 
 													<ul class="clearfix">
 														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">Meeting point
-																(where we meet?)</div>
+															<div class="col-xs-12 col-sm-7">상세주소</div>
 															<div
 																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
 																<i class="ti-location-pin mr-5"></i> Bangkok in't
@@ -270,23 +248,35 @@
 															</div>
 														</li>
 														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">Meeting time (what
-																time we meet?)</div>
+															<div class="col-xs-12 col-sm-7">운영시간</div>
 															<div
 																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
 																<i class="ti-timer mr-5"></i> 09:00 am
 															</div>
 														</li>
 														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">Maximum traellers</div>
+															<div class="col-xs-12 col-sm-7">휴관일</div>
 															<div
 																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
 																<i class="ti-user mr-5"></i> 23
 															</div>
 														</li>
 														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">Languages (guide
-																speaks)</div>
+															<div class="col-xs-12 col-sm-7">연락처</div>
+															<div
+																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
+																<i class="ti-flag mr-5"></i> English, Thai, Malay
+															</div>
+														</li>
+														<li class="row gap-20">
+															<div class="col-xs-12 col-sm-7">요금</div>
+															<div
+																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
+																<i class="ti-flag mr-5"></i> English, Thai, Malay
+															</div>
+														</li>
+														<li class="row gap-20">
+															<div class="col-xs-12 col-sm-7">홈페이지</div>
 															<div
 																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
 																<i class="ti-flag mr-5"></i> English, Thai, Malay
@@ -303,195 +293,13 @@
 
 									</div>
 
-									<!-- 여행지 사진 갤러리 START -->
-									<div id="detail-content-sticky-nav-02">
-										<h2 class="font-lg">Gallery</h2>
-
-										<div class="gallery-grid-3-2-wrapper mb-30">
-											<div id="gallery1"></div>
-										</div>
-
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
-
-									</div>
-									<!-- 여행지 사진 갤러리  END -->
-
-									<!-- 여행 일정  -->
-									<div id="detail-content-sticky-nav-03">
-
-										<h2 class="font-lg">Itinerary</h2>
-
-										<div class="itinerary-toggle-wrapper mb-40">
-											<div class="panel-group bootstrap-toggle">
-
-												<!-- 첫째날 START : 나머지도 이거 복붙해주세요~ -->
-												<div class="panel">
-													<!-- 첫째날 큰 일정 보여주는 div START  -->
-													<div class="panel-heading">
-														<div class="panel-title">
-															<a data-toggle="collapse" data-parent="#"
-																href="#bootstarp-toggle-one-2">
-																<div class="itinerary-day">
-																	Day <span class="number">01</span>
-																</div>
-																<div class="itinerary-header">
-																	<h4>Visit Bangkok, the capital of Thailand</h4>
-																	<p class="font-md">Behind sooner dining so window
-																		excuse he summer.</p>
-																	<div class="image">
-																		<img src="/images/itinerary-sq/01.jpg" alt="images" />
-																	</div>
-																</div>
-															</a>
-														</div>
-													</div>
-													<!-- 첫째날 큰 일정 보여주는 div END  -->
-
-													<!-- 첫째날 상세일정 보여주는 dic START -->
-													<div id="bootstarp-toggle-one-2"
-														class="panel-collapse collapse">
-														<div class="panel-body">
-														<!-- 일정 보여주는 ui START -->
-															<div class="td-timeline-wrap">
-																<ul class="td-timeline">
-																	<li>
-																		<div class="td-timeline-badge">Day 1</div>
-																		<div class="td-timeline-panel">
-																			<div class="td-timeline-panel-time">
-																				<span class="text-darker">07:00</span> <span
-																					class="text-xs-right">AM</span>
-																			</div>
-																			<div class="td-timeline-panel-bubble">
-																				<i class="fa fa-plane text-darker"></i>
-																				<h4 class="timeline-title">International
-																					Outbound Flight</h4>
-																				<p>Lorem ipsum dolor sit amet, consectetur
-																					adipiscing elit. Morbi in purus vel lorem luctus
-																					suscipit sit amet nec velit.</p>
-																			</div>
-																		</div>
-																		<div class="td-timeline-panel">
-																			<div class="td-timeline-panel-time">
-																				<span class="text-darker">08:00</span> <span
-																					class="text-xs-right">AM</span>
-																			</div>
-																			<div class="td-timeline-panel-bubble">
-																				<i class="fa fa-hotel text-darker"></i>
-																				<h4 class="timeline-title">Bangkok</h4>
-																				<p>Lorem ipsum dolor sit amet, consectetur
-																					adipiscing elit. Morbi in purus vel lorem luctus
-																					suscipit sit amet nec velit.</p>
-																			</div>
-																		</div>
-																		<div class="td-timeline-panel">
-																			<div class="td-timeline-panel-time">
-																				<span class="text-darker">09:00</span> <span
-																					class="text-xs-right">AM</span>
-																			</div>
-																			<div class="td-timeline-panel-bubble">
-																				<i class="fa fa-road text-darker"></i>
-																				<h4 class="timeline-title">
-																					Bangkok <i class="fa fa-exchange"></i> Phuket
-																				</h4>
-																				<p>Lorem ipsum dolor sit amet, consectetur
-																					adipiscing elit. Morbi in purus vel lorem luctus
-																					suscipit sit amet nec velit.</p>
-																			</div>
-																		</div>
-																		<div class="td-timeline-panel">
-																			<div class="td-timeline-panel-time">
-																				<span class="text-darker">13:00</span> <span
-																					class="text-xs-right">PM</span>
-																			</div>
-																			<div class="td-timeline-panel-bubble">
-																				<i class="fa fa-bus text-darker"></i>
-																				<h4 class="timeline-title">Khao Sok National
-																					Park</h4>
-																				<p>Lorem ipsum dolor sit amet, consectetur
-																					adipiscing elit. Morbi in purus vel lorem luctus
-																					suscipit sit amet nec velit.</p>
-																			</div>
-																		</div>
-																	</li>
-																</ul>
-															</div>
-															<!-- 일정 보여주는 ui END -->
-														</div>
-													</div>
-
-												</div>
-												<!-- 첫째날 END -->
-												<!-- end of panel -->
-
-											</div>
-										</div>
-
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
-
-									</div>
 								</div>
 							</div>
 
 							<!-- 오른쪽 사이드 메뉴 START -->
 							<div id="sidebar-sticky" class="col-xs-12 col-sm-12 col-md-4">
 								<aside class="sidebar-wrapper">
-									<div class="sidebar-with-box-shadow ml-0-sm">
-										<div class="sidebar-booking-box mmt mt-30-sm">
-											
-											<div class="sidebar-booking-header bg-primary clearfix">
-												<div class="price">여행 제목</div>
-												<div>/ traveller</div>
-											</div>
-
-											<div class="sidebar-booking-inner">
-												<div class="row gap-10" id="rangeDatePicker">
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<label>From</label> <input type="text"
-																id="rangeDatePickerTo" class="form-control"
-																placeholder="yyyy/mm/dd" />
-														</div>
-													</div>
-
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<label>To</label> <input type="text"
-																id="rangeDatePickerFrom" class="form-control"
-																placeholder="yyyy/mm/dd" />
-														</div>
-													</div>
-												</div>
-
-												<div class="row gap-20">
-													<div class="col-xss-12 col-xs-12 col-sm-12">
-														<div class="form-group">
-															<label>No. of traveller</label>
-															<div class="form-group form-spin-group">
-																<input type="text" class="form-control form-spin"
-																	value="1" />
-															</div>
-														</div>
-													</div>
-
-													<div class="col-xss-12 col-xs-12 col-sm-12">
-														<div class="mt-5">
-															<a href="#" class="btn btn-primary btn-block">Request
-																to Book</a>
-														</div>
-													</div>
-												</div>
-
-												<div class="mt-10 text-center">
-													<p class="font-md text-muted font500 spacing-2">You
-														won't yet be charged</p>
-												</div>
-											</div>
-										</div>
-									</div>
+									
 
 									<!-- 내 루트 저장 버튼 -->
 									<a href="#" class="add-fav-btn mt-25 ml-10 ml-0-sm">
@@ -750,131 +558,8 @@
 		</div>
 		<!-- end Main Wrapper -->
 
-		<!-- start Footer Wrapper -->
-		<div class="footer-wrapper scrollspy-footer">
-
-			<footer class="main-footer">
-
-				<div class="container">
-
-					<div class="row">
-
-						<div class="col-sm-12 col-md-4">
-
-							<h5 class="footer-title">newsletter</h5>
-
-							<p class="font16">Subsribe to get our latest updates and
-								oeffers</p>
-
-							<div class="footer-newsletter">
-
-								<div class="form-group">
-									<input class="form-control" placeholder="enter your email " />
-									<button class="btn btn-primary">subsribe</button>
-								</div>
-
-								<p class="font-italic font13">*** Don't worry, we wont spam
-									you!</p>
-
-							</div>
-
-						</div>
-
-						<div class="col-sm-12 col-md-8">
-
-							<div class="row">
-
-								<div
-									class="col-xs-12 col-sm-4 col-md-3 col-md-offset-3 mt-25-sm">
-									<h5 class="footer-title">footer</h5>
-									<ul class="footer-menu">
-										<li><a href="#">Support</a></li>
-										<li><a href="#">Advertise</a></li>
-										<li><a href="#">Media Relations</a></li>
-										<li><a href="#">Affiliates</a></li>
-										<li><a href="#">Careers</a></li>
-									</ul>
-								</div>
-
-								<div class="col-xs-12 col-sm-4 col-md-3 mt-25-sm">
-									<h5 class="footer-title">quick links</h5>
-									<ul class="footer-menu">
-										<li><a href="#">Media Relations</a></li>
-										<li><a href="#">Affiliates</a></li>
-										<li><a href="#">Careers</a></li>
-										<li><a href="#">Support</a></li>
-										<li><a href="#">Advertise</a></li>
-									</ul>
-								</div>
-
-								<div class="col-xs-12 col-sm-4 col-md-3 mt-25-sm">
-
-									<h5 class="footer-title">helps</h5>
-									<ul class="footer-menu">
-										<li><a href="#">Using a Tour</a></li>
-										<li><a href="#">Submitting a Tour</a></li>
-										<li><a href="#">Managing My Account</a></li>
-										<li><a href="#">Merchant Help</a></li>
-										<li><a href="#">White Label Website</a></li>
-									</ul>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</footer>
-
-			<footer class="bottom-footer">
-
-				<div class="container">
-
-					<div class="row">
-
-						<div class="col-xs-12 col-sm-6 col-md-4">
-
-							<p class="copy-right">&#169; 2017 Togoby - tour hosting</p>
-
-						</div>
-
-						<div class="col-xs-12 col-sm-6 col-md-4">
-
-							<ul class="bottom-footer-menu">
-								<li><a href="#">Cookies</a></li>
-								<li><a href="#">Policies</a></li>
-								<li><a href="#">Terms</a></li>
-								<li><a href="#">Blogs</a></li>
-							</ul>
-
-						</div>
-
-						<div class="col-xs-12 col-sm-12 col-md-4">
-							<ul class="bottom-footer-menu for-social">
-								<li><a href="#"><i class="icon-social-twitter"
-										data-toggle="tooltip" data-placement="top" title="twitter"></i></a></li>
-								<li><a href="#"><i class="icon-social-facebook"
-										data-toggle="tooltip" data-placement="top" title="facebook"></i></a></li>
-								<li><a href="#"><i class="icon-social-google"
-										data-toggle="tooltip" data-placement="top" title="google plus"></i></a></li>
-								<li><a href="#"><i class="icon-social-instagram"
-										data-toggle="tooltip" data-placement="top" title="instrgram"></i></a></li>
-							</ul>
-						</div>
-
-					</div>
-
-				</div>
-
-
-			</footer>
-
-		</div>
-		<!-- end Footer Wrapper -->
+		<!-- footer -->
+		<jsp:include page="/include/footer.jsp"/>
 
 	</div>
 	<!-- end Container Wrapper -->
@@ -1143,133 +828,8 @@
 	<script type="text/javascript" src="/js/jquery.daterangepicker.js"></script>
 	<script type="text/javascript" src="/js/customs-datepicker.js"></script>
 
-	<script>
-		var stickyHeaders = (function() {
-			var $window = $(window), $stickies;
-
-			var load = function(stickies) {
-
-				if (typeof stickies === "object" && stickies instanceof jQuery
-						&& stickies.length > 0) {
-
-					$stickies = stickies.each(function() {
-
-						var $thisSticky = $(this).wrap(
-								'<div class="followWrap" />');
-
-						$thisSticky.data('originalPosition',
-								$thisSticky.offset().top).data(
-								'originalHeight', $thisSticky.outerHeight())
-								.parent().height($thisSticky.outerHeight());
-					});
-
-					$window.off("scroll.stickies").on("scroll.stickies",
-							function() {
-								_whenScrolling();
-							});
-				}
-			};
-
-			var _whenScrolling = function() {
-
-				$stickies
-						.each(function(i) {
-
-							var $thisSticky = $(this), $stickyPosition = $thisSticky
-									.data('originalPosition');
-
-							if ($stickyPosition <= $window.scrollTop()) {
-
-								var $nextSticky = $stickies.eq(i + 1), $nextStickyPosition = $nextSticky
-										.data('originalPosition')
-										- $thisSticky.data('originalHeight');
-
-								$thisSticky.addClass("fixed");
-
-								if ($nextSticky.length > 0
-										&& $thisSticky.offset().top >= $nextStickyPosition) {
-
-									$thisSticky.addClass("absolute").css("top",
-											$nextStickyPosition);
-								}
-
-							} else {
-
-								var $prevSticky = $stickies.eq(i - 1);
-
-								$thisSticky.removeClass("fixed");
-
-								if ($prevSticky.length > 0
-										&& $window.scrollTop() <= $thisSticky
-												.data('originalPosition')
-												- $thisSticky
-														.data('originalHeight')) {
-
-									$prevSticky.removeClass("absolute")
-											.removeAttr("style");
-								}
-							}
-						});
-			};
-
-			return {
-				load : load
-			};
-		})();
-
-		$(function() {
-			stickyHeaders.load($(".multiple-sticky"));
-		});
-
-		// Cache selectors
-		var lastId, topMenu = $("#multiple-sticky-menu"), topMenuHeight = topMenu
-				.outerHeight() + 80,
-		// All list items
-		menuItems = topMenu.find("a"),
-		// Anchors corresponding to menu items
-		scrollItems = menuItems.map(function() {
-			var item = $($(this).attr("href"));
-			if (item.length) {
-				return item;
-			}
-		});
-
-		// Bind click handler to menu items
-		// so we can get a fancy scroll animation
-		menuItems.click(function(e) {
-			var href = $(this).attr("href"), offsetTop = href === "#" ? 0 : $(
-					href).offset().top - 110;
-			// offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
-			$('html, body').stop().animate({
-				scrollTop : offsetTop
-			}, 300);
-			e.preventDefault();
-		});
-
-		// Bind to scroll
-		$(window).scroll(
-				function() {
-					// Get container scroll position
-					var fromTop = $(this).scrollTop() + topMenuHeight;
-
-					// Get id of current scroll item
-					var cur = scrollItems.map(function() {
-						if ($(this).offset().top < fromTop)
-							return this;
-					});
-					// Get the id of the current element
-					cur = cur[cur.length - 1];
-					var id = cur && cur.length ? cur[0].id : "";
-
-					if (lastId !== id) {
-						lastId = id;
-						// Set/remove active class
-						menuItems.parent().removeClass("active").end().filter(
-								"[href='#" + id + "']").parent().addClass(
-								"active");
-					}
-				});
-	</script>
+	<!-- Custom JS -->
+	<script type="text/javascript" src="/js/routeDetail.js"></script>
 
 </body>
 

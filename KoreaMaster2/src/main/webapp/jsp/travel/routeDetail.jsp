@@ -442,59 +442,7 @@
 							<!-- 오른쪽 사이드 메뉴 START -->
 							<div id="sidebar-sticky" class="col-xs-12 col-sm-12 col-md-4">
 								<aside class="sidebar-wrapper">
-									<div class="sidebar-with-box-shadow ml-0-sm">
-										<div class="sidebar-booking-box mmt mt-30-sm">
-											
-											<div class="sidebar-booking-header bg-primary clearfix">
-												<div class="price">여행 제목</div>
-												<div>/ traveller</div>
-											</div>
-
-											<div class="sidebar-booking-inner">
-												<div class="row gap-10" id="rangeDatePicker">
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<label>From</label> <input type="text"
-																id="rangeDatePickerTo" class="form-control"
-																placeholder="yyyy/mm/dd" />
-														</div>
-													</div>
-
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<label>To</label> <input type="text"
-																id="rangeDatePickerFrom" class="form-control"
-																placeholder="yyyy/mm/dd" />
-														</div>
-													</div>
-												</div>
-
-												<div class="row gap-20">
-													<div class="col-xss-12 col-xs-12 col-sm-12">
-														<div class="form-group">
-															<label>No. of traveller</label>
-															<div class="form-group form-spin-group">
-																<input type="text" class="form-control form-spin"
-																	value="1" />
-															</div>
-														</div>
-													</div>
-
-													<div class="col-xss-12 col-xs-12 col-sm-12">
-														<div class="mt-5">
-															<a href="#" class="btn btn-primary btn-block">Request
-																to Book</a>
-														</div>
-													</div>
-												</div>
-
-												<div class="mt-10 text-center">
-													<p class="font-md text-muted font500 spacing-2">You
-														won't yet be charged</p>
-												</div>
-											</div>
-										</div>
-									</div>
+									
 
 									<!-- 내 루트 저장 버튼 -->
 									<a href="#" class="add-fav-btn mt-25 ml-10 ml-0-sm">
