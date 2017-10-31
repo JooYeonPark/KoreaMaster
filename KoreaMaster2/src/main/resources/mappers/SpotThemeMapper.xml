@@ -12,4 +12,11 @@
 		FROM   spot_theme 
 		WHERE  spot_no = #{value}
 	</select>
+	
+	<insert id="create" parameterType="">
+		insert  into spot_Theme ( theme_no as "themeNo",
+								  spot_no as "spotNo")
+		values(#{themeNo}, #{spotNo})
+	</insert>
+	
 </mapper>

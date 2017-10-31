@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import kr.or.koreaMaster.spotTheme.domain.SpotTheme;
+
 	public class SpotThemeDAOImpl implements SpotThemeDAO {
 	private static final String NAMESPACE = "kr.or.koreaMaster.spotTheme";
 		
@@ -20,6 +22,11 @@ import org.apache.ibatis.session.SqlSession;
 	@Override
 	public List<Integer> readThemeBySpot(int spotNo) {
 		return sqlSession.selectList(NAMESPACE+".readThemeBySpot", spotNo);
+	}
+
+	@Override
+	public void create(SpotTheme spotTheme) {
+		sqlSession.insert(NAMESPACE+".create", spotTheme);
 	}
 
 }
