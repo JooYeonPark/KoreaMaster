@@ -13,6 +13,7 @@
 		<typeAlias type="kr.or.koreaMaster.place.domain.Spot" alias="Spot"/>
 		<typeAlias type="kr.or.koreaMaster.place.domain.Sido" alias="Sido"/>
 		<typeAlias type="kr.or.koreaMaster.place.domain.Sigungu" alias="Sigungu"/>
+		<typeAlias type="kr.or.koreaMaster.place.domain.Restaurant" alias="Restaurant"/>
 		<typeAlias type="kr.or.koreaMaster.travel.domain.SmallTrip" alias="SmallTrip"></typeAlias>
 		<typeAlias type="kr.or.koreaMaster.travel.domain.Route" alias="Route"></typeAlias>
 		<typeAlias type="kr.or.koreaMaster.travel.domain.Trip" alias="Trip"></typeAlias>
@@ -57,6 +58,7 @@
 		<mapper resource="mappers/SpotMapper.xml"  />
 		<mapper resource="mappers/SidoMapper.xml"  />
 		<mapper resource="mappers/SigunguMapper.xml"  /> 
+		<mapper resource="mappers/RastaurantMapper.xml"  /> 
 		<mapper resource="mappers/SmallTripMapper.xml"  /> 
 	 	<mapper resource="mappers/TripMapper.xml"  /> 
 	 	<mapper resource="mappers/RouteMapper.xml"  />
