@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.koreaMaster.spotTheme">
+
+<!-- spotNo에 따른 themeNo 조회 -->
+	<select id="readThemeBySpot" parameterType="int" resultType="int">
+		SELECT theme_no 
+		FROM   spot_theme 
+		WHERE  spot_no = #{value}
+	</select>
+	
+	<insert id="create" parameterType="">
+		insert  into spot_Theme ( theme_no as "themeNo",
+								  spot_no as "spotNo")
+		values(#{themeNo}, #{spotNo})
+	</insert>
+	
+</mapper>

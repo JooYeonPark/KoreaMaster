@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.koreaMaster.place.mapper.SpotMapper">
+	
+	<insert id="create" parameterType="Spot">
+		
+	</insert>
+		
+	<select id="listAll" resultType="Spot">
+		SELECT spot_no as "no", 
+		       city_no as "cityNo", 
+		       spot_name as "name", 
+		       spot_detail as "detail", 
+		       spot_address_detail as "addressDetail", 
+		       spot_operating_hour as "operatingHour", 
+		       spot_closed_date as "closedDate", 
+		       spot_phone as "phone", 
+		       spot_fare as "fare", 
+		       spot_homepage as "homepage", 
+		       spot_picture as "picture", 
+		       spot_latitude as "latitude", 
+		       spot_longitude as "longitude", 
+		       spot_use_num   as "useNum"
+		FROM   spot
+	</select>
+	
+	<select id="read" parameterType="int" resultType="Spot">
+		SELECT spot_no as "no", 
+		       city_no as "cityNo", 
+		       spot_name as "name", 
+		       spot_detail as "detail", 
+		       spot_address_detail as "addressDetail", 
+		       spot_operating_hour as "operatingHour", 
+		       spot_closed_date as "closedDate", 
+		       spot_phone as "phone", 
+		       spot_fare as "fare", 
+		       spot_homepage as "hompage", 
+		       spot_picture as "picture", 
+		       spot_latitude as "latitude", 
+		       spot_longitude as "longitude", 
+		       spot_use_num   as "useNum"
+		FROM   spot
+		WHERE  spot_no = #{value}
+	</select>
+	
+	<select id="getSpotByCity" parameterType="int" resultType="int">
+		SELECT spot_no as "no" 
+		FROM   spot
+		WHERE  city_no = #{value}
+	</select>
+	
+	<update id="update" parameterType="Spot">
+		
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM SPOT
+		WHERE spot_no = #{value}
+	</delete>
+
+</mapper>
