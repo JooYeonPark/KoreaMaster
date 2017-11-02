@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+       
+<mapper namespace = "kr.or.kosta.koreaMaster.travel.smallTrip">
+
+<!-- 생성 -->
+<insert id="create" parameterType="SmallTrip">
+	INSERT INTO small_trip 
+            	(day_no, 
+             	trip_no, 
+             	route_no) 
+	VALUES    (#{dayNo}, 
+	           #{tripNo}, 
+	           #{routeNo}) 
+</insert>
+
+<!-- 삭제 -->
+<delete id="delete" parameterType="SmallTrip">
+	DELETE FROM small_trip 
+	WHERE  day_no = #{dayNo} 
+	       AND trip_no = #{tripNo} 
+</delete>
+
+<!-- 수정 -->
+<update id="update" parameterType="SmallTrip">
+	UPDATE  small_trip 
+	SET     route_no = #{routeNo}
+	WHERE   trip_no = #{tripNo}
+	        AND day_no = #{dayNo}
+</update>
+
+<!-- 조회 -->
+<select id="read" parameterType="SmallTrip" resultType="SmallTrip">
+	SELECT trip_no		AS	"tripNo", 
+      		day_no		AS	"dayNo", 
+       		route_no	AS	"routeNo" 
+	FROM   small_trip 
+	WHERE  trip_no = #{tripNo} 
+	       AND day_no = #{dayNo} 
+</select>
+
+<!-- 전체조회 -->
+<select id="listAll" resultType="SmallTrip">
+	SELECT trip_no		AS	"tripNo", 
+      		day_no		AS	"dayNo", 
+       		route_no	AS	"routeNo" 
+	FROM   small_trip 
+</select>
+
+</mapper>

@@ -10,7 +10,18 @@
 	
 	<!--  MyBatis에서 사용할 자바클래스(패키지명 포함 풀네임)에 대한 짧은 별칭 등록 -->
 	<typeAliases>
-		<typeAlias type="kr.or.koreaMaster.spot.domain.Spot" alias="Spot"/>
+		<typeAlias type="kr.or.koreaMaster.place.domain.Spot" alias="Spot"/>
+		<typeAlias type="kr.or.koreaMaster.place.domain.Sido" alias="Sido"/>
+		<typeAlias type="kr.or.koreaMaster.place.domain.Sigungu" alias="Sigungu"/>
+		<typeAlias type="kr.or.koreaMaster.place.domain.Restaurant" alias="Restaurant"/>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.SmallTrip" alias="SmallTrip"></typeAlias>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.Route" alias="Route"></typeAlias>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.Trip" alias="Trip"></typeAlias>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.RouteTheme" alias="RouteTheme"></typeAlias>
+		<typeAlias type="kr.or.koreaMaster.spotTheme.domain.SpotTheme" alias="SpotTheme"/>
+		
+		<typeAlias type="kr.or.koreaMaster.theme.model.Theme" alias="Theme"/>
+		<typeAlias type="kr.or.koreaMaster.theme.model.UsersTheme" alias="UsersTheme" />
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->
@@ -49,7 +60,17 @@
 	<mappers>
 		<!-- 클래스패스에 위치한 XML 매퍼 파일 지정 -->
 	<!-- 	<mapper resource="mappers/functionMapper.xml"  /> -->
-	<mapper resource="mappers/SpotMapper.xml"  />
+		<mapper resource="mappers/SpotMapper.xml"  />
+		<mapper resource="mappers/SidoMapper.xml"  />
+		<mapper resource="mappers/SigunguMapper.xml"  /> 
+		<mapper resource="mappers/RastaurantMapper.xml"  /> 
+		<mapper resource="mappers/SmallTripMapper.xml"  /> 
+	 	<mapper resource="mappers/TripMapper.xml"  /> 
+	 	<mapper resource="mappers/RouteMapper.xml"  />
+	 	<mapper resource="mappers/SpotThemeMapper.xml"  />
+	 	<mapper resource="mappers/RouteThemeMapper.xml"  />
+	 	
+	 	<mapper resource="mappers/MyTravelTypeMapper.xml" />
 	</mappers>
 	
 

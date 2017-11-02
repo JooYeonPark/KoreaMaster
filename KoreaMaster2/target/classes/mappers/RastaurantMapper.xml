@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.koreaMaster.place.mapper.RestaurantMapper">
+
+	<insert id="create" parameterType="Restaurant">
+		insert into Restaurant(RESTAURANT_NO as "no", 
+							   CITY_NO as "cityNo", 
+							   RESTAURANT_NAME as "name", 
+							   RESTAURANT_DETAIL as "detail",
+				  			   RESTAURANT_ADDRESS_DETAIL as "adresssDetail", 
+				  			   RESTAURANT_OPERATING_HOUR as "operatingHour",
+				  			   RESTAURANT_CLOSED_DATE as "closedDate", 
+				  			   RESTAURANT_PHONE as "phone", 
+				  			   RESTAURANT_FARE as "fare", 
+				  			   RESTAURANT_PICTURE as "picture", 
+				  			   RESTAURANT_LATITUDE as "latitude",
+							   RESTAURANT_LONGITUDE as "longitude",
+							   RESTAURANT_USE_NUM as "useNum")
+		values( restaurant_seq.nextval, 
+				#{cityNo}, 
+				#{name},
+				#{detail},
+				#{adressDetail},
+				#{operatingHour},
+				#{closedDate},
+				#{phone},
+				#{fare},
+				#{picture},
+				#{latitude},
+				#{longitude},
+				#{useNum})
+	</insert>
+
+	<select id="listAll" resultType="Restaurant">
+		SELECT RESTAURANT_NO as "no", 
+			   CITY_NO as "cityNo", 
+			   RESTAURANT_NAME as "name", 
+			   RESTAURANT_DETAIL as "detail",
+			   RESTAURANT_ADDRESS_DETAIL as "adresssDetail",
+			   RESTAURANT_OPERATING_HOUR as "operatingHour",
+			   RESTAURANT_CLOSED_DATE as "closedDate", 
+			   RESTAURANT_PHONE as "phone", 
+			   RESTAURANT_FARE as "fare", 
+			   RESTAURANT_PICTURE as "picture", 
+			   RESTAURANT_LATITUDE as "latitude",
+			   RESTAURANT_LONGITUDE as "longitude",
+			   RESTAURANT_USE_NUM as "useNum"
+		FROM Restaurant
+	</select>
+
+	<select id="read" parameterType="int" resultType="Restaurant">
+		SELECT RESTAURANT_NO as "no", 
+			   CITY_NO as "cityNo", 
+			   RESTAURANT_NAME as "name", 
+			   RESTAURANT_DETAIL as "detail",
+			   RESTAURANT_ADDRESS_DETAIL as "adresssDetail",
+			   RESTAURANT_OPERATING_HOUR as "operatingHour",
+			   RESTAURANT_CLOSED_DATE as "closedDate", 
+			   RESTAURANT_PHONE as "phone", 
+			   RESTAURANT_FARE as "fare", 
+			   RESTAURANT_PICTURE as "picture", 
+			   RESTAURANT_LATITUDE as "latitude",
+			   RESTAURANT_LONGITUDE as "longitude",
+			   RESTAURANT_USE_NUM as "useNum"
+		FROM Restaurant
+		WHERE RESTAURANT_NO = #{vlaue}
+	</select>
+
+	<update id="update" parameterType="Restaurant">
+		update Restaurant
+		set RESTAURANT_NAME  = #{name}, 
+			RESTAURANT_DETAIL = #{detail},
+			RESTAURANT_ADDRESS_DETAIL = #{adresssDetail},
+			RESTAURANT_OPERATING_HOUR = #{operatingHour},
+			RESTAURANT_CLOSED_DATE = #{closedDate}, 
+			RESTAURANT_PHONE = #{phone}, 
+			RESTAURANT_FARE = #{fare}, 
+			RESTAURANT_PICTURE = #{picture}, 
+			RESTAURANT_LATITUDE = #{latitude},
+			RESTAURANT_LONGITUDE = #{longitude},
+			RESTAURANT_USE_NUM = #{useNum}
+		where RESTAURANT_NO = #{no}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM Restaurant
+		WHERE RESTAURANT_NO = #{value}
+	</delete>
+
+</mapper>

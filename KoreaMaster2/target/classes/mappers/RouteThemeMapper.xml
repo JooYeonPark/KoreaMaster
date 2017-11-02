@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+       
+<mapper namespace = "kr.or.kosta.koreaMaster.travel.routeTheme">
+
+<!-- 생성 -->
+<insert id="create" parameterType="RouteTheme">
+	INSERT INTO route_theme 
+            	(theme_no, 
+            	 trip_no) 
+	VALUES     (#{themeNo}, 
+	            #{tripNo})
+</insert>
+
+<!-- 전체 조회 -->
+<select id="listAll" resultType="RouteTheme">
+	SELECT theme_no 	AS "themeNo", 
+       		trip_no 	AS "tripNo"
+	FROM   route_theme
+</select>
+
+<!-- 삭제 -->
+<delete id="delete" parameterType="RouteTheme">
+	DELETE FROM route_theme 
+	WHERE  theme_no = #{themeNo} 
+	       AND trip_no =  #{tripNo}
+</delete>
+
+</mapper>

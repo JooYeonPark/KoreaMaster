@@ -1,5 +1,18 @@
+<%@page import="kr.or.koreaMaster.user.model.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% 
+	String projectName = "/KoreaMaster2";
+	
+	// 로그인한 유저 얻어오기
+	Object obj = session.getAttribute("user");
+	Users user = null;
+	
+	// 로그인을 했다면 user에 설정
+	if(obj != null) {
+		user = (Users)obj;
+	}
+%>
 
 <!-- start Navbar (Header) -->
 <nav
@@ -33,16 +46,21 @@
 		</div>
 		<!--/.nav-collapse -->
 
+		<% if(user == null) { %>
 		<div class="nav-mini-wrapper">
 			<ul class="nav-mini">
-				<li><a data-toggle="modal" href="#registerModal"><i
+				<li><a data-toggle="modal" href="<%= projectName %>/user?cmd=join-page"><i
 						class="icon-user-follow" data-toggle="tooltip"
 						data-placement="bottom" title="sign up"></i></a></li>
-				<li><a data-toggle="modal" href="#loginModal"><i
+				<li><a data-toggle="modal" href="<%= projectName %>/user?cmd=login-page"><i
 						class="icon-login" data-toggle="tooltip" data-placement="bottom"
 						title="login"></i> </a></li>
 			</ul>
 		</div>
+		<% } else { 
+			// user가 로그인을 한 상태이면 환영 메세지와 로그아웃 아이콘 출력
+		%>
+		<% } %>
 
 	</div>
 
