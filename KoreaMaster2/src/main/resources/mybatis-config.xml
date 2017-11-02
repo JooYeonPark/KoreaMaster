@@ -14,14 +14,15 @@
 		<typeAlias type="kr.or.koreaMaster.place.domain.Sido" alias="Sido"/>
 		<typeAlias type="kr.or.koreaMaster.place.domain.Sigungu" alias="Sigungu"/>
 		<typeAlias type="kr.or.koreaMaster.place.domain.Restaurant" alias="Restaurant"/>
-		<typeAlias type="kr.or.koreaMaster.travel.domain.SmallTrip" alias="SmallTrip"></typeAlias>
-		<typeAlias type="kr.or.koreaMaster.travel.domain.Route" alias="Route"></typeAlias>
-		<typeAlias type="kr.or.koreaMaster.travel.domain.Trip" alias="Trip"></typeAlias>
-		<typeAlias type="kr.or.koreaMaster.travel.domain.RouteTheme" alias="RouteTheme"></typeAlias>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.SmallTrip" alias="SmallTrip"/>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.Route" alias="Route"/>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.Trip" alias="Trip"/>
+		<typeAlias type="kr.or.koreaMaster.travel.domain.RouteTheme" alias="RouteTheme"/>
 		<typeAlias type="kr.or.koreaMaster.spotTheme.domain.SpotTheme" alias="SpotTheme"/>
-		
 		<typeAlias type="kr.or.koreaMaster.theme.model.Theme" alias="Theme"/>
 		<typeAlias type="kr.or.koreaMaster.theme.model.UsersTheme" alias="UsersTheme" />
+		<typeAlias type="kr.or.koreaMaster.user.model.Users" alias="user"/>
+		<typeAlias type="kr.or.koreaMaster.user.model.TripNote" alias="note"/>
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->
