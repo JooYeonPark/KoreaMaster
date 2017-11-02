@@ -22,9 +22,9 @@
 
 					</ul></li>
 
-				<li><a href="">여행</a>
+				<li><a href="">Requested Tour</a>
 					<ul>
-						<li><a href="/jsp/travel/routeRequest.jsp">여행루트생성</a></li>
+						<li><a href="">Requested Tour Result</a></li>
 					</ul></li>
 
 

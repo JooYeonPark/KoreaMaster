@@ -1,5 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans>
-	<!-- 루트생성관련 컨트롤러 등록 -->	
-	<bean name="/route" class="kr.or.koreaMaster.travel.controller.RouteController"></bean>
+<beans>	
 </beans>

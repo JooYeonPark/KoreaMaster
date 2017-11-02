@@ -19,16 +19,4 @@
 		values(#{themeNo}, #{spotNo})
 	</insert>
 	
-	<select id="getSpotThemeJoin" parameterType="int" resultType="SpotThemeJoin">
-		SELECT s.spot_no, 
-		       s.spot_latitude, 
-		       s.spot_longitude, 
-		       t.theme_no 
-		FROM   spot_theme t, 
-		       spot s 
-		WHERE  t.spot_no = s.spot_no
-				AND s.city_no = #{value}
-	</select>
-	
-	
 </mapper>

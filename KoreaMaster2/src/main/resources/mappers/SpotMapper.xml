@@ -51,7 +51,6 @@
 		SELECT spot_no as "no" 
 		FROM   spot
 		WHERE  city_no = #{value}
-		ORDER BY spot_use_num DESC
 	</select>
 	
 	<update id="update" parameterType="Spot">
