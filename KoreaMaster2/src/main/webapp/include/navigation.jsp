@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% String projectName = "/KoreaMaster2"; %>
 
 <!-- start Navbar (Header) -->
 <nav
@@ -35,10 +36,10 @@
 
 		<div class="nav-mini-wrapper">
 			<ul class="nav-mini">
-				<li><a data-toggle="modal" href="#registerModal"><i
+				<li><a data-toggle="modal" href="<%= projectName %>/user?cmd=join-page"><i
 						class="icon-user-follow" data-toggle="tooltip"
 						data-placement="bottom" title="sign up"></i></a></li>
-				<li><a data-toggle="modal" href="#loginModal"><i
+				<li><a data-toggle="modal" href="<%= projectName %>/user?cmd=login-page"><i
 						class="icon-login" data-toggle="tooltip" data-placement="bottom"
 						title="login"></i> </a></li>
 			</ul>
