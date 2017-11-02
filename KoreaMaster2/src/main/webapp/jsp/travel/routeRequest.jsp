@@ -158,13 +158,15 @@
 										</div>
 										
 										<hr>
+										
+										
 										<h5 class="text-uppercase">이번 여행에서 원하는 테마가 있으면 선택해주세요. <br>
 										본인 성향대로 평소처럼 여행하고 싶다면 선택하지 않으셔도 됩니다.</h5>
 										
 										<div class="row gap-20">
 											
 											<div class="col-xs-8 col-sm-8">
-											
+											<%-- 테마 :  ,로 구분하여 string 형태로 넘겨줄 것!! --%>
 												<label class="block">Tour style:</label>
 												
 												<div class="category-checkbox-wrapper clearfix mt-10 mb-15">
@@ -544,8 +546,11 @@
 <script type="text/javascript" src="/js/typeahead.bundle.min.js"></script>
 <script type="text/javascript" src="/js/customs-create.js"></script>
 
+
 <!-- Detail Page JS -->
 <script type="text/javascript" src="/js/customs-datepicker.js"></script>
+<script type="text/javascript" src="/js/jquery.daterangepicker.js"></script>
+
 
 </body>
 
