@@ -1,4 +1,4 @@
-package kr.or.koreanMaster.common.controller;
+package kr.or.koreaMaster.common.controller;
 
 import java.io.IOException;
 import java.util.Map;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.koreanMaster.common.view.View;
-import kr.or.koreanMaster.common.view.ViewResolver;
+import kr.or.koreaMaster.common.view.View;
+import kr.or.koreaMaster.common.view.ViewResolver;
 
 /**
  * 모든 브라우저 요청에 대한 단일 진입점 역할의 프론트 컨트롤러 서블릿(메인 컨트롤러)

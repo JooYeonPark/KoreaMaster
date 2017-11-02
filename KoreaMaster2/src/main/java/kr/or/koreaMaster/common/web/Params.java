@@ -1,4 +1,4 @@
-package kr.or.koreanMaster.common.web;
+package kr.or.koreaMaster.common.web;
 
 /**
  * 여러개의 요청파라메터들을 저장(포장)하기 위한 JavaBean

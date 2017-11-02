@@ -1,4 +1,4 @@
-package kr.or.koreanMaster.common.web;
+package kr.or.koreaMaster.common.web;
 
 import java.io.IOException;
 

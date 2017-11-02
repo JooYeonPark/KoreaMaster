@@ -1,4 +1,4 @@
-package kr.or.koreanMaster.common.controller;
+package kr.or.koreaMaster.common.controller;
 
 import java.util.HashMap;
 
@@ -9,7 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import kr.or.koreanMaster.common.exception.MallException;
+import kr.or.koreaMaster.common.exception.MallException;
 
 /**
  * Factory 패턴 적용 ControllerFactory

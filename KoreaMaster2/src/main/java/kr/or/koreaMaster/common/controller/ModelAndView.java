@@ -1,4 +1,4 @@
-package kr.or.koreanMaster.common.controller;
+package kr.or.koreaMaster.common.controller;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package kr.or.koreanMaster.common.exception;
+package kr.or.koreaMaster.common.exception;
 
 
 public class MallException extends RuntimeException {

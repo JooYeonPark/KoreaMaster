@@ -1,4 +1,4 @@
-package kr.or.koreanMaster.common.controller;
+package kr.or.koreaMaster.common.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

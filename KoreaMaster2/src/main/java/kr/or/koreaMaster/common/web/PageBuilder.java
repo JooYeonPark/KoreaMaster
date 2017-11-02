@@ -1,4 +1,4 @@
-package kr.or.koreanMaster.common.web;
+package kr.or.koreaMaster.common.web;
 
 /**
  * 페이징 계산 및 페이지 번호(1|2|3|4|5....) 출력을 각각의 JSP에서 처리하지 않고,
