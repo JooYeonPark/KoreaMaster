@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.koreaMaster.theme.mapper.ThemeMapper">
+	
+	<insert id="insertType" parameterType="UsersTheme">
+		insert into users_theme
+		values ( #{usersID}, #{themeNo}, #{score})
+	</insert>
+	
+	<insert id="create" parameterType="UsersTheme">
+		insert into theme
+		values ( #{themeNo}, #{themeName}, #{themeDetail})
+	</insert>
+		
+	<select id="listAll" resultType="Theme">
+		SELECT theme_no as "no", 
+		       theme_name as "name", 
+		       theme_detail as "detail"
+		FROM   theme
+	</select>
+	
+	<select id="read" parameterType="int" resultType="Theme">
+		SELECT theme_no as "no", 
+		       theme_name as "name", 
+		       theme_detail as "detail"
+		FROM   theme
+		WHERE  theme_no = #{value}
+	</select>
+	
+	<select id="getNoByName" parameterType="String" resultType="int">
+		SELECT theme_no as "no" 
+		FROM   theme
+		WHERE  theme_name = #{value}
+	</select>
+	
+	<update id="update" parameterType="Theme">
+		
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM theme
+		WHERE theme_no = #{value}
+	</delete>
+
+</mapper>

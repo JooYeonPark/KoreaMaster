@@ -15,7 +15,7 @@ import kr.or.koreaMaster.theme.model.UsersTheme;
  */
 
 public class MyTravelTypeRepository {
-	private String namespace = "kr.or.koreaMaster.theme.mapper.MyTravelTypeMapper";
+	private String namespace = "mappers.ThemeMapper";
 	
 	SqlSessionFactory getSqlSessionFactory() {
 		InputStream in = null;
@@ -54,7 +54,7 @@ public class MyTravelTypeRepository {
 	public Integer findThemeId(String themeName) {
 		SqlSession sess = getSqlSessionFactory().openSession();		// sql 연결 객체
 		try {
-			int themeId = sess.selectOne(namespace + ".findThemeId", themeName);
+			int themeId = sess.selectOne(namespace + ".getNoByName", themeName);
 			if(themeId > 0) {			// 결과 값이 존재할 경우 커밋, 그렇지 않으면 롤백
 				sess.commit();
 			} else {

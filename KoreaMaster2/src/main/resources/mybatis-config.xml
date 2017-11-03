@@ -70,7 +70,8 @@
 	 	<mapper resource="mappers/RouteMapper.xml"  />
 	 	<mapper resource="mappers/SpotThemeMapper.xml"  />
 	 	<mapper resource="mappers/RouteThemeMapper.xml"  />
-	  	<mapper resource="mappers/MyTravelTypeMapper.xml" />  
+	  	<mapper resource="mappers/UsersThemeMapper.xml" />
+	  	<mapper resource="mappers/ThemeMapper.xml" />  
 	</mappers>
 	
 
