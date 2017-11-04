@@ -32,9 +32,15 @@
 	</select>
 	
 	<select id="getNoByName" parameterType="String" resultType="int">
-		SELECT theme_no as "no" 
+		SELECT theme_no
 		FROM   theme
 		WHERE  theme_name = #{value}
+	</select>
+	
+	<select id="getNoById" parameterType="int" resultType="int">
+		SELECT theme_no 
+		FROM   users_theme
+		WHERE  users_id = #{value}
 	</select>
 	
 	<update id="update" parameterType="Theme">
