@@ -5,17 +5,20 @@ public class SpotThemeJoin {
 	private int themeNo;
 	private String latitude;
 	private String longitude;
+	private int score;
 	
 	/** 생성자 */
 	public SpotThemeJoin() {}
-	
-	public SpotThemeJoin(int spotNo, int themeNo, String latitude, String longitude) {
+
+	public SpotThemeJoin(int spotNo, int themeNo, String latitude, String longitude, int score) {
 		super();
 		this.spotNo = spotNo;
 		this.themeNo = themeNo;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.score = score;
 	}
+
 
 	/** Getter, Setter */
 	public int getSpotNo() {
@@ -50,10 +53,18 @@ public class SpotThemeJoin {
 		this.longitude = longitude;
 	}
 
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 	@Override
 	public String toString() {
 		return "SpotThemeJoin [spotNo=" + spotNo + ", themeNo=" + themeNo + ", latitude=" + latitude + ", longitude="
-				+ longitude + "]";
+				+ longitude + ", score=" + score + "]";
 	}
 	
 	
