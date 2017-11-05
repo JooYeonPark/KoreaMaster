@@ -27,6 +27,9 @@ public interface SigunguDao {
 	
 	/** 삭제 */
 	public void delete(int no);
+	
+	/** 시도 번호로 조회 */
+	public List<Sigungu> readBySido(int sidoNo);
 }
 
 

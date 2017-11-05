@@ -24,7 +24,8 @@
 		       spot.spot_latitude	AS "latitude", 
 		       spot.spot_longitude	AS "longitude", 
 		       spot_theme.theme_no	AS "themeNo", 
-		       spot_theme.score		AS "score"
+		       spot_theme.score		AS "score",
+		       spot.spot_use_num	AS "hitcount"
 		FROM   spot_theme, 
 		       spot 
 		WHERE  spot_theme.spot_no = spot.spot_no 

@@ -39,5 +39,13 @@
 		DELETE FROM Sigungu
 		WHERE city_no = #{value}
 	</delete>
+	
+	<select id="readBySido" parameterType="int" resultType="Sigungu">
+		 SELECT city_no as "no", 
+		       sigun_name  as "sigunName",
+		       gu_name as "guName"
+		FROM   Sigungu
+		WHERE  sido_num = #{value}
+	</select>
 
 </mapper>

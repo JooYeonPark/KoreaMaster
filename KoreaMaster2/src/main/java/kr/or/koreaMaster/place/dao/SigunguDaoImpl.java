@@ -44,6 +44,12 @@ public class SigunguDaoImpl implements SigunguDao {
 	public void delete(int no) {
 		sqlSession.delete(NAMESPACE+".delete", no);
 	}
+	
+	@Override
+	/** 시도 번호로 조회 */
+	public List<Sigungu> readBySido(int sidoNo) {
+		return sqlSession.selectList(NAMESPACE+".readBySido", sidoNo);
+	}
 
 	
 }
