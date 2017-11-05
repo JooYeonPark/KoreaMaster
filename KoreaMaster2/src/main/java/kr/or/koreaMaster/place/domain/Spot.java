@@ -19,7 +19,7 @@ public class Spot {
 	
 	/* 생성자 */
 	public Spot() { 
-		this(0, 0, null, null, null, null, null, null, null, null, null, 0, 0, 0);
+		this(0, 0, "", "", "", "", "", "", "", "", "", 0, 0, 0);
 	}
 	
 
@@ -139,7 +139,7 @@ public class Spot {
 		return "Spot [no=" + no + ", cityNo=" + cityNo + ", name=" + name + ", detail=" + detail + ", address="
 				+ addressDetail + ", operatingHour=" + operatingHour + ", closedDate=" + closedDate + ", phone=" + phone
 				+ ", fare=" + fare + ", homepage=" + homepage + ", picture=" + picture + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", useNum=" + useNum + "]";
+				+ ", longitude=" + longitude + "]";
 	}
 	
 }

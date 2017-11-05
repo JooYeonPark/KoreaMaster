@@ -6,9 +6,20 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="kr.or.koreaMaster.place.mapper.SigunguMapper">
 	
-	<insert id="create" parameterType="Sigungu">
-		insert into Sigungu(city_no, sigun_name, gu_name, sido_num)
-		values(sigungu_seq.nextval, #{sigunName}, #{guName}, #{sidoNum})
+	<insert id="siguncreate" parameterType="Sigungu">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT sigungu_seq.nextval as no FROM DUAL
+		</selectKey>
+		insert into Sigungu(city_no, sigun_name, sido_num)
+		values(#{no}, #{sigunName}, #{sidoNum})
+	</insert>
+	
+	<insert id="gucreate" parameterType="Sigungu">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT sigungu_seq.nextval FROM DUAL
+		</selectKey>
+		insert into Sigungu(city_no, gu_name, sido_num)
+		values(#{no}, #{guName}, #{sidoNum})
 	</insert>
 		
 	<select id="listAll" resultType="Sigungu">
@@ -26,6 +37,15 @@
 		       sido_num as "sidoNum"
 		FROM   Sigungu
 		WHERE  city_no = #{vlaue}
+	</select>
+	
+	<select id="readByMap" parameterType="map" resultType="Sigungu">
+		SELECT city_no as "no", 
+		       sigun_name as "sigunName",
+		       gu_name as "guName",
+		       sido_num as "sidoNum"
+		FROM   Sigungu
+		WHERE  (sigun_name = #{sigunName} or gu_name = #{guName}) and sido_num = #{sidoNum}
 	</select>
 	
 	<update id="update" parameterType="Sigungu">

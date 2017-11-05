@@ -46,6 +46,10 @@ public class SidoDaoImpl implements SidoDao {
 		sqlSession.delete(NAMESPACE+".delete", no);
 	}
 
+	@Override
+	public Sido readByName(String name) {
+		return sqlSession.selectOne(NAMESPACE+".readByName", name);
+	}
 	
 }
 

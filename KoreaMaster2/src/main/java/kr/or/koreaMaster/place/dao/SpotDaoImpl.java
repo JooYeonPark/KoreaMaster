@@ -1,5 +1,6 @@
 package kr.or.koreaMaster.place.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,19 @@ public class SpotDaoImpl implements SpotDao {
 	@Override
 	public List<Integer> getSpotByCity(int cityNo){
 		return sqlSession.selectList(NAMESPACE+".getSpotByCity", cityNo);
+	}
+	
+	@Override
+	public Spot readByNameCity(String name, int cityNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", name);
+		map.put("cityNo", cityNo);
+		return sqlSession.selectOne(NAMESPACE+".readByNameCity", map);
+	}
+
+	@Override
+	public void update(Spot spot) {
+		sqlSession.update(NAMESPACE+".update", spot);
 	}
 	
 }

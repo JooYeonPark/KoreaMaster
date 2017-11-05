@@ -22,6 +22,9 @@ public interface SidoDao {
 	/** 번호로 조회 */
 	public Sido read(int no);
 	
+	/** 이름로 조회 */
+	public Sido readByName(String name);
+	
 	/** 수정 */
 	public void update(Sido sido);
 	

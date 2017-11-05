@@ -1,6 +1,8 @@
 package kr.or.koreaMaster.place.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -21,8 +23,13 @@ public class SigunguDaoImpl implements SigunguDao {
 	}
 
 	@Override
-	public void create(Sigungu sigungu) {
-		sqlSession.insert(NAMESPACE+".create", sigungu);
+	public void siguncreate(Sigungu sigungu) {
+		sqlSession.insert(NAMESPACE+".siguncreate", sigungu);
+	}
+	
+	@Override
+	public void gucreate(Sigungu sigungu) {
+		sqlSession.insert(NAMESPACE+".gucreate", sigungu);
 	}
 
 	@Override
@@ -49,6 +56,16 @@ public class SigunguDaoImpl implements SigunguDao {
 	/** 시도 번호로 조회 */
 	public List<Sigungu> readBySido(int sidoNo) {
 		return sqlSession.selectList(NAMESPACE+".readBySido", sidoNo);
+	}
+	
+	@Override
+	public Sigungu readByMap(String sigunName, String guName, int sidoNum) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("sigunName", sigunName);
+		map.put("guName", guName);
+		map.put("sidoNum", sidoNum);
+		
+		return sqlSession.selectOne(NAMESPACE+".readByMap", map);
 	}
 
 	

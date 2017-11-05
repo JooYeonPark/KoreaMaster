@@ -7,32 +7,36 @@
 <mapper namespace="kr.or.koreaMaster.place.mapper.RestaurantMapper">
 
 	<insert id="create" parameterType="Restaurant">
-		insert into Restaurant(RESTAURANT_NO as "no", 
-							   CITY_NO as "cityNo", 
-							   RESTAURANT_NAME as "name", 
-							   RESTAURANT_DETAIL as "detail",
-				  			   RESTAURANT_ADDRESS_DETAIL as "adresssDetail", 
-				  			   RESTAURANT_OPERATING_HOUR as "operatingHour",
-				  			   RESTAURANT_CLOSED_DATE as "closedDate", 
-				  			   RESTAURANT_PHONE as "phone", 
-				  			   RESTAURANT_FARE as "fare", 
-				  			   RESTAURANT_PICTURE as "picture", 
-				  			   RESTAURANT_LATITUDE as "latitude",
-							   RESTAURANT_LONGITUDE as "longitude",
-							   RESTAURANT_USE_NUM as "useNum")
-		values( restaurant_seq.nextval, 
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select restaurant_seq.nextval from dual
+		</selectKey>
+		insert into Restaurant (
+			RESTAURANT_NO,
+			CITY_NO,
+			RESTAURANT_NAME,
+			RESTAURANT_DETAIL,
+			RESTAURANT_ADDRESS_DETAIL,
+			RESTAURANT_OPERATING_HOUR,
+			RESTAURANT_CLOSED_DATE,
+			RESTAURANT_PHONE,
+			RESTAURANT_PICTURE,
+			RESTAURANT_LATITUDE,
+			RESTAURANT_LONGITUDE,
+			RESTAURANT_USE_NUM
+		)
+		values( #{no}, 
 				#{cityNo}, 
 				#{name},
 				#{detail},
 				#{adressDetail},
 				#{operatingHour},
-				#{closedDate},
+				#{ClosedDate},
 				#{phone},
-				#{fare},
 				#{picture},
 				#{latitude},
 				#{longitude},
-				#{useNum})
+				#{useNum} 
+			  )
 	</insert>
 
 	<select id="listAll" resultType="Restaurant">
@@ -57,7 +61,7 @@
 			   CITY_NO as "cityNo", 
 			   RESTAURANT_NAME as "name", 
 			   RESTAURANT_DETAIL as "detail",
-			   RESTAURANT_ADDRESS_DETAIL as "adresssDetail",
+			   RESTAURANT_ADDRESS_DETAIL as "adressDetail",
 			   RESTAURANT_OPERATING_HOUR as "operatingHour",
 			   RESTAURANT_CLOSED_DATE as "closedDate", 
 			   RESTAURANT_PHONE as "phone", 
@@ -74,9 +78,9 @@
 		update Restaurant
 		set RESTAURANT_NAME  = #{name}, 
 			RESTAURANT_DETAIL = #{detail},
-			RESTAURANT_ADDRESS_DETAIL = #{adresssDetail},
+			RESTAURANT_ADDRESS_DETAIL = #{adressDetail},
 			RESTAURANT_OPERATING_HOUR = #{operatingHour},
-			RESTAURANT_CLOSED_DATE = #{closedDate}, 
+			RESTAURANT_CLOSED_DATE = #{ClosedDate}, 
 			RESTAURANT_PHONE = #{phone}, 
 			RESTAURANT_FARE = #{fare}, 
 			RESTAURANT_PICTURE = #{picture}, 

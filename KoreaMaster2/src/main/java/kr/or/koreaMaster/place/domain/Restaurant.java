@@ -1,23 +1,23 @@
 package kr.or.koreaMaster.place.domain;
 
 public class Restaurant {
+	
 	private int no;
-	private int cityNo;
+	private int cityNo; 
 	private String name;
 	private String detail;
 	private String adressDetail;
 	private String operatingHour;
 	private String ClosedDate;
-	private String phone;
-	private String fare;
+	private String phone; 
+	private String fare; 
 	private String picture;
-	private double latitude;
-	private double longitude;
+	private double latitude; 
+	private double longitude; 
 	private int useNum;
 	
-	
 	public Restaurant() {
-		this(0, 0, null, null, null, null, null, null, null, null, 0, 0, 0);
+		this(0, 0, "", "", "", "", "", "", "", "", 0, 0, 0);
 	}
 	
 	public Restaurant(int cityNo, String name, String detail, String adressDetail, String operatingHour,
@@ -130,7 +130,7 @@ public class Restaurant {
 		return "Restaurant [no=" + no + ", cityNo=" + cityNo + ", name=" + name + ", detail=" + detail
 				+ ", adressDetail=" + adressDetail + ", operatingHour=" + operatingHour + ", ClosedDate=" + ClosedDate
 				+ ", phone=" + phone + ", fare=" + fare + ", picture=" + picture + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", useNum=" + useNum + "]";
+				+ ", longitude=" + longitude + "]";
 	}
 	
 	

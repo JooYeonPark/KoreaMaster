@@ -7,8 +7,11 @@
 <mapper namespace="kr.or.koreaMaster.place.mapper.SidoMapper">
 	
 	<insert id="create" parameterType="Sido">
-		insert into sido(sido_no, sido_name)
-		values(sido_seq.nextval, #{name})
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT sido_seq.nextval as no FROM DUAL
+		</selectKey>
+		INSERT INTO SIDO(SIDO_NO, SIDO_NAME)
+		VALUES(#{no}, #{name})
 	</insert>
 		
 	<select id="listAll" resultType="Sido">
@@ -22,6 +25,13 @@
 		       sido_name as "name"
 		FROM   sido
 		WHERE  sido_no = #{vlaue}
+	</select>
+	
+	<select id="readByName" parameterType="string" resultType="Sido">
+		SELECT sido_no as "no", 
+		       sido_name as "name"
+		FROM   sido
+		WHERE  sido_name = #{vlaue}
 	</select>
 	
 	<update id="update" parameterType="Sido">
