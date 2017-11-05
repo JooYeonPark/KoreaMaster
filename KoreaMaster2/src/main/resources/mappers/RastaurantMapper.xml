@@ -44,7 +44,7 @@
 			   CITY_NO as "cityNo", 
 			   RESTAURANT_NAME as "name", 
 			   RESTAURANT_DETAIL as "detail",
-			   RESTAURANT_ADDRESS_DETAIL as "adresssDetail",
+			   RESTAURANT_ADDRESS_DETAIL as "adressDetail",
 			   RESTAURANT_OPERATING_HOUR as "operatingHour",
 			   RESTAURANT_CLOSED_DATE as "closedDate", 
 			   RESTAURANT_PHONE as "phone", 
@@ -94,5 +94,6 @@
 		DELETE FROM Restaurant
 		WHERE RESTAURANT_NO = #{value}
 	</delete>
+	
 
 </mapper>

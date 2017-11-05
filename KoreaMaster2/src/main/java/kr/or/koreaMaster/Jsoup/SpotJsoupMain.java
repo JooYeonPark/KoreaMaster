@@ -26,7 +26,7 @@ import kr.or.koreaMaster.theme.session.MyTravelTypeRepository;
 public class SpotJsoupMain {
 
 	private static String[] theme = { "A01", "A03", "B01", "DDD", "A02", "E01" };
-	private static int pageNum = 30;
+	private static int pageNum = 20;
 
 	public static void main(String[] args) throws IOException {
 		DaoFactory factory2 = new MyBatisDaoFactory();
@@ -57,47 +57,53 @@ public class SpotJsoupMain {
 					String pathUrl = spotPaht + aUrl;
 
 					Spot spot = sdp.spotDate(pathUrl);
+
 					if (spot != null) {
 						Spot stmp = spotDao.readByNameCity(spot.getName(), spot.getCityNo());
+
 						if (stmp == null) {
 							int detailSize = spot.getDetail().length();
 
 							if (detailSize <= 1300) {
-								spotDao.create(spot);
 
-								switch (themeName) {
-								case "A01":
-									themeName = "자연";
-									break;
+								if (spot.getLatitude() != 0) {
+									spotDao.create(spot);
 
-								case "A03":
-									themeName = "체험";
-									break;
+									switch (themeName) {
+									case "A01":
+										themeName = "자연";
+										break;
 
-								case "B01":
-									themeName = "문화시설";
-									break;
+									case "A03":
+										themeName = "체험";
+										break;
 
-								case "DDD":
-									themeName = "레포츠";
-									break;
+									case "B01":
+										themeName = "문화시설";
+										break;
 
-								case "A02":
-									themeName = "역사";
-									break;
+									case "DDD":
+										themeName = "레포츠";
+										break;
 
-								case "E01":
-									themeName = "쇼핑";
-									break;
+									case "A02":
+										themeName = "역사";
+										break;
 
-								default:
-									break;
+									case "E01":
+										themeName = "쇼핑";
+										break;
+
+									default:
+										break;
+									}
+
+									int themeNo = themeDao.findThemeId(themeName);
+									int spotNo = spot.getNo();
+
+									SpotTheme spotTheme = new SpotTheme(themeNo, spotNo);
+									spotThemeDAO.create(spotTheme);
 								}
-
-								int themeNo = themeDao.findThemeId(themeName);
-								int spotNo = spot.getNo();
-								SpotTheme spotTheme = new SpotTheme(themeNo, spotNo);
-								spotThemeDAO.create(spotTheme);
 
 							}
 						} else {

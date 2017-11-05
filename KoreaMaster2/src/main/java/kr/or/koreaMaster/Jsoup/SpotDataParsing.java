@@ -86,6 +86,10 @@ public class SpotDataParsing {
 		
 		String fare = "";
 		for (Element element : fareDiv) {
+			if(element.getElementsByTag("em").first() == null) {
+				break;
+			}
+			
 			String fareTmp = element.getElementsByTag("em").first().text();
 			
 			if(fareTmp.equals("입 장 료") || fareTmp.equals("시설이용료") || fareTmp.equals("이용요금")) {
