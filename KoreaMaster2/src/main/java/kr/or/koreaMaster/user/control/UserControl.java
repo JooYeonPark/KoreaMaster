@@ -21,7 +21,7 @@ public class UserControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private HashMap commandMap;
-	private String jspDir = "/js/";
+	private String jspDir = "/jsp/users/";
 	private String error = "error.jsp";
 	
 	public UserControl() {
@@ -32,13 +32,13 @@ public class UserControl extends HttpServlet {
 	private void initCommand(){
 		commandMap = new HashMap();
 
-		commandMap.put("main-page",	new UserCommandNull("index.jsp") );
+		commandMap.put("main-page",	new UserCommandNull("../../index.jsp") );
 		// 회원가입
-		commandMap.put("join-page", new UserCommandNull("../UserJoin.jsp") );
-		commandMap.put("join-db", new UserCommandJoin("../UserLogin.jsp"));
+		commandMap.put("join-page", new UserCommandNull("UserJoin.jsp") );
+		commandMap.put("join-db", new UserCommandJoin("UserLogin.jsp"));
 		// 로그인
-		commandMap.put("login-page", new UserCommandNull("../UserLogin.jsp") );
-		commandMap.put("login-db", new UserCommandLogin("index.jsp") );
+		commandMap.put("login-page", new UserCommandNull("UserLogin.jsp") );
+		commandMap.put("login-db", new UserCommandLogin("../../index.jsp") );
 		
 	}
 	
