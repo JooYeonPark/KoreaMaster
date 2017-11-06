@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>	
+	<!-- sido, sigungu 세부컨트롤러 등록 -->
+	<bean name="/sido" class="kr.or.koreaMaster.place.controller.SidoListController"/>
+	<bean name="/sigungu" class="kr.or.koreaMaster.place.controller.SigunguController"/>
 </beans>

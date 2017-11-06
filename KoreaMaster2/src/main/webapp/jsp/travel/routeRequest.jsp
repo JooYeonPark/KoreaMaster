@@ -16,11 +16,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
 	<!-- Fav and Touch Icons -->
-	<link rel="apple-touch-icon" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon" href="images/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="images/ico/favicon.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon" href="/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/images/ico/favicon.png">
 
 	<!-- CSS Plugins -->
 	<link rel="stylesheet" type="text/css" href="/bootstrap//css/bootstrap.min.css" media="screen">	
@@ -39,6 +39,84 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	
+	
+<!-- Core JS -->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/core-plugins.js"></script>
+<script type="text/javascript" src="/js/customs.js"></script>
+
+<!-- Create Page JS -->
+<script type="text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
+<script type="text/javascript" src="/js/dropzone.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.timepicker.js"></script>
+<script type="text/javascript" src="/js/bootstrap-tokenfield.js"></script>
+<script type="text/javascript" src="/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript" src="/js/customs-create.js"></script>
+
+<!-- Detail Page JS -->
+<script type="text/javascript" src="/js/moment.min.js"></script>
+<script type="text/javascript" src="/js/jquery.daterangepicker.js"></script>
+<script type="text/javascript" src="/js/customs-datepicker.js"></script>
+	
+<script>
+$(document).ready(function(){
+	$.ajax({
+		url:"/sido.do",
+		type:"get",
+		dataType:"json",
+		success:function(data){
+			inputSido(data);
+		},
+		error : function(xhr, statusText){
+			console.log("("+xhr.status+", "+statusText+")");
+		}
+	});
+	
+	//시도 클릭마다 시군구가 달라짐
+	$("#selectSido").change(function(){
+		$.ajax({
+			url : "/sigungu.do",
+			type : "get",
+			data : "sidoNo="+$("#selectSido").attr("value"),
+			dataType : "json",
+			success : function(data){
+				inputSidungu(data);
+			},
+			error : function(xhr, statusText){
+				console.log("("+xhr.status+", "+statusText+")");
+			}
+		});
+		
+	});
+	
+}); //end $(document).ready
+
+//시도 select 설정
+var inputSido = function(data){
+
+	//시도 데이터 불러들여 set
+	$.each(data, function(key, value){
+		$("#selectSido")
+		.append($("<option></option>")
+			.attr("value",key)
+			.text(value));		
+	});
+}
+
+var inputSidungu = function(data){
+	console.log(data);
+	$.each(data, function(key, value){
+		$("#selectSigungu")
+		.append($("<option></option>")
+			.attr("value",key)
+			.text(value));		
+	});
+}
+
+
+
+</script>
 </head>
 
 <body class="transparent-header">
@@ -55,118 +133,87 @@
 		<!-- end Header -->
 
 		<!-- start Main Wrapper -->
-		
 		<div class="main-wrapper scrollspy-container">
 		
 			<!-- start breadcrumb -->
-			
 			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('images/breadcrumb-bg.jpg');">
 				<div class="container">
-
 					<div class="page-title">
-					
 						<div class="row">
-						
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-							
 								<h2>Create Your Tour</h2>
-						
 							</div>
-							
 						</div>
-
 					</div>
 					
 					<div class="breadcrumb-wrapper">
-					
 						<ol class="breadcrumb">
-							<li><a href="#">Home</a></li>
+							<li><a href="/index.jsp">Home</a></li>
 							<li class="active"><span>Trip Create</span></li>
 						</ol>
-					
 					</div>
-
 				</div>
-				
 			</div>
-			
 			<!-- end breadcrumb -->
 			
-			<div class="bg-light">
-			
+			<div class="bg-light"><!-- 밝은 배경 -->
 				<div class="create-tour-wrapper">
-
 					<div class="container">
-					
 						<div class="row">
-						
 							<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 							
+								<!-- start form -->
 								<div class="form">
-								
 									<div class="create-tour-inner">
-									
-									
 										<div class="row">
+										
+										<!-- 날짜 선택 From - to 시작-->
 										<div class="sidebar-booking-inner">
-												<div class="row gap-10" id="rangeDatePicker">
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<label>From</label> <input type="text"
-																id="rangeDatePickerTo" class="form-control"
-																placeholder="yyyy/mm/dd" />
+											<div class="row gap-10" id="rangeDatePicker">
+												<div class="col-xss-12 col-xs-6 col-sm-6">
+													<div class="form-group">
+														<label>From</label> <input type="text"id="rangeDatePickerTo" class="form-control"
+															placeholder="yyyy/mm/dd" />
 														</div>
 													</div>
 
-													<div class="col-xss-12 col-xs-6 col-sm-6">
-														<div class="form-group">
-															<label>To</label> <input type="text"
-																id="rangeDatePickerFrom" class="form-control"
-																placeholder="yyyy/mm/dd" />
-														</div>
+												<div class="col-xss-12 col-xs-6 col-sm-6">
+													<div class="form-group">
+														<label>To</label> <input type="text"id="rangeDatePickerFrom" class="form-control"
+															placeholder="yyyy/mm/dd" />
 													</div>
 												</div>
-
-											</div>
-											
-											<div class="col-xs-6 col-sm-6">
-												<div class="form-group">
-													<label>시도</label>
-													<select class="selectpicker show-tick form-control" title="Select placeholder">
-														<option value="0">Select Option 1</option>
-														<option value="1">Select Option 2</option>
-														<option value="2">Select Option 3</option>
-														<option value="3">Select Option 4</option>
-													</select>
-												</div>
-												
-											</div>
-											
-											<div class="col-xs-6 col-sm-6">
-											
-												<div class="form-group">
-													<label>시군구</label>
-													<select class="selectpicker show-tick form-control" title="Select placeholder">
-														<option value="0">Select Option 1</option>
-														<option value="1">Select Option 2</option>
-														<option value="2">Select Option 3</option>
-														<option value="3">Select Option 4</option>
-													</select>
-												</div>
-												
 											</div>
 										</div>
-										
-										<hr>
-										<h5 class="text-uppercase">이번 여행에서 원하는 테마가 있으면 선택해주세요. <br>
-										본인 성향대로 평소처럼 여행하고 싶다면 선택하지 않으셔도 됩니다.</h5>
-										
-										<div class="row gap-20">
+										<!-- 날짜 선택 끝 -->
 											
-											<div class="col-xs-8 col-sm-8">
-											
-												<label class="block">Tour style:</label>
-												
+										<!-- 시.도 선택  -->
+										<div class="col-xs-6 col-sm-6">
+											<div class="form-group">
+												<label>시도</label>
+												<select class="selectpicker show-tick form-control" title="Select placeholder" id="selectSido">
+												</select>
+											</div>
+										</div><!-- 시.도 선택 끝  -->
+										
+										<!-- 시군구 선택 시작 -->
+										<div class="col-xs-6 col-sm-6">
+											<div class="form-group">
+												<label>시군구</label>
+												<select class="selectpicker show-tick form-control" title="Select placeholder" id="selectSigungu">
+												</select>
+											</div>
+										</div><!-- 시군구 선택 끝 -->
+									</div><!-- ./row -->
+										
+									<hr>
+									<h5 class="text-uppercase">이번 여행에서 원하는 테마가 있으면 선택해주세요. <br>
+									본인 성향대로 평소처럼 여행하고 싶다면 선택하지 않으셔도 됩니다.</h5>
+										
+									<!-- 아이콘 모음 시작 -->
+									<div class="row gap-20">
+										<div class="col-xs-8 col-sm-8">
+											<label class="block">Tour style:</label>
 												<div class="category-checkbox-wrapper clearfix mt-10 mb-15">
 					
 													<div class="category-checkbox-item">
@@ -280,31 +327,27 @@
 												</div>
 											</div><!-- ./col-xs-12 col-sm-12 -->
 											
-										</div>
+										</div><!-- 아이콘 모음 끝 -->
 
-									</div>
+									</div><!-- ./create-tour-inner -->
 								
 									<div class="mb-50">
-					
 										<div class="mb-25"></div>
 										<a href="requested-create-done.html" class="btn btn-primary btn-wide">Submit</a>
-										
 									</div>
 									
-								</div>
+								</div><!-- ./form -->
 								
-							</div>
+							</div><!-- ./col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 -->
 						
-						</div>
+						</div><!-- ./row -->
 						
-					</div>
+					</div><!-- ./container -->
 					
-				</div>
+				</div><!-- ./create-tour-wrapper -->
 			
-			</div>
-
+			</div><!-- ./bg-light -->
 		</div>
-		
 		<!-- end Main Wrapper -->
 		
 		<jsp:include page="/include/footer.jsp"/>
@@ -314,239 +357,13 @@
  
  
 <!-- start Back To Top -->
-
+<!-- 맨 위로 올리기 버튼 -->
 <div id="back-to-top">
    <a href="#"><i class="ion-ios-arrow-up"></i></a>
 </div>
-
 <!-- end Back To Top -->
 
-
- 
-
-<!-- start Sign-in Modal -->
-<div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true">
-
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h4 class="modal-title text-center">Sign-in into your account</h4>
-	</div>
 	
-	<div class="modal-body">
-		<div class="row gap-20">
-		
-			<div class="col-sm-6 col-md-6">
-				<button class="btn btn-facebook btn-block mb-5-xs">Log-in with Facebook</button>
-			</div>
-			<div class="col-sm-6 col-md-6">
-				<button class="btn btn-google-plus btn-block">Log-in with Google+</button>
-			</div>
-			
-			<div class="col-md-12">
-				<div class="login-modal-or">
-					<div><span>or</span></div>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
-					<label>Username</label>
-					<input class="form-control" placeholder="Min 4 and Max 10 characters" type="text"> 
-				</div>
-			
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-			
-				<div class="form-group"> 
-					<label>Password</label>
-					<input class="form-control" placeholder="Min 4 and Max 10 characters" type="text"> 
-				</div>
-			
-			</div>
-			
-			<div class="col-sm-6 col-md-6">
-				<div class="checkbox-block"> 
-					<input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-					<label class="" for="remember_me_checkbox">Remember me</label>
-				</div>
-			</div>
-			
-			<div class="col-sm-6 col-md-6">
-				<div class="login-box-link-action">
-					<a data-toggle="modal" href="#forgotPasswordModal" class="block line18 mt-1">Forgot password?</a> 
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-				<div class="login-box-box-action">
-					No account? <a data-toggle="modal" href="#registerModal">Register</a>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-	
-	<div class="modal-footer text-center">
-		<button type="button" class="btn btn-primary">Log-in</button>
-		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
-	</div>
-	
-</div>
-<!-- end Sign-in Modal -->
-
-<!-- start Register Modal -->
-<div id="registerModal" class="modal fade login-box-wrapper" tabindex="-1" data-backdrop="static" data-keyboard="false" data-replace="true">
-
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h4 class="modal-title text-center">Create your account for free</h4>
-	</div>
-	
-	<div class="modal-body">
-	
-		<div class="row gap-20">
-		
-			<div class="col-sm-6 col-md-6">
-				<button class="btn btn-facebook btn-block mb-5-xs">Register with Facebook</button>
-			</div>
-			<div class="col-sm-6 col-md-6">
-				<button class="btn btn-google-plus btn-block">Register with Google+</button>
-			</div>
-			
-			<div class="col-md-12">
-				<div class="login-modal-or">
-					<div><span>or</span></div>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
-					<label>Username</label>
-					<input class="form-control" placeholder="Min 4 and Max 10 characters" type="text"> 
-				</div>
-			
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
-					<label>Email Address</label>
-					<input class="form-control" placeholder="Enter your email address" type="text"> 
-				</div>
-			
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-			
-				<div class="form-group"> 
-					<label>Password</label>
-					<input class="form-control" placeholder="Min 8 and Max 20 characters" type="text"> 
-				</div>
-			
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-			
-				<div class="form-group"> 
-					<label>Password Confirmation</label>
-					<input class="form-control" placeholder="Re-type password again" type="text"> 
-				</div>
-			
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-				<div class="checkbox-block"> 
-					<input id="register_accept_checkbox" name="register_accept_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-					<label class="" for="register_accept_checkbox">By register, I read &amp; accept <a href="#">the terms</a></label>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-				<div class="login-box-box-action">
-					Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a>
-				</div>
-			</div>
-			
-		</div>
-	
-	</div>
-	
-	<div class="modal-footer text-center">
-		<button type="button" class="btn btn-primary">Register</button>
-		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
-	</div>
-	
-</div>
-<!-- end Register Modal -->
-
-<!-- start Forget Password Modal -->
-<div id="forgotPasswordModal" class="modal fade login-box-wrapper" tabindex="-1" data-backdrop="static" data-keyboard="false" data-replace="true">
-
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h4 class="modal-title text-center">Restore your forgotten password</h4>
-	</div>
-	
-	<div class="modal-body">
-		<div class="row gap-20">
-			
-			<div class="col-sm-12 col-md-12">
-				<p class="mb-20">Maids table how learn drift but purse stand yet set. Music me house could among oh as their. Piqued our sister shy nature almost his wicket. Hand dear so we hour to.</p>
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
-					<label>Email Address</label>
-					<input class="form-control" placeholder="Enter your email address" type="text"> 
-				</div>
-			
-			</div>
-
-			<div class="col-sm-12 col-md-12">
-				<div class="checkbox-block"> 
-					<input id="forgot_password_checkbox" name="forgot_password_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-					<label class="" for="forgot_password_checkbox">Generate new password</label>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-				<div class="login-box-box-action">
-					Return to <a data-toggle="modal" href="#loginModal">Log-in</a>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-	
-	<div class="modal-footer text-center">
-		<button type="button" class="btn btn-primary">Restore</button>
-		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
-	</div>
-	
-</div>
-<!-- end Forget Password Modal -->
-
-<!-- Core JS -->
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/core-plugins.js"></script>
-<script type="text/javascript" src="/js/customs.js"></script>
-
-<!-- Create Page JS -->
-<script type="text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
-<script type="text/javascript" src="/js/dropzone.min.js"></script>
-<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/js/jquery.ui.timepicker.js"></script>
-<script type="text/javascript" src="/js/bootstrap-tokenfield.js"></script>
-<script type="text/javascript" src="/js/typeahead.bundle.min.js"></script>
-<script type="text/javascript" src="/js/customs-create.js"></script>
-
-<!-- Detail Page JS -->
-<script type="text/javascript" src="/js/customs-datepicker.js"></script>
-
 </body>
 
 

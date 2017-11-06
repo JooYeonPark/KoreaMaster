@@ -47,6 +47,8 @@ public class RouteServiceImpl implements RouteService {
 		
 		//#4. 사용자가 선택한 도시에서 사용자의 테마에 맞는 장소들을 추려낸다
 		spotThemeJoinList = spotsClass.getSpots(spotThemeJoinList, perThemes);
+
+	
 		
 		//#5. 장소간의 거리, 여행일자를 고려하여 루트를 찾아낸다
 //		int date = (Integer.parseInt(map.get("endDate"))-Integer.parseInt(map.get("startDate"))) + 1;
@@ -63,7 +65,10 @@ public class RouteServiceImpl implements RouteService {
 		departures.add(spot);
 		
 		//#7. 
-		routeClass.findRoute(date, departures);
+		/** 장소번호를 저장하여 루트를 저장할 변수 (dayNo, spotNo) */
+		List<Integer> routeSpots = routeClass.findRoute(date, departures, spotThemeJoinList);
+		
+		logger.debug(routeSpots);
 		
 	}
 

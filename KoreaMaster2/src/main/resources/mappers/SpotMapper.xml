@@ -7,7 +7,41 @@
 <mapper namespace="kr.or.koreaMaster.place.mapper.SpotMapper">
 	
 	<insert id="create" parameterType="Spot">
-		
+		<selectKey resultType="int" keyProperty="no" order="BEFORE">
+        	SELECT spot_seq.nextval FROM dual
+    	</selectKey>
+		INSERT INTO SPOT(
+				SPOT_NO,
+				CITY_NO,
+				SPOT_NAME,
+				SPOT_DETAIL,
+				SPOT_ADDRESS_DETAIL,
+				SPOT_OPERATING_HOUR,
+				SPOT_CLOSED_DATE,
+				SPOT_PHONE,
+				SPOT_FARE,
+				SPOT_HOMEPAGE,
+				SPOT_PICTURE,
+				SPOT_LATITUDE,
+				SPOT_LONGITUDE,
+				SPOT_USE_NUM
+		)
+		VALUES(
+				#{no},
+			  	#{cityNo},
+			 	#{name},
+			  	#{detail},
+			 	#{addressDetail},
+			  	#{operatingHour},
+			  	#{closedDate},
+			  	#{phone},
+			  	#{fare},
+			 	#{homepage},
+			  	#{picture},
+			  	#{latitude},
+			  	#{longitude},
+			  	#{useNum}
+		)
 	</insert>
 		
 	<select id="listAll" resultType="Spot">
@@ -38,13 +72,13 @@
 		       spot_closed_date as "closedDate", 
 		       spot_phone as "phone", 
 		       spot_fare as "fare", 
-		       spot_homepage as "hompage", 
+		       spot_homepage as "homepage", 
 		       spot_picture as "picture", 
 		       spot_latitude as "latitude", 
 		       spot_longitude as "longitude", 
 		       spot_use_num   as "useNum"
 		FROM   spot
-		WHERE  spot_no = #{value}
+		WHERE  spot_no = #{vlaue}
 	</select>
 	
 	<select id="getSpotByCity" parameterType="int" resultType="int">
@@ -53,8 +87,37 @@
 		WHERE  city_no = #{value}
 	</select>
 	
-	<update id="update" parameterType="Spot">
-		
+	<select id="readByNameCity" parameterType="map" resultType="Spot">
+		SELECT spot_no as "no", 
+		       city_no as "cityNo", 
+		       spot_name as "name", 
+		       spot_detail as "detail", 
+		       spot_address_detail as "addressDetail", 
+		       spot_operating_hour as "operatingHour", 
+		       spot_closed_date as "closedDate", 
+		       spot_phone as "phone", 
+		       spot_fare as "fare", 
+		       spot_homepage as "homepage", 
+		       spot_picture as "picture", 
+		       spot_latitude as "latitude", 
+		       spot_longitude as "longitude", 
+		       spot_use_num   as "useNum"
+		FROM   spot
+		WHERE  spot_name = #{name} and city_no = #{cityNo}
+	</select>
+	
+	<update id="update" parameterType="kr.or.koreaMaster.place.domain.Spot">
+		UPDATE 	spot
+		SET 	SPOT_DETAIL = #{detail} ,
+				SPOT_ADDRESS_DETAIL = #{addressDetail},
+				SPOT_OPERATING_HOUR = #{operatingHour},
+				SPOT_CLOSED_DATE = #{closedDate},
+				SPOT_PHONE = #{phone},
+				SPOT_FARE = #{fare},
+				SPOT_HOMEPAGE = #{homepage},
+				SPOT_LATITUDE = #{latitude},
+				SPOT_LONGITUDE = #{longitude}
+		WHERE 	SPOT_NO = #{no}
 	</update>
 	
 	<delete id="delete" parameterType="int">

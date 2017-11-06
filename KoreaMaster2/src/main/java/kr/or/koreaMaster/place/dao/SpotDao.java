@@ -23,6 +23,12 @@ public interface SpotDao {
 	/** 장소 번호로 장소 조회 */
 	public Spot read(int no);
 	
+	/** 장소 수정 */
+	public void update(Spot spot);
+	
+	/** 장소명, 도시번호로 장소 조회 */
+	public Spot readByNameCity(String name, int cityNo);
+	
 	/** 도시에 따른 목록 반환 */
 	public List<Integer> getSpotByCity(int cityNo);
 	

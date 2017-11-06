@@ -71,7 +71,7 @@ public class MyTravelTypeRepository {
 	/**
 	 *  users_id를 가지고 themeNo 찾기
 	 */
-	public Integer getNoById(int usersId) {
+	public Integer getNoById(String usersId) {
 		SqlSession sess = getSqlSessionFactory().openSession();		// sql 연결 객체
 		try {
 			int themeNo = sess.selectOne(namespace + ".getNoById", usersId);

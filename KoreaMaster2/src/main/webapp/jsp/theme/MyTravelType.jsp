@@ -16,22 +16,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
 	<!-- Fav and Touch Icons -->
-	<link rel="apple-touch-icon" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon" href="images/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="images/ico/favicon.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon" href="/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/images/ico/favicon.png">
 
 	<!-- CSS Plugins -->
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" media="screen">	
-	<link href="css/main.css" rel="stylesheet">
-	<link href="css/plugin.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">	
+	<link href="/css/main.css" rel="stylesheet">
+	<link href="/css/plugin.css" rel="stylesheet">
 
 	<!-- CSS Custom -->
-	<link href="css/style.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
 	
 	<!-- Add your style -->
-	<link href="css/your-style.css" rel="stylesheet">
+	<link href="/css/your-style.css" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -41,21 +41,21 @@
 	
 	
 	<!-- Core JS -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/core-plugins.js"></script>
-	<script type="text/javascript" src="js/customs.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/core-plugins.js"></script>
+	<script type="text/javascript" src="/js/customs.js"></script>
 	
 	<!-- Detail Page JS -->
-	<script type="text/javascript" src="js/jquery.stickit.js"></script>
-	<script type="text/javascript" src="js/bootstrap-tokenfield.js"></script>
-	<script type="text/javascript" src="js/typeahead.bundle.min.js"></script>
-	<script type="text/javascript" src="js/jquery.sumogallery.js"></script>
-	<script type="text/javascript" src="js/images-grid.js"></script>
-	<script type="text/javascript" src="js/jquery.bootstrap-touchspin.js"></script>
-	<script type="text/javascript" src="js/customs-detail.js"></script>
+	<script type="text/javascript" src="/js/jquery.stickit.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-tokenfield.js"></script>
+	<script type="text/javascript" src="/js/typeahead.bundle.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.sumogallery.js"></script>
+	<script type="text/javascript" src="/js/images-grid.js"></script>
+	<script type="text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
+	<script type="text/javascript" src="/js/customs-detail.js"></script>
 	
 	<!-- my JS -->
-	<script type="text/javascript" src="/imsi/MyTravelTypeJS.js"></script>
+	<script type="text/javascript" src="/js/MyTravelTypeJS.js"></script>
 	
 </head>
 
@@ -76,7 +76,7 @@
 		
 			<!-- start breadcrumb -->
 			
-			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('images/breadcrumb-bg.jpg');">
+			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('/images/breadcrumb-bg.jpg');">
 				<div class="container">
 					<div class="page-title">
 						<div class="row">

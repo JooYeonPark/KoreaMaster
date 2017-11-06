@@ -14,7 +14,8 @@ import kr.or.koreaMaster.place.domain.Sigungu;
 public interface SigunguDao {
 	
 	/** 신규 등록 */
-	public void create(Sigungu sido);
+	public void siguncreate(Sigungu sigungu);
+	public void gucreate(Sigungu sigungu);
 	
 	/** 전체 목록 반환 */
 	public List<Sigungu> listAll();
@@ -22,11 +23,17 @@ public interface SigunguDao {
 	/** 번호로 조회 */
 	public Sigungu read(int no);
 	
+	/** 시도번호, 이름으로 조회 */
+	public Sigungu readByMap(String sigunName, String guName, int sidoNum);
+	
 	/** 수정 */
 	public void update(Sigungu sido);
 	
 	/** 삭제 */
 	public void delete(int no);
+	
+	/** 시도 번호로 조회 */
+	public List<Sigungu> readBySido(int sidoNo);
 }
 
 

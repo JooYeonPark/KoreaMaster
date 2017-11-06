@@ -72,12 +72,12 @@ public class SpotsProcess {
     
     public static int partition(List<SpotThemeJoin> list, int left, int right) {
 
-		int pivot = list.get((left + right) / 2).getScore();
+		int pivot = list.get((left + right) / 2).getScore() + list.get((left + right) / 2).getHitcount();
 		
 		while (left < right) {
-			while ((list.get(left).getScore() > pivot) && (left < right))
+			while ((list.get(left).getScore() +  list.get(left).getHitcount()  > pivot) && (left < right))
 				left++;
-			while ((list.get(right).getScore() <= pivot) && (left < right))
+			while ((list.get(right).getScore() +  list.get(right).getHitcount()  <= pivot) && (left < right))
 				right--;
 
 			if (left < right) {

@@ -30,7 +30,7 @@ public class MyTravelTypeService {
 		return themeId;
 	}
 	
-	public int getNoById(int usersId) {
+	public int getNoById(String usersId) {
 		int themeNo = repo.getNoById(usersId);
 		return themeNo;
 	}

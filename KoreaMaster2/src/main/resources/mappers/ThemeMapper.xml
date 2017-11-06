@@ -37,7 +37,7 @@
 		WHERE  theme_name = #{value}
 	</select>
 	
-	<select id="getNoById" parameterType="int" resultType="int">
+	<select id="getNoById" parameterType="String" resultType="int">
 		SELECT theme_no 
 		FROM   users_theme
 		WHERE  users_id = #{value}
