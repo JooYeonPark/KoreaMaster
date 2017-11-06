@@ -1,6 +1,8 @@
 package kr.or.koreaMaster.place.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -42,6 +44,14 @@ private static final String NAMESPACE = "kr.or.koreaMaster.place.mapper.Restaura
 	@Override
 	public void delete(int no) {
 		sqlSession.delete(NAMESPACE+".delete", no);
+	}
+
+	@Override
+	public Restaurant readByCityNoName(String name, int cityNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", name);
+		map.put("cityNo", cityNo);
+		return sqlSession.selectOne(NAMESPACE+".readByCityNoName", map);
 	}
 
 }

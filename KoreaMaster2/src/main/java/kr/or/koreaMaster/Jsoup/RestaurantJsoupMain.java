@@ -2,6 +2,7 @@ package kr.or.koreaMaster.Jsoup;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,11 +19,12 @@ public class RestaurantJsoupMain {
 	DaoFactory factory = new MyBatisDaoFactory();
 
 	public static void main(String[] args) throws IOException {
+		Logger logger = Logger.getLogger(RestaurantJsoupMain.class);
 		DaoFactory factory2 = new MyBatisDaoFactory();
 
 		String url = "";
 
-		int pageNum = 20;
+		int pageNum = 1;
 
 		Connection.Response response = null;
 		Document document = null;
@@ -51,7 +53,13 @@ public class RestaurantJsoupMain {
 				Restaurant restaurant = rdp.restaurantDate(pathUrl);
 				
 				if(restaurant != null) {
-					restaurantDao.create(restaurant);
+					Restaurant tmp = restaurantDao.readByCityNoName(restaurant.getName(), restaurant.getCityNo());
+					if(tmp == null) {
+						restaurantDao.create(restaurant);
+						logger.info(restaurant.getNo());
+					}else {
+						restaurantDao.update(restaurant);
+					}
 				}
 				
 			}
