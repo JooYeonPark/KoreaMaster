@@ -62,6 +62,19 @@
 <script>
 $(document).ready(function(){
 	$.ajax({
+		url:"/sigungu.do",
+		type:"get",
+		data : "sidoNo=1",
+		dataType:"json",
+		success:function(data){
+			inputSigungu(data);
+		},
+		error : function(xhr, statusText){
+			console.log("("+xhr.status+", "+statusText+")");
+		}
+	});
+	
+	$.ajax({
 		url:"/sido.do",
 		type:"get",
 		dataType:"json",
@@ -76,12 +89,12 @@ $(document).ready(function(){
 	//시도 클릭마다 시군구가 달라짐
 	$("#selectSido").change(function(){
 		$.ajax({
-			url : "/sigungu.do",
-			type : "get",
+			url:"/sigungu.do",
+			type:"get",
 			data : "sidoNo="+$("#selectSido").attr("value"),
-			dataType : "json",
-			success : function(data){
-				inputSidungu(data);
+			dataType:"json",
+			success:function(data){
+				inputSigungu(data);
 			},
 			error : function(xhr, statusText){
 				console.log("("+xhr.status+", "+statusText+")");
@@ -90,11 +103,13 @@ $(document).ready(function(){
 		
 	});
 	
+	
+	
 }); //end $(document).ready
 
 //시도 select 설정
 var inputSido = function(data){
-
+console.log(data);
 	//시도 데이터 불러들여 set
 	$.each(data, function(key, value){
 		$("#selectSido")
@@ -104,13 +119,12 @@ var inputSido = function(data){
 	});
 }
 
-var inputSidungu = function(data){
+var inputSigungu = function(data){
 	console.log(data);
 	$.each(data, function(key, value){
-		$("#selectSigungu")
-		.append($("<option></option>")
-			.attr("value",key)
-			.text(value));		
+		var option = $("<option></option>").attr("value", key).text(value);
+		//$("<option></option>").attr("value", key).text(value)
+		$("#selectSigungu").append(option);
 	});
 }
 
