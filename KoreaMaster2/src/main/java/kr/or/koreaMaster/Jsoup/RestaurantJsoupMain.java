@@ -22,7 +22,7 @@ public class RestaurantJsoupMain {
 
 		String url = "";
 
-		int pageNum = 30;
+		int pageNum = 20;
 
 		Connection.Response response = null;
 		Document document = null;

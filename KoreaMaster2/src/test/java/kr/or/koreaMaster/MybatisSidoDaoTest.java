@@ -17,7 +17,7 @@ public class MybatisSidoDaoTest {
 	DaoFactory factory = new MyBatisDaoFactory();
 	SidoDao dao = (SidoDao)factory.getDao(SidoDaoImpl.class);
 	
-//	@Test
+	@Test
 	public void listAllTest() {
 		List<Sido> list = dao.listAll();
 		for (Sido sido : list) {

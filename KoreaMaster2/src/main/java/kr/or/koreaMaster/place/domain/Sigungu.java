@@ -7,7 +7,6 @@ public class Sigungu {
 	private String guName;
 	private int sidoNum;
 	
-	
 	public Sigungu() {
 		this(0, null, null, 0);
 	}
@@ -23,8 +22,6 @@ public class Sigungu {
 		this.sidoNum = sidoNum;
 	}
 
-	
-	
 	public int getNo() {
 		return no;
 	}
@@ -61,7 +58,5 @@ public class Sigungu {
 	public String toString() {
 		return "Sigungu [no=" + no + ", sigunName=" + sigunName + ", guName=" + guName + ", sidoNum=" + sidoNum + "]";
 	}
-	
-	
 	
 }

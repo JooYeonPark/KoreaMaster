@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.koreaMaster.place.domain.Sido;
-import kr.or.koreaMaster.place.domain.Spot;
 
 public class SidoDaoImpl implements SidoDao {
 	
@@ -23,7 +22,7 @@ public class SidoDaoImpl implements SidoDao {
 
 	@Override
 	public void create(Sido sido) {
-		sqlSession.insert(NAMESPACE+".create");
+		sqlSession.insert(NAMESPACE+".create", sido);
 	}
 
 	@Override
@@ -50,6 +49,7 @@ public class SidoDaoImpl implements SidoDao {
 	public Sido readByName(String name) {
 		return sqlSession.selectOne(NAMESPACE+".readByName", name);
 	}
+
 	
 }
 
