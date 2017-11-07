@@ -45,14 +45,14 @@ jQuery(function($) {
 	};
 
 	
-	$('#rangeDatePicker > div > div').dateRangePicker({
+	/*$('#rangeDatePicker > div > div').dateRangePicker({
 		separator : ' to ',
 		autoClose: true,
-		format: 'MMM D, YYYY',
-		minDays: 4,
-		maxDays: 4,
+		format: 'YYYY-MM-DD',
 		stickyMonths: true,
 		startDate: new Date(),
+		minDays : 0,
+		maxDays : 0,
 		showTopbar: false,
 		getValue: function()
 		{
@@ -75,7 +75,17 @@ jQuery(function($) {
 		customArrowPrevSymbol: '<i class="fa fa-arrow-circle-left"></i>',
 		customArrowNextSymbol: '<i class="fa fa-arrow-circle-right"></i>'
 		
-	});
+	}).bind('datepicker-change',function(event,obj)
+	        {
+	     This event will be triggered when second date is selected 
+	    console.log(obj);
+	    // obj will be something like this:
+	    // {
+	    //      date1: (Date object of the earlier date),
+	    //      date2: (Date object of the later date),
+	    //      value: "2013-06-05 to 2013-06-07"
+	    // }
+	});*/
 
 	
 });

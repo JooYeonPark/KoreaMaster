@@ -57,10 +57,59 @@
 <!-- Detail Page JS -->
 <script type="text/javascript" src="/js/moment.min.js"></script>
 <script type="text/javascript" src="/js/jquery.daterangepicker.js"></script>
-<script type="text/javascript" src="/js/customs-datepicker.js"></script>
 	
 <script>
 $(document).ready(function(){
+    $("#selectpicker").selectpicker(); 
+
+
+	$('#rangeDatePicker > div > div').dateRangePicker({
+		separator : ' to ',
+		autoClose: true,
+		format: 'YYYY-MM-DD',
+		stickyMonths: true,
+		startDate: new Date(),
+		minDays : 0,
+		maxDays : 0,
+		showTopbar: false,
+		getValue: function()
+		{
+			if ($('#rangeDatePickerTo').val() && $('#rangeDatePickerFrom').val() )
+				return $('#rangeDatePickerTo').val() + ' to ' + $('#rangeDatePickerFrom').val();
+			else
+				return '';
+		},
+		setValue: function(s,s1,s2)
+		{
+			$('#rangeDatePickerTo').val(s1);
+			$('#rangeDatePickerFrom').val(s2);
+		},
+		/*beforeShowDay: function(t){
+			var valid = !(t.getDate() == 5 || t.getDate() == 17 || t.getDate() == 18 || t.getDate() == 19  || t.getDate() == 26 );
+			var _class = '';
+			var _tooltip = valid ? '' : 'not available';
+			return [valid,_class,_tooltip];
+		},*/
+		customArrowPrevSymbol: '<i class="fa fa-arrow-circle-left"></i>',
+		customArrowNextSymbol: '<i class="fa fa-arrow-circle-right"></i>'
+		
+	}).bind('datepicker-change',function(event,obj)
+	        {
+	    var array = obj.value.split("to");
+	    alert("array[1] : " + new Date(array[1]));
+	    var ms = new Date(array[1])-new Date(array[0]);
+	    var diff = new moment.duration(ms);
+		diff.asDays();     // # of days in the duration
+
+	    alert(diff);
+	    // obj will be something like this:
+	    // {
+	    //      date1: (Date object of the earlier date),
+	    //      date2: (Date object of the later date),
+	    //      value: "2013-06-05 to 2013-06-07"
+	    // }
+	});
+    
 	$.ajax({
 		url:"/sigungu.do",
 		type:"get",
@@ -109,23 +158,39 @@ $(document).ready(function(){
 
 //시도 select 설정
 var inputSido = function(data){
-console.log(data);
+	console.log(data);
+	
+	var cnt = 0;
+	
 	//시도 데이터 불러들여 set
 	$.each(data, function(key, value){
+	    if(cnt == 0) var selectedClass = "selected";
+	    else selectedClass = "";
+	    
 		$("#selectSido")
-		.append($("<option></option>")
+		.append($("<option " + selectedClass + "></option>")
 			.attr("value",key)
 			.text(value));		
-	});
+		
+		cnt++;
+	}); 
+	
+	
+	$("#selectSido").selectpicker("refresh"); 
 }
 
 var inputSigungu = function(data){
-	console.log(data);
+	
+	$("#selectSigungu").html(""); 
+	
 	$.each(data, function(key, value){
 		var option = $("<option></option>").attr("value", key).text(value);
 		//$("<option></option>").attr("value", key).text(value)
 		$("#selectSigungu").append(option);
-	});
+	}); 
+	
+	$("#selectSigungu").selectpicker("refresh"); 
+	
 }
 
 
@@ -186,14 +251,14 @@ var inputSigungu = function(data){
 											<div class="row gap-10" id="rangeDatePicker">
 												<div class="col-xss-12 col-xs-6 col-sm-6">
 													<div class="form-group">
-														<label>From</label> <input type="text"id="rangeDatePickerTo" class="form-control"
+														<label>From</label> <input type="text" id="rangeDatePickerTo" class="form-control"
 															placeholder="yyyy/mm/dd" />
 														</div>
 													</div>
 
 												<div class="col-xss-12 col-xs-6 col-sm-6">
 													<div class="form-group">
-														<label>To</label> <input type="text"id="rangeDatePickerFrom" class="form-control"
+														<label>To</label> <input type="text" id="rangeDatePickerFrom" class="form-control"
 															placeholder="yyyy/mm/dd" />
 													</div>
 												</div>
@@ -205,7 +270,7 @@ var inputSigungu = function(data){
 										<div class="col-xs-6 col-sm-6">
 											<div class="form-group">
 												<label>시도</label>
-												<select class="selectpicker show-tick form-control" title="Select placeholder" id="selectSido">
+												<select class="selectpicker show-tick form-control" title="Select placehorlder" id="selectSido">
 												</select>
 											</div>
 										</div><!-- 시.도 선택 끝  -->
