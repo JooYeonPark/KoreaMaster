@@ -43,7 +43,7 @@
 			</ul>
 
 		</div>
-		<!--/.nav-collapse -->
+		<!--/.nav-collapse --> 
 
 		<% if(user == null) { %>
 		<div class="nav-mini-wrapper">
