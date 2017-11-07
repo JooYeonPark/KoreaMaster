@@ -22,6 +22,9 @@ public interface RestaurantDao {
 	/** 번호로 조회 */
 	public Restaurant read(int no);
 	
+	/** 시도번호, 이름으로 조회 */
+	public Restaurant readByCityNoName(String name, int cityNo);
+	
 	/** 수정 */
 	public void update(Restaurant restaurant);
 	

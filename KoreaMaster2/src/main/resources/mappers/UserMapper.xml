@@ -8,7 +8,7 @@
 <!-- 사용자 회원가입 -->
  <insert id="insertUser" parameterType="user">
  	INSERT INTO users
- 	VALUES(#{usersId}, #{usersName}, #{usersPassword}, #{usersTelephone}, #{usersEmail}, #{usersPostcode}, #{usersAddress}, #{usersAddressDetail}, sysdate, 'N', null)
+ 	VALUES(#{usersId}, #{usersName}, #{usersPassword}, #{usersTelephone}, #{usersEmail}, #{usersPostcode}, #{usersAddress}, #{usersAddressDetail}, sysdate, 'N', #{usersPicture})
  </insert>
  
  <select id="selectUser" parameterType="hashmap" resultType="user">

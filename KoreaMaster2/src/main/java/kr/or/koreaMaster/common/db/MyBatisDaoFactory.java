@@ -53,7 +53,7 @@ public class MyBatisDaoFactory extends DaoFactory{
 			dao = cls.newInstance();
 			// 생성된 객체에 SqlSession 설정(동적 메소드 호출)
 			Method method = cls.getMethod("setSqlSession", SqlSession.class);
-			method.invoke(dao, sqlSessionFactory.openSession());
+			method.invoke(dao, sqlSessionFactory.openSession(true));
 			// Map에 Dao 저장
 			daoList.put(daoFullName, dao);
 		} catch (Exception e) {

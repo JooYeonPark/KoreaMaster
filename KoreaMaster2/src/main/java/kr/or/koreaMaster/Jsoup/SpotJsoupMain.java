@@ -41,7 +41,7 @@ public class SpotJsoupMain {
 
 		for (int i = 0; i < theme.length; i++) {
 			String themeName = theme[i];
-			for (int j = 21; j <= pageNum; j++) {
+			for (int j = 1; j <= pageNum; j++) {
 				url = "http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?areaCode=&category=" + themeName
 						+ "&gotoPage=" + j + "&listType=rdesc&cid=&out_service=";
 
