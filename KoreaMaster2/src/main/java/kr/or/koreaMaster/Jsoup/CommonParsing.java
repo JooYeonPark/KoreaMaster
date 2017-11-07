@@ -67,7 +67,7 @@ public class CommonParsing {
 		while (imgtoken.hasMoreElements()) {
 			saveImageName = (String) imgtoken.nextElement();
 		}
-		Thread t = new ImageSaver(img, saveImageName);
+		Thread t = new ImageSaver(img, saveImageName );
 		t.start();
 
 		// 조회수

@@ -18,7 +18,8 @@ import org.apache.log4j.Logger;
  */
 public class ImageSaver extends Thread {
 	
-	private static final String path = "C:/Users/kosta/Pictures/imgtest/";
+	// path 수정 : C:/Users/kosta/git/KoreaMaster/KoreaMaster2/src/main/webapp/images/ 프로젝트 images경로부분만 수정해주세요~
+	private static final String path = "C:/Users/kosta/git/KoreaMaster/KoreaMaster2/src/main/webapp/images/spot/";
 	Logger logger = Logger.getLogger(ImageSaver.class);
 	
     private String saveImageName;
