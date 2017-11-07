@@ -14,7 +14,12 @@
  <select id="selectUser" parameterType="hashmap" resultType="user">
  	SELECT *
  	FROM users
- 	WHERE users_id = #{usersId} AND users_password = #{usersPassword}
+ 	<where>
+ 		users_id = #{usersId}
+ 		<if test="usersPassword != null">
+ 			AND users_password = #{usersPassword}
+ 		</if>
+ 	</where>
  </select>
  
  </mapper>
