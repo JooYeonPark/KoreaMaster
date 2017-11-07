@@ -18,22 +18,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
 	<!-- Fav and Touch Icons -->
-	<link rel="apple-touch-icon" sizes="144x144" href="<%= projectName %>/images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="<%= projectName %>/images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="<%= projectName %>/images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon" href="<%= projectName %>/images/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="<%= projectName %>/images/ico/favicon.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon" href="/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/images/ico/favicon.png">
 
 	<!-- CSS Plugins -->
-	<link rel="stylesheet" type="text/css" href="<%= projectName %>/bootstrap/css/bootstrap.min.css" media="screen">	
-	<link href="<%= projectName %>/css/main.css" rel="stylesheet">
-	<link href="<%= projectName %>/css/plugin.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">	
+	<link href="/css/main.css" rel="stylesheet">
+	<link href=">/css/plugin.css" rel="stylesheet">
 
 	<!-- CSS Custom -->
-	<link href="<%= projectName %>/css/style.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
 	
 	<!-- Add your style -->
-	<link href="<%= projectName %>/css/your-style.css" rel="stylesheet">
+	<link href="/css/your-style.css" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -41,22 +41,13 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	
-<!-- 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> -->
-<script>
-//     new daum.Postcode({
-//         oncomplete: function(data) {
-//             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-//             // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-//         }
-//     }).open();
-</script>
-<title> 우리반 연습 </title>
 </head>
 <body>
+		
 
 <!-- 회원가입 완료 / 추가할 부분 이메일 인증번호 보내고 확인받기 -->
 <!-- start Register Modal -->
-<form method="post" action="<%= projectName %>/user?cmd=join-db" enctype="multipart/form-data">
+<form method="post" action="/user?cmd=join-db" enctype="multipart/form-data">
 <!-- <div id="registerModal" class="modal fade login-box-wrapper" tabindex="-1" data-backdrop="static" data-keyboard="false" data-replace="true"> -->
 
 	<div class="modal-header">

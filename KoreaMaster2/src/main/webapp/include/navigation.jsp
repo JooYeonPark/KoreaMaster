@@ -45,22 +45,23 @@
 		</div>
 		<!--/.nav-collapse --> 
 
-		<% if(user == null) { %>
 		<div class="nav-mini-wrapper">
 			<ul class="nav-mini">
+			<% if(user == null) { %>
 				<li><a data-toggle="modal" href="/user?cmd=join-page"><i
 						class="icon-user-follow" data-toggle="tooltip"
 						data-placement="bottom" title="sign up"></i></a></li>
 				<li><a data-toggle="modal" href="/user?cmd=login-page"><i
 						class="icon-login" data-toggle="tooltip" data-placement="bottom"
 						title="login"></i> </a></li>
-			</ul>
-		</div>
-		<% } else { 
+						<% } else { 
 			// user가 로그인을 한 상태이면 환영 메세지와 로그아웃 아이콘 출력
 		%>
+				<li id="userHello"><b><%= user.getUsersName() %>님,</b> 환영합니다.</li>
+				<li><a href="/user?cmd=logout-page"><i class="icon-logout" data-toggle="tooltip" data-placement="bottom" title="logout"></i></a></li>
 		<% } %>
-
+			</ul>
+		</div>
 	</div>
 
 	<div id="slicknav-mobile"></div>

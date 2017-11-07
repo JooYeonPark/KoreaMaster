@@ -1,7 +1,7 @@
 <%@page import="kr.or.koreaMaster.user.model.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String projectName = "/koreamaster"; 
+<% 
 	Users user = (Users)request.getAttribute("user");
 	
 %>
@@ -23,22 +23,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
 	<!-- Fav and Touch Icons -->
-	<link rel="apple-touch-icon" sizes="144x144" href="<%= projectName %>/images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="<%= projectName %>/images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="<%= projectName %>/images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon" href="<%= projectName %>/images/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="<%= projectName %>/images/ico/favicon.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon" href="/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/images/ico/favicon.png">
 
 	<!-- CSS Plugins -->
-	<link rel="stylesheet" type="text/css" href="<%= projectName %>/bootstrap/css/bootstrap.min.css" media="screen">	
-	<link href="<%= projectName %>/css/main.css" rel="stylesheet">
-	<link href="<%= projectName %>/css/plugin.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">	
+	<link href="/css/main.css" rel="stylesheet">
+	<link href="/css/plugin.css" rel="stylesheet">
 
 	<!-- CSS Custom -->
-	<link href="<%= projectName %>/css/style.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
 	
 	<!-- Add your style -->
-	<link href="<%= projectName %>/css/your-style.css" rel="stylesheet">
+	<link href="/css/your-style.css" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -49,6 +49,14 @@
 </head>
 
 <body class="home transparent-header">
+
+<header id="header">
+
+			<!-- start Navbar (Header) -->
+			<jsp:include page="/include/navigation.jsp"/>
+			<!-- end Navbar (Header) -->
+
+		</header>
 
 <!-- start Back To Top -->
 
@@ -61,7 +69,7 @@
 <!-- 로그인 완료  -->
 <!-- start Sign-in Modal -->
 <!-- <div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true"> -->
-<form method="post" action="<%= projectName %>/user?cmd=login-db">
+<form method="post" action="/user?cmd=login-db">
 <div>
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -182,12 +190,12 @@
 <!-- end Forget Password Modal -->
  
 <!-- Core JS -->
-<script type="text/javascript" src="<%= projectName %>/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%= projectName %>/js/core-plugins.js"></script>
-<script type="text/javascript" src="<%= projectName %>/js/customs.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/core-plugins.js"></script>
+<script type="text/javascript" src="/js/customs.js"></script>
 
 <!-- Only in Home Page -->
-<script type="text/javascript" src="<%= projectName %>/js/jquery.flexdatalist.js"></script>
+<script type="text/javascript" src="/js/jquery.flexdatalist.js"></script>
 
 </body>
 
