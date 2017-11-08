@@ -7169,3 +7169,32 @@ h5.section-title {
         max-width: 100%
     }
 }
+
+/* navigation css 추가 */
+#usersId {
+	display: inline-block;
+	width: 73.5%;
+}
+
+#id-confirm, #searchPostcode {
+	display: inline-block;
+	width: 25.5%;
+	/* 	background-color: #ffd29f; */
+	background-color: #FFA500;
+	color: white;
+}
+
+.tel {
+	display: inline-block;
+	width: 31.75%;
+}
+
+#usersPostcode, #searchPostcode {
+	width: 49.5%;
+	display: inline-block;
+}
+
+#userHello {
+	color: white;
+	font-size: 10px;
+}
