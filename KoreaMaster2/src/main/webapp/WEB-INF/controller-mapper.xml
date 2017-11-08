@@ -3,4 +3,6 @@
 	<!-- sido, sigungu 세부컨트롤러 등록 -->
 	<bean name="/sido" class="kr.or.koreaMaster.place.controller.SidoListController"/>
 	<bean name="/sigungu" class="kr.or.koreaMaster.place.controller.SigunguController"/>
+	
+	<!-- spot 세부컨트롤러 -->
 </beans>

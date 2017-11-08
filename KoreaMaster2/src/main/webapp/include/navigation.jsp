@@ -29,10 +29,14 @@
 		<div id="navbar" class="navbar-nav-wrapper">
 
 			<ul class="nav navbar-nav" id="responsive-menu">
-				<li><a href="">Offered Tour</a>
+				<li><a href="/jsp/place/spotList.jsp">장소</a>
 					<ul>
-						<li><a href="">Offered Tour Result</a></li>
-
+						<!-- <li><a href="">서울</a></li>
+						<li><a href="">인천</a></li>
+						<li><a href="">경기도</a></li>
+						<li><a href="">충청북도</a></li>
+						<li><a href="">충청남도</a></li>
+ -->
 					</ul></li>
 
 				<li><a href="">여행</a>
