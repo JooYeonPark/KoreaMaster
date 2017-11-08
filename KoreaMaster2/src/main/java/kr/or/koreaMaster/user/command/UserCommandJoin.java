@@ -23,13 +23,14 @@ public class UserCommandJoin implements UserCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		Users user = new Users();
 		try {
-		Part filePart = request.getPart("usersPicture");  //파일명
-		String fileName = getFileName(filePart);  //파일명
+//		Part filePart = request.getPart("usersPicture");  //파일명
+//		String fileName = getFileName(filePart);  //파일명
 		
-		String realPath = FileSaveHelper.save("C:\\현희\\web\\koreamaster\\WebContent\\upload",
-				filePart.getInputStream());   //upload 파일 명
-		user.setUsersPicture(realPath);
-		System.out.println(user.getUsersPicture());
+//		String realPath = FileSaveHelper.save("C:\\Users\\kosta\\git\\KoreaMaster\\KoreaMaster2\\src\\main\\webapp\\upload",
+//				filePart.getInputStream());   //upload 파일 명
+		
+//		user.setUsersPicture(realPath);
+//		System.out.println(user.getUsersPicture());
 		}catch(Exception e) {}
 		
 		user.setUsersName(request.getParameter("usersName"));
