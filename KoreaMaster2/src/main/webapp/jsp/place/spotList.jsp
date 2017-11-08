@@ -44,6 +44,76 @@
 <!-- Add your style -->
 <link href="/css/your-style.css" rel="stylesheet">
 
+<!-- Core JS -->
+<script type="/text/javascript" src="/js/jquery.min.js"></script>
+<script type="/text/javascript" src="/js/core-plugins.js"></script>
+<script type="/text/javascript" src="/js/customs.js"></script>
+
+<!-- Result Page JS -->
+<script type="/text/javascript" src="/js/bootstrap-tokenfield.js"></script>
+<script type="/text/javascript" src="/js/typeahead.bundle.min.js"></script>
+<script type="/text/javascript" src="/js/ion.rangeSlider.min.js"></script>
+<script type="/text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
+<script type="/text/javascript" src="/js/customs-result.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var page = 1;
+
+$(function(){	
+	init();
+});
+
+function init(){
+	
+	var str = "";
+	// 전체 리스트 불러오기
+	$.ajax({
+		url : "/listPage.do",
+		data : {"page" : page},
+		dataType: "json",
+		success : function(data){
+			/* console.log(data); */
+			$.each(data, function(index, spot) {
+				var detail = spot.detail;
+				console.log(detail);
+				str += "<div class='GridLex-col-3_mdd-4_sm-6_xs-6_xss-12' id='"+spot.cityNo+"'>" + 
+						"<div class='trip-guide-item'>"+
+							"<div class='trip-guide-image'>"+
+								"<img src='/images/spot/"+spot.picture+"' alt='images' />"+
+							"</div>"+
+							"<div class='trip-guide-content' style='margin-bottom: 50px;'>"+
+								"<h3>"+spot.name+"</h3>"+
+								"<p>"+spot.detail+"</p>"+
+							"</div>"+
+							"<div class='trip-guide-bottom' >"+
+								"<div class='trip-guide-meta row gap-10'>"+
+									"<div class='col-xs-6 col-sm-6'>"+
+										"<div class='rating-item'>"+
+											"<input type='hidden' class='rating' data-filled='fa fa-star rating-rated' "+
+											"data-empty='fa fa-star-o' data-fractions='2' data-readonly value='"+spot.useNum+"' />"+
+										"</div>"+
+									"</div>"+
+								"</div>"+
+					
+								"<div class='row gap-10'>"+
+									"<div class='col-sm-offset-6 col-xs-12 col-sm-6 text-right'>"+
+										"<a href='#' class='btn btn-primary' value='"+spot.no+"'>Details</a>"+
+									"</div>"+
+								"</div>"+
+							"</div>"+
+						"</div>"+
+					"</div>";
+			});
+			
+			
+			$("#gridSpot").append(str);
+		}
+	});
+}
+
+</script>
+
 </head>
 
 <body class="transparent-header">
@@ -108,7 +178,7 @@
 												<div class="input-group input-group-addon-icon no-border no-br-sm">
 													<span class="input-group-addon input-group-addon-icon bg-white">
 													<label><i class="fa fa-map-marker"></i> Destination:</label></span> 
-													<input type="text" class="form-control" id="autocompleteTagging" value="대한민국, 서울" placeholder="" />
+													<input type="text" class="form-control" id="autocompleteTagging" value="대한민국" placeholder="" />
 												</div>
 											</div>
 										</div>
@@ -175,932 +245,14 @@
 			</div>
 
 			<div class="pt-30 pb-50">
-
 				<div class="container">
-
 					<div class="trip-guide-wrapper">
-
 						<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
-
-							<div
-								class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/01.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Bangkok-Pattaya Safari Adventure</h3>
-											<p>Game of as rest time eyes with of this it. Add was
-												music merry any truth since going...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/02.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Chiang Mai Sustainable Trails</h3>
-											<p>Resolution devonshire pianoforte assistance an he
-												particular middletons...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/03.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Hong Kong Best Highlight Explore</h3>
-											<p>Betrayed cheerful declared end and. Questions we
-												additions is extremely incommode...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/04.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Bangkok-Pattaya Safari Adventure</h3>
-											<p>Savings her pleased are several started females met.
-												Short her not among being any...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/03.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Hong Kong Best Highlight Explore</h3>
-											<p>Betrayed cheerful declared end and. Questions we
-												additions is extremely incommode...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/04.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Bangkok-Pattaya Safari Adventure</h3>
-											<p>Savings her pleased are several started females met.
-												Short her not among being any...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/01.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Bangkok-Pattaya Safari Adventure</h3>
-											<p>Game of as rest time eyes with of this it. Add was
-												music merry any truth since going...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/02.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Chiang Mai Sustainable Trails</h3>
-											<p>Resolution devonshire pianoforte assistance an he
-												particular middletons...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/01.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Bangkok-Pattaya Safari Adventure</h3>
-											<p>Game of as rest time eyes with of this it. Add was
-												music merry any truth since going...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/02.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Chiang Mai Sustainable Trails</h3>
-											<p>Resolution devonshire pianoforte assistance an he
-												particular middletons...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/03.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Hong Kong Best Highlight Explore</h3>
-											<p>Betrayed cheerful declared end and. Questions we
-												additions is extremely incommode...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/04.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Bangkok-Pattaya Safari Adventure</h3>
-											<p>Savings her pleased are several started females met.
-												Short her not among being any...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/03.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Hong Kong Best Highlight Explore</h3>
-											<p>Betrayed cheerful declared end and. Questions we
-												additions is extremely incommode...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/04.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Bangkok-Pattaya Safari Adventure</h3>
-											<p>Savings her pleased are several started females met.
-												Short her not among being any...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/01.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Bangkok-Pattaya Safari Adventure</h3>
-											<p>Game of as rest time eyes with of this it. Add was
-												music merry any truth since going...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
-
-									<div class="trip-guide-item">
-
-										<div class="trip-guide-image">
-											<img src="/images/trip/02.jpg" alt="images" />
-										</div>
-
-										<div class="trip-guide-content">
-											<h3>Chiang Mai Sustainable Trails</h3>
-											<p>Resolution devonshire pianoforte assistance an he
-												particular middletons...</p>
-										</div>
-
-										<div class="trip-guide-bottom">
-
-											<div class="trip-guide-person clearfix">
-												<div class="image">
-													<img src="/images/testimonial/01.jpg" class="img-circle"
-														alt="images" />
-												</div>
-												<p class="name">
-													By: <a href="#">Robert Kalvin</a>
-												</p>
-												<p>Local expert from Thailand</p>
-											</div>
-
-											<div class="trip-guide-meta row gap-10">
-												<div class="col-xs-6 col-sm-6">
-													<div class="rating-item">
-														<input type="hidden" class="rating"
-															data-filled="fa fa-star rating-rated"
-															data-empty="fa fa-star-o" data-fractions="2"
-															data-readonly value="4.5" />
-													</div>
-												</div>
-												<div class="col-xs-6 col-sm-6 text-right">5 days 4
-													nights</div>
-											</div>
-
-											<div class="row gap-10">
-												<div class="col-xs-12 col-sm-6">
-													<div class="trip-guide-price">
-														Starting at <span class="number">USD687.00</span>
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-6 text-right">
-													<a href="#" class="btn btn-primary">Details</a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
+							<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center" id="gridSpot">
+								
+								<!-- 장소 리스트 추가 -->
+								
 						</div>
-
 					</div>
 
 					<div class="pager-wrappper clearfix">
@@ -1397,17 +549,7 @@
 	</div>
 	<!-- end Forget Password Modal -->
 
-	<!-- Core JS -->
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/core-plugins.js"></script>
-	<script type="text/javascript" src="/js/customs.js"></script>
 
-	<!-- Result Page JS -->
-	<script type="text/javascript" src="/js/bootstrap-tokenfield.js"></script>
-	<script type="text/javascript" src="/js/typeahead.bundle.min.js"></script>
-	<script type="text/javascript" src="/js/ion.rangeSlider.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
-	<script type="text/javascript" src="/js/customs-result.js"></script>
 
 </body>
 

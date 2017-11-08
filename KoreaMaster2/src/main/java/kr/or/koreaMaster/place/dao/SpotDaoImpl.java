@@ -54,6 +54,11 @@ public class SpotDaoImpl implements SpotDao {
 	public void update(Spot spot) {
 		sqlSession.update(NAMESPACE+".update", spot);
 	}
+
+	@Override
+	public List<Spot> listPage(int page) {
+		return sqlSession.selectList(NAMESPACE+".listPage", page);
+	}
 	
 }
 
