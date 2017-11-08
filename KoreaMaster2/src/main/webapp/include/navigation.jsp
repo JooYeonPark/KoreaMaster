@@ -40,6 +40,15 @@
                         <li><a href="/jsp/travel/routeRequest.jsp">여행루트생성</a></li>
 					</ul>
 				</li>
+				
+				<!-- 로그인 했을 경우에만 마이페이지 보여주기 -->
+				<% if(user != null) { %>
+				<li><a href="/note?cmd=my-page">마이페이지</a>
+                    <ul>
+                        <li><a href="/note?cmd=my-page">여행 노트</a></li>
+					</ul>
+				</li>
+				<% } %>
 			</ul>
 
 		</div>
