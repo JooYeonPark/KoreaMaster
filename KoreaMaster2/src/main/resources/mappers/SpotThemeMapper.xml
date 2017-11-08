@@ -14,8 +14,7 @@
 	</select>
 	
 	<insert id="create" parameterType="SpotTheme">
-		insert  into spot_Theme ( theme_no as "themeNo",
-								  spot_no as "spotNo")
+		insert into spot_Theme(theme_no, spot_no)
 		values(#{themeNo}, #{spotNo})
 	</insert>
 	
