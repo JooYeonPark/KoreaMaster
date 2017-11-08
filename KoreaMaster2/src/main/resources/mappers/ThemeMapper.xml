@@ -8,7 +8,7 @@
 	
 	<insert id="insertType" parameterType="UsersTheme">
 		insert into users_theme
-		values ( #{usersID}, #{themeNo}, #{score})
+		values ( #{usersId}, #{themeNo}, #{score})
 	</insert>
 	
 	<insert id="create" parameterType="UsersTheme">
