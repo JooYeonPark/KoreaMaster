@@ -48,7 +48,7 @@
                         <li><a href="/note?cmd=my-page">여행 노트</a></li>
 					</ul>
 				</li>
-				<% } %>
+				<% } %> 
 			</ul>
 
 		</div>
