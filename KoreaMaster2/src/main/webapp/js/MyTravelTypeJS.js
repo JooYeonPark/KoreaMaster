@@ -126,7 +126,7 @@ $(document).ready(function(){
 			/**
 			 *  send data
 			 */
-			location.href = '/KoreaMaster2/MyTravelType?cmd=myTravelTypeDone&1=' + myType[5][0] + '&2=' + myType[4][0] + '&3=' + myType[3][0] + '&4=' + myType[2][0];
+			location.href = '/MyTravelType?cmd=myTravelTypeDone&1=' + myType[5][0] + '&2=' + myType[4][0] + '&3=' + myType[3][0] + '&4=' + myType[2][0];
 		}
 		
 	});

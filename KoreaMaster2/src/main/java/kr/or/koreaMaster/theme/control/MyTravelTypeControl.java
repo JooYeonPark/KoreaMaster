@@ -15,7 +15,7 @@ import kr.or.koreaMaster.theme.command.MyTravelTypeCommand;
 
 public class MyTravelTypeControl extends HttpServlet{
 	private HashMap commandMap;
-	private String	jspDir = "/";
+	private String	jspDir = "/jsp/theme/";
 	private String  error = "error.jsp";
 	
 	public MyTravelTypeControl() {
