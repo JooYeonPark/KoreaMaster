@@ -12,7 +12,7 @@ import kr.or.koreaMaster.theme.service.MyTravelTypeService;
  */
 
 public class CommandMyTravelTypeDone implements MyTravelTypeCommand {
-	private String next;
+	private String next; 
 	
 	public CommandMyTravelTypeDone(String _next) {
 		next = _next;
@@ -25,7 +25,7 @@ public class CommandMyTravelTypeDone implements MyTravelTypeCommand {
 		int score = 100;			// 우선순위 기준 값.  **** 최대 값 : 100, 최소 값 : 70 ****
 		
 		String type[] = {request.getParameter("1"), request.getParameter("2"), request.getParameter("3"), request.getParameter("4")};
-		String id = (String)session.getAttribute("id");				// 로그인 아이디 값 얻어옴
+		String id = (String)session.getAttribute("user");				// 로그인 아이디 값 얻어옴
 		
 		for (int i = 0; i < type.length; i++) {
 			int themeNo = service.findThemeId(type[i]);
