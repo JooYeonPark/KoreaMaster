@@ -3,11 +3,8 @@
 <!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Title Of Site -->
 	<title>한뽀 - 한반도뽀개기</title>
@@ -47,7 +44,7 @@
 <!-- 회원가입 완료 / 추가할 부분 이메일 인증번호 보내고 확인받기 -->
 <!-- start Register Modal -->
 <!-- <form method="post" action="/user?cmd=join-db" enctype="multipart/form-data"> -->
-<form method="post" action="/user?cmd=join-db">
+<form method="post" action="/user?cmd=join-db" enctype="multipart/form-data">
 <!-- <div id="registerModal" class="modal fade login-box-wrapper" tabindex="-1" data-backdrop="static" data-keyboard="false" data-replace="true"> -->
 
 	<div class="modal-header">
@@ -146,6 +143,47 @@
 				</div>
 			</div>
 
+
+			
+			<!-- 사진 파일 업로드 -->
+			
+			<div class="col-sm-12 col-md-12">
+	
+				<div class="form-group"> 
+					<label>Profile</label><br/>
+					 <input type="file" name="usersPicture"/>
+				</div>
+			
+			</div>
+			
+			<div class="col-sm-12 col-md-12">
+				<div class="checkbox-block"> 
+					<input id="register_accept_checkbox" name="register_accept_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
+					<label class="" for="register_accept_checkbox">By register, I read &amp; accept <a href="#">the terms</a></label>
+				</div>
+				
+			</div>
+			
+			<div class="col-sm-12 col-md-12">
+				<div class="login-box-box-action">
+<!-- 					Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a> -->
+					Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a>
+				</div>
+			</div>
+			
+		</div>
+	
+	</div>
+	
+	<div class="modal-footer text-center">
+		<input type="submit" class="btn btn-primary" value="Register"/>
+		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
+	</div>
+	
+<!-- </div> -->
+</form>
+<!-- end Register Modal -->
+
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -190,45 +228,6 @@
         }).open();
     }
 </script>
-			
-			<!-- 사진 파일 업로드 -->
-			
-			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
-					<label>Profile</label><br/>
-					 <input type="file" name="usersPicture"/>
-				</div>
-			
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-				<div class="checkbox-block"> 
-					<input id="register_accept_checkbox" name="register_accept_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-					<label class="" for="register_accept_checkbox">By register, I read &amp; accept <a href="#">the terms</a></label>
-				</div>
-				
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-				<div class="login-box-box-action">
-<!-- 					Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a> -->
-					Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a>
-				</div>
-			</div>
-			
-		</div>
-	
-	</div>
-	
-	<div class="modal-footer text-center">
-		<input type="submit" class="btn btn-primary" value="Register"/>
-		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
-	</div>
-	
-<!-- </div> -->
-</form>
-<!-- end Register Modal -->
 
 </body>
 </html>
