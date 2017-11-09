@@ -32,6 +32,9 @@ public interface SpotDao {
 	/** 도시에 따른 목록 반환 */
 	public List<Integer> getSpotByCity(int cityNo);
 	
+	/** 페이지에 따른 장소리트스 반환 */
+	public List<Spot> listPage(int page);
+	
 }
 
 

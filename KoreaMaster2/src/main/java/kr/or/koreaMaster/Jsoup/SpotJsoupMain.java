@@ -26,7 +26,7 @@ import kr.or.koreaMaster.theme.session.MyTravelTypeRepository;
 public class SpotJsoupMain {
 
 	private static String[] theme = { "A01", "A03", "B01", "DDD", "A02", "E01" };
-	private static int pageNum = 20;
+	private static int pageNum = 15;
 
 	public static void main(String[] args) throws IOException {
 		DaoFactory factory2 = new MyBatisDaoFactory();
@@ -39,16 +39,19 @@ public class SpotJsoupMain {
 		MyTravelTypeRepository themeDao = new MyTravelTypeRepository();
 		SpotThemeDAO spotThemeDAO = (SpotThemeDAO) factory2.getDao(SpotThemeDAOImpl.class);
 
+		
+		Connection.Response response = null;
+		Document document = null;
 		for (int i = 0; i < theme.length; i++) {
 			String themeName = theme[i];
 			for (int j = 1; j <= pageNum; j++) {
-				url = "http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?areaCode=&category=" + themeName
-						+ "&gotoPage=" + j + "&listType=rdesc&cid=&out_service=";
+				url = "http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?areaCode=&category=" + theme[i]+ "&gotoPage=" + j + "&listType=rdesc&cid=&out_service=";
 
-				Connection.Response response = Jsoup.connect(url).method(Connection.Method.GET).execute();
-				Document document = response.parse();
+				response = Jsoup.connect(url).method(Connection.Method.GET).execute();
+				document = response.parse();
 
 				Elements liList = document.select("div[class='whereWrap'] ul li a");
+				System.out.println("페이지 : " + j + ", 개수 : "+ liList.size());
 
 				for (int k = 0; k < liList.size(); k++) {
 					Element aTag = liList.get(k).getElementsByTag("a").first();

@@ -107,7 +107,7 @@ $(document).ready(function(){
 			/**
 			 * start type sort
 			 */
-			var myType = [["leports", leports], ["history", history], ["shopping", shopping], ["nature", nature], ["experience", experience], ["culture", culture]];
+			var myType = [["레포츠", leports], ["역사", history], ["쇼핑", shopping], ["자연", nature], ["체험", experience], ["문화시설", culture]];
 			for (var i = 0; i < 5; i++) {
 				for (var j = i+1 ; j < 6; j++) {
 					if(myType[i][1] > myType[j][1]) {

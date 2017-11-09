@@ -33,7 +33,15 @@ public class MybatisSpotDaoTest {
 	
 //	@Test
 	public void listByCity() {
-		List<Spot> list = dao.listByCity(2);
-		logger.debug(list);
+		/*List<Spot> list = dao.listByCity(2);
+		logger.debug(list);*/
+	}
+	
+//	@Test
+	public void listPageTest() {
+		List<Spot> list = dao.listPage(1);
+		for (Spot spot : list) {
+			logger.info(spot.toString());
+		}
 	}
 }

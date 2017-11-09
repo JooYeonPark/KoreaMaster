@@ -29,10 +29,14 @@
 		<div id="navbar" class="navbar-nav-wrapper">
 
 			<ul class="nav navbar-nav" id="responsive-menu">
-				<li><a href="">Offered Tour</a>
+				<li><a href="/jsp/place/spotList.jsp">장소</a>
 					<ul>
-						<li><a href="">Offered Tour Result</a></li>
-
+						<!-- <li><a href="">서울</a></li>
+						<li><a href="">인천</a></li>
+						<li><a href="">경기도</a></li>
+						<li><a href="">충청북도</a></li>
+						<li><a href="">충청남도</a></li>
+ -->
 					</ul></li>
 
 				<li><a href="">여행</a>
@@ -40,6 +44,12 @@
                         <li><a href="/jsp/travel/routeRequest.jsp">여행루트생성</a></li>
 					</ul>
 				</li>
+				
+				<li><a href="">성향테스트</a>
+                    <ul>
+                        <li><a href="/jsp/theme/MyTravelType.jsp">성향테스트</a></li>
+					</ul>
+				</li>	
 				
 				<!-- 로그인 했을 경우에만 마이페이지 보여주기 -->
 				<% if(user != null) { %>

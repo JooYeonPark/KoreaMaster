@@ -53,7 +53,6 @@
 	<div class="container-wrapper">
 
 		<!-- start Header -->
-
 		<header id="header">
 
 			<!-- start Navbar (Header) -->
@@ -61,7 +60,6 @@
 			<!-- end Navbar (Header) -->
 
 		</header>
-
 		<!-- end Header -->
 
 		<!-- start Main Wrapper -->

@@ -62,6 +62,25 @@
 		FROM   spot
 	</select>
 	
+	<select id="listPage" parameterType="int" resultType="Spot">
+		SELECT spot_no             AS "no", 
+		       city_no             AS "cityNo", 
+		       spot_name           AS "name", 
+		       spot_detail         AS "detail", 
+		       spot_picture        AS "picture", 
+		       spot_use_num        AS "useNum" 
+		FROM   (SELECT CEIL(ROWNUM / 16) request_page,
+		               spot_no,
+		               city_no,
+		               spot_name,
+		               spot_detail,
+		               spot_picture,
+		               spot_use_num
+		        from spot)
+		where request_page = #{value}
+		order by spot_use_num asc
+	</select>
+	
 	<select id="read" parameterType="int" resultType="Spot">
 		SELECT spot_no as "no", 
 		       city_no as "cityNo", 
