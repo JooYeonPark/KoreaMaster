@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 
@@ -55,27 +54,45 @@
 
 <script type="text/javascript">
 var page = 1;
+var theme = "all";
+var sort = "useNum";
 
 $(function(){	
 	init();
 	
-	$("#themeSearch").change(function() {
-		var selected = $("#themeSearch option:selected").val();
-		console.log(selected);
+	$("#theme").change(function() {
+		theme = $("#theme option:selected").val();
+		var data = {"page" : page, "themeName" : theme, "sort" : sort};
+		listPage(data);
 	});
+	
+	$("#sort").change(function() {
+		sort = $("#sort option:selected").attr("id");
+		var data = {"page" : page, "themeName" : theme, "sort" : sort};
+		listPage(data);
+	});
+	
+	/* // Ïù¥Î≤§Ìä∏ Ï∞æÏïÑ ÎÑ£Í∏∞
+	$("#autocompleteTagging").change(function() {
+		console.log($("#autocompleteTagging").val());
+	});  */
 	
 });
 
 function init(){
-	
+	var data = {"page" : page, "themeName" : theme, "sort" : sort};
+	listPage(data);
+}
+
+function listPage(data){
+	$("#gridSpot div[class='GridLex-col-3_mdd-4_sm-6_xs-6_xss-12']").remove();
 	var str = "";
-	// ¿¸√º ∏ÆΩ∫∆Æ ∫“∑Øø¿±‚
+	// Ï†ÑÏ≤¥ Î¶¨Ïä§Ìä∏ Î∂àÎü¨Ïò§Í∏∞
 	$.ajax({
 		url : "/listPage.do",
-		data : {"page" : page},
+		data : data,
 		dataType: "json",
 		success : function(data){
-			/* console.log(data); */
 			$.each(data, function(index, spot) {
 				var detail = spot.detail;
 				str += "<div class='GridLex-col-3_mdd-4_sm-6_xs-6_xss-12' id='"+spot.cityNo+"'>" + 
@@ -96,23 +113,19 @@ function init(){
 										"</div>"+
 									"</div>"+
 								"</div>"+
-					
 								"<div class='row gap-10'>"+
 									"<div class='col-sm-offset-6 col-xs-12 col-sm-6 text-right'>"+
-										"<a href='#' class='btn btn-primary' value='"+spot.no+"'>Details</a>"+
+										"<a href='/jsp/place/spotDetail.jsp' class='btn btn-primary' value='"+spot.no+"'>Details</a>"+
 									"</div>"+
 								"</div>"+
 							"</div>"+
 						"</div>"+
 					"</div>";
 			});
-			
 			$("#gridSpot").append(str);
 		}
 	});
 }
-
-function listPage()
 
 </script>
 
@@ -145,7 +158,7 @@ function listPage()
 						<div class="row">
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 								<h2>SPOT</h2>
-								<p>º≠øÔ∆Ø∫∞Ω√ ±›√µ±∏ </p>
+								<p>ÏÑúÏö∏ÌäπÎ≥ÑÏãú Í∏àÏ≤úÍµ¨ </p>
 							</div>
 						</div>
 					</div>
@@ -154,7 +167,7 @@ function listPage()
 						<ol class="breadcrumb">
 							<li><a href="index.jsp">Home</a></li>
 							<li><a href="#">Spot</a></li>
-							<li class="active">º≠øÔ∆Ø∫∞Ω√</li>
+							<li class="active">ÏÑúÏö∏ÌäπÎ≥ÑÏãú</li>
 						</ol>
 					</div>
 				</div>
@@ -164,7 +177,7 @@ function listPage()
 			<!-- end breadcrumb -->
 
 			<div class="filter-full-width-wrapper">
-				<!-- ∞Àªˆ ¿Ø«¸  form  start  -->
+				<!-- Í≤ÄÏÉâ Ïú†Ìòï  form  start  -->
 				<form class="">
 
 					<div class="filter-full-primary">
@@ -175,58 +188,57 @@ function listPage()
 								<div class="form-holder">
 									<div class="row">
 									
-										<!-- µµ¬¯¡ˆ ≈∞øˆµÂ start div -->
+										<!-- ÌÇ§ÏõåÎìú start div -->
 										<div class="col-xs-12 col-sm-12 col-md-6">
 											<div class="filter-item bb-sm no-bb-xss">
 												<div class="input-group input-group-addon-icon no-border no-br-sm">
 													<span class="input-group-addon input-group-addon-icon bg-white">
-													<label><i class="fa fa-map-marker"></i> Destination:</label></span> 
-													<input type="text" class="form-control" id="autocompleteTagging" value="¥Î«—πŒ±π" placeholder="" />
+													<label><i class="fa fa-map-marker"></i> Area : </label></span> 
+													<input type="text" class="form-control" id="autocompleteTagging" value="ÎåÄÌïúÎØºÍµ≠" />
 												</div>
 											</div>
 										</div>
-										<!-- µµ¬¯¡ˆ ≈∞øˆµÂ end div -->
+										<!-- ÌÇ§ÏõåÎìú end div -->
 
 										<div class="col-xs-12 col-sm-12 col-md-6">
 											<div class="filter-item-wrapper">
 												<div class="row">
 												
-													<!-- ¡§∑ƒ start div -->
+													<!-- Ï†ïÎ†¨ start div -->
 													<div class="col-xss-12 col-xs-6 col-sm-5">
 														<div class="filter-item mmr">
 															<div
 																class="input-group input-group-addon-icon no-border no-br-xs">
 																<span
 																	class="input-group-addon input-group-addon-icon bg-white">
-																	<label class="block-xs"><i
-																		class="fa fa-sort-amount-asc"></i> Sort by:</label>
-																</span> <select class="selectpicker form-control block-xs">
-																	<option value="useNum"> hitting </option>
-																	<option value="name"> Name</option>
+																	<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> Sort by:</label>
+																	</span> <select class="selectpicker form-control block-xs" id="sort">
+																	<option id="useNum"> hitting </option>
+																	<option id="name"> Name</option>
 																</select>
 															</div>
 														</div>
 													</div>
-													<!-- ¡§∑ƒ end div -->
+													<!-- Ï†ïÎ†¨ end div -->
 													
-													<!-- ø©«‡ ≈◊∏∂∫∞ ∞Àªˆ start div -->
-													<div class="col-xss-12 col-xs-6 col-sm-7" id="themeSearch">
+													<!-- Ïó¨Ìñâ ÌÖåÎßàÎ≥Ñ Í≤ÄÏÉâ start div -->
+													<div class="col-xss-12 col-xs-6 col-sm-7" >
 														<div class="filter-item mmr">
 															<div class="input-group input-group-addon-icon no-border no-br-xs">
 																<span class="input-group-addon input-group-addon-icon bg-white"><label><i class="fa fa-sort-amount-asc"></i> Trip Style:</label></span>
-																<select class="selectpicker ">
-																	<option value="0"> All Types</option>
-																	<option value="1"> Nature</option>
-																	<option value="2"> Experience</option>
-																	<option value="3"> Culture</option>
-																	<option value="4"> Leports</option>
-																	<option value="5"> History</option>
-																	<option value="6"> Shopping</option>
+																<select class="selectpicker " id="theme">
+																	<option value="all"> All Types</option>
+																	<option value="ÏûêÏó∞"> Nature</option>
+																	<option value="Ï≤¥Ìóò"> Experience</option>
+																	<option value="Î¨∏ÌôîÏãúÏÑ§"> Culture</option>
+																	<option value="Î†àÌè¨Ï∏†"> Leports</option>
+																	<option value="Ïó≠ÏÇ¨"> History</option>
+																	<option value="ÏáºÌïë"> Shopping</option>
 																</select>
 															</div>
 														</div>
 													</div>
-													<!-- ø©«‡ ≈◊∏∂∫∞ ∞Àªˆ end div -->
+													<!-- Ïó¨Ìñâ ÌÖåÎßàÎ≥Ñ Í≤ÄÏÉâ end div -->
 													
 												</div>
 											</div>
@@ -237,7 +249,7 @@ function listPage()
 						</div>
 					</div>
 				</form>
-				<!-- ∞Àªˆ ¿Ø«¸  end form  -->
+				<!-- Í≤ÄÏÉâ Ïú†Ìòï  end form  -->
 
 			</div>
 
@@ -247,7 +259,7 @@ function listPage()
 						<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
 							<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center" id="gridSpot">
 								
-								<!-- ¿Âº“ ∏ÆΩ∫∆Æ √ﬂ∞° -->
+								<!-- Ïû•ÏÜå Î¶¨Ïä§Ìä∏ Ï∂îÍ∞Ä -->
 								
 						</div>
 					</div>
@@ -287,7 +299,6 @@ function listPage()
 			</div>
 
 		</div>
-
 		<!-- end Main Wrapper -->
 
 		<!-- footer -->

@@ -24,11 +24,14 @@ import kr.or.koreaMaster.place.dao.SpotDao;
 import kr.or.koreaMaster.place.dao.SpotDaoImpl;
 import kr.or.koreaMaster.place.domain.Sido;
 import kr.or.koreaMaster.place.domain.Spot;
+import kr.or.koreaMaster.theme.session.MyTravelTypeRepository;
 
 public class SpotListController implements Controller {
 	
 	DaoFactory factory = new MyBatisDaoFactory();
-	SpotDao dao = (SpotDao)factory.getDao(SpotDaoImpl.class);
+	SpotDao sidoDao = (SpotDao)factory.getDao(SpotDaoImpl.class);
+	MyTravelTypeRepository themeDao = new MyTravelTypeRepository();
+	
 	Logger logger = Logger.getLogger(SpotListController.class);
 	
 	@Override
@@ -38,13 +41,23 @@ public class SpotListController implements Controller {
 		
 		String sido = request.getParameter("sido");
 		int page = Integer.parseInt(request.getParameter("page"));
+		String themeName = request.getParameter("themeName");
+		String sort = request.getParameter("sort");
+		
+		
+		int themeNo = 0;
+		if(!(themeName.equals("all"))) {
+			themeNo = themeDao.findThemeId(themeName);
+		}
 		
 		List<Spot> list = null;
 		if(sido == null) {
-			list = dao.listPage(page);
+			list = sidoDao.listPage(page, themeNo, sort);
 		}else {
 			System.out.println(sido);
 		}
+		
+		
 		
 		try {
 			JSONObject obj;

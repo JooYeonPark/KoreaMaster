@@ -56,8 +56,12 @@ public class SpotDaoImpl implements SpotDao {
 	}
 
 	@Override
-	public List<Spot> listPage(int page) {
-		return sqlSession.selectList(NAMESPACE+".listPage", page);
+	public List<Spot> listPage(int page, int themeNo, String sort) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("themeNo", themeNo);
+		map.put("sort", sort);
+		return sqlSession.selectList(NAMESPACE+".listPage", map);
 	}
 	
 }

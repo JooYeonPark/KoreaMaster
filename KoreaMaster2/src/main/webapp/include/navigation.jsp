@@ -1,6 +1,5 @@
 <%@page import="kr.or.koreaMaster.user.model.Users"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% 
 // 	String projectName = "/KoreaMaster2";
 	
@@ -22,7 +21,7 @@
 
 		<div class="logo-wrapper">
 			<div class="logo">
-				<a href="/index.jsp"><img src="images/logo-white.png" alt="Logo" /></a>
+				<a href="index.jsp"><img src="/images/logo-white.png" alt="Logo" /></a>
 			</div>
 		</div>
 
@@ -36,7 +35,7 @@
 						<li><a href="">경기도</a></li>
 						<li><a href="">충청북도</a></li>
 						<li><a href="">충청남도</a></li>
- -->
+ 						-->
 					</ul></li>
 
 				<li><a href="">여행</a>

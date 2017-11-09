@@ -62,23 +62,35 @@
 		FROM   spot
 	</select>
 	
-	<select id="listPage" parameterType="int" resultType="Spot">
+	<select id="listPage" parameterType="map" resultType="Spot">
 		SELECT spot_no             AS "no", 
-		       city_no             AS "cityNo", 
-		       spot_name           AS "name", 
-		       spot_detail         AS "detail", 
-		       spot_picture        AS "picture", 
-		       spot_use_num        AS "useNum" 
+			   city_no             AS "cityNo", 
+			   spot_name           AS "name", 
+			   spot_detail         AS "detail", 
+			   spot_picture        AS "picture", 
+			   spot_use_num        AS "useNum"
 		FROM   (SELECT CEIL(ROWNUM / 16) request_page,
-		               spot_no,
-		               city_no,
-		               spot_name,
-		               spot_detail,
-		               spot_picture,
-		               spot_use_num
-		        from spot)
-		where request_page = #{value}
-		order by spot_use_num asc
+			           spot.spot_no,
+			           city_no,
+			           spot_name,
+			           spot_detail,
+			           spot_picture,
+			           spot_use_num,
+	            	   spot_theme.theme_no
+			     from spot inner join spot_theme
+			     on spot.spot_no = spot_theme.SPOT_NO
+			     <if test="themeNo != 0">
+			     where spot_theme.THEME_NO = #{themeNo}
+			     </if>
+	            )
+		where  request_page = #{page}
+		<if test="sort.equals('useNum')">
+		order by  spot_use_num asc 
+		</if>
+		<if test="sort.equals('name')">
+		order by  spot_name asc 
+		</if>
+			
 	</select>
 	
 	<select id="read" parameterType="int" resultType="Spot">
@@ -125,7 +137,7 @@
 		WHERE  spot_name = #{name} and city_no = #{cityNo}
 	</select>
 	
-	<update id="update" parameterType="kr.or.koreaMaster.place.domain.Spot">
+	<update id="update" parameterType="Spot">
 		UPDATE 	spot
 		SET 	SPOT_DETAIL = #{detail} ,
 				SPOT_ADDRESS_DETAIL = #{addressDetail},

@@ -39,9 +39,5 @@ public class MybatisSpotDaoTest {
 	
 //	@Test
 	public void listPageTest() {
-		List<Spot> list = dao.listPage(1);
-		for (Spot spot : list) {
-			logger.info(spot.toString());
-		}
 	}
 }
