@@ -20,19 +20,14 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <!-- Fav and Touch Icons -->
-<link rel="apple-touch-icon" sizes="144x144"
-	href="/images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon" sizes="114x114"
-	href="/images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon" sizes="72x72"
-	href="/images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon"
-	href="/images/ico/apple-touch-icon-57-precomposed.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon" href="/images/ico/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="/images/ico/favicon.png">
 
 <!-- CSS Plugins -->
-<link rel="stylesheet" type="text/css"
-	href="/bootstrap//css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">
 <link href="/css/main.css" rel="stylesheet">
 <link href="/css/plugin.css" rel="stylesheet">
 
@@ -45,23 +40,30 @@
 <link href="/css/your-style.css" rel="stylesheet">
 
 <!-- Core JS -->
-<script type="/text/javascript" src="/js/jquery.min.js"></script>
-<script type="/text/javascript" src="/js/core-plugins.js"></script>
-<script type="/text/javascript" src="/js/customs.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/core-plugins.js"></script>
+<script type="text/javascript" src="/js/customs.js"></script>
 
 <!-- Result Page JS -->
-<script type="/text/javascript" src="/js/bootstrap-tokenfield.js"></script>
-<script type="/text/javascript" src="/js/typeahead.bundle.min.js"></script>
-<script type="/text/javascript" src="/js/ion.rangeSlider.min.js"></script>
-<script type="/text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
-<script type="/text/javascript" src="/js/customs-result.js"></script>
+<script type="text/javascript" src="/js/bootstrap-tokenfield.js"></script>
+<script type="text/javascript" src="/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript" src="/js/ion.rangeSlider.min.js"></script>
+<script type="text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
+<script type="text/javascript" src="/js/customs-result.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 var page = 1;
 
 $(function(){	
 	init();
+	
+	$("#themeSearch").change(function() {
+		var selected = $("#themeSearch option:selected").val();
+		console.log(selected);
+	});
+	
 });
 
 function init(){
@@ -76,7 +78,6 @@ function init(){
 			/* console.log(data); */
 			$.each(data, function(index, spot) {
 				var detail = spot.detail;
-				console.log(detail);
 				str += "<div class='GridLex-col-3_mdd-4_sm-6_xs-6_xss-12' id='"+spot.cityNo+"'>" + 
 						"<div class='trip-guide-item'>"+
 							"<div class='trip-guide-image'>"+
@@ -106,11 +107,12 @@ function init(){
 					"</div>";
 			});
 			
-			
 			$("#gridSpot").append(str);
 		}
 	});
 }
+
+function listPage()
 
 </script>
 
@@ -172,6 +174,7 @@ function init(){
 							<div class="filter-full-primary-inner">
 								<div class="form-holder">
 									<div class="row">
+									
 										<!-- 도착지 키워드 start div -->
 										<div class="col-xs-12 col-sm-12 col-md-6">
 											<div class="filter-item bb-sm no-bb-xss">
@@ -198,8 +201,8 @@ function init(){
 																	<label class="block-xs"><i
 																		class="fa fa-sort-amount-asc"></i> Sort by:</label>
 																</span> <select class="selectpicker form-control block-xs">
-																	<option value="name"> Name</option>
 																	<option value="useNum"> hitting </option>
+																	<option value="name"> Name</option>
 																</select>
 															</div>
 														</div>
@@ -207,21 +210,15 @@ function init(){
 													<!-- 정렬 end div -->
 													
 													<!-- 여행 테마별 검색 start div -->
-													<div class="col-xss-12 col-xs-6 col-sm-7">
+													<div class="col-xss-12 col-xs-6 col-sm-7" id="themeSearch">
 														<div class="filter-item mmr">
-															<div
-																class="input-group input-group-addon-icon no-border no-br-xs">
-																<span
-																	class="input-group-addon input-group-addon-icon bg-white"><label><i
-																		class="fa fa-sort-amount-asc"></i> Trip Style:</label></span> <select
-																	class="selectpicker form-control"
-																	data-live-search="false"
-																	data-selected-text-format="count > 2"
-																	data-done-button="true" data-done-button-text="OK"
-																	data-none-selected-text="All Types" multiple>
+															<div class="input-group input-group-addon-icon no-border no-br-xs">
+																<span class="input-group-addon input-group-addon-icon bg-white"><label><i class="fa fa-sort-amount-asc"></i> Trip Style:</label></span>
+																<select class="selectpicker ">
+																	<option value="0"> All Types</option>
 																	<option value="1"> Nature</option>
 																	<option value="2"> Experience</option>
-																	<option value="3"> Cultur</option>
+																	<option value="3"> Culture</option>
 																	<option value="4"> Leports</option>
 																	<option value="5"> History</option>
 																	<option value="6"> Shopping</option>

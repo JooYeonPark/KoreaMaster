@@ -78,7 +78,7 @@
 		               spot_use_num
 		        from spot)
 		where request_page = #{value}
-		order by spot_name
+		order by spot_use_num asc
 	</select>
 	
 	<select id="read" parameterType="int" resultType="Spot">
