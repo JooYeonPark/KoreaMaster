@@ -24,18 +24,20 @@ public class UserCommandJoin implements UserCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		Users user = new Users();
 		
-		/* 올릴 fileName */
+//		/* 올릴 fileName */
 		String fileName = null;
 		
 		try {
 			/* MIME TYPE 확인 (FileUpload시 MIME TYPE은 항상 Multipart/form-data)*/
 			boolean isMulti = ServletFileUpload.isMultipartContent(request);
 			
+			
+			
 			if(isMulti) {
 				/* tempDir -> 임시 파일이 저장될 디렉토리 */
 				/* saveDir -> 올릴 파일이 서버에 저장될 디렉토리 */
 				File tempDir = new File("C:\\Users\\kosta\\Desktop\\KoreaMaster2");
-				String saveDir = "C:\\Users\\kosta\\git\\KoreaMaster\\KoreaMaster2\\src\\main\\webapp\\profiles";
+				String saveDir = "C:\\Users\\kosta\\git\\KoreaMaster.git\\KoreaMaster2\\src\\main\\webapp\\profiles";
 				
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				factory.setSizeThreshold(3 * 1024 * 1024); // 3메가
@@ -43,6 +45,7 @@ public class UserCommandJoin implements UserCommand {
 				
 				ServletFileUpload uploader = new ServletFileUpload(factory);
 				uploader.setSizeMax(5 * 1024 * 1024);
+				
 				
 				/* reqeust에서 file을 파싱하는 작업 */
 				List<FileItem> items = uploader.parseRequest(request);
@@ -58,6 +61,10 @@ public class UserCommandJoin implements UserCommand {
 //					fileName = fileItem.getName();
 					fileName = fileItem.getName();
 					System.out.println("[fileName] : " + fileName);
+					if( fileName.equals("") ) {
+						fileName = "null.png";
+					}
+					user.setUsersPicture(fileName);
 					
 					/* 서버에 저장할 파일을 새로 생성 */
 					File uploadFile = new File(saveDir, fileName);
@@ -67,19 +74,19 @@ public class UserCommandJoin implements UserCommand {
 					fileItem.delete();
 				}
 			}
-			
-			/* 경로는 webapp 밑에 profiles로 해놨는데 나중에 바꾸면 될거야
-			 * DB에 저장할 때는 파일명만 저장하면 되고 
-			 * 파일명은 fileName 이라고 저장해놨으니까 DB에 넣을 때 참고하면 될거야 
-			 * 
-			 * 파일명이 중복될 경우를 생각해서 UUID를 사용하면 될거야 
-			 * http://goodwilldd.blogspot.kr/2012/05/tip-unique.html
-			 * 이 사이트 참고해서 UUID 사용하는것도 한번 고려해봐
-			 * 
-			 * 궁금한거 있으면 언제든 물어보렴 ㅃㅃ 
-			 */
-			
- 			
+//			
+//			/* 경로는 webapp 밑에 profiles로 해놨는데 나중에 바꾸면 될거야
+//			 * DB에 저장할 때는 파일명만 저장하면 되고 
+//			 * 파일명은 fileName 이라고 저장해놨으니까 DB에 넣을 때 참고하면 될거야 
+//			 * 
+//			 * 파일명이 중복될 경우를 생각해서 UUID를 사용하면 될거야 
+//			 * http://goodwilldd.blogspot.kr/2012/05/tip-unique.html
+//			 * 이 사이트 참고해서 UUID 사용하는것도 한번 고려해봐
+//			 * 
+//			 * 궁금한거 있으면 언제든 물어보렴 ㅃㅃ 
+//			 */
+//			
+// 			
 		} catch(Exception e) {}
 		
 		user.setUsersName(request.getParameter("usersName"));
@@ -97,8 +104,18 @@ public class UserCommandJoin implements UserCommand {
 		user.setUsersAddress(request.getParameter("usersAddress"));
 		user.setUsersAddressDetail(request.getParameter("usersAddressDetail"));
 		
-		UserJoinService service = UserJoinService.getInstance();
-		service.insertUser(user);	
+//		System.out.println(user.getUsersAddress());
+//		System.out.println(user.getUsersAddressDetail());
+//		System.out.println(user.getUsersEmail());
+//		System.out.println(user.getUsersId());
+//		System.out.println(user.getUsersName());
+//		System.out.println(user.getUsersPassword());
+//		System.out.println(user.getUsersPicture());
+//		System.out.println(user.getUsersPostcode());
+//		System.out.println(user.getUsersTelephone());
+		
+//		UserJoinService service = UserJoinService.getInstance();
+//		service.insertUser(user);	
 	    
 		return next;
 	}

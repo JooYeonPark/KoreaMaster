@@ -29,7 +29,7 @@ public class UserCommandLogin implements UserCommand {
 			request.setAttribute("user", null);
 			request.setAttribute("login", "true");
 			
-			return "../UserLogin.jsp";
+			return "UserLogin.jsp";
 		}
 		
 		session.setAttribute("user", user);

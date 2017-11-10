@@ -7170,13 +7170,8 @@ h5.section-title {
     }
 }
 
-/* navigation css 추가 */
-#usersId {
-	display: inline-block;
-	width: 73.5%;
-}
-
-#id-confirm, #searchPostcode {
+/* css 추가 */
+#searchPostcode {
 	display: inline-block;
 	width: 25.5%;
 	/* 	background-color: #ffd29f; */
