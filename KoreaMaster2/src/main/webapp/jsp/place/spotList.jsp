@@ -115,13 +115,14 @@ function listPage(data){
 								"</div>"+
 								"<div class='row gap-10'>"+
 									"<div class='col-sm-offset-6 col-xs-12 col-sm-6 text-right'>"+
-										"<a href='/jsp/place/spotDetail.jsp' class='btn btn-primary' value='"+spot.no+"'>Details</a>"+
+										"<a href='/jsp/place/spotdetail.jsp?spotNo="+spot.no+"' class='btn btn-primary' value='"+spot.no+"'>Details</a>"+
 									"</div>"+
 								"</div>"+
 							"</div>"+
 						"</div>"+
 					"</div>";
 			});
+			
 			$("#gridSpot").append(str);
 		}
 	});
