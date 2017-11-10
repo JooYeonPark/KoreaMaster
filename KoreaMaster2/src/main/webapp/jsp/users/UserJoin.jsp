@@ -23,7 +23,7 @@
 	<!-- CSS Plugins -->
 	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">	
 	<link href="/css/main.css" rel="stylesheet">
-	<link href=">/css/plugin.css" rel="stylesheet">
+	<link href="/css/plugin.css" rel="stylesheet">
 
 	<!-- CSS Custom -->
 	<link href="/css/style.css" rel="stylesheet">

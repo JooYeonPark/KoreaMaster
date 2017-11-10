@@ -53,7 +53,7 @@
 <header id="header">
 
 			<!-- start Navbar (Header) -->
-			<jsp:include page="/include/navigation.jsp"/>
+<%-- 			<jsp:include page="/include/navigation.jsp"/> --%>
 			<!-- end Navbar (Header) -->
 
 		</header>
