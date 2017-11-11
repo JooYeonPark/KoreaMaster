@@ -77,6 +77,60 @@ function init(){
 			$("#gallery1").prepend(picture);
 			
 			$("#detail").html(spot.detail);
+			$("#addressdetail").html("<i class='ti-direction mr-5'></i> "+spot.addressDetail);
+			
+			if (spot.operatingHour != "") {
+				$("#operatingHour").html("<i class='ti-time mr-5'></i> "+spot.operatingHour);
+			}
+			if (spot.closedDate != "") {
+				$("#closedDate").html("<i class='ti-na mr-5'></i> "+spot.closedDate);
+			}
+			if (spot.phone != "") {
+				$("#phone").html("<i class='ti-mobile mr-5'></i> "+spot.phone);
+			}
+			if (spot.fare != "") {
+				$("#fare").html("<i class='ti-money mr-5'></i> "+spot.fare);
+			}
+			if (spot.homepage != "") {
+				$("#homepage").html("<i class='ti-home mr-5'></i> "+spot.homepage);
+			}
+			
+			
+			var themeList = data.theme;
+			var str = "";
+			for ( var theme in themeList) {
+				str += "<div class='GridLex-col'>"+
+						  "<div class='featured-icon-simple-item'>"+
+						  "<div class='icon text-primary'>";
+						
+				switch (themeList[theme]) {
+				case 1:
+					str += "<i class='flaticon-travel-icons-mountain'></i></div> 자연 ";
+					break;
+				case 2:
+					str += "<i class='flaticon-travel-icons-snorkel'></i></div> 체험 ";
+					break;
+				case 3:
+					str += "<i class='flaticon-ventures-wallet-closed'></i></div> 문화시설 ";
+					break;
+				case 4:
+					str += "<i class='flaticon-travel-icons-kayak'></i></div> 레포츠 ";
+					break;
+				case 5:
+					str += "<i class='flaticon-ventures-big-towers'></i></div> 역사 ";
+					break;
+				case 6:
+					str += "<i class='flaticon-ventures-cart-facing-left'></i></div> 쇼핑 ";
+					break;
+
+				default:
+					break;
+				}
+				str += "</div> </div>";
+			}
+			$("#themeIcon").html(str);
+			
+			
 		}
 	});
 }
@@ -212,47 +266,11 @@ function init(){
 										<%-- 여행 설명 : 문장으로 END --%>
 
 
-										<%-- 여행 테마 아이콘으로 START --%>
+										<%-- 장소 테마 아이콘으로 START --%>
 										<div class="featured-icon-simple-wrapper">
 											<div class="GridLex-gap-30 GridLex-gap-20-xs">
-												<div
-													class="GridLex-grid-noGutter-equalHeight GridLex-grid-4_sm-4_xs-3_xss-1 GridLex-grid-center">
-
-													<div class="GridLex-col">
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-mountain"></i>
-															</div>
-															Adventure
-														</div>
-													</div>
-
-													<div class="GridLex-col">
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-island"></i>
-															</div>
-															Beach
-														</div>
-													</div>
-
-													<div class="GridLex-col">
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-kayak"></i>
-															</div>
-															Kayak
-														</div>
-													</div>
-
-													<div class="GridLex-col">
-														<div class="featured-icon-simple-item">
-															<div class="icon text-primary">
-																<i class="flaticon-travel-icons-cocktail"></i>
-															</div>
-															Sweet
-														</div>
-													</div>
+												<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-4_sm-4_xs-3_xss-1 GridLex-grid-center" id="themeIcon">
+													<!-- 아이콘 표시 부분 -->
 												</div>
 											</div>
 										</div>
@@ -266,50 +284,38 @@ function init(){
 										<div class="row">
 											<div class="col-xs-12 col-sm-12 col-md-12">
 												<div class="featured-list-in-box">
-													<h4 class="uppercase spacing-1">Trip Detail</h4>
+													<h4 class="uppercase spacing-1">Spot Detail</h4>
 
 													<ul class="clearfix">
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">상세주소</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-location-pin mr-5"></i> Bangkok in't
-																airport
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space" id="addressdetail">
+																
 															</div>
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">운영시간</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-timer mr-5"></i> 09:00 am
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space" id="operatingHour">
 															</div>
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">휴관일</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-user mr-5"></i> 23
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space" id="closedDate">
 															</div>
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">연락처</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-flag mr-5"></i> English, Thai, Malay
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space" id="phone">
 															</div>
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">요금</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-flag mr-5"></i> English, Thai, Malay
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space" id="fare">
 															</div>
 														</li>
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-7">홈페이지</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-flag mr-5"></i> English, Thai, Malay
+															<div class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space" id="homepage">
 															</div>
 														</li>
 													</ul>
@@ -326,12 +332,10 @@ function init(){
 								</div>
 							</div>
 
-							<%-- 오른쪽 사이드 메뉴 START --%>
+							<%-- 오른쪽 사이드 메뉴 START--%>
 							<div id="sidebar-sticky" class="col-xs-12 col-sm-12 col-md-4">
 								<aside class="sidebar-wrapper">
-									
 
-									<%-- 내 루트 저장 버튼 --%>
 									<a href="#" class="add-fav-btn mt-25 ml-10 ml-0-sm">
 										<div class="inner">
 											<i class="ti-heart"></i> Add Favourite
@@ -339,10 +343,10 @@ function init(){
 									</a>
 
 									<div class="hash-tag-wrapper clearfix mt-10 ml-10 ml-0-sm">
-										<a href="#" class="hash-tag"># Bangkok trip</a> <a href="#"
-											class="hash-tag"># Pattay float market</a> <a href="#"
-											class="hash-tag"># Choburi one day</a> <a href="#"
-											class="hash-tag"># Sattaheeb the beach</a>
+										<a href="#" class="hash-tag"># Bangkok trip</a> 
+										<a href="#" class="hash-tag"># Pattay float market</a> 
+										<a href="#" class="hash-tag"># Choburi one day</a> 
+										<a href="#" class="hash-tag"># Sattaheeb the beach</a>
 									</div>
 
 								</aside>
@@ -602,242 +606,6 @@ function init(){
 
 	<%-- end Back To Top --%>
 
-	<%-- start Sign-in Modal --%>
-	<div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1"
-		data-width="550" data-backdrop="static" data-keyboard="false"
-		data-replace="true">
-
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-			<h4 class="modal-title text-center">Sign-in into your account</h4>
-		</div>
-
-		<div class="modal-body">
-			<div class="row gap-20">
-
-				<div class="col-sm-6 col-md-6">
-					<button class="btn btn-facebook btn-block mb-5-xs">Log-in
-						with Facebook</button>
-				</div>
-				<div class="col-sm-6 col-md-6">
-					<button class="btn btn-google-plus btn-block">Log-in with
-						Google+</button>
-				</div>
-
-				<div class="col-md-12">
-					<div class="login-modal-or">
-						<div>
-							<span>or</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Username</label> <input class="form-control"
-							placeholder="Min 4 and Max 10 characters" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Password</label> <input class="form-control"
-							placeholder="Min 4 and Max 10 characters" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-6 col-md-6">
-					<div class="checkbox-block">
-						<input id="remember_me_checkbox" name="remember_me_checkbox"
-							class="checkbox" value="First Choice" type="checkbox"> <label
-							class="" for="remember_me_checkbox">Remember me</label>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-6">
-					<div class="login-box-link-action">
-						<a data-toggle="modal" href="#forgotPasswordModal"
-							class="block line18 mt-1">Forgot password?</a>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="login-box-box-action">
-						No account? <a data-toggle="modal" href="#registerModal">Register</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-		<div class="modal-footer text-center">
-			<button type="button" class="btn btn-primary">Log-in</button>
-			<button type="button" data-dismiss="modal"
-				class="btn btn-primary btn-border">Close</button>
-		</div>
-
-	</div>
-	<%-- end Sign-in Modal --%>
-
-	<%-- start Register Modal --%>
-	<div id="registerModal" class="modal fade login-box-wrapper"
-		tabindex="-1" data-backdrop="static" data-keyboard="false"
-		data-replace="true">
-
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-			<h4 class="modal-title text-center">Create your account for free</h4>
-		</div>
-
-		<div class="modal-body">
-
-			<div class="row gap-20">
-
-				<div class="col-sm-6 col-md-6">
-					<button class="btn btn-facebook btn-block mb-5-xs">Register
-						with Facebook</button>
-				</div>
-				<div class="col-sm-6 col-md-6">
-					<button class="btn btn-google-plus btn-block">Register
-						with Google+</button>
-				</div>
-
-				<div class="col-md-12">
-					<div class="login-modal-or">
-						<div>
-							<span>or</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Username</label> <input class="form-control"
-							placeholder="Min 4 and Max 10 characters" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Email Address</label> <input class="form-control"
-							placeholder="Enter your email address" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Password</label> <input class="form-control"
-							placeholder="Min 8 and Max 20 characters" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Password Confirmation</label> <input class="form-control"
-							placeholder="Re-type password again" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="checkbox-block">
-						<input id="register_accept_checkbox"
-							name="register_accept_checkbox" class="checkbox"
-							value="First Choice" type="checkbox"> <label class=""
-							for="register_accept_checkbox">By register, I read &amp;
-							accept <a href="#">the terms</a>
-						</label>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="login-box-box-action">
-						Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-
-		<div class="modal-footer text-center">
-			<button type="button" class="btn btn-primary">Register</button>
-			<button type="button" data-dismiss="modal"
-				class="btn btn-primary btn-border">Close</button>
-		</div>
-
-	</div>
-	<%-- end Register Modal --%>
-
-	<%-- start Forget Password Modal --%>
-	<div id="forgotPasswordModal" class="modal fade login-box-wrapper"
-		tabindex="-1" data-backdrop="static" data-keyboard="false"
-		data-replace="true">
-
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-			<h4 class="modal-title text-center">Restore your forgotten
-				password</h4>
-		</div>
-
-		<div class="modal-body">
-			<div class="row gap-20">
-
-				<div class="col-sm-12 col-md-12">
-					<p class="mb-20">Maids table how learn drift but purse stand
-						yet set. Music me house could among oh as their. Piqued our sister
-						shy nature almost his wicket. Hand dear so we hour to.</p>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Email Address</label> <input class="form-control"
-							placeholder="Enter your email address" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="checkbox-block">
-						<input id="forgot_password_checkbox"
-							name="forgot_password_checkbox" class="checkbox"
-							value="First Choice" type="checkbox"> <label class=""
-							for="forgot_password_checkbox">Generate new password</label>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="login-box-box-action">
-						Return to <a data-toggle="modal" href="#loginModal">Log-in</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-		<div class="modal-footer text-center">
-			<button type="button" class="btn btn-primary">Restore</button>
-			<button type="button" data-dismiss="modal"
-				class="btn btn-primary btn-border">Close</button>
-		</div>
-
-	</div>
-	<%-- end Forget Password Modal --%>
 
 	<%-- Core JS --%>
 	<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
