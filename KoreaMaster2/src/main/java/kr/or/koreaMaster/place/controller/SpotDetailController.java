@@ -60,10 +60,7 @@ public class SpotDetailController implements Controller {
 		Sido sido = sidoDao.read(sigungu.getSidoNum());
 		String sidoName = sido.getName();
 		
-		/*List<Integer> themeList = spotThemeDAO.readThemeBySpot(spot.getNo());
-		for (Integer inta : themeList) {
-			System.out.println(inta);
-		}*/
+		List<Integer> themeList = spotThemeDAO.readThemeBySpot(spot.getNo());
 		
 		try {
 			JSONObject obj = new JSONObject();
@@ -76,8 +73,9 @@ public class SpotDetailController implements Controller {
 			obj.put("detail", spot.getDetail());
 			obj.put("addressDetail", spot.getAddressDetail());
 			obj.put("operatingHour", spot.getOperatingHour());
-			obj.put("closedDate", spot.getAddressDetail());
-			obj.put("phone", spot.getAddressDetail());
+			obj.put("closedDate", spot.getClosedDate());
+			obj.put("phone", spot.getPhone());
+			obj.put("theme", themeList);
 			obj.put("fare", spot.getFare());
 			obj.put("homepage", spot.getHomepage());
 			obj.put("picture", spot.getPicture());
