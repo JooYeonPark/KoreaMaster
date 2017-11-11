@@ -134,7 +134,9 @@
 		       spot_longitude as "longitude", 
 		       spot_use_num   as "useNum"
 		FROM   spot
-		WHERE  spot_name = #{name} and city_no = #{cityNo}
+		WHERE  spot_name LIKE #{name}
+				and city_no = #{cityNo}
+				and spot_detail = '/*/*/'
 	</select>
 	
 	<update id="update" parameterType="Spot">

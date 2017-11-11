@@ -81,28 +81,14 @@
 							<div
 								class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 
-								<h2>Bangkok-Pattaya Safari Adventure</h2>
-								<span class="labeling text-white mt-25"><span>Bangkok,
-										Pattaya, Choburi, &amp; Sattaheeb</span> <span>5 days 4 nights</span></span>
+								<h2>${cityName} 여행 </h2>
+								<span class="labeling text-white mt-25"><span>${days} days ${days-1} nights</span></span>
 								<div class="rating-item rating-item-lg mb-25">
 									<input type="hidden" class="rating"
 										data-filled="fa fa-star rating-rated"
 										data-empty="fa fa-star-o" data-fractions="2" data-readonly
 										value="4.5" />
-									<div class="rating-text">
-										<a href="#">(32 reviews)</a>
-									</div>
 								</div>
-								<ul class="list-with-icon list-inline-block">
-									<li><i class="ion-android-done text-primary"></i>100%
-										private</li>
-									<li><i class="ion-android-done text-primary"></i>Instantly
-										confirmed</li>
-									<li><i class="ion-android-done text-primary"></i>Free
-										cancellation</li>
-									<li><i class="ion-android-done text-primary"></i>Satisfaction
-										guarantee</li>
-								</ul>
 
 							</div>
 
@@ -110,41 +96,10 @@
 
 					</div>
 
-					<!-- 현재 페이지 경로 표시 START -->
-					<div class="breadcrumb-wrapper text-left">
-
-						<ol class="breadcrumb">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Offered</a></li>
-							<li><a href="#">Thailand</a></li>
-							<li class="active">Bangkok</li>
-						</ol>
-
-					</div>
-					<!-- 현재 페이지 경로 표시 END -->
-
 				</div>
 
 			</div>
 			<!-- end breadcrumb -->
-
-			<!-- 루트 소메뉴 START -->
-			<div class="multiple-sticky hidden-sm hidden-xs">
-				<div class="multiple-sticky-inner">
-					<div class="multiple-sticky-container container">
-						<div class="multiple-sticky-item clearfix">
-							<ul id="multiple-sticky-menu"
-								class="multiple-sticky-menu clearfix">
-								<li><a href="#detail-content-sticky-nav-01">Overview</a></li>
-								<li><a href="#detail-content-sticky-nav-02">Gallery</a></li>
-								<li><a href="#detail-content-sticky-nav-03">Itinerary</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 루트 소메뉴  END -->
-
 
 			<!-- 주 컨테이너 -->
 			<div class="pt-50 pb-50">
@@ -153,18 +108,8 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-8">
 								<div class="content-wrapper">
-									<h3 class="section-title">Tour Title</h3>
+									<h3 class="section-title">${cityName} 여행</h3>
 									<div id="detail-content-sticky-nav-01">
-										<!-- 여행 설명 : 문장으로  START-->
-										<p class="lead">Goodness doubtful material has denoting
-											suitable she two. Dear mean she way and poor bred they come.
-											He otherwise me incommode explained so in remaining. Polite
-											barton in it warmly do county length. Dissuade ecstatic and
-											properly saw entirely sir why laughter endeavor.</p>
-										<!-- 여행 설명 : 문장으로 END -->
-
-										<div class="bt mt-30 mb-30"></div>
-
 										<!-- 여행에 일수, 도시 등 설명   START -->
 										<div class="featured-icon-simple-wrapper">
 											<div class="GridLex-gap-30">
@@ -174,7 +119,7 @@
 															<div class="icon text-primary">
 																<i class="flaticon-travel-icons-suitcase-1"></i>
 															</div>
-															5 days &amp; 4 nights<br />tour
+															${days} days &amp; ${days-1} nights<br />tour
 														</div>
 													</div>
 
@@ -183,8 +128,7 @@
 															<div class="icon text-primary">
 																<i class="flaticon-travel-icons-map"></i>
 															</div>
-															Visit 4 citied:<br />Bangkok, Pattaya, Chonburi, &amp;
-															Sattaheeb
+															Visit city:<br />${cityName}
 														</div>
 													</div>
 
@@ -193,7 +137,7 @@
 															<div class="icon text-primary">
 																<i class="flaticon-travel-icons-bus"></i>
 															</div>
-															Travel with exclusive bus <br />all the trip
+															Travel with transportation 
 														</div>
 													</div>
 
@@ -201,109 +145,11 @@
 											</div>
 										</div>
 										<!-- 여행에 일수, 도시 등 설명   END -->
-
+										
 										<div class="mb-25"></div>
 										<div class="bb"></div>
 										<div class="mb-25"></div>
-
-										<!-- 여행 테마 아이콘으로 START -->
-										<div class="featured-icon-simple-wrapper">
-											<div class="GridLex-gap-30 GridLex-gap-20-xs">
-												<div
-													class="GridLex-grid-noGutter-equalHeight GridLex-grid-4_sm-4_xs-3_xss-1 GridLex-grid-center">
-
-													<div class="GridLex-col">
-														<div class="featured-icon-simple-item">
-															<div class="icon">
-																<i class="flaticon-travel-icons-mountain"></i>
-															</div>
-															Adventure
-														</div>
-													</div>
-
-													<div class="GridLex-col">
-														<div class="featured-icon-simple-item">
-															<div class="icon">
-																<i class="flaticon-travel-icons-island"></i>
-															</div>
-															Beach
-														</div>
-													</div>
-
-													<div class="GridLex-col">
-														<div class="featured-icon-simple-item">
-															<div class="icon">
-																<i class="flaticon-travel-icons-kayak"></i>
-															</div>
-															Kayak
-														</div>
-													</div>
-
-													<div class="GridLex-col">
-														<div class="featured-icon-simple-item">
-															<div class="icon">
-																<i class="flaticon-travel-icons-cocktail"></i>
-															</div>
-															Sweet
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- 여행 테마 아이콘으로 END -->
-
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
-
-										<!-- 여행 상세 정보  -->
-										<div class="row">
-											<div class="col-xs-12 col-sm-12 col-md-12">
-												<div class="featured-list-in-box">
-													<h4 class="uppercase spacing-1">Trip Detail</h4>
-
-													<ul class="clearfix">
-														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">Meeting point
-																(where we meet?)</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-location-pin mr-5"></i> Bangkok in't
-																airport
-															</div>
-														</li>
-														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">Meeting time (what
-																time we meet?)</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-timer mr-5"></i> 09:00 am
-															</div>
-														</li>
-														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">Maximum traellers</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-user mr-5"></i> 23
-															</div>
-														</li>
-														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-7">Languages (guide
-																speaks)</div>
-															<div
-																class="col-xs-12 col-sm-5 text-primary text-right text-left-xs mt-xs space">
-																<i class="ti-flag mr-5"></i> English, Thai, Malay
-															</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
-
+										
 									</div>
 
 									<!-- 여행지 사진 갤러리 START -->
@@ -329,16 +175,17 @@
 										<div class="itinerary-toggle-wrapper mb-40">
 											<div class="panel-group bootstrap-toggle">
 
-												<!-- 첫째날 START : 나머지도 이거 복붙해주세요~ -->
+											  <c:forEach var="item" items="${routeSpots}" varStatus="index"> 
+												<!-- day -->
 												<div class="panel">
-													<!-- 첫째날 큰 일정 보여주는 div START  -->
+													<!-- 큰 일정 보여주는 div START  -->
 													<div class="panel-heading">
 														<div class="panel-title">
 															<a data-toggle="collapse" data-parent="#"
 																href="#bootstarp-toggle-one-2">
 																<div class="itinerary-day">
-																	Day <span class="number">01</span>
-																</div>
+																	Day <span class="number"> ${index} </span>
+																</div><!-- ./itinerary-day -->
 																<div class="itinerary-header">
 																	<h4>Visit Bangkok, the capital of Thailand</h4>
 																	<p class="font-md">Behind sooner dining so window
@@ -346,13 +193,13 @@
 																	<div class="image">
 																		<img src="/images/itinerary-sq/01.jpg" alt="images" />
 																	</div>
-																</div>
+																</div><!-- ./itinerary-header -->
 															</a>
 														</div>
 													</div>
-													<!-- 첫째날 큰 일정 보여주는 div END  -->
+													<!--  큰 일정 보여주는 div END  -->
 
-													<!-- 첫째날 상세일정 보여주는 dic START -->
+													<!--  상세일정 보여주는 dic START -->
 													<div id="bootstarp-toggle-one-2"
 														class="panel-collapse collapse">
 														<div class="panel-body">
@@ -360,63 +207,26 @@
 															<div class="td-timeline-wrap">
 																<ul class="td-timeline">
 																	<li>
-																		<div class="td-timeline-badge">Day 1</div>
+																		<div class="td-timeline-badge">Day ${index} </div>
+																		
+																		<c:forEach var="i" begin="0" end="3">
+																		<!-- 세부일정 시작 -->
 																		<div class="td-timeline-panel">
-																			<div class="td-timeline-panel-time">
-																				<span class="text-darker">07:00</span> <span
-																					class="text-xs-right">AM</span>
-																			</div>
 																			<div class="td-timeline-panel-bubble">
 																				<i class="fa fa-plane text-darker"></i>
-																				<h4 class="timeline-title">International
-																					Outbound Flight</h4>
-																				<p>Lorem ipsum dolor sit amet, consectetur
-																					adipiscing elit. Morbi in purus vel lorem luctus
-																					suscipit sit amet nec velit.</p>
+																				<h4 class="timeline-title">${item.name}</h4>
+																				<p>${item.detail}</p><hr>
+																				<p>${item.addressDetail}</p><br/>
+																				<p>${item.operatingHour}</p>
+																				<p>${item.closedDate}</p><br/>
+																				<p>${item.phone}</p><br/>
+																				<p>${item.fare}</p><br/>
+																				<p>${item.homepage}</p><br/>
 																			</div>
 																		</div>
-																		<div class="td-timeline-panel">
-																			<div class="td-timeline-panel-time">
-																				<span class="text-darker">08:00</span> <span
-																					class="text-xs-right">AM</span>
-																			</div>
-																			<div class="td-timeline-panel-bubble">
-																				<i class="fa fa-hotel text-darker"></i>
-																				<h4 class="timeline-title">Bangkok</h4>
-																				<p>Lorem ipsum dolor sit amet, consectetur
-																					adipiscing elit. Morbi in purus vel lorem luctus
-																					suscipit sit amet nec velit.</p>
-																			</div>
-																		</div>
-																		<div class="td-timeline-panel">
-																			<div class="td-timeline-panel-time">
-																				<span class="text-darker">09:00</span> <span
-																					class="text-xs-right">AM</span>
-																			</div>
-																			<div class="td-timeline-panel-bubble">
-																				<i class="fa fa-road text-darker"></i>
-																				<h4 class="timeline-title">
-																					Bangkok <i class="fa fa-exchange"></i> Phuket
-																				</h4>
-																				<p>Lorem ipsum dolor sit amet, consectetur
-																					adipiscing elit. Morbi in purus vel lorem luctus
-																					suscipit sit amet nec velit.</p>
-																			</div>
-																		</div>
-																		<div class="td-timeline-panel">
-																			<div class="td-timeline-panel-time">
-																				<span class="text-darker">13:00</span> <span
-																					class="text-xs-right">PM</span>
-																			</div>
-																			<div class="td-timeline-panel-bubble">
-																				<i class="fa fa-bus text-darker"></i>
-																				<h4 class="timeline-title">Khao Sok National
-																					Park</h4>
-																				<p>Lorem ipsum dolor sit amet, consectetur
-																					adipiscing elit. Morbi in purus vel lorem luctus
-																					suscipit sit amet nec velit.</p>
-																			</div>
-																		</div>
+																		<!-- 세부일정 끝 -->
+																		</c:forEach>
+																		
 																	</li>
 																</ul>
 															</div>
@@ -424,8 +234,9 @@
 														</div>
 													</div>
 
-												</div>
-												<!-- 첫째날 END -->
+												</div><!-- ./panel -->
+												<!-- day END -->
+												</c:forEach>
 												<!-- end of panel -->
 
 											</div>

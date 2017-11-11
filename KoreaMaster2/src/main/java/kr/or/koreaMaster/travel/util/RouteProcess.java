@@ -20,10 +20,8 @@ public class RouteProcess {
 	Logger logger = Logger.getLogger(RouteProcess.class);
 
 	/** 생성자 */
-	public RouteProcess() {
-	}
+	public RouteProcess() {}
 
-	@Test
 	public List<Integer> findRoute(int date, List<Spot> departures, List<SpotThemeJoin> spotThemeJoinList) {
 
 		/** 장소번호를 저장하여 루트를 저장할 변수 (dayNo, spotNo) */
@@ -35,10 +33,7 @@ public class RouteProcess {
 		 */
 		int cnt = date * 4;
 
-		// #2. 출발장소 db에 입력.
-		// 더미데이터 여수 터미널
-
-		// #3. 출발장소로부터 가장 가까운 장소를 찾는다
+		// #2. 출발장소로부터 가장 가까운 장소를 찾는다
 		String start = null;
 		String end = null;
 		
@@ -81,6 +76,8 @@ public class RouteProcess {
 //						logger.debug("end:"+spotThemeJoinList.get(i).getSpotNo());
 						
 						//두 장소 사이의 소요시간을 구함
+						start = start.trim();
+						end = end.trim();
 						duration = getDistance(start,end);
 //						logger.debug("duration:"+duration);
 						
@@ -105,7 +102,7 @@ public class RouteProcess {
 		}
 
 
-		// #5. 완성...!
+		// #5. 완성!!
 		return routeSpots;
 	}
 
@@ -134,7 +131,7 @@ public class RouteProcess {
 			br.close();
 			conn.disconnect();
 
-//			logger.debug(sb.toString());
+			logger.debug(sb.toString());
 			
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(sb.toString());

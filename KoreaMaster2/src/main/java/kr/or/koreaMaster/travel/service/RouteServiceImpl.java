@@ -1,14 +1,20 @@
 package kr.or.koreaMaster.travel.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import kr.or.koreaMaster.MybatisRestaurantDaoTest;
+import kr.or.koreaMaster.Jsoup.GeocoderLatLong;
 import kr.or.koreaMaster.common.db.DaoFactory;
 import kr.or.koreaMaster.common.db.MyBatisDaoFactory;
+import kr.or.koreaMaster.place.dao.SigunguDao;
+import kr.or.koreaMaster.place.dao.SigunguDaoImpl;
+import kr.or.koreaMaster.place.dao.SpotDao;
+import kr.or.koreaMaster.place.dao.SpotDaoImpl;
+import kr.or.koreaMaster.place.domain.Sigungu;
 import kr.or.koreaMaster.place.domain.Spot;
 import kr.or.koreaMaster.spotTheme.dao.SpotThemeDAO;
 import kr.or.koreaMaster.spotTheme.dao.SpotThemeDAOImpl;
@@ -18,7 +24,8 @@ import kr.or.koreaMaster.travel.util.SpotsProcess;
 
 public class RouteServiceImpl implements RouteService {
 	private DaoFactory factory;
-	Logger logger = Logger.getLogger(MybatisRestaurantDaoTest.class);
+	Logger logger = Logger.getLogger(RouteServiceImpl.class);
+	
 	/** 생성자 */
 	public RouteServiceImpl() {
 		factory = new MyBatisDaoFactory();
@@ -27,10 +34,12 @@ public class RouteServiceImpl implements RouteService {
 	
 	@Override
 	/** 루트 구해주는 메소드 */
-	public void getRoute(Map<String,String> map) {
+	public Map<String,Object> getRoute(Map<String,String> map) {
 		SpotsProcess spotsClass = new SpotsProcess();
 		RouteProcess routeClass = new RouteProcess();
 		SpotThemeDAO spotThemeDAO = (SpotThemeDAO)factory.getDao(SpotThemeDAOImpl.class);
+		SpotDao spotDAO = (SpotDao)factory.getDao(SpotDaoImpl.class);
+		SigunguDao sigunguDAO = (SigunguDao)factory.getDao(SigunguDaoImpl.class);
 		
 		//#1. spotThemeJoin 불러와 저장
 		int cityNo = Integer.parseInt(map.get("city"));
@@ -47,29 +56,67 @@ public class RouteServiceImpl implements RouteService {
 		
 		//#4. 사용자가 선택한 도시에서 사용자의 테마에 맞는 장소들을 추려낸다
 		spotThemeJoinList = spotsClass.getSpots(spotThemeJoinList, perThemes);
-
-	
 		
 		//#5. 장소간의 거리, 여행일자를 고려하여 루트를 찾아낸다
-//		int date = (Integer.parseInt(map.get("endDate"))-Integer.parseInt(map.get("startDate"))) + 1;
-		//테스트용
-		int date = 1;
+		int date = Integer.parseInt(map.get("days"));
 		
-		//#6. 출발장소 split 후 db에 입력 또는 데이터 불러오기
-		List<Spot> departures = new ArrayList<Spot>();
-		//테스트용
+		//#6. 출발장소 split 후 db에 입력 또는 데이터 불러오기 후 list에 저장
+		String[] spots = map.get("departures").split(",");
 		Spot spot = new Spot();
-		spot.setNo(41);
-		spot.setLatitude(34.758139);
-		spot.setLongitude(127.716982);
-		departures.add(spot);
+		List<Spot> departures = new ArrayList<Spot>();
+		for (String departure : spots) {
+			logger.debug("departure:"+departure);
+			if(departure.equals("terminal")) {
+				spot = spotDAO.readByNameCity("%터미널%", cityNo);
+			}else if(departure.equals("station")) {
+				spot = spotDAO.readByNameCity("%역%", cityNo);
+			}
+			else {
+				//사용자가 입력한 숙소의 정보수집
+				GeocoderLatLong geocode = new GeocoderLatLong();
+				Float[] coords = geocode.geoCoding(departure);
+				
+				spot = new Spot();
+				spot.setAddressDetail(departure);
+				spot.setCityNo(cityNo);
+				spot.setDetail("/*/*/"); //보통 장소와 출발장소를 구별하기 위한 델리게이터
+				spot.setLatitude(coords[0]);
+				spot.setLongitude(coords[1]);
+				spot.setName("숙소");
+			}
+			
+			if(spot!=null) { departures.add(spot); }
+		}
+
 		
-		//#7. 
-		/** 장소번호를 저장하여 루트를 저장할 변수 (dayNo, spotNo) */
-		List<Integer> routeSpots = routeClass.findRoute(date, departures, spotThemeJoinList);
+		logger.debug("departures:"+departures);
 		
+		/** routeDetail 화면에 띄어줄 필요한 정보들을 담는 map */
+		Map<String,Object> route = new HashMap<String,Object>();
+		
+		//#7. 루트 찾기
+		/** 루트의 장소번호만으로 이루어진 list */
+		List<Integer> routeNo = routeClass.findRoute(date, departures, spotThemeJoinList);
+		logger.debug(routeNo);
+		route.put("routeNo", route);
+		
+		//#8. 장소번호로 장소들을 담는 새로운 list 생성
+		List<Spot> routeSpots = new ArrayList<Spot>();
+		for (Integer spotNo : routeNo) {
+			Spot tmpSpot = spotDAO.read(spotNo);
+			routeSpots.add(tmpSpot);
+		}
 		logger.debug(routeSpots);
+		route.put("routeSpots", routeSpots);
 		
+		//#9. 도시번호에 해당하는 이름 put
+		Sigungu city = sigunguDAO.read(cityNo);
+		route.put("cityNo", cityNo);
+		route.put("cityName", city);
+
+		route.put("days", date);
+		
+		return route;
 	}
 
 }
