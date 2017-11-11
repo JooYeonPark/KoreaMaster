@@ -16,7 +16,7 @@ String dbURL="jdbc:oracle:thin:@192.168.0.155:1521:orcl";
    // 쿼리문 작성
    String sql = "select to_char(trip_note_start_date, 'YYYY-MM-DD') start_d, to_char(trip_note_end_date, 'YYYY-MM-DD') end_d, trip_name,  trip_note_no " + 
 		   "  from trip t, trip_note n  " + 
-		   "  where t.trip_no = n.trip_no and users_id = 'eunji'"; //'" + request.getParameter("userId") + "'";
+		   "  where t.trip_no = n.trip_no and users_id = '" + request.getParameter("userId") + "'";
    Statement stmt = connection.createStatement();
    ResultSet rs = stmt.executeQuery(sql);
    
