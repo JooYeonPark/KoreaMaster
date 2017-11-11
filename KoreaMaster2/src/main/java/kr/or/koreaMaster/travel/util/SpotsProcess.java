@@ -18,33 +18,7 @@ import kr.or.koreaMaster.spotTheme.domain.SpotThemeJoin;
  *
  */
 public class SpotsProcess {
-//    /** 회원의 성향에 따라 장소를 선택 후 저장할 변수 (장소번호,점수) */
-//    private Map<Integer, Integer> perSpots = null; 
-
-	
 	private List<SpotThemeJoin> list = null;
-    
-//    @Test
-//    public Map<Integer,Integer> getSpots(List<SpotTheme> spotThemeList, List<Integer> perThemes) {
-//         사용자의 테마와 장소의 테마의 일치 정도에 따라 점수를 부여함
-//        for (SpotTheme spotTheme : spotThemeList) {
-//            int score = spotTheme.getScore();
-//            float weight = 1.0F; //순위에 따라 다른 가중치주기 위한 변수
-//            
-//            for (Integer theme : perThemes) {
-//                weight -= 0.2F;
-//                if(theme == spotTheme.getThemeNo()) {
-//                    score = Math.round(score+(10 * weight));
-//                    perSpots.put(spotTheme.getSpotNo(), score);
-//                }
-//            }//end inner for
-//            
-//        }//outer for
-//        
-////        logger.debug(perSpots);
-//        
-//        return perSpots;
-//    }
     
     public List<SpotThemeJoin> getSpots(List<SpotThemeJoin> spotThemeJoinList, List<Integer> perThemes) {
     	

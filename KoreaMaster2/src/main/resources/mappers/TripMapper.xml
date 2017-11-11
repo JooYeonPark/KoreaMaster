@@ -6,13 +6,16 @@
 
 <!-- 생성 -->
 <insert id="create" parameterType="Trip">
+	<selectKey keyProperty="no" order="BEFORE" resultType="int">
+		SELECT trip_seq.NEXTVAL FROM DUAL
+	</selectKey>
 	INSERT INTO trip 
             (trip_no, 
              trip_name, 
              trip_start_date, 
              trip_end_date, 
              personal_flag) 
-	VALUES     (trip_seq.NEXTVAL, 
+	VALUES     (#{no}, 
 	            #{name}, 
 	            To_date(#{startDate}, 'YYYY-MM-DD'), 
 	            To_date(#{endDate}, 'YYYY-MM-DD'), 

@@ -13,7 +13,7 @@ import kr.or.koreaMaster.travel.domain.Trip;
  */
 public interface TripDAO {
 	/** 생성 */
-	public void create(Trip trip);
+	public int create(Trip trip);
 	/** 조회 */
 	public Trip read(int no);
 	/** 전체 조회 */

@@ -21,8 +21,8 @@ public class TripDAOImpl implements TripDAO {
 	}
 	
 	@Override
-	public void create(Trip trip) {
-		sqlSession.insert(NAMESPACE+".create",trip);
+	public int create(Trip trip) {
+		return sqlSession.insert(NAMESPACE+".create",trip);
 	}
 
 	@Override

@@ -32,37 +32,39 @@ public class RouteProcess {
 		 * 많다는 가정하에 일자 갯수만큼 자름
 		 */
 		int cnt = date * 4;
-
-		// #2. 출발장소로부터 가장 가까운 장소를 찾는다
+		//장소간의 거리를 구하기 위한 변수
 		String start = null;
 		String end = null;
-		
 		//가장 가까운 거리를 찾기위해 장소번호와 가는 시간을 저장하는 변수
 		int min = 0; 
 		int spotNo = 0;
-		int size = -1;
+		int size = -1; //RouteThemeJoin의 인덱스 번호 식별자
 		
 		int duration = 0;
 		int day = 1; 
 		
-		
+		// #2. 출발장소로부터 가장 가까운 장소를 찾는다
 		for (Spot departure : departures) {
+			size = -1;//초기화
 			//출발장소 루트에 추가
 			routeSpots.add(departure.getNo());
-			start = departure.getLatitude( )+ ","+departure.getLongitude();
+			start = departure.getLatitude( ) + ","+departure.getLongitude();
 			start = start.trim(); //혹시 모를 때를 대비해 공백 제거
 //			logger.debug("start:"+departure.getNo());
-			//cnt만큼 루트의 장소가 생성되면 break
-			while(routeSpots.size() <= cnt) {
+			
+			//4개의 장소로 하루의 루트가 다 짜지면 break
+			while(routeSpots.size() < 5) {
 				
-				if(size != -1) {
+				//시작장소
+				if(size!=-1) {
 					start = spotThemeJoinList.get(size).getLatitude()+ "," + spotThemeJoinList.get(size).getLongitude();
 					start = start.trim();
 //					logger.debug("==============================");
 //					logger.debug("start:"+spotThemeJoinList.get(size).getSpotNo());
 				}
 				
-				for(int i=0; i<cnt; i++) { //테스트 무박1일. cnt = 4. 4개의 장소
+				//다음장소
+				for(int i=0; i<cnt; i++) { //cnt = 4. 4개의 장소
 					if(i == 0) { //초기화
 						min = 100000; //임의 값
 						spotNo = 0;
@@ -89,11 +91,13 @@ public class RouteProcess {
 							size = i;
 						} 
 //						logger.debug("min:"+min+", spotNo:"+spotNo+", size:"+size);
-					}
-				}
+					}// end if
+				}//end for
 				
 				routeSpots.add(spotNo);
 				 spotThemeJoinList.get(size).setPass(true);
+//				 logger.debug("spotThemeJoinList["+size+"]false처리 : "+spotThemeJoinList.get(size).getPass());
+//				 logger.debug("============================================");
 //				 logger.debug(routeSpots);
 			}
 			
@@ -131,7 +135,7 @@ public class RouteProcess {
 			br.close();
 			conn.disconnect();
 
-			logger.debug(sb.toString());
+//			logger.debug(sb.toString());
 			
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(sb.toString());

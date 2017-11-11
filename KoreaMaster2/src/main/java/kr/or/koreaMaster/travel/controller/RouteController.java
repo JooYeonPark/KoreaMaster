@@ -53,10 +53,22 @@ public class RouteController implements Controller {
 //        logger.debug("departures : "+departures);
 //        logger.debug("days:"+days);
         
+        response.setCharacterEncoding("utf-8");
         
         RouteService service = new RouteServiceImpl();
         Map<String,Object> route = service.getRoute(map);
         
+        /*
+         * route에 포함 되어있는 사항 
+         * routeSpots : 장소도메인으로 이루어진 루트
+         * routeNo : Csv 방식으로 이루어진 장소번호
+         * cityNo : 도시번호
+         * cityName : 도시이름
+         * days : 여행날짜
+         * startDate, endDate
+        */
+        route.put("startDate", startDate);
+        route.put("endDate", endDate);
         mav.addObject("route", route);
         mav.setView("/jsp/travel/routeDetail.jsp");
         

@@ -11,11 +11,10 @@ public class Trip {
 	public Trip() {
 		this(0,null,null,null,null);
 	}
-	public Trip(String name, String startDate, String endDate, String personalFlag) {
-		this(0, name, startDate, endDate,personalFlag);
+	public Trip(String name, String startDate, String endDate) {
+		this(0, name, startDate, endDate,"Y");
 	}
 	public Trip(int no, String name, String startDate, String endDate, String personalFlag) {
-		super();
 		this.no = no;
 		this.name = name;
 		this.startDate = startDate;

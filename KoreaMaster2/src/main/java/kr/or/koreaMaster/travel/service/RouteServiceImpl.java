@@ -35,6 +35,8 @@ public class RouteServiceImpl implements RouteService {
 	@Override
 	/** 루트 구해주는 메소드 */
 	public Map<String,Object> getRoute(Map<String,String> map) {
+		logger.info("getRoute실행");
+		
 		SpotsProcess spotsClass = new SpotsProcess();
 		RouteProcess routeClass = new RouteProcess();
 		SpotThemeDAO spotThemeDAO = (SpotThemeDAO)factory.getDao(SpotThemeDAOImpl.class);
@@ -65,7 +67,7 @@ public class RouteServiceImpl implements RouteService {
 		Spot spot = new Spot();
 		List<Spot> departures = new ArrayList<Spot>();
 		for (String departure : spots) {
-			logger.debug("departure:"+departure);
+//			logger.debug("departure:"+departure);
 			if(departure.equals("terminal")) {
 				spot = spotDAO.readByNameCity("%터미널%", cityNo);
 			}else if(departure.equals("station")) {
@@ -89,7 +91,7 @@ public class RouteServiceImpl implements RouteService {
 		}
 
 		
-		logger.debug("departures:"+departures);
+//		logger.debug("departures:"+departures);
 		
 		/** routeDetail 화면에 띄어줄 필요한 정보들을 담는 map */
 		Map<String,Object> route = new HashMap<String,Object>();
@@ -97,22 +99,30 @@ public class RouteServiceImpl implements RouteService {
 		//#7. 루트 찾기
 		/** 루트의 장소번호만으로 이루어진 list */
 		List<Integer> routeNo = routeClass.findRoute(date, departures, spotThemeJoinList);
-		logger.debug(routeNo);
-		route.put("routeNo", route);
+//		logger.debug(routeNo);
+		String strRouteNo = new String();
+		for (Integer integer : routeNo) {
+			strRouteNo += integer + ",";
+		}
+		route.put("routeNo", strRouteNo);
 		
 		//#8. 장소번호로 장소들을 담는 새로운 list 생성
-		List<Spot> routeSpots = new ArrayList<Spot>();
+		List<Spot> routeSpotsByDay = new ArrayList<Spot>();
 		for (Integer spotNo : routeNo) {
 			Spot tmpSpot = spotDAO.read(spotNo);
-			routeSpots.add(tmpSpot);
+			routeSpotsByDay.add(tmpSpot);
 		}
-		logger.debug(routeSpots);
-		route.put("routeSpots", routeSpots);
+		route.put("routeSpots", routeSpotsByDay);
 		
 		//#9. 도시번호에 해당하는 이름 put
 		Sigungu city = sigunguDAO.read(cityNo);
 		route.put("cityNo", cityNo);
-		route.put("cityName", city);
+		
+		String cityName = null;
+		if(city.getGuName() != null) { cityName = city.getGuName(); }
+		else if(city.getSigunName() != null) { cityName = city.getSigunName(); }
+		
+		route.put("cityName", cityName);
 
 		route.put("days", date);
 		

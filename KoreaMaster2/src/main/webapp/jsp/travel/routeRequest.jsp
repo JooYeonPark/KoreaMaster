@@ -60,6 +60,8 @@
 
 <%-- Address --%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+
 	
 <script>
 $(document).ready(function(){
@@ -204,7 +206,7 @@ $(document).ready(function(){
 	    		};
 	    		var param = $.param(data);
 	    		
-	        window.location.replace("/index.jsp?"+param);
+	        window.location.replace("/route.do?"+param); 
 	        return false;
 	    } 
 	});
