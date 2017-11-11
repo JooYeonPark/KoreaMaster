@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.koreaMaster.theme.command.CommandException;
 import kr.or.koreaMaster.theme.command.CommandMyTravelTypeDone;
 import kr.or.koreaMaster.theme.command.MyTravelTypeCommand;
+import kr.or.koreaMaster.theme.command.MyTravelTypeCommandNull;
 
 public class MyTravelTypeControl extends HttpServlet{
 	private HashMap commandMap;
@@ -28,6 +29,7 @@ public class MyTravelTypeControl extends HttpServlet{
 		commandMap = new HashMap();
 		
 		commandMap.put("myTravelTypeDone", new CommandMyTravelTypeDone("MyTravelTypeDone.jsp"));		// DB 처리, 다음 넘어갈 페이지 주소 Command로 넘겨주기
+		commandMap.put("myTravelType", new MyTravelTypeCommandNull("MyTravelType.jsp"));				// 여행성향테스트 페이지로 이동
 	}
 	
 	
