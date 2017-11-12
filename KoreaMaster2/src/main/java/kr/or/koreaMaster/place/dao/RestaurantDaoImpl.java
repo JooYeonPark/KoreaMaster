@@ -54,4 +54,25 @@ private static final String NAMESPACE = "kr.or.koreaMaster.place.mapper.Restaura
 		return sqlSession.selectOne(NAMESPACE+".readByCityNoName", map);
 	}
 
+	@Override
+	public List<Restaurant> listPage(int page, String sort) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("sort", sort);
+		return sqlSession.selectList(NAMESPACE+".listPage", map);
+	}
+
+	@Override
+	public int maxPage() {
+		return sqlSession.selectOne(NAMESPACE+".maxPage");
+	}
+
+	@Override
+	public List<Restaurant> readBycityNo(int cityNo, int no) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cityNo", cityNo);
+		map.put("no", no);
+		return sqlSession.selectList(NAMESPACE+".readBycityNo", map);
+	}
+
 }

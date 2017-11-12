@@ -19,6 +19,9 @@ public interface RestaurantDao {
 	/** 전체 목록 반환 */
 	public List<Restaurant> listAll();
 	
+	/** 페이지별 목록 반환 */
+	public List<Restaurant> listPage(int page, String sort);
+	
 	/** 번호로 조회 */
 	public Restaurant read(int no);
 	
@@ -30,6 +33,12 @@ public interface RestaurantDao {
 	
 	/** 삭제 */
 	public void delete(int no);
+	
+	/** 페이지 전체 수 반환 */
+	public int maxPage();
+	
+	/** readByCityNo */
+	public List<Restaurant> readBycityNo(int cityNo, int no);
 }
 
 

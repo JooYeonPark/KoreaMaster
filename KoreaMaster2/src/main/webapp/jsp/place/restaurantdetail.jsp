@@ -48,11 +48,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <%
-int spotNo = Integer.parseInt(request.getParameter("spotNo"));
+int restaurantNo = Integer.parseInt(request.getParameter("restaurantNo"));
 %>
 
 <script type="text/javascript">
-var spotNo = <%=spotNo%>;
+var restaurantNo = <%=restaurantNo%>;
 
 $(function() {
 	init();
@@ -60,8 +60,8 @@ $(function() {
 
 function init(){
 	$.ajax({
-		url : "/spotDetail.do",
-		data : {"spotNo":spotNo},
+		url : "/restaurantDetail.do",
+		data : {"restaurantNo":restaurantNo},
 		dataType: "json",
 		success: function(data) {
 			var spot = data;
@@ -96,70 +96,35 @@ function init(){
 			if (spot.fare != "") {
 				$("#fare").html("<i class='ti-money mr-5'></i> "+spot.fare);
 			}
-			if (spot.homepage != "") {
-				$("#homepage").html("<i class='ti-home mr-5'></i> "+spot.homepage);
-			}
-			
-			
-			var themeList = data.theme;
-			var str = "";
-			for ( var theme in themeList) {
-				str += "<div class='GridLex-col'>"+
-						  "<div class='featured-icon-simple-item'>"+
-						  "<div class='icon text-primary'>";
-						
-				switch (themeList[theme]) {
-				case 1:
-					str += "<i class='flaticon-travel-icons-mountain'></i></div> 자연 ";
-					keywordStr += "<a href='#' class='hash-tag'># 자연</a>";
-					break;
-				case 2:
-					str += "<i class='flaticon-travel-icons-snorkel'></i></div> 체험 ";
-					keywordStr += "<a href='#' class='hash-tag'># 체험</a>";
-					break;
-				case 3:
-					str += "<i class='flaticon-ventures-wallet-closed'></i></div> 문화시설 ";
-					keywordStr += "<a href='#' class='hash-tag'># 문화시설</a>";
-					break;
-				case 4:
-					str += "<i class='flaticon-travel-icons-kayak'></i></div> 레포츠 ";
-					keywordStr += "<a href='#' class='hash-tag'># 레포츠</a>";
-					break;
-				case 5:
-					str += "<i class='flaticon-ventures-big-towers'></i></div> 역사 ";
-					keywordStr += "<a href='#' class='hash-tag'># 역사</a>";
-					break;
-				case 6:
-					str += "<i class='flaticon-ventures-cart-facing-left'></i></div> 쇼핑 ";
-					keywordStr += "<a href='#' class='hash-tag'># 쇼핑</a>";
-					break;
-
-				default:
-					break;
-				}
-				str += "</div> </div>";
-			}
-			$("#themeIcon").html(str);
 			
 			$("#keywordTag").html(keywordStr);
 			
 			// 장소 추천 부분
 			var relatedList = data.relatedSpot;
-			var relatedSize = 4;
-			if(relatedList.length < 4){
-				relatedSize = relatedList.length;
+			
+			if(relatedList.length > 0 ){
+				var relatedSize = 4;
+				if(relatedList.length < 4){
+					relatedSize = relatedList.length;
+				}
+				
+				var relatedStr = "<h2 class='font-lg'>Relatded Spots</h2> <div class='trip-guide-wrapper'>" +
+								 "<div class='GridLex-gap-20 GridLex-gap-10-mdd GridLex-gap-5-xs'> "+
+								 "<div class='GridLex-grid-noGutter-equalHeight ' id='relatedSpotList'>";
+			
+				for (var i = 0; i < relatedSize; i++) {
+					relatedStr += "<div class='GridLex-col-3_mdd-4_sm-6_xs-6_xss-12'>" +
+								  "<div class='trip-guide-item'> <div class='trip-guide-image'>" +
+								  "<img src='/images/spot/"+relatedList[i].picture+"' alt='images' /> </div>" +
+								  "<div class='trip-guide-content'> <h3>"+relatedList[i].name+"</h3> "+
+								  " <p>"+relatedList[i].detail+"</p> </div>"+
+								  "<div class='trip-guide-bottom'> <div class='row gap-10'> <div class='col-xs-12 col-sm-offset-6 col-sm-6 text-right'>"+
+								  "<a href='/jsp/place/spotdetail.jsp?restaurantNo="+spot.no+"' class='btn btn-primary'>Details</a> </div> </div> </div> </div> </div>";
+				}
+				relatedStr += "</div> </div> </div>";
+				$("#relatedSpotList").html(relatedStr);
 			}
-			var relatedStr = "";
-			for (var i = 0; i < relatedSize; i++) {
-				relatedStr += "<div class='GridLex-col-3_mdd-4_sm-6_xs-6_xss-12'>" +
-							  "<div class='trip-guide-item'> <div class='trip-guide-image'>" +
-							  "<img src='/images/spot/"+relatedList[i].picture+"' alt='images' /> </div>" +
-							  "<div class='trip-guide-content'> <h3>"+relatedList[i].name+"</h3> "+
-							  " <p>"+relatedList[i].detail+"</p> </div>"+
-							  "<div class='trip-guide-bottom'> <div class='row gap-10'> <div class='col-xs-12 col-sm-offset-6 col-sm-6 text-right'>"+
-							  "<a href='/jsp/place/spotdetail.jsp?spotNo="+spot.no+"' class='btn btn-primary'>Details</a> </div> </div> </div> </div> </div>";
-			}
-			$("#relatedSpotList").html(relatedStr);
+			
 		}
 	});
 }
@@ -294,17 +259,6 @@ function init(){
 										<p class="lead" id="detail"></p>
 										<%-- 여행 설명 : 문장으로 END --%>
 
-
-										<%-- 장소 테마 아이콘으로 START --%>
-										<div class="featured-icon-simple-wrapper">
-											<div class="GridLex-gap-30 GridLex-gap-20-xs">
-												<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-4_sm-4_xs-3_xss-1 GridLex-grid-center" id="themeIcon">
-													<!-- 아이콘 표시 부분 -->
-												</div>
-											</div>
-										</div>
-										<%-- 여행 테마 아이콘으로 END --%>
-
 										<div class="mb-25"></div>
 										<div class="bb"></div>
 										<div class="mb-25"></div>
@@ -340,11 +294,6 @@ function init(){
 														<li class="row gap-20">
 															<div class="col-xs-12 col-sm-4">요금</div>
 															<div class="col-xs-12 col-sm-8 text-primary text-right text-left-xs mt-xs space" id="fare">
-															</div>
-														</li>
-														<li class="row gap-20">
-															<div class="col-xs-12 col-sm-4">홈페이지</div>
-															<div class="col-xs-12 col-sm-8 text-primary text-right text-left-xs mt-xs space" id="homepage">
 															</div>
 														</li>
 													</ul>
@@ -388,16 +337,8 @@ function init(){
 
 				<%-- 또다른 추천 루트  START --%>
 				<div class="bg-light pt-50 pb-70">
-					<div class="container">
-						<h2 class="font-lg">Relatded Spots</h2>
-
-						<div class="trip-guide-wrapper">
-							<div class="GridLex-gap-20 GridLex-gap-10-mdd GridLex-gap-5-xs">
-								<div class="GridLex-grid-noGutter-equalHeight " id="relatedSpotList">
-
-								</div>
-							</div>
-						</div>
+					<div class="container" id="relatedSpotList">
+						
 					</div>
 				</div>
 				<%-- 또다른 추천 루트 END --%>

@@ -18,21 +18,23 @@ import kr.or.koreaMaster.common.controller.Controller;
 import kr.or.koreaMaster.common.controller.ModelAndView;
 import kr.or.koreaMaster.common.db.DaoFactory;
 import kr.or.koreaMaster.common.db.MyBatisDaoFactory;
+import kr.or.koreaMaster.place.dao.RestaurantDao;
+import kr.or.koreaMaster.place.dao.RestaurantDaoImpl;
 import kr.or.koreaMaster.place.dao.SidoDao;
 import kr.or.koreaMaster.place.dao.SidoDaoImpl;
 import kr.or.koreaMaster.place.dao.SpotDao;
 import kr.or.koreaMaster.place.dao.SpotDaoImpl;
+import kr.or.koreaMaster.place.domain.Restaurant;
 import kr.or.koreaMaster.place.domain.Sido;
 import kr.or.koreaMaster.place.domain.Spot;
 import kr.or.koreaMaster.theme.session.MyTravelTypeRepository;
 
-public class SpotListController implements Controller {
+public class RestaurantListController implements Controller {
 	
 	DaoFactory factory = new MyBatisDaoFactory();
-	SpotDao spotDao = (SpotDao)factory.getDao(SpotDaoImpl.class);
-	MyTravelTypeRepository themeDao = new MyTravelTypeRepository();
+	RestaurantDao restaurantDao = (RestaurantDao)factory.getDao(RestaurantDaoImpl.class);
 	
-	Logger logger = Logger.getLogger(SpotListController.class);
+	Logger logger = Logger.getLogger(RestaurantListController.class);
 	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -41,9 +43,7 @@ public class SpotListController implements Controller {
 		
 		String sido = request.getParameter("sido");
 		int page = Integer.parseInt(request.getParameter("page"));
-		int themeNo = Integer.parseInt(request.getParameter("themeName"));
-		int sortNum =Integer.parseInt( request.getParameter("sort"));
-		
+		int sortNum = Integer.parseInt(request.getParameter("sort"));
 		String sort = null;
 		if(sortNum == 1) {
 			sort = "useNum";
@@ -51,14 +51,14 @@ public class SpotListController implements Controller {
 			sort = "name";
 		}
 		
-		List<Spot> list = null;
+		List<Restaurant> list = null;
 		if(sido == null) {
-			list = spotDao.listPage(page, themeNo, sort);
+			list = restaurantDao.listPage(page, sort);
 		}else {
 			/*System.out.println(sido);*/
 		}
 		
-		int maxPage = spotDao.maxPage();
+		int maxPage = restaurantDao.maxPage();
 		int startPage = (page/5)*5 +1;
 		if(page%5 == 0) {
 			startPage -= 5;
@@ -68,21 +68,21 @@ public class SpotListController implements Controller {
 			JSONObject json = new JSONObject();
 			JSONObject obj;
 			JSONArray spotArray = new JSONArray();
-			for (Spot spot : list) {
+			for (Restaurant restaurant : list) {
 				obj = new JSONObject();
 				
-				obj.put("no", spot.getNo());
-				obj.put("cityNo", spot.getCityNo());
-				obj.put("name", spot.getName());
+				obj.put("no", restaurant.getNo());
+				obj.put("cityNo", restaurant.getCityNo());
+				obj.put("name", restaurant.getName());
 				
-				String detail = spot.getDetail();
+				String detail = restaurant.getDetail();
 				if(detail.length() >= 100) {
 					detail = detail.substring(0, 100)+"...";
 				}
 				obj.put("detail", detail);
 				
-				obj.put("picture", spot.getPicture());
-				obj.put("useNum", spot.getUseNum());
+				obj.put("picture", restaurant.getPicture());
+				obj.put("useNum", restaurant.getUseNum());
 				
 				spotArray.add(obj);
 			}

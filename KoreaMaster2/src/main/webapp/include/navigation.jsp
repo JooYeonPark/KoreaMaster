@@ -29,15 +29,17 @@
 
 			<ul class="nav navbar-nav" id="responsive-menu">
 				<li><a href="/jsp/place/spotList.jsp">장소</a>
-					<ul>
-						<!-- <li><a href="">서울</a></li>
+					<!-- <ul>
+						<li><a href="">서울</a></li>
 						<li><a href="">인천</a></li>
 						<li><a href="">경기도</a></li>
 						<li><a href="">충청북도</a></li>
 						<li><a href="">충청남도</a></li>
- 						-->
-					</ul></li>
-
+					</ul> --></li>
+				
+				<li><a href="/jsp/place/restaurantlist.jsp">식당</a>
+				</li>
+				
 				<li><a href="">여행</a>
                     <ul>
                         <li><a href="/jsp/travel/routeRequest.jsp">여행루트생성</a></li>

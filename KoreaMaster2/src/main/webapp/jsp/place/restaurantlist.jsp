@@ -53,52 +53,43 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-<%
-String pTheme = request.getParameter("themeName");
-String pSort = request.getParameter("sort");
-%>
 
 var paramPage = <%=request.getParameter("page")%>;
-var paramTheme = <%=request.getParameter("themeName")%>;
 var paramSort = <%=request.getParameter("sort")%>;
 
-var page =1;
+var page = 1;
 if (paramPage != null) {
 	page = paramPage;
 }
-
-var theme = 0;
-if(paramTheme != null){
-	theme = paramTheme;
-} 
 
 var sort = 1;
 if(paramSort != null){
 	sort = paramSort;
 }
 
+
 $(function(){	
 	init();
 	
 	$("#theme").change(function() {
 		theme = $("#theme option:selected").val();
-		var data = {"page" : page, "themeName" : theme, "sort" : sort};
+		var data = {"page" : page, "sort" : sort};
 		listPage(data);
 	});
 	
 	$("#sort").change(function() {
 		sort = $("#sort option:selected").attr("id");
-		var data = {"page" : page, "themeName" : theme, "sort" : sort};
+		var data = {"page" : page, "sort" : sort};
 		listPage(data);
 	});
 	
 	$(document).on("click", ".pagination li a", function(event) {
 		event.preventDefault();
 		page = $(this).attr('href');
-		var data = {"page" : page, "themeName" : theme, "sort" : sort};
+		var data = {"page" : page, "sort" : sort};
 		var param = $.param(data);
 		
-		 window.location.replace("/jsp/place/spotList.jsp?"+param);	
+		window.location.replace("/jsp/place/restaurantlist.jsp?"+param);	
 	});
 	
 });
@@ -110,13 +101,31 @@ function init(){
 		$("#sort").val("name").prop("selected", true);
 	}
 	
-	//  theme sort 선택값 지정
-	if(theme != 0){
-		$("#theme").val(theme+"").prop("selected", true);
-	}
-	
-	var data = {"page" : page, "themeName" : theme, "sort" : sort};
+	//sidoAjax();
+	var data = {"page" : page, "sort" : sort};
 	listPage(data);
+}
+
+function sidoAjax(){
+	$.ajax({
+		url:"/sido.do",
+		dataType:"json",
+		success:function(data){
+			//시도 데이터 불러들여 set
+			$.each(data, function(key, value){
+				$("#selectSido")
+				.append($("<option></option>")
+					.attr("value",key)
+					.text(value));		
+				
+			}); 
+			
+			$("#selectSido").selectpicker("refresh"); 
+		},
+		error : function(xhr, statusText){
+			console.log("("+xhr.status+", "+statusText+")");
+		}
+	});
 }
 
 <%-- 검색 및 페이지에 따른 list가져오기 ajax --%>
@@ -125,12 +134,12 @@ function listPage(data){
 	var str = "";
 	// 전체 리스트 불러오기
 	$.ajax({
-		url : "/spotPage.do",
+		url : "/restaurantPage.do",
 		data : data,
 		dataType: "json",
 		success : function(data){
-			var maxPage = data.maxPage
-			var startPage = data.startPage
+			var maxPage = data.maxPage;
+			var startPage = data.startPage;
 			var pageStr = "";
 			
 			if(page != 1){
@@ -149,29 +158,29 @@ function listPage(data){
 			}
 			$(".pagination").html(pageStr);
 			
-			$.each(data.array, function(index, spot) {
-				var detail = spot.detail;
-				str += "<div class='GridLex-col-3_mdd-4_sm-6_xs-6_xss-12' id='"+spot.cityNo+"'>" + 
+			$.each(data.array, function(index, restaurant) {
+				var detail = restaurant.detail;
+				str += "<div class='GridLex-col-3_mdd-4_sm-6_xs-6_xss-12' id='"+restaurant.cityNo+"'>" + 
 						"<div class='trip-guide-item'>"+
 							"<div class='trip-guide-image'>"+
-								"<img src='/images/spot/"+spot.picture+"' alt='images' />"+
+								"<img src='/images/spot/"+restaurant.picture+"' alt='images' />"+
 							"</div>"+
 							"<div class='trip-guide-content' style='margin-bottom: 50px;'>"+
-								"<h3>"+spot.name+"</h3>"+
-								"<p>"+spot.detail+"</p>"+
+								"<h3>"+restaurant.name+"</h3>"+
+								"<p>"+restaurant.detail+"</p>"+
 							"</div>"+
 							"<div class='trip-guide-bottom' >"+
 								"<div class='trip-guide-meta row gap-10'>"+
 									"<div class='col-xs-6 col-sm-6'>"+
 										"<div class='rating-item'>"+
 											"<input type='hidden' class='rating' data-filled='fa fa-star rating-rated' "+
-											"data-empty='fa fa-star-o' data-fractions='2' data-readonly value='"+spot.useNum+"' />"+
+											"data-empty='fa fa-star-o' data-fractions='2' data-readonly value='"+restaurant.useNum+"' />"+
 										"</div>"+
 									"</div>"+
 								"</div>"+
 								"<div class='row gap-10'>"+
 									"<div class='col-sm-offset-6 col-xs-12 col-sm-6 text-right'>"+
-										"<a href='/jsp/place/spotdetail.jsp?spotNo="+spot.no+"' class='btn btn-primary' value='"+spot.no+"'>Details</a>"+
+										"<a href='/jsp/place/restaurantdetail.jsp?restaurantNo="+restaurant.no+"' class='btn btn-primary' value='"+restaurant.no+"'>Details</a>"+
 									"</div>"+
 								"</div>"+
 							"</div>"+
@@ -244,57 +253,39 @@ function listPage(data){
 								<div class="form-holder">
 									<div class="row">
 									
-										<!-- 키워드 start div -->
-										<div class="col-xs-12 col-sm-12 col-md-6">
-											<div class="filter-item bb-sm no-bb-xss">
-												<div class="input-group input-group-addon-icon no-border no-br-sm">
+										<!-- 도시별 start div -->
+										<div class="col-xss-12 col-xs-6 col-sm-3">
+											<div class="filter-item mmr">
+												<div class="input-group input-group-addon-icon no-border no-br-xs">
 													<span class="input-group-addon input-group-addon-icon bg-white">
-													<label><i class="fa fa-map-marker"></i> Area : </label></span> 
-													<input type="text" class="form-control" id="autocompleteTagging" value="대한민국" />
+														<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> Sido:</label>
+													</span> 
+													<select class="selectpicker form-control block-xs" id="selectSido">
+													</select>
 												</div>
-											</div>
+											</div> 
 										</div>
-										<!-- 키워드 end div -->
+										<!-- 도시별 end div -->
 
-										<div class="col-xs-12 col-sm-12 col-md-6">
+										<div class="col-xs-12 col-sm-12 col-md-8">
 											<div class="filter-item-wrapper">
 												<div class="row">
 												
 													<!-- 정렬 start div -->
-													<div class="col-xss-12 col-xs-6 col-sm-5">
+													<div class="col-xss-12 col-xs-6 col-sm-4">
 														<div class="filter-item mmr">
 															<div
 																class="input-group input-group-addon-icon no-border no-br-xs">
-																<span
-																	class="input-group-addon input-group-addon-icon bg-white">
-																	<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> Sort by:</label>
-																	</span> <select class="selectpicker form-control block-xs" id="sort">
-																	<option id="1" value="hitting"> hitting </option>
-																	<option id="2" value="Name"> Name</option>
+																<span class="input-group-addon input-group-addon-icon bg-white">
+																	<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> Sort by:</label> </span> 
+																	<select class="selectpicker" id="sort">
+																	<option id="1" value="higging"> hitting </option>
+																	<option id="2" value="name"> name</option>
 																</select>
 															</div>
 														</div>
 													</div>
 													<!-- 정렬 end div -->
-													
-													<!-- 여행 테마별 검색 start div -->
-													<div class="col-xss-12 col-xs-6 col-sm-7" >
-														<div class="filter-item mmr">
-															<div class="input-group input-group-addon-icon no-border no-br-xs">
-																<span class="input-group-addon input-group-addon-icon bg-white"><label><i class="fa fa-sort-amount-asc"></i> Trip Style:</label></span>
-																<select class="selectpicker " id="theme">
-																	<option value="0"> All Types</option>
-																	<option value="1"> Nature</option>
-																	<option value="2"> Experience</option>
-																	<option value="3"> Culture</option>
-																	<option value="4"> Leports</option>
-																	<option value="5"> History</option>
-																	<option value="6"> Shopping</option>
-																</select>
-															</div>
-														</div>
-													</div>
-													<!-- 여행 테마별 검색 end div -->
 													
 												</div>
 											</div>

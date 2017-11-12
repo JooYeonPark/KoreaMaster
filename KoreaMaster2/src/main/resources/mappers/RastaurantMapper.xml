@@ -55,6 +55,44 @@
 			   RESTAURANT_USE_NUM as "useNum"
 		FROM Restaurant
 	</select>
+	
+	<select id="listPage" parameterType="map" resultType="Restaurant">
+		SELECT RESTAURANT_NO as "no", 
+			   CITY_NO as "cityNo", 
+			   RESTAURANT_NAME as "name", 
+			   RESTAURANT_DETAIL as "detail",
+			   RESTAURANT_ADDRESS_DETAIL as "adressDetail",
+			   RESTAURANT_OPERATING_HOUR as "operatingHour",
+			   RESTAURANT_CLOSED_DATE as "closedDate", 
+			   RESTAURANT_PHONE as "phone", 
+			   RESTAURANT_FARE as "fare", 
+			   RESTAURANT_PICTURE as "picture", 
+			   RESTAURANT_LATITUDE as "latitude",
+			   RESTAURANT_LONGITUDE as "longitude",
+			   RESTAURANT_USE_NUM as "useNum"
+		FROM (SELECT CEIL(ROWNUM / 16) request_page, 
+				     RESTAURANT_NO, 
+				   	 CITY_NO ,
+				   	 RESTAURANT_NAME ,
+				   RESTAURANT_DETAIL ,
+				   RESTAURANT_ADDRESS_DETAIL ,
+				   RESTAURANT_OPERATING_HOUR ,
+				   RESTAURANT_CLOSED_DATE ,
+				   RESTAURANT_PHONE , 
+				   RESTAURANT_FARE ,
+				   RESTAURANT_PICTURE ,
+				   RESTAURANT_LATITUDE ,
+				   RESTAURANT_LONGITUDE ,
+				   RESTAURANT_USE_NUM 
+			  FROM RESTAURANT)
+		WHERE request_page = #{page}
+		<if test="sort.equals('useNum')">
+		order by  RESTAURANT_USE_NUM
+		</if>
+		<if test="sort.equals('name')">
+		order by  RESTAURANT_NAME
+		</if>
+	</select>
 
 	<select id="read" parameterType="int" resultType="Restaurant">
 		SELECT RESTAURANT_NO as "no", 
@@ -91,6 +129,26 @@
 		FROM Restaurant
 		WHERE RESTAURANT_NAME = #{name} and city_no = #{cityNo}
 	</select>
+	
+	<select id="readBycityNo" parameterType="map" resultType="Restaurant">
+		SELECT RESTAURANT_NO as "no", 
+			   CITY_NO as "cityNo", 
+			   RESTAURANT_NAME as "name", 
+			   RESTAURANT_DETAIL as "detail",
+			   RESTAURANT_ADDRESS_DETAIL as "adressDetail",
+			   RESTAURANT_OPERATING_HOUR as "operatingHour",
+			   RESTAURANT_CLOSED_DATE as "closedDate", 
+			   RESTAURANT_PHONE as "phone", 
+			   RESTAURANT_FARE as "fare", 
+			   RESTAURANT_PICTURE as "picture", 
+			   RESTAURANT_LATITUDE as "latitude",
+			   RESTAURANT_LONGITUDE as "longitude",
+			   RESTAURANT_USE_NUM as "useNum"
+		FROM   Restaurant
+		WHERE  city_no = #{cityNo} AND
+			   RESTAURANT_NO != #{no}
+		ORDER BY RESTAURANT_USE_NUM asc
+	</select>
 
 	<update id="update" parameterType="Restaurant">
 		update Restaurant
@@ -113,5 +171,9 @@
 		WHERE RESTAURANT_NO = #{value}
 	</delete>
 	
+	<select id="maxPage" resultType="int">
+	SELECT Max(CEIL(ROWNUM / 16))
+	FROM Restaurant
+	</select>
 
 </mapper>

@@ -63,6 +63,19 @@ public class SpotDaoImpl implements SpotDao {
 		map.put("sort", sort);
 		return sqlSession.selectList(NAMESPACE+".listPage", map);
 	}
+
+	@Override
+	public List<Spot> readBycityNo(int cityNo, int spotNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cityNo", cityNo);
+		map.put("spotNo", spotNo);
+		return sqlSession.selectList(NAMESPACE+".readByCityNo", map);
+	}
+
+	@Override
+	public int maxPage() {
+		return sqlSession.selectOne(NAMESPACE+".maxPage");
+	}
 	
 }
 

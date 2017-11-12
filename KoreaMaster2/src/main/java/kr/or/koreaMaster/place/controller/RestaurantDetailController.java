@@ -18,12 +18,15 @@ import kr.or.koreaMaster.common.controller.Controller;
 import kr.or.koreaMaster.common.controller.ModelAndView;
 import kr.or.koreaMaster.common.db.DaoFactory;
 import kr.or.koreaMaster.common.db.MyBatisDaoFactory;
+import kr.or.koreaMaster.place.dao.RestaurantDao;
+import kr.or.koreaMaster.place.dao.RestaurantDaoImpl;
 import kr.or.koreaMaster.place.dao.SidoDao;
 import kr.or.koreaMaster.place.dao.SidoDaoImpl;
 import kr.or.koreaMaster.place.dao.SigunguDao;
 import kr.or.koreaMaster.place.dao.SigunguDaoImpl;
 import kr.or.koreaMaster.place.dao.SpotDao;
 import kr.or.koreaMaster.place.dao.SpotDaoImpl;
+import kr.or.koreaMaster.place.domain.Restaurant;
 import kr.or.koreaMaster.place.domain.Sido;
 import kr.or.koreaMaster.place.domain.Sigungu;
 import kr.or.koreaMaster.place.domain.Spot;
@@ -31,25 +34,24 @@ import kr.or.koreaMaster.spotTheme.dao.SpotThemeDAO;
 import kr.or.koreaMaster.spotTheme.dao.SpotThemeDAOImpl;
 import kr.or.koreaMaster.theme.session.MyTravelTypeRepository;
 
-public class SpotDetailController implements Controller {
+public class RestaurantDetailController implements Controller {
 
 	DaoFactory factory = new MyBatisDaoFactory();
-	SpotDao spotDao = (SpotDao) factory.getDao(SpotDaoImpl.class);
+	RestaurantDao restaurantDao = (RestaurantDao)factory.getDao(RestaurantDaoImpl.class);
 	SigunguDao sigunguDao = (SigunguDao)factory.getDao(SigunguDaoImpl.class);
 	SidoDao sidoDao = (SidoDao)factory.getDao(SidoDaoImpl.class);
-	SpotThemeDAO spotThemeDAO = (SpotThemeDAO)factory.getDao(SpotThemeDAOImpl.class);
 
-	Logger logger = Logger.getLogger(SpotDetailController.class);
+	Logger logger = Logger.getLogger(RestaurantDetailController.class);
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		PrintWriter pw = null;
 		response.setContentType("text/html;charset=UTF-8");
 		
-		int no = Integer.parseInt(request.getParameter("spotNo"));
-		Spot spot = spotDao.read(no);
+		int no = Integer.parseInt(request.getParameter("restaurantNo"));
+		Restaurant restaurant = restaurantDao.read(no);
 		
-		Sigungu sigungu = sigunguDao.read(spot.getCityNo());
+		Sigungu sigungu = sigunguDao.read(restaurant.getCityNo());
 		String sigunguName = null;
 		if(sigungu.getSigunName() != null) {
 			sigunguName = sigungu.getSigunName();
@@ -60,8 +62,7 @@ public class SpotDetailController implements Controller {
 		Sido sido = sidoDao.read(sigungu.getSidoNum());
 		String sidoName = sido.getName();
 		
-		List<Integer> themeList = spotThemeDAO.readThemeBySpot(spot.getNo());
-		List<Spot> relatedSpot = spotDao.readBycityNo(spot.getCityNo(), spot.getNo());
+		List<Restaurant> relatedSpot = restaurantDao.readBycityNo(restaurant.getCityNo(), restaurant.getNo());
 /*		for (Spot spot2 : relatedSpot) {
 			System.out.println(spot2.toString());
 		} */
@@ -69,25 +70,23 @@ public class SpotDetailController implements Controller {
 		try {
 			JSONObject obj = new JSONObject();
 			
-			obj.put("no", spot.getNo());
-			obj.put("cityNo", spot.getCityNo());
+			obj.put("no", restaurant.getNo());
+			obj.put("cityNo", restaurant.getCityNo());
 			obj.put("sigungu", sigunguName);
 			obj.put("sido", sidoName);
-			obj.put("name", spot.getName());
-			obj.put("detail", spot.getDetail());
-			obj.put("addressDetail", spot.getAddressDetail());
-			obj.put("operatingHour", spot.getOperatingHour());
-			obj.put("closedDate", spot.getClosedDate());
-			obj.put("phone", spot.getPhone());
-			obj.put("theme", themeList);
-			obj.put("fare", spot.getFare());
-			obj.put("homepage", spot.getHomepage());
-			obj.put("picture", spot.getPicture());
-			obj.put("useNum", spot.getUseNum());
+			obj.put("name", restaurant.getName());
+			obj.put("detail", restaurant.getDetail());
+			obj.put("addressDetail", restaurant.getAdressDetail());
+			obj.put("operatingHour", restaurant.getOperatingHour());
+			obj.put("closedDate", restaurant.getClosedDate());
+			obj.put("phone", restaurant.getPhone());
+			obj.put("fare", restaurant.getFare());
+			obj.put("picture", restaurant.getPicture());
+			obj.put("useNum", restaurant.getUseNum());
 			
 			JSONArray array = new JSONArray();
 			JSONObject tmpOb = null;
-			Spot tmps = null;
+			Restaurant tmps = null;
 			for (int i = 0; i < relatedSpot.size(); i++) {
 				tmps = relatedSpot.get(i);
 				tmpOb = new JSONObject();
@@ -97,7 +96,7 @@ public class SpotDetailController implements Controller {
 				
 				String detail = tmps.getDetail();
 				if(detail.length() >= 100) {
-					detail = detail.substring(0, 110)+"...";
+					detail = detail.substring(0, 100)+"...";
 				}
 				tmpOb.put("detail", detail);
 				

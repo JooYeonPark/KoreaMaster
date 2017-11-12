@@ -139,6 +139,32 @@
 				and spot_detail = '/*/*/'
 	</select>
 	
+	<select id="readByCityNo" parameterType="map" resultType="Spot">
+		SELECT spot_no as "no", 
+		       city_no as "cityNo", 
+		       spot_name as "name", 
+		       spot_detail as "detail", 
+		       spot_address_detail as "addressDetail", 
+		       spot_operating_hour as "operatingHour", 
+		       spot_closed_date as "closedDate", 
+		       spot_phone as "phone", 
+		       spot_fare as "fare", 
+		       spot_homepage as "homepage", 
+		       spot_picture as "picture", 
+		       spot_latitude as "latitude", 
+		       spot_longitude as "longitude", 
+		       spot_use_num   as "useNum"
+		FROM   spot
+		WHERE  city_no = #{cityNo} AND
+			spot_no != #{spotNo}
+		ORDER BY spot_use_num
+	</select>
+	
+	<select id="maxPage" resultType="int">
+	SELECT Max(CEIL(ROWNUM / 16))
+	FROM spot
+	</select>
+	
 	<update id="update" parameterType="Spot">
 		UPDATE 	spot
 		SET 	SPOT_DETAIL = #{detail} ,
