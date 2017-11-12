@@ -13,6 +13,15 @@ public class Route {
 		this(0,0,0,null,null);
 	}
 	
+	public Route(int spotNo, int nextRouteNo) {
+		this(0,spotNo, nextRouteNo, null, null);
+	}
+	
+	public Route(int no, int spotNo, int nextRouteNo) {
+		this(no, spotNo, nextRouteNo, null, null);
+	}
+	
+	
 	public Route(int spotNo, int nextRouteNo, String startTime, String endTime) {
 		this(0,spotNo, nextRouteNo, startTime, endTime);
 	}

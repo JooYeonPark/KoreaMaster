@@ -50,5 +50,6 @@ public class RouteDAOImpl implements RouteDAO {
 		sqlSession.delete(NAMESPACE+".deleteUpdate",no);
 		sqlSession.delete(NAMESPACE+".delete",no);
 	}
+	
 
 }

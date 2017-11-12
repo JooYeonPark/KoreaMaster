@@ -6,17 +6,22 @@
 
 <!-- 생성 -->
 <insert id="create" parameterType="Route">
+	<selectKey keyProperty="no" order="BEFORE" resultType="int">
+		SELECT route_seq.nextval as no FROM dual
+	</selectKey>
 	INSERT INTO route 
 			(route_no, 
              spot_no, 
              next_route_no, 
              start_time, 
              end_time) 
-	VALUES     (route_seq.NEXTVAL, 
-	            #{spotNo}, 
+	VALUES     (#{no},
+	            #{spotNo},
 	            #{nextRouteNo},
-	           	TO_DATE(#{startTime},'YYYYMMDDHH24MISS'),
-	            TO_DATE(#{endTime},'YYYYMMDDHH24MISS')) 
+	           	TO_DATE(#{startTime, jdbcType=DATE},'YYYY-MM-DD HH24:MI:SS'),
+	            TO_DATE(#{endTime, jdbcType=DATE},'YYYY-MM-DD HH24:MI:SS'))  
+	            <!-- jdbcType을 지정해주면 null값을 넣을 수 있다 -->
+	            
 </insert>
 
 <!-- 조회 -->
@@ -45,8 +50,8 @@
 	UPDATE 	route
 	SET 	spot_no = #{spotNo}, 
 			next_route_no = #{nextRouteNo},
-			start_time = TO_DATE(#{startTime},'YYYYMMDDHH24MISS'),
-			end_time = TO_DATE(#{endTime},'YYYYMMDDHH24MISS')
+			start_time = TO_DATE(#{startTime, jdbcType=DATE},'YYYY-MM-DD HH24:MI:SS'),
+			end_time = TO_DATE(#{endTime, jdbcType=DATE},'YYYYMMDDHH24MISS')
 	WHERE route_no = #{no}
 </update>
 

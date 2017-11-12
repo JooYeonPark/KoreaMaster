@@ -60,6 +60,8 @@
 
 <%-- Address --%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+
 	
 <script>
 $(document).ready(function(){
@@ -100,11 +102,14 @@ $(document).ready(function(){
 	    var ms = new Date(array[1])-new Date(array[0]);
 	    days = (ms / (1000*60*60*24)) + 1;
 	    
-	    var html = 
-		    '<div class="col-xs-12 col-sm-12"><div class="form-group"> <select class="selectpicker show-tick form-control departure" title="Select placeholder" name="departure">'+
-	        '<option value="terminal" selected>터미널</option><option value="station">역</option><option value="house">숙소</option></select></div></div>';
-	        
-	    $(".departures").html("<label>출발장소</label><hr>");    
+	    var html = 	
+	        '<div class="col-xs-12 col-sm-12 gap-10"> <div class="form-group">'+
+	        '<div class="col-xs-8 col-sm-8"><input type="text" class="form-control" id="address" name="address"  required></div>'+
+	        '<div class="col-xs-4 col-sm-4"><input type="button" onclick="daumPostcode()" value="주소찾기" class="btn btn-template-main"></div>'+
+	        '</div></div>' ;
+
+	    
+	    $(".departures").html('<label>출발장소</label>');    
 	        
 	    for(var i=0; i<days; i++){
 		 	$(".departures").append(html);
@@ -158,7 +163,7 @@ $(document).ready(function(){
 	
 	<%-- 숙소 클릭시 주소 검색창이 뜨게 하고, 다시 터미널,역을 누를시 주소 검색 창을 지운다 --%>
 	<%-- 동적으로 생성되기 때문에 $('.departure').change가 아닌 아래처럼 써준다 --%>
-	$(document).on("change", '.departure', function(){
+	/* $(document).on("change", '.departure', function(){
 	    
         if($(this).val() == "house"){
             
@@ -173,18 +178,20 @@ $(document).ready(function(){
             var siblings = ($(this).parent()).siblings(3);
             siblings.remove();
         }
-	});
+	}); */
 	
 	
 	<%-- Submit --%>
 	$(".submit").click(function(){
+	    alert("submit");
+	    //var id = ${user.usersId};
 	    var startDate = $("input[name=startDate]").val();
 	    var endDate = $("input[name=endDate]").val();
 	    var city = $("select[name=city] option:selected").val();
 	    var departureList = new String();
-	    $("select[name=departure] option:selected").each(function(){
+	     $("select[name=departure] option:selected").each(function(){
 		     departureList = departureList + $(this).val()+ ',';
-		 });
+		 }); 
 	    $("input[name=address]").each(function(){
 		     departureList = departureList + $(this).val()+ ',';
 		 });
@@ -201,14 +208,26 @@ $(document).ready(function(){
 	                departures : departureList, 
 	                theme : themes, 
 	                days : days
+	                //id : id
 	    		};
 	    		var param = $.param(data);
 	    		
-	        window.location.replace("/index.jsp?"+param);
+	        window.location.replace("/route.do?"+param); 
 	        return false;
 	    } 
 	});
 	
+	<%-- CheckBox를 RadioButton처럼 사용하기 위해 (이미 css가 checkBox로 지정되어있어서 부득이하게...)--%>
+	 $('input:checkbox[name=checkbox_block]').click(function(){
+	   if($(this).prop('checked')){
+	       //모든 checkbox click 해제
+	       $('input:checkbox[name=checkbox_block]').prop('checked',false);
+	       //나의 checkbox click
+	       $(this).prop('checked',true);
+	   } 
+	});
+	  
+	 
 	
 }); //end $(document).ready
 
@@ -377,13 +396,12 @@ function daumPostcode() {
 												</select>
 											</div>
 										</div><%-- 시군구 선택 끝 --%>
-									</div><%-- ./row --%>
-										
+									
 									                                    
                                       <div class="row departures" >
                                        </div><!-- ./col-xs-12 col-sm-12 -->    
                                         
-									
+									</div><%-- ./row --%>
 										
 									<hr>
 									<h5 class="text-uppercase">이번 여행에서 원하는 테마가 있으면 선택해주세요. <br>

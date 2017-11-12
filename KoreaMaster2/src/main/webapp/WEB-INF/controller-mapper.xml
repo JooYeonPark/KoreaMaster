@@ -7,4 +7,8 @@
 	<!-- spot 세부컨트롤러 -->
 	<bean name="/listPage" class="kr.or.koreaMaster.place.controller.SpotListController"/>
 	<bean name="/spotDetail" class="kr.or.koreaMaster.place.controller.SpotDetailController"/>
+	
+	<!-- Travel 세부컨트롤러 등록 -->
+	<bean name="/route" class="kr.or.koreaMaster.travel.controller.RouteController"/>
+	<bean name="/trip" class="kr.or.koreaMaster.travel.controller.TripController"/>
 </beans>
