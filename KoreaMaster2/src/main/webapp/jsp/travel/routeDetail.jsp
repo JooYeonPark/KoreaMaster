@@ -244,7 +244,7 @@
 										<%-- 내 루트 저장 버튼 --%>
 										<a href="#" class="add-fav-btn mt-25 ml-10 ml-0-sm">
 											<div class="inner">
-												<button type="submit" ><i class="ti-heart"></i> Add Favorite</button>
+												<button type="submit" class="ti-heart"> Add Favorite</button>
 											</div>
 										</a>
 	

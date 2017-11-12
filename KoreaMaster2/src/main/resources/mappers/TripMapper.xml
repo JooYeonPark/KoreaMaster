@@ -7,7 +7,7 @@
 <!-- 생성 -->
 <insert id="create" parameterType="Trip">
 	<selectKey keyProperty="no" order="BEFORE" resultType="int">
-		SELECT trip_seq.NEXTVAL FROM DUAL
+		SELECT trip_seq.NEXTVAL as no FROM DUAL
 	</selectKey>
 	INSERT INTO trip 
             (trip_no, 

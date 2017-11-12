@@ -25,6 +25,8 @@ public class RouteController implements Controller {
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException {
         
+    	logger.debug("routeController실행");
+    	
         ModelAndView mav = new ModelAndView();
         
         Map<String, String> map = new HashMap<String,String>();
@@ -37,6 +39,7 @@ public class RouteController implements Controller {
         String userId = "joo"; //더미데이터
         String departures = request.getParameter("departures");// 구분자:,
         String days = request.getParameter("days");
+//        String id = request.getParameter("id");
         
         map.put("startDate", startDate);
         map.put("endDate", endDate);
@@ -45,7 +48,10 @@ public class RouteController implements Controller {
         map.put("userId", userId);
         map.put("departures", departures);
         map.put("days", days);
+//        map.put("id", id);
         
+        
+//        logger.debug("id"+id);
 //        logger.debug("startDate : "+startDate);
 //        logger.debug("endDate : "+endDate);
 //        logger.debug("city : "+city);
