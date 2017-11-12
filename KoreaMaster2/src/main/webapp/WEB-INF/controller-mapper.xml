@@ -4,9 +4,11 @@
 	<bean name="/sido" class="kr.or.koreaMaster.place.controller.SidoListController"/>
 	<bean name="/sigungu" class="kr.or.koreaMaster.place.controller.SigunguController"/>
 	
-	<!-- spot 세부컨트롤러 -->
-	<bean name="/listPage" class="kr.or.koreaMaster.place.controller.SpotListController"/>
+		<!-- spot 세부컨트롤러 -->
+	<bean name="/spotPage" class="kr.or.koreaMaster.place.controller.SpotListController"/>
+	<bean name="/restaurantPage" class="kr.or.koreaMaster.place.controller.RestaurantListController"/>
 	<bean name="/spotDetail" class="kr.or.koreaMaster.place.controller.SpotDetailController"/>
+	<bean name="/restaurantDetail" class="kr.or.koreaMaster.place.controller.RestaurantDetailController"/>
 	
 	<!-- Travel 세부컨트롤러 등록 -->
 	<bean name="/route" class="kr.or.koreaMaster.travel.controller.RouteController"/>
