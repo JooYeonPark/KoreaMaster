@@ -56,4 +56,34 @@
 	WHERE TRIP_NO = #{value}
 </delete>
 
+<!-- 현재 trip의 모든 list의 routeNo, tripNo반환 -->
+<select id="getTrip" resultType="RouteInfo">
+	SELECT t.trip_no 	AS	"tripNo", 
+	       s.route_no	AS	"routeNo" 
+	FROM   trip t, 
+	       small_trip s 
+	WHERE  t.trip_no = s.trip_no
+</select>
+
+<!-- 테이블에 있는 모든 route의 spot 정보 반환 -->
+<select id="getSpot" resultType="RouteInfo">
+	SELECT DISTINCT sigungu.sigun_name		AS	"sigunName", 
+					sigungu.gu_name			AS	"guName", 
+	                spot.spot_name			AS  "name", 
+	                spot.spot_detail		AS	"detail", 
+	                spot.spot_address_detail AS  "addressDetail", 
+	                spot.spot_operating_hour AS  "operatingHour", 
+	                spot.spot_closed_date	 AS	 "closedDate", 
+	                spot.spot_phone			 AS   "phone", 
+	                spot.spot_fare			 AS   "fare", 
+	                spot.spot_homepage		 AS   "homepage", 
+	                a.route_no 		  		 AS    "routeNo"
+	FROM   route a, 
+	       route b, 
+	       spot, 
+	       sigungu 
+	WHERE  a.next_route_no = b.route_no 
+	       AND a.spot_no = spot.spot_no 
+	       AND sigungu.city_no = spot.city_no
+</select>
 </mapper>

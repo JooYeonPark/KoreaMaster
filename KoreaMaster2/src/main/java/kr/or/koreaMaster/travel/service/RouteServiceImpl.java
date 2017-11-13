@@ -19,6 +19,10 @@ import kr.or.koreaMaster.place.domain.Spot;
 import kr.or.koreaMaster.spotTheme.dao.SpotThemeDAO;
 import kr.or.koreaMaster.spotTheme.dao.SpotThemeDAOImpl;
 import kr.or.koreaMaster.spotTheme.domain.SpotThemeJoin;
+import kr.or.koreaMaster.theme.session.MyTravelTypeRepository;
+import kr.or.koreaMaster.travel.dao.TripDAO;
+import kr.or.koreaMaster.travel.dao.TripDAOImpl;
+import kr.or.koreaMaster.travel.domain.RouteInfo;
 import kr.or.koreaMaster.travel.util.RouteProcess;
 import kr.or.koreaMaster.travel.util.SpotsProcess;
 
@@ -51,18 +55,19 @@ public class RouteServiceImpl implements RouteService {
 
 		// 루트 요구에서 테마를 선택시 그 테마로 진행
 		String theme = map.get("theme");
-		if (theme != null || theme.equalsIgnoreCase(null) || theme.trim() == "") {
+		if (theme == null || theme.equalsIgnoreCase(null) || theme.trim() == "") {
+			MyTravelTypeRepository rep = new MyTravelTypeRepository();
+			perThemes = rep.getNoById(map.get("usersId"));
+
+			// // !!!!현희가 완성하면 넣기!!!!!
+			// // 더미데이터 {6,11,12,7}
+			// perThemes.add(6);
+			// perThemes.add(11);
+			// perThemes.add(12);
+			// perThemes.add(7);
+		} else {
 			String[] themes = theme.split(",");
 			perThemes.add(Integer.parseInt(themes[0]));
-		}
-
-		// !!!!현희가 완성하면 넣기!!!!!
-		// 더미데이터 {6,11,12,7}
-		else {
-			perThemes.add(6);
-			perThemes.add(11);
-			perThemes.add(12);
-			perThemes.add(7);
 		}
 
 		// #4. 사용자가 선택한 도시에서 사용자의 테마에 맞는 장소들을 추려낸다
@@ -88,7 +93,7 @@ public class RouteServiceImpl implements RouteService {
 			spot.setDetail("/*/*/"); // 보통 장소와 출발장소를 구별하기 위한 델리게이터
 			spot.setLatitude(coords[0]);
 			spot.setLongitude(coords[1]);
-			spot.setName("숙소");
+			spot.setName("출발지");
 
 			spotDAO.create(spot);
 

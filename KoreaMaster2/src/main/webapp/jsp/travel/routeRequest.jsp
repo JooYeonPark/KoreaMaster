@@ -65,7 +65,7 @@
 	
 <script>
 $(document).ready(function(){
-    
+   
    var days ;
     
     $("#selectpicker").selectpicker(); 
@@ -183,8 +183,7 @@ $(document).ready(function(){
 	
 	<%-- Submit --%>
 	$(".submit").click(function(){
-	    alert("submit");
-	    //var id = ${user.usersId};
+	    var usersId = "${user.usersId}";
 	    var startDate = $("input[name=startDate]").val();
 	    var endDate = $("input[name=endDate]").val();
 	    var city = $("select[name=city] option:selected").val();
@@ -207,8 +206,8 @@ $(document).ready(function(){
 	                city : city, 
 	                departures : departureList, 
 	                theme : themes, 
-	                days : days
-	                //id : id
+	                days : days,
+	                usersId : usersId
 	    		};
 	    		var param = $.param(data);
 	    		
@@ -218,14 +217,14 @@ $(document).ready(function(){
 	});
 	
 	<%-- CheckBox를 RadioButton처럼 사용하기 위해 (이미 css가 checkBox로 지정되어있어서 부득이하게...)--%>
-	 $('input:checkbox[name=checkbox_block]').click(function(){
+	  $('input:checkbox[name=checkbox_block]').click(function(){
 	   if($(this).prop('checked')){
 	       //모든 checkbox click 해제
 	       $('input:checkbox[name=checkbox_block]').prop('checked',false);
 	       //나의 checkbox click
 	       $(this).prop('checked',true);
 	   } 
-	});
+	}); 
 	  
 	 
 	

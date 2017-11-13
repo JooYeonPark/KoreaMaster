@@ -155,19 +155,6 @@
 										
 									</div>
 
-									<%-- 여행지 사진 갤러리 START --%>
-									<div id="detail-content-sticky-nav-02">
-										<h2 class="font-lg">Gallery</h2>
-										
-										
-
-										<div class="mb-25"></div>
-										<div class="bb"></div>
-										<div class="mb-25"></div>
-
-									</div>
-									<%-- 여행지 사진 갤러리  END --%>
-
 									<%-- 여행 일정  --%>
 									<form action="/trip.do" method="post" class="form">
 										<input type="hidden" name="startDate" value="${route.startDate}"/>
@@ -243,8 +230,8 @@
 	
 										<%-- 내 루트 저장 버튼 --%>
 										<a href="#" class="add-fav-btn mt-25 ml-10 ml-0-sm">
-											<div class="inner">
-												<button type="submit" class="ti-heart"> Add Favorite</button>
+											<div class="inner text-primary">
+												<button type="submit" class="btn btn-default text-primary" style="background: #FFFFFF; color:#000000; border-color: #FFFFFF;"> Add Favorite</button>
 											</div>
 										</a>
 	

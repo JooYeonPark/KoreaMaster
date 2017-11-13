@@ -26,12 +26,12 @@ public class MyTravelTypeService {
 	}
 	
 	public int findThemeId(String themeName) {
-		int themeId = repo.findThemeId(themeName);
+		int  themeId = repo.findThemeId(themeName);
 		return themeId;
 	}
 	
-	public int getNoById(String usersId) {
-		int themeNo = repo.getNoById(usersId);
+	public List<Integer> getNoById(String usersId) {
+		 List<Integer> themeNo = repo.getNoById(usersId);
 		return themeNo;
 	}
 	

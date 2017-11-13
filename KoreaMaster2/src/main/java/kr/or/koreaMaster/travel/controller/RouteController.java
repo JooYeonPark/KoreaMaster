@@ -35,23 +35,20 @@ public class RouteController implements Controller {
         String endDate = request.getParameter("endDate");
         String city = request.getParameter("city");
         String theme = request.getParameter("theme");// 구분자:,
-//        String userId = request.getParameter("userId");
-        String userId = "joo"; //더미데이터
+        String usersId = request.getParameter("usersId");
+   //     String userId = "joo"; //더미데이터
         String departures = request.getParameter("departures");// 구분자:,
         String days = request.getParameter("days");
-//        String id = request.getParameter("id");
         
         map.put("startDate", startDate);
         map.put("endDate", endDate);
         map.put("city", city);
         map.put("theme", theme);
-        map.put("userId", userId);
+        map.put("usersId", usersId);
         map.put("departures", departures);
         map.put("days", days);
-//        map.put("id", id);
-        
-        
-//        logger.debug("id"+id);
+
+//        logger.debug("usersId : "+usersId);
 //        logger.debug("startDate : "+startDate);
 //        logger.debug("endDate : "+endDate);
 //        logger.debug("city : "+city);

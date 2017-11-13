@@ -23,7 +23,8 @@
  		<typeAlias type="kr.or.koreaMaster.theme.model.Theme" alias="Theme"/>
 		<typeAlias type="kr.or.koreaMaster.theme.model.UsersTheme" alias="UsersTheme" />
 		<typeAlias type="kr.or.koreaMaster.user.model.Users" alias="user"/>
- 	<typeAlias type="kr.or.koreaMaster.user.model.TripNote" alias="note"/>
+ 		<typeAlias type="kr.or.koreaMaster.user.model.TripNote" alias="note"/> 
+ 		<typeAlias type="kr.or.koreaMaster.travel.domain.RouteInfo" alias="RouteInfo"/> 
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->
@@ -70,8 +71,10 @@
 	 	<mapper resource="mappers/RouteMapper.xml"  />
 	 	<mapper resource="mappers/SpotThemeMapper.xml"  /> 
 	 	<mapper resource="mappers/RouteThemeMapper.xml"  />
-	  	<mapper resource="mappers/UsersThemeMapper.xml" />
+	   <mapper resource="mappers/UsersThemeMapper.xml" />
 	  	<mapper resource="mappers/ThemeMapper.xml" />  
+	  	<mapper resource="mappers/UserMapper.xml" />  
+		<mapper resource="mappers/TripNoteMapper.xml" /> 
 	</mappers>
 	
 

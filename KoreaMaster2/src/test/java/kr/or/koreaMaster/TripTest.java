@@ -1,5 +1,7 @@
 package kr.or.koreaMaster;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
@@ -12,6 +14,7 @@ import kr.or.koreaMaster.travel.dao.SmallTripDAOImpl;
 import kr.or.koreaMaster.travel.dao.TripDAO;
 import kr.or.koreaMaster.travel.dao.TripDAOImpl;
 import kr.or.koreaMaster.travel.domain.Route;
+import kr.or.koreaMaster.travel.domain.RouteInfo;
 import kr.or.koreaMaster.travel.domain.SmallTrip;
 import kr.or.koreaMaster.travel.domain.Trip;
 
@@ -22,7 +25,7 @@ public class TripTest {
 	SmallTripDAO smallTripDAO = (SmallTripDAO) factory.getDao(SmallTripDAOImpl.class);
 	RouteDAO routeDAO = (RouteDAO) factory.getDao(RouteDAOImpl.class);
 
-	@Test
+//	@Test
 	public void test() {
 
 		// trip 생성
@@ -36,18 +39,26 @@ public class TripTest {
 		// smallDao.create(small);
 
 		// route 생성
-		Route route = new Route(1, 0);
+	
+		Route route = new Route(4, 0);
+		routeDAO.create(route);
+		int No = route.getNo();
+		
+		route = new Route(3, No);
+		routeDAO.create(route);
+		No = route.getNo();
+		
+		route = new Route(2, No);
+		routeDAO.create(route);
+		No = route.getNo();
+		
+		route = new Route(1, No);
 		routeDAO.create(route);
 		int firstRouteNo = route.getNo();
 		logger.debug("firstRouteNo:" + firstRouteNo);
 
-		route = new Route(2, 0);
-		routeDAO.create(route);
-		int second = route.getNo();
-		logger.debug("second:" + second);
-
 		// trip 생성
-		Trip trip = new Trip("test주연띵", "2017-11-12", "2017-11-12");
+		Trip trip = new Trip("여수첫번째 여행기", "2017-11-15", "2017-11-15");
 		tripDAO.create(trip);
 		int tripNo = trip.getNo();
 		logger.debug("tripNo:" + tripNo);
@@ -55,6 +66,24 @@ public class TripTest {
 		// small trip생성
 		SmallTrip small = new SmallTrip(1, tripNo, firstRouteNo);
 		smallTripDAO.create(small);
+	}
+	
+//	@Test
+	public void listTest() {
+		List<RouteInfo> list = tripDAO.getTrip();
+		for (RouteInfo routeInfo : list) {
+			logger.debug(routeInfo);
+		}
+		
+	}
+	
+	@Test
+	public void listTest2() {
+		List<RouteInfo> list = tripDAO.getSpot();
+		for (RouteInfo routeInfo : list) {
+			logger.debug(routeInfo);
+		}
+		
 	}
 
 }

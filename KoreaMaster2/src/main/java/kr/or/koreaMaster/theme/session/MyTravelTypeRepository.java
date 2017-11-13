@@ -52,7 +52,7 @@ public class MyTravelTypeRepository {
 	/**
 	 *  themeName 을 가지고 themeId 찾기
 	 */
-	public Integer findThemeId(String themeName) {
+	public int findThemeId(String themeName) {
 		SqlSession sess = getSqlSessionFactory().openSession();		// sql 연결 객체
 		try {
 			int themeId = sess.selectOne(namespace + ".getNoByName", themeName);
@@ -71,11 +71,11 @@ public class MyTravelTypeRepository {
 	/**
 	 *  users_id를 가지고 themeNo 찾기
 	 */
-	public Integer getNoById(String usersId) {
+	public  List<Integer> getNoById(String usersId) {
 		SqlSession sess = getSqlSessionFactory().openSession();		// sql 연결 객체
 		try {
-			int themeNo = sess.selectOne(namespace + ".getNoById", usersId);
-			if(themeNo > 0) {			// 결과 값이 존재할 경우 커밋, 그렇지 않으면 롤백
+			List<Integer> themeNo = sess.selectList(namespace + ".getNoById", usersId);
+			if(themeNo.size() > 0) {			// 결과 값이 존재할 경우 커밋, 그렇지 않으면 롤백
 				sess.commit();
 			} else {
 				sess.rollback();

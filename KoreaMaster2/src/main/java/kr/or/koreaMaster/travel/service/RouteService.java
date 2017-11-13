@@ -6,5 +6,7 @@ import java.util.Map;
 import kr.or.koreaMaster.spotTheme.domain.SpotThemeJoin;
 
 public interface RouteService {
+	//루트 반환
 	public Map<String,Object> getRoute(Map<String,String> map) ;
+	
 }

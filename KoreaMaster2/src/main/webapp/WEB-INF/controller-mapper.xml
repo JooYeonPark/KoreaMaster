@@ -13,4 +13,6 @@
 	<!-- Travel 세부컨트롤러 등록 -->
 	<bean name="/route" class="kr.or.koreaMaster.travel.controller.RouteController"/>
 	<bean name="/trip" class="kr.or.koreaMaster.travel.controller.TripController"/>
+	<bean name="/tripList" class="kr.or.koreaMaster.travel.controller.TripListController"/>
+	
 </beans>
