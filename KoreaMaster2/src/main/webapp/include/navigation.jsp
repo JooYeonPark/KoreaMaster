@@ -80,7 +80,7 @@
 				<li id="userHello"><b><%= user.getUsersName() %>님,</b> 환영합니다.</li>
 				<li><a href="/user?cmd=logout-page"><i class="icon-logout" data-toggle="tooltip" data-placement="bottom" title="logout"></i></a></li>
 		<% } %>
-			</ul>
+			</ul> 
 		</div>
 	</div>
 
