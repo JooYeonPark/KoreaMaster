@@ -33,13 +33,13 @@ public interface SpotDao {
 	public List<Integer> getSpotByCity(int cityNo);
 	
 	/** 페이지에 따른 장소리트스 반환 */
-	public List<Spot> listPage(int page, int themeNo, String sort);
+	public List<Spot> listPage(int page, int themeNo, String sort, List<Integer> cityNo);
 	
 	/** 도시별 장소 반환 */
 	public List<Spot> readBycityNo(int cityNo, int spotNo);
 	
 	/** 마지막 페이지 수 반환 */
-	public int maxPage();
+	public int maxPage(List<Integer> cityNo);
 	
 }
 

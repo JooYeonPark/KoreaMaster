@@ -55,16 +55,20 @@ private static final String NAMESPACE = "kr.or.koreaMaster.place.mapper.Restaura
 	}
 
 	@Override
-	public List<Restaurant> listPage(int page, String sort) {
+	public List<Restaurant> listPage(int page, String sort, List<Integer> cityNo) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", page);
 		map.put("sort", sort);
+		map.put("cityNo", cityNo);
+		
 		return sqlSession.selectList(NAMESPACE+".listPage", map);
 	}
 
 	@Override
-	public int maxPage() {
-		return sqlSession.selectOne(NAMESPACE+".maxPage");
+	public int maxPage(List<Integer> cityNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cityNo", cityNo);
+		return sqlSession.selectOne(NAMESPACE+".maxPage", map);
 	}
 
 	@Override

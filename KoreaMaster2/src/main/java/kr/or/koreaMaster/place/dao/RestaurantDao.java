@@ -20,7 +20,7 @@ public interface RestaurantDao {
 	public List<Restaurant> listAll();
 	
 	/** 페이지별 목록 반환 */
-	public List<Restaurant> listPage(int page, String sort);
+	public List<Restaurant> listPage(int page, String sort, List<Integer> cityNo);
 	
 	/** 번호로 조회 */
 	public Restaurant read(int no);
@@ -35,7 +35,7 @@ public interface RestaurantDao {
 	public void delete(int no);
 	
 	/** 페이지 전체 수 반환 */
-	public int maxPage();
+	public int maxPage(List<Integer> cityNo);
 	
 	/** readByCityNo */
 	public List<Restaurant> readBycityNo(int cityNo, int no);

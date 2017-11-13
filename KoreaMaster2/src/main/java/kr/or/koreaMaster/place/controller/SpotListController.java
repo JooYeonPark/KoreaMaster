@@ -1,6 +1,7 @@
 package kr.or.koreaMaster.place.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,9 +21,13 @@ import kr.or.koreaMaster.common.db.DaoFactory;
 import kr.or.koreaMaster.common.db.MyBatisDaoFactory;
 import kr.or.koreaMaster.place.dao.SidoDao;
 import kr.or.koreaMaster.place.dao.SidoDaoImpl;
+import kr.or.koreaMaster.place.dao.SigunguDao;
+import kr.or.koreaMaster.place.dao.SigunguDaoImpl;
 import kr.or.koreaMaster.place.dao.SpotDao;
 import kr.or.koreaMaster.place.dao.SpotDaoImpl;
+import kr.or.koreaMaster.place.domain.Restaurant;
 import kr.or.koreaMaster.place.domain.Sido;
+import kr.or.koreaMaster.place.domain.Sigungu;
 import kr.or.koreaMaster.place.domain.Spot;
 import kr.or.koreaMaster.theme.session.MyTravelTypeRepository;
 
@@ -31,6 +36,7 @@ public class SpotListController implements Controller {
 	DaoFactory factory = new MyBatisDaoFactory();
 	SpotDao spotDao = (SpotDao)factory.getDao(SpotDaoImpl.class);
 	MyTravelTypeRepository themeDao = new MyTravelTypeRepository();
+	SigunguDao sigunguDao = (SigunguDao)factory.getDao(SigunguDaoImpl.class);
 	
 	Logger logger = Logger.getLogger(SpotListController.class);
 	
@@ -39,7 +45,6 @@ public class SpotListController implements Controller {
 		PrintWriter pw = null;
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String sido = request.getParameter("sido");
 		int page = Integer.parseInt(request.getParameter("page"));
 		int themeNo = Integer.parseInt(request.getParameter("themeName"));
 		int sortNum =Integer.parseInt( request.getParameter("sort"));
@@ -51,14 +56,29 @@ public class SpotListController implements Controller {
 			sort = "name";
 		}
 		
+		int sido = Integer.parseInt(request.getParameter("sido"));
+		int sigungu = Integer.parseInt(request.getParameter("sigungu"));
+		
+		List<Integer> sigunguList = new ArrayList<>();
 		List<Spot> list = null;
-		if(sido == null) {
-			list = spotDao.listPage(page, themeNo, sort);
+		
+		if(sigungu == 0) {
+			// 시도로 시군구 가져오기.
+			if(sido != 0) {
+				List<Sigungu> tmp = sigunguDao.readBySido(sido);
+				for (Sigungu sigungu2 : tmp) {
+					sigunguList.add(sigungu2.getNo());
+				}
+			}
+			
 		}else {
-			/*System.out.println(sido);*/
+			sigunguList.add(sigungu);
 		}
 		
-		int maxPage = spotDao.maxPage();
+		
+		list = spotDao.listPage(page, themeNo, sort, sigunguList);
+		
+		int maxPage = spotDao.maxPage(sigunguList);
 		int startPage = (page/5)*5 +1;
 		if(page%5 == 0) {
 			startPage -= 5;

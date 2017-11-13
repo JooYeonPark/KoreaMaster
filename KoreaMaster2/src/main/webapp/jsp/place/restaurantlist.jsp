@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Title Of Site -->
-<title>한반도 뽀개기</title>
+<title>한반도 뽀개기 - 식당</title>
 <meta name="description"
 	content="HTML template for multiple tour agency, local agency, traveller, tour hosting based on Twitter Bootstrap 3.x.x" />
 <meta name="keywords"
@@ -25,8 +25,9 @@
 <link rel="apple-touch-icon" href="/images/ico/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="/images/ico/favicon.png">
 
-<!-- CSS Plugins -->
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">
+<%-- CSS Plugins --%>
+<link rel="stylesheet" type="text/css"
+	href="/bootstrap//css/bootstrap.min.css" media="screen">
 <link href="/css/main.css" rel="stylesheet">
 <link href="/css/plugin.css" rel="stylesheet">
 
@@ -50,12 +51,12 @@
 <script type="text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
 <script type="text/javascript" src="/js/customs-result.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <script type="text/javascript">
 
 var paramPage = <%=request.getParameter("page")%>;
 var paramSort = <%=request.getParameter("sort")%>;
+var paramSido = <%=request.getParameter("sido")%>;
+var paramSigungu = <%=request.getParameter("sigungu")%>;
 
 var page = 1;
 if (paramPage != null) {
@@ -67,42 +68,94 @@ if(paramSort != null){
 	sort = paramSort;
 }
 
+var sido = 0;
+if(paramSido != null){
+	sido = paramSido;
+}
 
-$(function(){	
+var sigungu = 0;
+if(paramSigungu != null){
+	sigungu = paramSigungu;
+}
+
+$(function(){
 	init();
 	
 	$("#theme").change(function() {
 		theme = $("#theme option:selected").val();
-		var data = {"page" : page, "sort" : sort};
+		var data = {"page" : page, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
 		listPage(data);
 	});
 	
 	$("#sort").change(function() {
 		sort = $("#sort option:selected").attr("id");
-		var data = {"page" : page, "sort" : sort};
+		var data = {"page" : page, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
 		listPage(data);
 	});
 	
 	$(document).on("click", ".pagination li a", function(event) {
 		event.preventDefault();
 		page = $(this).attr('href');
-		var data = {"page" : page, "sort" : sort};
+		var data = {"page" : page, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
 		var param = $.param(data);
 		
 		window.location.replace("/jsp/place/restaurantlist.jsp?"+param);	
 	});
 	
+	$(document).on("change", "#selectSido", function(event) {
+		sido = $("#selectSido option:selected").val();
+		
+		// 시군구 가져오기
+		$.ajax({
+			url:"/sigungu.do",
+			type:"get",
+			data : {sidoNo : sido},
+			dataType:"json",
+			success:function(data){
+				//시도 데이터 불러들여 set
+				$.each(data, function(key, value){
+					$("#selectSigungu") .append($("<option></option>").attr("value",key).text(value));		
+				}); 
+				
+				$("#selectSigungu").selectpicker("refresh"); 
+			},
+			error : function(xhr, statusText){
+				console.log("("+xhr.status+", "+statusText+")");
+			}
+		});
+		
+		//리스트
+		var data = {"page" : page, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
+		listPage(data);
+	});
+	
+	$(document).on("change", "#selectSigungu", function(event) {
+		sigungu = $("#selectSigungu option:selected").val();
+		var data = {"page" : page, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
+		listPage(data);
+	});
+	
 });
 
-
 function init(){
-	// sort선택값 지정
-	if(sort != 1){
+	if(sort ==2){
 		$("#sort").val("name").prop("selected", true);
 	}
+	$("#sort").selectpicker("refresh");
 	
-	//sidoAjax();
-	var data = {"page" : page, "sort" : sort};
+	if(sigungu != 0){
+		$("#selectSigungu").val(sigungu+"").prop("selected", true);
+	}
+	$("#selectSigungu").selectpicker("refresh");
+	
+	if(sido != 0){
+		$("#selectSido").val(sido+"").prop("selected", true);
+	}
+	$("#selectSido").selectpicker("refresh");
+	
+	sidoAjax();
+	
+	var data = {"page" : page, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
 	listPage(data);
 }
 
@@ -113,11 +166,7 @@ function sidoAjax(){
 		success:function(data){
 			//시도 데이터 불러들여 set
 			$.each(data, function(key, value){
-				$("#selectSido")
-				.append($("<option></option>")
-					.attr("value",key)
-					.text(value));		
-				
+				$("#selectSido") .append($("<option></option>").attr("value",key).text(value));		
 			}); 
 			
 			$("#selectSido").selectpicker("refresh"); 
@@ -151,6 +200,8 @@ function listPage(data){
 				}else{
 					pageStr += "<li class=''><a href='"+i+"'>"+i+"</a></li>"
 				}
+				
+				if(i == maxPage) break;
 				
 			}
 			if(page != maxPage){
@@ -223,7 +274,7 @@ function listPage(data){
 					<div class="page-title">
 						<div class="row">
 							<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-								<h2>SPOT</h2>
+								<h2>RESTAURANT</h2>
 								<p>대한민국 </p>
 							</div>
 						</div>
@@ -232,7 +283,7 @@ function listPage(data){
 					<div class="breadcrumb-wrapper">
 						<ol class="breadcrumb">
 							<li><a href="index.jsp">Home</a></li>
-							<li class="active"><a href="#">Spot</a></li>
+							<li class="active"><a href="#">Restaurant</a></li>
 						</ol>
 					</div>
 				</div>
@@ -252,30 +303,44 @@ function listPage(data){
 							<div class="filter-full-primary-inner">
 								<div class="form-holder">
 									<div class="row">
-									
 										<!-- 도시별 start div -->
 										<div class="col-xss-12 col-xs-6 col-sm-3">
 											<div class="filter-item mmr">
 												<div class="input-group input-group-addon-icon no-border no-br-xs">
 													<span class="input-group-addon input-group-addon-icon bg-white">
-														<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> Sido:</label>
+														<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> 시도:</label>
 													</span> 
-													<select class="selectpicker form-control block-xs" id="selectSido">
+													<select class="selectpicker" id="selectSido">
+													<option value="0">전체</option>
 													</select>
 												</div>
 											</div> 
 										</div>
 										<!-- 도시별 end div -->
+										
+										<!-- 시군구별 start div -->
+										<div class="col-xss-12 col-xs-6 col-sm-3">
+											<div class="filter-item mmr">
+												<div class="input-group input-group-addon-icon no-border no-br-xs">
+													<span class="input-group-addon input-group-addon-icon bg-white">
+														<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> 시군구:</label>
+													</span> 
+													<select class="selectpicker" id="selectSigungu">
+													<option value="0">전체</option>
+													</select>
+												</div>
+											</div> 
+										</div>
+										<!-- 시군구별 end div -->
 
-										<div class="col-xs-12 col-sm-12 col-md-8">
+										<div class="col-xs-12 col-sm-12 col-md-6">
 											<div class="filter-item-wrapper">
 												<div class="row">
 												
 													<!-- 정렬 start div -->
-													<div class="col-xss-12 col-xs-6 col-sm-4">
+													<div class="col-xss-12 col-xs-6 col-sm-6">
 														<div class="filter-item mmr">
-															<div
-																class="input-group input-group-addon-icon no-border no-br-xs">
+															<div class="input-group input-group-addon-icon no-border no-br-xs">
 																<span class="input-group-addon input-group-addon-icon bg-white">
 																	<label class="block-xs"><i class="fa fa-sort-amount-asc"></i> Sort by:</label> </span> 
 																	<select class="selectpicker" id="sort">
@@ -304,7 +369,7 @@ function listPage(data){
 				<div class="container">
 					<div class="trip-guide-wrapper">
 						<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
-							<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center" id="gridSpot">
+							<div class="GridLex-grid-noGutter-equalHeight " id="gridSpot">
 								
 								<!-- 장소 리스트 추가 -->
 								

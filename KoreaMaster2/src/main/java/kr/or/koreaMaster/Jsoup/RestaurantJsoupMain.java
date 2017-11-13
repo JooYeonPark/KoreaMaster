@@ -54,9 +54,12 @@ public class RestaurantJsoupMain {
 				
 				if(restaurant != null) {
 					Restaurant tmp = restaurantDao.readByCityNoName(restaurant.getName(), restaurant.getCityNo());
+					
 					if(tmp == null) {
-						restaurantDao.create(restaurant);
-						logger.info(restaurant.getNo());
+						if(restaurant.getLatitude() != 0) {
+							restaurantDao.create(restaurant);
+//							logger.info(restaurant.getNo());
+						}
 					}else {
 						restaurantDao.update(restaurant);
 					}
