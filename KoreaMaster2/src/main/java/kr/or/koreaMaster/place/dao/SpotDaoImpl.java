@@ -56,11 +56,14 @@ public class SpotDaoImpl implements SpotDao {
 	}
 
 	@Override
-	public List<Spot> listPage(int page, int themeNo, String sort) {
+	public List<Spot> listPage(int page, int themeNo, String sort, List<Integer> cityNo ) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", page);
 		map.put("themeNo", themeNo);
 		map.put("sort", sort);
+		map.put("sort", sort);
+		map.put("cityNo", cityNo);
+		
 		return sqlSession.selectList(NAMESPACE+".listPage", map);
 	}
 
@@ -73,8 +76,10 @@ public class SpotDaoImpl implements SpotDao {
 	}
 
 	@Override
-	public int maxPage() {
-		return sqlSession.selectOne(NAMESPACE+".maxPage");
+	public int maxPage(List<Integer> cityNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cityNo", cityNo);
+		return sqlSession.selectOne(NAMESPACE+".maxPage", map);
 	}
 	
 }

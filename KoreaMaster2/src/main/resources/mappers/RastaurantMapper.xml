@@ -84,7 +84,16 @@
 				   RESTAURANT_LATITUDE ,
 				   RESTAURANT_LONGITUDE ,
 				   RESTAURANT_USE_NUM 
-			  FROM RESTAURANT)
+			  FROM RESTAURANT
+			  <where>
+			  <if test="cityNo.size() != 0">
+			  city_no in
+			  <foreach item="value" index="index" collection="cityNo" open="(" separator="," close=")">
+			        #{value}
+			  </foreach>
+			  </if>
+			  </where>
+			  )
 		WHERE request_page = #{page}
 		<if test="sort.equals('useNum')">
 		order by  RESTAURANT_USE_NUM
@@ -171,9 +180,17 @@
 		WHERE RESTAURANT_NO = #{value}
 	</delete>
 	
-	<select id="maxPage" resultType="int">
+	<select id="maxPage" parameterType="map" resultType="int">
 	SELECT Max(CEIL(ROWNUM / 16))
 	FROM Restaurant
+	<where>
+	  <if test="cityNo.size() != 0">
+	  city_no in
+	  <foreach item="name" index="index" collection="cityNo" open="(" separator="," close=")">
+	        #{name}
+	  </foreach>
+	  </if>
+	</where>
 	</select>
 
 </mapper>

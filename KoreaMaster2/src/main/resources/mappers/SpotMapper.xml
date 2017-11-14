@@ -79,9 +79,18 @@
 	            	   spot_theme.theme_no
 			     from spot inner join spot_theme
 			     on spot.spot_no = spot_theme.SPOT_NO
-			     <if test="themeNo != 0">
-			     where spot_theme.THEME_NO = #{themeNo}
-			     </if>
+			      <where>
+			       <if test="themeNo != 0">
+			     	 and spot_theme.THEME_NO = #{themeNo}
+			     	</if>
+			     	
+					  <if test="cityNo.size() != 0">
+					 	and city_no in
+					 	 <foreach item="value" index="index" collection="cityNo" open="(" separator="," close=")">
+					        #{value}
+					  </foreach>
+					  </if>
+				  </where>
 	            )
 		where  request_page = #{page}
 		<if test="sort.equals('useNum')">
@@ -160,9 +169,17 @@
 		ORDER BY spot_use_num
 	</select>
 	
-	<select id="maxPage" resultType="int">
+	<select id="maxPage" parameterType="map" resultType="int">
 	SELECT Max(CEIL(ROWNUM / 16))
 	FROM spot
+	<where>
+	  <if test="cityNo.size() != 0">
+	  city_no in
+	  <foreach item="name" index="index" collection="cityNo" open="(" separator="," close=")">
+	        #{name}
+	  </foreach>
+	  </if>
+	</where>
 	</select>
 	
 	<update id="update" parameterType="Spot">
