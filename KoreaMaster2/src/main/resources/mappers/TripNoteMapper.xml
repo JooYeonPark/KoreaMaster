@@ -5,4 +5,10 @@
  
  <mapper namespace="mapper.TripNoteMapper">
  	
+ 	
+ <select id="getTripNote" parameterType="String" resultType="String">
+ 	SELECT trip.trip_name
+ 	FROM trip, trip_note
+ 	WHERE trip.trip_no = trip_note.trip_no AND trip_note.users_id = #{value}
+ </select>
  </mapper>
