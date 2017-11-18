@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.or.koreaMaster.user.model.NoteList;
 import kr.or.koreaMaster.user.model.TripNote;
+import kr.or.koreaMaster.user.model.TripNoteDetail;
 
 public class TripNoteListRepository {
 	private String namespace = "mapper.TripNoteMapper";
@@ -34,6 +35,18 @@ public class TripNoteListRepository {
 		SqlSession sess = getSqlSessionFactory().openSession();
 		try {
 			return (ArrayList)sess.selectList(namespace + ".getTripNote", id);
+		} finally {
+			sess.close();
+		}
+	}
+	
+	public ArrayList<TripNoteDetail> noteDetail(String id, int noteNo) {
+		SqlSession sess = getSqlSessionFactory().openSession();
+		HashMap map = new HashMap();
+		map.put("id", id);
+		map.put("noteNo", noteNo);
+		try {
+			return (ArrayList)sess.selectList(namespace + ".noteDetail", map);
 		} finally {
 			sess.close();
 		}

@@ -22,4 +22,19 @@ WHERE trip_no = #{noteNo} and users_id = #{id}
 DELETE from trip
 WHERE trip_no = #{noteNo}
  </select>
+ 
+ <select id="noteDetail" parameterType="hashmap" resultType="noteDetail">
+  SELECT route.route_no, route.START_TIME, route.END_TIME, spot.spot_no, spot.spot_name, spot.spot_detail, spot.spot_picture
+  FROM route, spot,
+      ( SELECT small_trip.route_no as route_no
+        FROM small_trip, 
+        ( SELECT trip.trip_no as trip_no, trip.trip_start_date, trip.trip_end_date
+          FROM trip
+          WHERE trip.trip_no IN ( SELECT trip_note.trip_no
+          FROM trip_note
+          WHERE trip_note.users_id = #{id} and trip_note.trip_no = #{noteNo} ) ) bb
+          WHERE small_trip.trip_no IN bb.trip_no
+          ORDER BY small_trip.day_no ) aa
+  WHERE route.route_no IN aa.route_no AND route.spot_no IN spot.spot_no
+ </select>
  </mapper>

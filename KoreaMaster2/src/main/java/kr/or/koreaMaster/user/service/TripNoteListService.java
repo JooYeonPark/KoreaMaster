@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kr.or.koreaMaster.user.model.NoteList;
 import kr.or.koreaMaster.user.model.TripNote;
+import kr.or.koreaMaster.user.model.TripNoteDetail;
 import kr.or.koreaMaster.user.session.TripNoteListRepository;
 
 public class TripNoteListService {
@@ -23,5 +24,9 @@ public class TripNoteListService {
 	
 	public int delTripNote(String id, int noteNo) {
 		return noteRepo.delTripNote(id, noteNo);
+	}
+	
+	public ArrayList<TripNoteDetail> noteDetail(String id, int noteNo) {
+		return noteRepo.noteDetail(id, noteNo);
 	}
 }

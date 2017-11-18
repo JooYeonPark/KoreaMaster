@@ -257,15 +257,9 @@
 														
 													</div>
 													
-													
-													<div class="GridLex-col-1_sm-4_xs-4_xss-4">
-														<input type="hidden" class="getNoteNo" value="<%= trip.getTripNoteNo() %>"/>
-													</div>
-													
-													
 													<div class="GridLex-col-4_sm-8_xs-8_xss-8">
 														<div class="GridLex-inner text-right">
-															<a href="#" class="btn btn-primary btn-sm" class="viewOne">View</a>
+															<a href="/note?cmd=my-detail&usersId=user&tripNo=<%= trip.getTripNoteNo() %>" class="btn btn-primary btn-sm" class="viewOne">View</a>
 															<a href="/note?cmd=my-delete&usersId=user&tripNo=<%= trip.getTripNoteNo() %>" class="btn btn-danger btn-sm" class="deleteOne" >Delete</a>
 														</div>
 													</div>
