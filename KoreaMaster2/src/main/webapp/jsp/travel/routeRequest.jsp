@@ -354,7 +354,7 @@ function daumPostcode() {
 								<%-- start form --%>
 								<div class="form">
 									<div class="create-tour-inner">
-										<input type="hidden" name="departures" value="" id="hiddenDepart"></form>
+										<input type="hidden" name="departures" value="" id="hiddenDepart">
 									
 										<div class="row">
 										

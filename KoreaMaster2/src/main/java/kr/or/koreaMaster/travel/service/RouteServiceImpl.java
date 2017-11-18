@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.junit.Test;
 
 import kr.or.koreaMaster.Jsoup.GeocoderLatLong;
 import kr.or.koreaMaster.common.db.DaoFactory;
@@ -20,8 +21,11 @@ import kr.or.koreaMaster.spotTheme.dao.SpotThemeDAO;
 import kr.or.koreaMaster.spotTheme.dao.SpotThemeDAOImpl;
 import kr.or.koreaMaster.spotTheme.domain.SpotThemeJoin;
 import kr.or.koreaMaster.theme.session.MyTravelTypeRepository;
+import kr.or.koreaMaster.travel.dao.RouteDAO;
+import kr.or.koreaMaster.travel.dao.RouteDAOImpl;
 import kr.or.koreaMaster.travel.dao.TripDAO;
 import kr.or.koreaMaster.travel.dao.TripDAOImpl;
+import kr.or.koreaMaster.travel.domain.Route;
 import kr.or.koreaMaster.travel.domain.RouteInfo;
 import kr.or.koreaMaster.travel.util.RouteProcess;
 import kr.or.koreaMaster.travel.util.SpotsProcess;
@@ -29,6 +33,8 @@ import kr.or.koreaMaster.travel.util.SpotsProcess;
 public class RouteServiceImpl implements RouteService {
 	private DaoFactory factory;
 	Logger logger = Logger.getLogger(RouteServiceImpl.class);
+	TripDAO tripDAO;
+	RouteDAO routeDAO;
 
 	/** 생성자 */
 	public RouteServiceImpl() {
@@ -58,13 +64,6 @@ public class RouteServiceImpl implements RouteService {
 		if (theme == null || theme.equalsIgnoreCase(null) || theme.trim() == "") {
 			MyTravelTypeRepository rep = new MyTravelTypeRepository();
 			perThemes = rep.getNoById(map.get("usersId"));
-
-			// // !!!!현희가 완성하면 넣기!!!!!
-			// // 더미데이터 {6,11,12,7}
-			// perThemes.add(6);
-			// perThemes.add(11);
-			// perThemes.add(12);
-			// perThemes.add(7);
 		} else {
 			String[] themes = theme.split(",");
 			perThemes.add(Integer.parseInt(themes[0]));
@@ -141,6 +140,73 @@ public class RouteServiceImpl implements RouteService {
 		route.put("days", date);
 
 		return route;
+	}
+
+	@Override
+	/** TripList 를 위한 모든 RouteInfo 반환 */
+	public List<RouteInfo> routeInfoListAll() {
+		tripDAO = (TripDAO) factory.getDao(TripDAOImpl.class);
+		routeDAO = (RouteDAO) factory.getDao(RouteDAOImpl.class);
+
+		List<RouteInfo> list = tripDAO.getTrip();
+		List<RouteInfo> result = new ArrayList<RouteInfo>();
+
+		for (RouteInfo routeInfo : list) {
+			RouteInfo rsInfo = new RouteInfo();
+			rsInfo.setTripNo(routeInfo.getTripNo());
+			rsInfo.setDayNo(routeInfo.getDayNo());
+
+			Route route = routeDAO.read(routeInfo.getRouteNo());
+			rsInfo.setSpotNo(route.getSpotNo());
+
+			int next_no = route.getnextRouteNo();
+			rsInfo.setNextRouteNo(next_no);
+
+			result.add(rsInfo);
+
+			while (next_no != 0) {
+				route = routeDAO.read(next_no);
+				if (route != null) {
+
+					rsInfo = new RouteInfo();
+					rsInfo.setTripNo(routeInfo.getTripNo());
+					rsInfo.setDayNo(routeInfo.getDayNo());
+					rsInfo.setRouteNo(route.getNo());
+					rsInfo.setSpotNo(route.getSpotNo());
+					rsInfo.setNextRouteNo(route.getnextRouteNo());
+
+					next_no = route.getnextRouteNo();
+
+					result.add(rsInfo);
+				}
+			} // end while
+		} // end for
+
+		// routeNo에 따른 spot 정보들 저장
+		for (RouteInfo routeInfo : result) {
+			
+			//장소 & 도시에 관한 정보를 불러옴
+			RouteInfo rsInfo = tripDAO.getSpot(routeInfo.getSpotNo());
+			if (rsInfo.getSigunName() != null) {
+				routeInfo.setSigunName(rsInfo.getSigunName());
+			} else if (rsInfo.getGuName() != null) {
+				routeInfo.setGuName(rsInfo.getGuName());
+			}
+
+			//다시 저장
+			routeInfo.setTheme(rsInfo.getTheme());
+			routeInfo.setName(rsInfo.getName());
+			routeInfo.setDetail(rsInfo.getDetail());
+			routeInfo.setAddressDetail(rsInfo.getAddressDetail());
+			routeInfo.setOperatingHour(rsInfo.getOperatingHour());
+			routeInfo.setClosedDate(rsInfo.getClosedDate());
+			routeInfo.setPhone(rsInfo.getPhone());
+			routeInfo.setFare(rsInfo.getFare());
+			routeInfo.setHomepage(rsInfo.getHomepage());
+
+		}//end for
+
+		return result;
 	}
 
 }
