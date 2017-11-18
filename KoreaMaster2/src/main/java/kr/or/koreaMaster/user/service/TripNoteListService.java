@@ -2,6 +2,7 @@ package kr.or.koreaMaster.user.service;
 
 import java.util.ArrayList;
 
+import kr.or.koreaMaster.user.model.NoteList;
 import kr.or.koreaMaster.user.model.TripNote;
 import kr.or.koreaMaster.user.session.TripNoteListRepository;
 
@@ -16,7 +17,7 @@ public class TripNoteListService {
 		return service;
 	}
 	
-	public ArrayList<String> getTripNote(String id) {
+	public ArrayList<NoteList> getTripNote(String id) {
 		return noteRepo.getTripNote(id);
 	}
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import kr.or.koreaMaster.user.model.NoteList;
 import kr.or.koreaMaster.user.model.TripNote;
 
 public class TripNoteListRepository {
@@ -29,7 +30,7 @@ public class TripNoteListRepository {
 	
 	
 	// 사용자 로그인
-	public ArrayList<String> getTripNote(String id) {
+	public ArrayList<NoteList> getTripNote(String id) {
 		SqlSession sess = getSqlSessionFactory().openSession();
 		try {
 			return (ArrayList)sess.selectList(namespace + ".getTripNote", id);

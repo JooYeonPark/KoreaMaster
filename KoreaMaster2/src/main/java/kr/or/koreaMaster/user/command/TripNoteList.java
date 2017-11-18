@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.koreaMaster.user.model.NoteList;
 import kr.or.koreaMaster.user.model.TripNote;
 import kr.or.koreaMaster.user.model.Users;
 import kr.or.koreaMaster.user.service.TripNoteListService;
@@ -25,8 +26,17 @@ public class TripNoteList implements TripNoteCommand{
 		
 		String id = request.getParameter("usersId");
 		
-		ArrayList<String> tripName = TripNoteListService.getInstance().getTripNote(id);
-		session.setAttribute("tripName", tripName);
+//		ArrayList<NoteList> tripName = TripNoteListService.getInstance().getTripNote(id);
+//		request.setAttribute("tripName", tripName);
+		
+		ArrayList<String> tripName = new ArrayList<String>();
+		
+		for (int i = 0; i < 10; i++) {
+			tripName.add("trip_note_name" + i + i + i + i + i + i + i);
+		}
+		
+		
+		request.setAttribute("tripName", tripName);
 		
 		return next;
 	}
