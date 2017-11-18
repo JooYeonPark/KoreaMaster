@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.koreaMaster.user.command.TripNoteCommand;
 import kr.or.koreaMaster.user.command.TripNoteCommandException;
 import kr.or.koreaMaster.user.command.TripNoteCommandNull;
+import kr.or.koreaMaster.user.command.TripNoteDeleteCommand;
+import kr.or.koreaMaster.user.command.TripNoteList;
 
 
 
@@ -32,6 +34,8 @@ public class TripNoteControl extends HttpServlet {
 
 		// 메인
 		commandMap.put("my-page", new TripNoteCommandNull("MyPage.jsp") );
+		commandMap.put("my-tripNote", new TripNoteList("MyTripNote.jsp") );
+		commandMap.put("my-delete", new TripNoteDeleteCommand("MyTripNote.jsp"));
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

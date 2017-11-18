@@ -50,6 +50,12 @@
                     <ul>
                         <li><a href="/jsp/theme/MyTravelType.jsp">성향테스트</a></li>
 					</ul>
+				</li>
+				
+				<li><a href="">나의여행노트</a>
+                    <ul>
+                        <li><a href="/note?cmd=my-tripNote&usersId=user">나의 여행노트</a></li>
+					</ul>
 				</li>	
 				
 				<!-- 로그인 했을 경우에만 마이페이지 보여주기 -->

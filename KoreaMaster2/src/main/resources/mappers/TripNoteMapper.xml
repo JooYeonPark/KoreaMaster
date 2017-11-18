@@ -5,4 +5,21 @@
  
  <mapper namespace="mapper.TripNoteMapper">
  	
+ 	
+ <select id="getTripNote" parameterType="String" resultType="noteList">
+SELECT trip.trip_name tripName, trip_note.trip_note_no tripNoteNo, (trip_note.trip_note_end_date - trip_note.trip_note_start_date + 1) as day,
+        (trip_note.trip_note_end_date - trip_note.trip_note_start_date) as night
+FROM trip, trip_note
+WHERE trip.trip_no = trip_note.trip_no AND trip_note.users_id = #{value}
+ </select>
+ 
+ <select id="delTripNote" parameterType="hashmap" resultType="int">
+DELETE from trip_note
+WHERE trip_no = #{noteNo} and users_id = #{id}
+ </select>
+ 
+ <select id="delTrip" parameterType="hashmap" resultType="int">
+DELETE from trip
+WHERE trip_no = #{noteNo}
+ </select>
  </mapper>
