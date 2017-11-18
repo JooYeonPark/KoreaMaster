@@ -11,4 +11,7 @@ public interface RouteService {
 	
 	/** TripList 를 위한 모든 RouteInfo 반환 */
 	public List<RouteInfo> routeInfoListAll();
+
+	/** TripNo과 일치하는 RouteInfo 반환 */
+	public List<RouteInfo> routeByTripNo(int no);
 }

@@ -24,10 +24,6 @@ public class RouteInfo {
 	/** 생성자 */
 	public RouteInfo() {}
 
-
-	
-
-
 	public RouteInfo(int tripNo, int routeNo, int nextRouteNo, int dayNo, int spotNo, int cityNo, String sigunName,
 			String guName, int themeNo, String themeName, String spotName, String tripName, String detail,
 			String addressDetail, String operatingHour, String closedDate, String phone, String fare, String homepage) {

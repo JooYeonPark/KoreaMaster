@@ -66,6 +66,16 @@
 	WHERE  t.trip_no = s.trip_no
 </select>
 
+<select id="getByTripNo" parameterType="int" resultType="RouteInfo">
+	SELECT t.trip_no 	AS	"tripNo", 
+	       s.route_no	AS	"routeNo",
+	       s.day_no		AS  "dayNo"
+	FROM   trip t, 
+	       small_trip s 
+	WHERE  t.trip_no = s.trip_no
+			and t.trip_no = #{value}
+</select>
+
 <!-- 테이블에 있는 모든 route의 spot 정보 반환 -->
 <select id="getSpot" parameterType="int" resultType="RouteInfo">
 	SELECT spot.spot_no			AS	"spotNo", 
@@ -86,51 +96,78 @@
 </select>
 
 <select id="listPage" parameterType="map" resultType="RouteInfo">
-	SELECT trip_no 	AS	"tripNo", 
-			trip_name	AS	"tripName",
-	       city_no	AS	"cityNo",
-	       theme_no	AS	"themeNo",
-	FROM   (SELECT CEIL(ROWNUM / 16) request_page,
-					 t.trip_no 	 AS	"tripNo",
-					 t.trip_name AS	"tripName", 
-		             r.theme_no	 AS	"themeNo",
-		             spot.city_no AS	"cityNo"
-			FROM   trip t, 
+
+	SELECT 		trip_no 	,
+			trip_name,
+             route_no	,
+             day_no,
+             theme_no,
+             city_no
+	FROM  ( SELECT CEIL(ROWNUM / 16) request_page,
+                    t.trip_no 	,
+                    t.trip_name,
+		             s.route_no	,
+		             s.day_no,
+		             r.theme_no,
+		             spot.city_no	
+              
+              FROM 	 trip t, 
 		             small_trip s, 
 		             route_theme r,
 		             route, spot
-			<where>
-			 		t.trip_no = s.trip_no
-		            and r.trip_no = t.trip_no
-		            and s.route_no = route.route_no
-		            and route.spot_no = spot.spot_no
-		            <if test="themeNo != 0">
-		            and r.theme_no = #{themeNo}
-		            </if>
-		            <if test="cityNo.size()!=0">
-		            and spot.city_no in
-		            	<foreach item="value" index="index" collection="cityNo" open="(" separator="," close=")">
-		            	 #{value}
-		            	</foreach>
-		            </if>
-			</where> 
-		    )
-	WHERE request_page = #{page}
+             <where>
+			 		  t.trip_no = s.trip_no
+			            and r.trip_no = t.trip_no
+			            and s.route_no = route.route_no
+			            and route.spot_no = spot.spot_no
+			            
+				        <if test="themeNo != 0">
+			            and r.theme_no = #{themeNo}
+			            </if>
+			            
+			             <if test="cityNo.size() != 0">
+						 	and city_no in
+						 	 <foreach item="value" index="index" collection="cityNo" open="(" separator="," close=")">
+						        #{value}
+						  </foreach>
+						  </if>
+            </where>
+            )
+            where request_page = #{page} 
+            
+            
+            
 </select>
 
 <select id="maxPage" parameterType="map" resultType="int">
-	SELECT Max(CEIL(ROWNUM / 16))
-	FROM   trip t, 
-	       small_trip s 
-	<where>
-	t.trip_no = s.trip_no
-	<if test="cityNo.size!=0">
-		city_no in
-	  <foreach item="name" index="index" collection="cityNo" open="(" separator="," close=")">
-	        #{name}
-	  </foreach>
-	</if>
-	</where> 
+
+	 SELECT Max(CEIL(ROWNUM / 16))
+		FROM  ( SELECT CEIL(ROWNUM / 16) request_page,
+	                             t.trip_no 	,
+	                             t.trip_name,
+					             s.route_no	,
+					             s.day_no,
+					             r.theme_no,
+					             spot.city_no
+					              FROM
+					              trip t, 
+					             small_trip s, 
+					             route_theme r,
+					             route, spot
+					             
+					 <where>
+					 		    t.trip_no = s.trip_no
+					            and r.trip_no = t.trip_no
+					            and s.route_no = route.route_no
+					            and route.spot_no = spot.spot_no
+					            <if test="cityNo.size!=0">
+									and spot.city_no in
+								  <foreach item="name" index="index" collection="cityNo" open="(" separator="," close=")">
+								        #{name}
+								  </foreach>
+								</if>
+					  </where>
+	            )
 </select>
 
 </mapper>

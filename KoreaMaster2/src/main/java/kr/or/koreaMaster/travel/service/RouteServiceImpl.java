@@ -184,8 +184,8 @@ public class RouteServiceImpl implements RouteService {
 
 		// routeNo에 따른 spot 정보들 저장
 		for (RouteInfo routeInfo : result) {
-			
-			//장소 & 도시에 관한 정보를 불러옴
+
+			// 장소 & 도시에 관한 정보를 불러옴
 			RouteInfo rsInfo = tripDAO.getSpot(routeInfo.getSpotNo());
 			if (rsInfo.getSigunName() != null) {
 				routeInfo.setSigunName(rsInfo.getSigunName());
@@ -193,8 +193,8 @@ public class RouteServiceImpl implements RouteService {
 				routeInfo.setGuName(rsInfo.getGuName());
 			}
 
-			//다시 저장
-			routeInfo.setTheme(rsInfo.getTheme());
+			// 다시 저장
+			routeInfo.setThemeNo(rsInfo.getThemeNo());
 			routeInfo.setName(rsInfo.getName());
 			routeInfo.setDetail(rsInfo.getDetail());
 			routeInfo.setAddressDetail(rsInfo.getAddressDetail());
@@ -204,9 +204,80 @@ public class RouteServiceImpl implements RouteService {
 			routeInfo.setFare(rsInfo.getFare());
 			routeInfo.setHomepage(rsInfo.getHomepage());
 
-		}//end for
+		} // end for
 
 		return result;
 	}
 
+	@Override
+	/** TripNo과 일치하는 RouteInfo 반환 */
+	public List<RouteInfo> routeByTripNo(int no) {
+		tripDAO = (TripDAO) factory.getDao(TripDAOImpl.class);
+		routeDAO = (RouteDAO) factory.getDao(RouteDAOImpl.class);
+
+		// 최종 결과값을 저장하는 변수
+		List<RouteInfo> result = new ArrayList<RouteInfo>();
+
+		// list에 저장하기 위해 임시로 저장하는 변수
+		RouteInfo tmpRoute = new RouteInfo();
+		// tripNo으로 routeNo과 tripNo을 반환한 뒤 routeInfo에 저장
+		RouteInfo routeTripNo = tripDAO.getByTripNo(no);
+
+		tmpRoute.setTripNo(routeTripNo.getTripNo());
+		tmpRoute.setDayNo(routeTripNo.getDayNo());
+
+		// tripNo에 해당하는 출발 장소 상세 route정보들 저장
+		Route route = routeDAO.read(routeTripNo.getRouteNo());
+		tmpRoute.setSpotNo(route.getSpotNo());
+
+		// 현재 tripNo에 저장되어있는 routeNo은 시작 routeNo이기 때문에
+		// 전체 일정을 알기 위해서는 while문을 돌려서 구해야한다
+		int next_no = route.getnextRouteNo();
+		tmpRoute.setNextRouteNo(next_no);
+
+		// 출발 장소 일정에 저장
+		result.add(tmpRoute);
+
+		while (next_no != 0) {
+			// 다음 장소들을 route에 저장
+			route = routeDAO.read(next_no);
+			if (route != null) {
+				tmpRoute = new RouteInfo();
+				tmpRoute.setTripNo(routeTripNo.getTripNo());
+				tmpRoute.setDayNo(routeTripNo.getDayNo());
+				tmpRoute.setRouteNo(route.getNo());
+				tmpRoute.setSpotNo(route.getSpotNo());
+				tmpRoute.setNextRouteNo(route.getnextRouteNo());
+
+				next_no = route.getnextRouteNo();
+
+				result.add(tmpRoute);
+			}
+		} // end while
+
+		// routeNo에 따른 spot 정보들 저장
+		for (RouteInfo routeInfo : result) {
+
+			// 장소 & 도시에 관한 정보를 불러옴
+			RouteInfo rsInfo = tripDAO.getSpot(routeInfo.getSpotNo());
+			if (rsInfo.getSigunName() != null) {
+				routeInfo.setSigunName(rsInfo.getSigunName());
+			} else if (rsInfo.getGuName() != null) {
+				routeInfo.setGuName(rsInfo.getGuName());
+			}
+
+			// 다시 저장
+			routeInfo.setThemeNo(rsInfo.getThemeNo());
+			routeInfo.setName(rsInfo.getName());
+			routeInfo.setDetail(rsInfo.getDetail());
+			routeInfo.setAddressDetail(rsInfo.getAddressDetail());
+			routeInfo.setOperatingHour(rsInfo.getOperatingHour());
+			routeInfo.setClosedDate(rsInfo.getClosedDate());
+			routeInfo.setPhone(rsInfo.getPhone());
+			routeInfo.setFare(rsInfo.getFare());
+			routeInfo.setHomepage(rsInfo.getHomepage());
+		}
+		return result;
+
+	}
 }

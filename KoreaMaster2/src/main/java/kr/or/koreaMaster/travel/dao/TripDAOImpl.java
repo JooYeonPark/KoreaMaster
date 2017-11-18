@@ -1,6 +1,8 @@
 package kr.or.koreaMaster.travel.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -52,8 +54,30 @@ public class TripDAOImpl implements TripDAO {
 	}
 
 	@Override
-	public List<RouteInfo> getSpot() {
-		return sqlSession.selectList(NAMESPACE+".getSpot");
+	public RouteInfo getSpot(int no) {
+		return sqlSession.selectOne(NAMESPACE+".getSpot", no);
+	}
+	
+	@Override
+	public List<RouteInfo> listPage(int page, int themeNo, List<Integer> cityNo){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("page", page);
+		map.put("themeNo", themeNo);
+		map.put("cityNo", cityNo);
+		
+		return sqlSession.selectList(NAMESPACE+".listPage", map);
+	}
+	
+	@Override
+	public int maxPage(List<Integer> cityNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cityNo", cityNo);
+		return sqlSession.selectOne(NAMESPACE+".maxPage", map);
+	}
+	
+	@Override
+	public RouteInfo getByTripNo(int no) {
+		return sqlSession.selectOne(NAMESPACE+".getByTripNo", no);
 	}
 
 }
