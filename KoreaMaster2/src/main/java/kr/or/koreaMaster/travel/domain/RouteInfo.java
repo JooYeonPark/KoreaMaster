@@ -3,10 +3,16 @@ package kr.or.koreaMaster.travel.domain;
 public class RouteInfo {
 	private int tripNo;
 	private int routeNo;
+	private int nextRouteNo;
+	private int dayNo;
+	private int spotNo;
+	private int cityNo;
 	private String sigunName;
 	private String guName;
-	private String theme;
-	private String name;
+	private int themeNo;
+	private String themeName;
+	private String spotName;
+	private String tripName;
 	private String detail;
 	private String addressDetail;
 	private String operatingHour;
@@ -17,16 +23,27 @@ public class RouteInfo {
 	
 	/** 생성자 */
 	public RouteInfo() {}
+
+
 	
-	public RouteInfo(int tripNo, int routeNo, String sigunName, String guName, String theme, String name, String detail,
+
+
+	public RouteInfo(int tripNo, int routeNo, int nextRouteNo, int dayNo, int spotNo, int cityNo, String sigunName,
+			String guName, int themeNo, String themeName, String spotName, String tripName, String detail,
 			String addressDetail, String operatingHour, String closedDate, String phone, String fare, String homepage) {
 		super();
 		this.tripNo = tripNo;
 		this.routeNo = routeNo;
+		this.nextRouteNo = nextRouteNo;
+		this.dayNo = dayNo;
+		this.spotNo = spotNo;
+		this.cityNo = cityNo;
 		this.sigunName = sigunName;
 		this.guName = guName;
-		this.theme = theme;
-		this.name = name;
+		this.themeNo = themeNo;
+		this.themeName = themeName;
+		this.spotName = spotName;
+		this.tripName = tripName;
 		this.detail = detail;
 		this.addressDetail = addressDetail;
 		this.operatingHour = operatingHour;
@@ -35,6 +52,7 @@ public class RouteInfo {
 		this.fare = fare;
 		this.homepage = homepage;
 	}
+
 
 
 
@@ -73,20 +91,45 @@ public class RouteInfo {
 		this.guName = guName;
 	}
 
-	public String getTheme() {
-		return theme;
+	
+	public int getThemeNo() {
+		return themeNo;
 	}
 
-	public void setTheme(String theme) {
-		this.theme = theme;
+
+
+
+
+	public void setThemeNo(int themeNo) {
+		this.themeNo = themeNo;
 	}
+
+
+
+
+
+	public String getThemeName() {
+		return themeName;
+	}
+
+
+
+
+
+	public void setThemeName(String themeName) {
+		this.themeName = themeName;
+	}
+
+
+
+
 
 	public String getName() {
-		return name;
+		return spotName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.spotName = name;
 	}
 
 	public String getDetail() {
@@ -145,12 +188,72 @@ public class RouteInfo {
 		this.homepage = homepage;
 	}
 
+	public int getDayNo() {
+		return dayNo;
+	}
+
+	public void setDayNo(int dayNo) {
+		this.dayNo = dayNo;
+	}
+
+	
+	public int getSpotNo() {
+		return spotNo;
+	}
+
+	public void setSpotNo(int spotNo) {
+		this.spotNo = spotNo;
+	}
+
+
+	public int getNextRouteNo() {
+		return nextRouteNo;
+	}
+
+
+	public void setNextRouteNo(int nextRouteNo) {
+		this.nextRouteNo = nextRouteNo;
+	}
+
+	public int getCityNo() {
+		return cityNo;
+	}
+
+	public void setCityNo(int cityNo) {
+		this.cityNo = cityNo;
+	}
+
+	public String getSpotName() {
+		return spotName;
+	}
+
+
+	public void setSpotName(String spotName) {
+		this.spotName = spotName;
+	}
+
+
+	public String getTripName() {
+		return tripName;
+	}
+
+
+	public void setTripName(String tripName) {
+		this.tripName = tripName;
+	}
+
+
+
+
+
 	@Override
 	public String toString() {
-		return "RouteInfo [tripNo=" + tripNo + ", routeNo=" + routeNo + ", sigunName=" + sigunName + ", guName="
-				+ guName + ", theme=" + theme + ", name=" + name + ", detail=" + detail + ", addressDetail="
-				+ addressDetail + ", operatingHour=" + operatingHour + ", closedDate=" + closedDate + ", phone=" + phone
-				+ ", fare=" + fare + ", homepage=" + homepage + "]";
+		return "RouteInfo [tripNo=" + tripNo + ", routeNo=" + routeNo + ", nextRouteNo=" + nextRouteNo + ", dayNo="
+				+ dayNo + ", spotNo=" + spotNo + ", cityNo=" + cityNo + ", sigunName=" + sigunName + ", guName="
+				+ guName + ", themeNo=" + themeNo + ", themeName=" + themeName + ", spotName=" + spotName
+				+ ", tripName=" + tripName + ", detail=" + detail + ", addressDetail=" + addressDetail
+				+ ", operatingHour=" + operatingHour + ", closedDate=" + closedDate + ", phone=" + phone + ", fare="
+				+ fare + ", homepage=" + homepage + "]";
 	}
 
 	
