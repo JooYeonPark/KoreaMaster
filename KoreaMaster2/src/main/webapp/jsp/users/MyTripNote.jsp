@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
+<%@page import="kr.or.koreaMaster.user.model.NoteList"%>
  
- <% ArrayList<String> tripName = (ArrayList<String>)request.getAttribute("tripName");%>
+ <% ArrayList<NoteList> tripName = (ArrayList<NoteList>)request.getAttribute("tripName");%>
 <!doctype html>
 <html lang="en">
 
@@ -225,20 +226,20 @@
 							<div class="dashboard-wrapper">
 							
 								<h4 class="section-title">My Trip</h4>
-								<p class="mmt-15 mb-20"> </p>
+								<p class="mmt-15 mb-20"> This page shows you a "My Trip Note". </p>
 
 								<div class="trip-list-wrapper no-bb-last">
 							
 							
 									<!-- List Start -->
 									
-									<% for(String trip : tripName) {%>
+									<% for(NoteList trip : tripName) {%>
 
 									<div class="trip-list-item">
 									
 										<div class="image-absolute">
 											<div class="image image-object-fit image-object-fit-cover">
-												
+												<img src="/images/baggage.png" alt="image" >
 											</div>
 										</div>
 										<div class="content">
@@ -250,16 +251,22 @@
 													<div class="GridLex-col-7_sm-12_xs-12_xss-12">
 														
 														<div class="GridLex-inner">
-															<h6><%= trip %></h6>
-															<span class="font-italic font14">5 days 4 nights</span>
+															<h6><%= trip.getTripName() %></h6>
+															<span class="font-italic font14"><%= trip.getDay() %> days <%=trip.getNight() %> nights</span>
 														</div>
 														
 													</div>
 													
+													
+													<div class="GridLex-col-1_sm-4_xs-4_xss-4">
+														<input type="hidden" class="getNoteNo" value="<%= trip.getTripNoteNo() %>"/>
+													</div>
+													
+													
 													<div class="GridLex-col-4_sm-8_xs-8_xss-8">
 														<div class="GridLex-inner text-right">
-															<a href="#" class="btn btn-primary btn-sm">View</a>
-															<a href="#" class="btn btn-danger btn-sm">Delete</a>
+															<a href="#" class="btn btn-primary btn-sm" class="viewOne">View</a>
+															<a href="/note?cmd=my-delete&usersId=user&tripNo=<%= trip.getTripNoteNo() %>" class="btn btn-danger btn-sm" class="deleteOne" >Delete</a>
 														</div>
 													</div>
 													
@@ -276,41 +283,45 @@
 								
 								</div>
 								
-								<div class="pager-wrappper text-left clearfix bt mt-0 pt-20">
-			
-									<div class="pager-innner">
-
-											<div class="clearfix">
-												Showing reslut 1 to 15 from 248 
-											</div>
-											
-											<div class="clearfix">
-												<nav>
-													<ul class="pagination">
-														<li>
-															<a href="#" aria-label="Previous">
-																<span aria-hidden="true">&laquo;</span>
-															</a>
-														</li>
-														<li class="active"><a href="#">1</a></li>
-														<li><a href="#">2</a></li>
-														<li><a href="#">3</a></li>
-														<li><span>...</span></li>
-														<li><a href="#">11</a></li>
-														<li><a href="#">12</a></li>
-														<li><a href="#">13</a></li>
-														<li>
-															<a href="#" aria-label="Next">
-																<span aria-hidden="true">&raquo;</span>
-															</a>
-														</li>
-													</ul>
-												</nav>
-											</div>
-										
-									</div>
+									<!-- start page  -->
 									
-								</div>
+<!-- 								<div class="pager-wrappper text-left clearfix bt mt-0 pt-20"> -->
+			
+<!-- 									<div class="pager-innner"> -->
+
+<!-- 											<div class="clearfix"> -->
+<!-- 												Showing reslut 1 to 15 from 248  -->
+<!-- 											</div> -->
+											
+<!-- 											<div class="clearfix"> -->
+<!-- 												<nav> -->
+<!-- 													<ul class="pagination"> -->
+<!-- 														<li> -->
+<!-- 															<a href="#" aria-label="Previous"> -->
+<!-- 																<span aria-hidden="true">&laquo;</span> -->
+<!-- 															</a> -->
+<!-- 														</li> -->
+<!-- 														<li class="active"><a href="#">1</a></li> -->
+<!-- 														<li><a href="#">2</a></li> -->
+<!-- 														<li><a href="#">3</a></li> -->
+<!-- 														<li><span>...</span></li> -->
+<!-- 														<li><a href="#">11</a></li> -->
+<!-- 														<li><a href="#">12</a></li> -->
+<!-- 														<li><a href="#">13</a></li> -->
+<!-- 														<li> -->
+<!-- 															<a href="#" aria-label="Next"> -->
+<!-- 																<span aria-hidden="true">&raquo;</span> -->
+<!-- 															</a> -->
+<!-- 														</li> -->
+<!-- 													</ul> -->
+<!-- 												</nav> -->
+<!-- 											</div> -->
+										
+<!-- 									</div> -->
+									
+<!-- 								</div> -->
+
+								<!-- end page -->
 									
 							</div>
 							

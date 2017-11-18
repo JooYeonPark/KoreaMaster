@@ -29,7 +29,7 @@ public class TripNoteListRepository {
 	}
 	
 	
-	// 사용자 로그인
+	// 리스트 가져오기
 	public ArrayList<NoteList> getTripNote(String id) {
 		SqlSession sess = getSqlSessionFactory().openSession();
 		try {
@@ -39,4 +39,27 @@ public class TripNoteListRepository {
 		}
 	}
 	
+	// 리스트 선택 삭제
+	public int delTripNote(String id, int noteNo) {
+		SqlSession sess = getSqlSessionFactory().openSession();
+		HashMap map = new HashMap();
+		map.put("id", id);
+		map.put("noteNo", noteNo);
+		
+		try {
+			int result = sess.delete(namespace + ".delTripNote", map);
+			int result2 = sess.delete(namespace + ".delTrip", map);
+			
+			if (result > 0) {
+				sess.commit();
+			} else {
+				sess.rollback();
+			}
+
+			return result;
+		} finally {
+			sess.close();
+		}
+	}
+
 }

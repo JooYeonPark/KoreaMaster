@@ -20,4 +20,8 @@ public class TripNoteListService {
 	public ArrayList<NoteList> getTripNote(String id) {
 		return noteRepo.getTripNote(id);
 	}
+	
+	public int delTripNote(String id, int noteNo) {
+		return noteRepo.delTripNote(id, noteNo);
+	}
 }
