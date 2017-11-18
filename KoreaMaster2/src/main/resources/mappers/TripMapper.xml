@@ -59,31 +59,78 @@
 <!-- 현재 trip의 모든 list의 routeNo, tripNo반환 -->
 <select id="getTrip" resultType="RouteInfo">
 	SELECT t.trip_no 	AS	"tripNo", 
-	       s.route_no	AS	"routeNo" 
+	       s.route_no	AS	"routeNo",
+	       s.day_no		AS  "dayNo"
 	FROM   trip t, 
 	       small_trip s 
 	WHERE  t.trip_no = s.trip_no
 </select>
 
 <!-- 테이블에 있는 모든 route의 spot 정보 반환 -->
-<select id="getSpot" resultType="RouteInfo">
-	SELECT DISTINCT sigungu.sigun_name		AS	"sigunName", 
-					sigungu.gu_name			AS	"guName", 
-	                spot.spot_name			AS  "name", 
-	                spot.spot_detail		AS	"detail", 
-	                spot.spot_address_detail AS  "addressDetail", 
-	                spot.spot_operating_hour AS  "operatingHour", 
-	                spot.spot_closed_date	 AS	 "closedDate", 
-	                spot.spot_phone			 AS   "phone", 
-	                spot.spot_fare			 AS   "fare", 
-	                spot.spot_homepage		 AS   "homepage", 
-	                a.route_no 		  		 AS    "routeNo"
-	FROM   route a, 
-	       route b, 
-	       spot, 
+<select id="getSpot" parameterType="int" resultType="RouteInfo">
+	SELECT spot.spot_no			AS	"spotNo", 
+	       sigun_name			AS	"sigunName", 
+	       gu_name				AS	"guName", 
+	       spot_name			AS	"name", 
+	       spot_detail			AS	"detail", 
+	       spot_address_detail	AS	"addressDetail", 
+	       spot_operating_hour	AS	"operatingHour", 
+	       spot_closed_date		AS	"closedDate", 
+	       spot_phone			AS	"phone", 
+	       spot_fare			AS	"fare", 
+	       spot_homepage		AS	"homepage" 
+	FROM   spot, 
 	       sigungu 
-	WHERE  a.next_route_no = b.route_no 
-	       AND a.spot_no = spot.spot_no 
-	       AND sigungu.city_no = spot.city_no
+	WHERE  sigungu.city_no = spot.city_no 
+			AND spot.spot_no = #{value}
 </select>
+
+<select id="listPage" parameterType="map" resultType="RouteInfo">
+	SELECT trip_no 	AS	"tripNo", 
+			trip_name	AS	"tripName",
+	       city_no	AS	"cityNo",
+	       theme_no	AS	"themeNo",
+	FROM   (SELECT CEIL(ROWNUM / 16) request_page,
+					 t.trip_no 	 AS	"tripNo",
+					 t.trip_name AS	"tripName", 
+		             r.theme_no	 AS	"themeNo",
+		             spot.city_no AS	"cityNo"
+			FROM   trip t, 
+		             small_trip s, 
+		             route_theme r,
+		             route, spot
+			<where>
+			 		t.trip_no = s.trip_no
+		            and r.trip_no = t.trip_no
+		            and s.route_no = route.route_no
+		            and route.spot_no = spot.spot_no
+		            <if test="themeNo != 0">
+		            and r.theme_no = #{themeNo}
+		            </if>
+		            <if test="cityNo.size()!=0">
+		            and spot.city_no in
+		            	<foreach item="value" index="index" collection="cityNo" open="(" separator="," close=")">
+		            	 #{value}
+		            	</foreach>
+		            </if>
+			</where> 
+		    )
+	WHERE request_page = #{page}
+</select>
+
+<select id="maxPage" parameterType="map" resultType="int">
+	SELECT Max(CEIL(ROWNUM / 16))
+	FROM   trip t, 
+	       small_trip s 
+	<where>
+	t.trip_no = s.trip_no
+	<if test="cityNo.size!=0">
+		city_no in
+	  <foreach item="name" index="index" collection="cityNo" open="(" separator="," close=")">
+	        #{name}
+	  </foreach>
+	</if>
+	</where> 
+</select>
+
 </mapper>

@@ -74,4 +74,15 @@
 	WHERE  route_no = #{value}
 </delete>
 
+<!-- next_route_no에 따른 조회 -->
+<select id="getByNext" parameterType="int" resultType="Route">
+	SELECT 	route_no		AS	"no", 
+             spot_no		AS	"spotNo", 
+             next_route_no	AS	"nextRouteNo", 
+             start_time		AS	"startTime", 
+             end_time		AS	"endTime"
+	FROM   route
+	WHERE  next_route_no = #{value}
+</select>
+
 </mapper>
