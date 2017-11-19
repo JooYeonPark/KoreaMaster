@@ -225,6 +225,7 @@ public class RouteServiceImpl implements RouteService {
 
 		tmpRoute.setTripNo(routeTripNo.getTripNo());
 		tmpRoute.setDayNo(routeTripNo.getDayNo());
+		tmpRoute.setTripName(routeTripNo.getTripName());
 
 		// tripNo에 해당하는 출발 장소 상세 route정보들 저장
 		Route route = routeDAO.read(routeTripNo.getRouteNo());
@@ -245,6 +246,7 @@ public class RouteServiceImpl implements RouteService {
 				tmpRoute = new RouteInfo();
 				tmpRoute.setTripNo(routeTripNo.getTripNo());
 				tmpRoute.setDayNo(routeTripNo.getDayNo());
+				tmpRoute.setTripName(routeTripNo.getTripName());
 				tmpRoute.setRouteNo(route.getNo());
 				tmpRoute.setSpotNo(route.getSpotNo());
 				tmpRoute.setNextRouteNo(route.getnextRouteNo());

@@ -67,9 +67,10 @@
 </select>
 
 <select id="getByTripNo" parameterType="int" resultType="RouteInfo">
-	SELECT t.trip_no 	AS	"tripNo", 
-	       s.route_no	AS	"routeNo",
-	       s.day_no		AS  "dayNo"
+	SELECT t.trip_no,
+			t.trip_name,
+	       s.route_no,
+	       s.day_no		
 	FROM   trip t, 
 	       small_trip s 
 	WHERE  t.trip_no = s.trip_no
@@ -97,7 +98,7 @@
 
 <select id="listPage" parameterType="map" resultType="RouteInfo">
 
-	SELECT 		trip_no 	,
+	SELECT 	trip_no 	,
 			trip_name,
              route_no	,
              day_no,

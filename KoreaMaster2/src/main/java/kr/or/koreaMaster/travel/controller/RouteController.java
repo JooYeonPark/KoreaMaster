@@ -25,7 +25,7 @@ public class RouteController implements Controller {
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException {
         
-    	logger.debug("routeController실행");
+//    	logger.debug("routeController실행");
     	
         ModelAndView mav = new ModelAndView();
         
