@@ -200,5 +200,24 @@
 		DELETE FROM SPOT
 		WHERE spot_no = #{value}
 	</delete>
+	
+	<select id="readByName" parameterType="String" resultType="Spot">
+		SELECT spot_no as "no", 
+		       city_no as "cityNo", 
+		       spot_name as "name", 
+		       spot_detail as "detail", 
+		       spot_address_detail as "addressDetail", 
+		       spot_operating_hour as "operatingHour", 
+		       spot_closed_date as "closedDate", 
+		       spot_phone as "phone", 
+		       spot_fare as "fare", 
+		       spot_homepage as "homepage", 
+		       spot_picture as "picture", 
+		       spot_latitude as "latitude", 
+		       spot_longitude as "longitude", 
+		       spot_use_num   as "useNum"
+		FROM   spot
+		WHERE  spot_name = #{value}
+	</select>
 
 </mapper>

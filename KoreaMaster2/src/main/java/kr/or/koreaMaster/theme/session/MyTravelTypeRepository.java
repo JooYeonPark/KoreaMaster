@@ -1,7 +1,10 @@
 package kr.or.koreaMaster.theme.session;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -81,6 +84,25 @@ public class MyTravelTypeRepository {
 				sess.rollback();
 			}
 			return themeNo;
+		} finally {
+			sess.close();
+		}
+	}
+	
+	/** Route_theme insert */
+	public void createRouteTheme(int themeNo, int tripNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("themeNo", themeNo);
+		map.put("tripNo", tripNo);
+		
+		SqlSession sess =  getSqlSessionFactory().openSession();	// sql 연결 객체
+		try {
+			int result = sess.insert(namespace + ".createRouteTheme", map);
+			if(result > 0) {			// 결과 값이 존재할 경우 커밋, 그렇지 않으면 롤백
+				sess.commit();
+			} else {
+				sess.rollback();
+			}
 		} finally {
 			sess.close();
 		}

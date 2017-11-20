@@ -82,6 +82,11 @@ public class SpotDaoImpl implements SpotDao {
 		return sqlSession.selectOne(NAMESPACE+".maxPage", map);
 	}
 	
+	@Override
+	public Spot readByName(String name) {
+		return sqlSession.selectOne(NAMESPACE + ".readByName",name);
+	}
+	
 }
 
 

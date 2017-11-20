@@ -2,7 +2,8 @@ package kr.or.koreaMaster.user.session;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -69,6 +70,23 @@ public class TripNoteListRepository {
 				sess.rollback();
 			}
 
+			return result;
+		} finally {
+			sess.close();
+		}
+	}
+	
+	//생성
+	public int create(TripNote tripNote) {
+		SqlSession sess = getSqlSessionFactory().openSession();
+		try {
+			int result = sess.insert(namespace + ".create", tripNote);
+
+			if(result > 0) {
+				sess.commit();
+			} else {
+				sess.rollback();
+			}
 			return result;
 		} finally {
 			sess.close();

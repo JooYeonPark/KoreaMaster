@@ -97,46 +97,55 @@
 </select>
 
 <select id="listPage" parameterType="map" resultType="RouteInfo">
-
-	SELECT 	trip_no 	,
+	SELECT trip_no ,
 			trip_name,
-             route_no	,
-             day_no,
+             route_no,
+            day_no,
              theme_no,
-             city_no
-	FROM  ( SELECT CEIL(ROWNUM / 16) request_page,
-                    t.trip_no 	,
-                    t.trip_name,
-		             s.route_no	,
-		             s.day_no,
-		             r.theme_no,
-		             spot.city_no	
-              
-              FROM 	 trip t, 
-		             small_trip s, 
-		             route_theme r,
-		             route, spot
-             <where>
-			 		  t.trip_no = s.trip_no
-			            and r.trip_no = t.trip_no
-			            and s.route_no = route.route_no
-			            and route.spot_no = spot.spot_no
+             city_no,
+            theme_name,
+             gu_name,
+             sigun_name
+	FROM   ( SELECT CEIL(ROWNUM / 16) request_page,
+                                trip.trip_no ,
+                                trip.trip_name,
+                                 s.route_no,
+                                 s.day_no,
+                                 r.theme_no,
+                                 spot.city_no,
+                                 theme.theme_name,
+                                 sigungu.gu_name,
+                                 sigungu.sigun_name
+                                 
+               FROM
+                                 trip,
+                                 small_trip s, 
+                                 route_theme r,
+                                 route, 
+                                 spot,
+                                 theme,
+                                 sigungu 
+                                 
+              <where> 			trip.trip_no = s.trip_no
+                                and r.trip_no = trip.trip_no
+                                and spot.city_no = sigungu.city_no
+                                and s.route_no = route.route_no
+                                and route.spot_no = spot.spot_no
+                                and r.theme_no = theme.theme_no
+                                 <if test="themeNo != 0">
+			            		and r.theme_no = #{themeNo}
+			            		</if>
 			            
-				        <if test="themeNo != 0">
-			            and r.theme_no = #{themeNo}
-			            </if>
-			            
-			             <if test="cityNo.size() != 0">
-						 	and city_no in
-						 	 <foreach item="value" index="index" collection="cityNo" open="(" separator="," close=")">
-						        #{value}
-						  </foreach>
-						  </if>
-            </where>
-            )
-            where request_page = #{page} 
-            
-            
+					             <if test="cityNo.size() != 0">
+								 	and city_no in
+								 	 <foreach item="value" index="index" collection="cityNo" open="(" separator="," close=")">
+								        #{value}
+								  </foreach>
+								  </if>
+              </where> 
+                                
+                    )
+                     where request_page = #{page} 
             
 </select>
 

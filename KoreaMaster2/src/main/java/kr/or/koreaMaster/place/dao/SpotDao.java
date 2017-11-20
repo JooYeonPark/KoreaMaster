@@ -41,6 +41,9 @@ public interface SpotDao {
 	/** 마지막 페이지 수 반환 */
 	public int maxPage(List<Integer> cityNo);
 	
+	/** 장소명으로 장소 조회 */
+	public Spot readByName(String name);
+	
 }
 
 

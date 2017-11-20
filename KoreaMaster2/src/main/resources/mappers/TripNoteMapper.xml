@@ -37,4 +37,26 @@ WHERE trip_no = #{noteNo}
           ORDER BY small_trip.day_no ) aa
   WHERE route.route_no IN aa.route_no AND route.spot_no IN spot.spot_no
  </select>
+ 
+ <insert id="create" parameterType="note">
+ 	<selectKey keyProperty="tripNoteNo" order="BEFORE" resultType="int">
+ 		SELECT trip_note_seq.nextval FROM DUAL
+ 	</selectKey>
+ 	INSERT INTO trip_note
+ 						(trip_note_no, 
+ 						trip_note_name,
+ 						trip_note_detail, 
+ 						trip_note_start_date, 
+ 						trip_note_end_date, 
+ 						users_id, 
+ 						trip_no)
+ 	VALUES (#{tripNoteNo},
+ 			#{tripNoteName},
+ 			#{tripNoteDetail},
+ 			To_date(#{tripNoteStartDate, jdbcType=DATE}, 'YYYY-MM-DD HH24:MI:SS'), 
+	        To_date(#{tripNoteEndDate, jdbcType=DATE}, 'YYYY-MM-DD HH24:MI:SS'),
+ 			#{usersId},
+ 			#{tripNo}
+ 			)
+ </insert>
  </mapper>

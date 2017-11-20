@@ -51,5 +51,14 @@
 		DELETE FROM theme
 		WHERE theme_no = #{value}
 	</delete>
+	
+	<!-- 생성 -->
+	<insert id="createRouteTheme" parameterType="Map">
+		INSERT INTO route_theme 
+	            	(theme_no, 
+	            	 trip_no) 
+		VALUES     (#{themeNo}, 
+		            #{tripNo})
+	</insert>
 
 </mapper>

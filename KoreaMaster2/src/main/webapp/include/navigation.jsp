@@ -43,6 +43,7 @@
 				<li><a href="">여행</a>
                     <ul>
                         <li><a href="/jsp/travel/routeRequest.jsp">여행루트생성</a></li>
+                        <li><a href="/jsp/travel/routelist.jsp">여행리스트</a></li>
 					</ul>
 				</li>
 				

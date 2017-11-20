@@ -20,4 +20,7 @@ public interface RouteDAO {
 	public void update(Route route);
 	/** 삭제 */
 	public void delete(int no);
+	
+	/** next_route_no에 따른 조회*/
+	public Route getByNext(int next_no);
 }

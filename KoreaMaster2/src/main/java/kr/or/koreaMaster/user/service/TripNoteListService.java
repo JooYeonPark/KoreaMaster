@@ -29,4 +29,8 @@ public class TripNoteListService {
 	public ArrayList<TripNoteDetail> noteDetail(String id, int noteNo) {
 		return noteRepo.noteDetail(id, noteNo);
 	}
+	
+	public int create(TripNote tripNote) {
+		return noteRepo.create(tripNote);
+	}
 }

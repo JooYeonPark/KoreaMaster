@@ -18,6 +18,12 @@ import kr.or.koreaMaster.common.db.MyBatisDaoFactory;
 import kr.or.koreaMaster.place.dao.RestaurantDao;
 import kr.or.koreaMaster.place.dao.RestaurantDaoImpl;
 
+/**
+ * 사용자의 정보들에따라 루트를 만들어 json 형식으로 반환한다
+ * 
+ * @author JooYeon
+ *
+ */
 public class RouteController implements Controller {
 
     Logger logger = Logger.getLogger(RouteController.class);
@@ -25,7 +31,6 @@ public class RouteController implements Controller {
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException {
         
-//    	logger.debug("routeController실행");
     	
         ModelAndView mav = new ModelAndView();
         

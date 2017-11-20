@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.junit.Test;
 
 import kr.or.koreaMaster.Jsoup.GeocoderLatLong;
 import kr.or.koreaMaster.common.db.DaoFactory;
@@ -35,6 +34,7 @@ public class RouteServiceImpl implements RouteService {
 	Logger logger = Logger.getLogger(RouteServiceImpl.class);
 	TripDAO tripDAO;
 	RouteDAO routeDAO;
+	SpotDao spotDAO;
 
 	/** 생성자 */
 	public RouteServiceImpl() {
@@ -49,15 +49,17 @@ public class RouteServiceImpl implements RouteService {
 		SpotsProcess spotsClass = new SpotsProcess();
 		RouteProcess routeClass = new RouteProcess();
 		SpotThemeDAO spotThemeDAO = (SpotThemeDAO) factory.getDao(SpotThemeDAOImpl.class);
-		SpotDao spotDAO = (SpotDao) factory.getDao(SpotDaoImpl.class);
+		spotDAO = (SpotDao) factory.getDao(SpotDaoImpl.class);
 		SigunguDao sigunguDAO = (SigunguDao) factory.getDao(SigunguDaoImpl.class);
 
 		// #1. spotThemeJoin 불러와 저장
 		int cityNo = Integer.parseInt(map.get("city"));
 		List<SpotThemeJoin> spotThemeJoinList = spotThemeDAO.getSpotThemeJoin(cityNo);
-
+		logger.debug("spotTHemeJoingList:"+spotThemeJoinList);
+		
 		// #2. 사용자의 테마 불러와 저장
 		List<Integer> perThemes = new ArrayList<Integer>();
+		
 
 		// 루트 요구에서 테마를 선택시 그 테마로 진행
 		String theme = map.get("theme");
@@ -68,40 +70,51 @@ public class RouteServiceImpl implements RouteService {
 			String[] themes = theme.split(",");
 			perThemes.add(Integer.parseInt(themes[0]));
 		}
+		logger.debug("perThemes"+perThemes);
 
 		// #4. 사용자가 선택한 도시에서 사용자의 테마에 맞는 장소들을 추려낸다
 		spotThemeJoinList = spotsClass.getSpots(spotThemeJoinList, perThemes);
+		logger.debug("spotThemeJoinList:"+spotThemeJoinList);
 
 		// #5. 장소간의 거리, 여행일자를 고려하여 루트를 찾아낸다
 		int date = Integer.parseInt(map.get("days"));
+		logger.debug("date:"+date);
 
 		// #6. 출발장소 split 후 db에 입력 또는 데이터 불러오기 후 list에 저장
 		String[] spots = map.get("departures").split(",");
-		Spot spot = new Spot();
+		Spot spot = null;
 		List<Spot> departures = new ArrayList<Spot>();
+		Float[] coords = new Float[2]; 
+		
 		for (String departure : spots) {
-			// logger.debug("departure:"+departure);
+				spot = new Spot();
+				
+				// 사용자가 입력한 숙소의 정보수집
+//				GeocoderLatLong geocode = new GeocoderLatLong();
+//				coords = geocode.geoCoding(departure);
+				
+				//여수종합버스터미널
+				coords[0] = (float)34.758084;
+				coords[1] = (float)127.717084;
 
-			// 사용자가 입력한 숙소의 정보수집
-			GeocoderLatLong geocode = new GeocoderLatLong();
-			Float[] coords = geocode.geoCoding(departure);
-
-			spot = new Spot();
-			spot.setAddressDetail(departure);
-			spot.setCityNo(cityNo);
-			spot.setDetail("/*/*/"); // 보통 장소와 출발장소를 구별하기 위한 델리게이터
-			spot.setLatitude(coords[0]);
-			spot.setLongitude(coords[1]);
-			spot.setName("출발지");
-
-			spotDAO.create(spot);
-
+				spot = new Spot();
+				spot.setAddressDetail(departure);
+				spot.setCityNo(cityNo);
+				spot.setDetail("/*/*/"); // 보통 장소와 출발장소를 구별하기 위한 델리게이터
+				spot.setLatitude(coords[0]);
+				spot.setLongitude(coords[1]);
+				spot.setName("출발지");
+				
+//				spot = spotDAO.readByName("여수종합버스터미널");
+			
+				logger.debug("spot:"+spot);
 			if (spot != null) {
+				spotDAO.create(spot);
 				departures.add(spot);
 			}
 		}
 
-		// logger.debug("departures:"+departures);
+		 logger.debug("departures:"+departures);
 
 		/** routeDetail 화면에 띄어줄 필요한 정보들을 담는 map */
 		Map<String, Object> route = new HashMap<String, Object>();
@@ -115,6 +128,7 @@ public class RouteServiceImpl implements RouteService {
 			strRouteNo += integer + ",";
 		}
 		route.put("routeNo", strRouteNo);
+		logger.debug("routeNo:"+strRouteNo);
 
 		// #8. 장소번호로 장소들을 담는 새로운 list 생성
 		List<Spot> routeSpotsByDay = new ArrayList<Spot>();
@@ -123,6 +137,7 @@ public class RouteServiceImpl implements RouteService {
 			routeSpotsByDay.add(tmpSpot);
 		}
 		route.put("routeSpots", routeSpotsByDay);
+		logger.debug("routeSPots:"+routeSpotsByDay);
 
 		// #9. 도시번호에 해당하는 이름 put
 		Sigungu city = sigunguDAO.read(cityNo);

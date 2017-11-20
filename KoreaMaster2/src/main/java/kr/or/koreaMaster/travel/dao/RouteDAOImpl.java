@@ -51,5 +51,10 @@ public class RouteDAOImpl implements RouteDAO {
 		sqlSession.delete(NAMESPACE+".delete",no);
 	}
 	
+	@Override
+	/** next_route_no에 따른 조회*/
+	public Route getByNext(int next_no) {
+		return sqlSession.selectOne(NAMESPACE+".getByNext", next_no);
+	}
 
 }
