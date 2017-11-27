@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.koreaMaster.place.domain.Spot;
+import kr.or.koreaMaster.travel.domain.RouteInfo;
 
 public class SpotDaoImpl implements SpotDao {
 	
@@ -72,6 +73,15 @@ public class SpotDaoImpl implements SpotDao {
 		Map<String, Object> map = new HashMap<>();
 		map.put("cityNo", cityNo);
 		map.put("spotNo", spotNo);
+		return sqlSession.selectList(NAMESPACE+".readByCityNo", map);
+	}
+	
+	@Override
+	public List<Spot> readBycityNo(int cityNo, int spotNo, List<RouteInfo> list) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("cityNo", cityNo);
+		map.put("spotNo", spotNo);
+		map.put("spotList", list);
 		return sqlSession.selectList(NAMESPACE+".readByCityNo", map);
 	}
 

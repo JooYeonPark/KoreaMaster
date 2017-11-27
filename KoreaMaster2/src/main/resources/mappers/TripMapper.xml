@@ -84,6 +84,7 @@
 	       gu_name				AS	"guName", 
 	       spot_name			AS	"name", 
 	       spot_detail			AS	"detail", 
+	       spot.city_no			AS  "cityNo",
 	       spot_address_detail	AS	"addressDetail", 
 	       spot_operating_hour	AS	"operatingHour", 
 	       spot_closed_date		AS	"closedDate", 

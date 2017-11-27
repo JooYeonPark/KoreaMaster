@@ -293,6 +293,7 @@ public class RouteServiceImpl implements RouteService {
 			routeInfo.setPhone(rsInfo.getPhone());
 			routeInfo.setFare(rsInfo.getFare());
 			routeInfo.setHomepage(rsInfo.getHomepage());
+			routeInfo.setCityNo(rsInfo.getCityNo());
 		}
 		return result;
 

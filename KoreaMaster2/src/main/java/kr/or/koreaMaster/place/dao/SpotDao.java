@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.koreaMaster.place.domain.Spot;
+import kr.or.koreaMaster.travel.domain.RouteInfo;
 
 /**
  * 장소 관련 Dao
@@ -37,6 +38,7 @@ public interface SpotDao {
 	
 	/** 도시별 장소 반환 */
 	public List<Spot> readBycityNo(int cityNo, int spotNo);
+	public List<Spot> readBycityNo(int cityNo, int spotNo, List<RouteInfo> list);
 	
 	/** 마지막 페이지 수 반환 */
 	public int maxPage(List<Integer> cityNo);

@@ -164,8 +164,16 @@
 		       spot_longitude as "longitude", 
 		       spot_use_num   as "useNum"
 		FROM   spot
-		WHERE  city_no = #{cityNo} AND
-			spot_no != #{spotNo}
+		WHERE  city_no = #{cityNo} 
+				<if test="spotNo != 0">
+					AND spot_no != #{spotNo}
+				</if>
+				<if test="spotList != null">
+				AND spot_no not in 
+					<foreach collection="spotList" item="routespot" separator="," open="(" close=")">
+					#{routespot.spotNo}
+					</foreach>
+				</if>
 		ORDER BY spot_use_num
 	</select>
 	
