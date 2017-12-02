@@ -53,9 +53,9 @@
 					</ul>
 				</li>
 				
-				<li><a href="">나의여행노트</a>
+				<li><a href="">나의여행노트</a>"target/classes/mappers/SigunguMapper.xml"
                     <ul>
-                        <li><a href="/note?cmd=my-tripNote&usersId=user">나의 여행노트</a></li>
+                        <li><a href="/note?cmd=my-tripNote&usersId=" + <%= user.getUsersId() %>>나의 여행노트</a></li>
 					</ul>
 				</li>	
 				
