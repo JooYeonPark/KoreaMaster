@@ -62,25 +62,25 @@
 				<a href="/index.jsp"><img src="/images/logo.png" alt="Logo" /></a>
 			</div>
 		</div>
-
+		
 		<div id="navbar" class="navbar-nav-wrapper">
 
 			<ul class="nav navbar-nav" id="responsive-menu">
 				<li><a href="/jsp/place/spotList.jsp">장소</a>
 					<ul>
-						<li><a href="">서울</a></li>
-						<li><a href="">인천</a></li>
-						<li><a href="">대구</a></li>
-						<li><a href="">광주</a></li>
-						<li><a href="">부산</a></li>
-						<li><a href="">경기도</a></li>
-						<li><a href="">충청북도</a></li>
-						<li><a href="">충청남도</a></li>
-						<li><a href="">경상남도</a></li>
-						<li><a href="">경상북도</a></li>
-						<li><a href="">전라북도</a></li>
-						<li><a href="">전라북도</a></li>
-						<li><a href="">제주도</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=1">서울</a></li>	
+						<li><a href="/jsp/place/spotList.jsp?sido=21">인천</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=27">대구</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=34">광주</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=30">부산</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=29">대전</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=25">충청북도</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=22">충청남도</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=23">경상남도</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sid=24">경상북도</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=28">전라북도</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=3">전라남도</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=4">제주도</a></li>
 					</ul></li>
 				
 				<li><a href="/jsp/place/restaurantlist.jsp">식당</a>
