@@ -1,6 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@page import="kr.or.koreaMaster.user.model.Users"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+  <% 
+    	String projectName = "/koreamaster";
+    	Users user = (Users)session.getAttribute("user");
+//     	Object obj = request.getAttribute("user");
+//     	if(obj != null) {
+//     		Users user = (Users)obj;
+//     	}
+    %>
 <!doctype html>
 <html lang="en">
 
@@ -36,7 +44,7 @@
 <%-- CSS Custom --%>
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/routeDetail.css" rel="stylesheet">
-<link href="/css/itineraryStyle.css" rel="stylesheet">
+<!-- <link href="/css/itineraryStyle.css" rel="stylesheet"> -->
 
 <%-- Add your style --%>
 <link href="/css/your-style.css" rel="stylesheet">
@@ -266,14 +274,14 @@ var modalData = function(){
 												<div class="GridLex-inner">
 												<!-- 프로필 회원 이름 -->
 													<div class="heading clearfix">
-														<h3>Robert Kalvin</h3>
-														<span class="label label-success"><i class="fa fa-check mr-3"></i> Verified</span> 
-														<span class="label label-info"><i class="fa fa-trophy mr-3"></i> Certified Guide</span>
+														<h3><%= user.getUsersName() %></h3>
+<!-- 														<span class="label label-success"><i class="fa fa-check mr-3"></i> Verified</span>  -->
+<!-- 														<span class="label label-info"><i class="fa fa-trophy mr-3"></i> Certified Guide</span> -->
 													</div>
 													
 													<!-- 회원 주소, 전화번호 등 정보  -->
 													<ul class="user-meta">
-														<li><i class="fa fa-map-marker"></i> 264, Carson Street Lexington, KY 40539 <span class="mh-5 text-muted">|</span> <i class="fa fa-phone"></i> +4 8547 985</li>
+														<li><i class="fa fa-map-marker"></i> <%= user.getUsersAddress() %> <span class="mh-5 text-muted">|</span> <i class="fa fa-phone"></i> +4 8547 985</li>
 														<li>
 															<div class="user-social inline-block">
 																<a href="#"><i class="icon-social-twitter" data-toggle="tooltip" data-placement="top" title="twitter"></i></a>
@@ -332,12 +340,12 @@ var modalData = function(){
 								<div class="inner-bottom">
 									<ul class="user-header-menu">
 										<li><a href="guide-detail.html">Profile</a></li>
-										<li><a href="guide-detail-offer.html">Tours <span>12</span></a></li>
-										<li><a href="guide-detail-gallery.html">Gallery</a></li>
+										<li class="active"><a href="/note?cmd=my-tripNote&usersId=" + <%= user.getUsersId() %>">MyTripNote <span>12</span></a></li> <!-- 은지야 여기 mytripnote부분으로 연결해주세요~ -->
+										<!-- <li><a href="guide-detail-gallery.html">Gallery</a></li>
 										<li><a href="guide-detail-reviews.html">Reviews</a></li>
 										<li><a href="guide-detail-following.html">Followings <span>25</span></a></li>
 										<li><a href="guide-detail-follower.html">Followers <span>8</span></a></li>
-										<li class="active"><a href="guide-detail-setting.html">Dashboard</a></li>
+										<li ><a href="guide-detail-setting.html">Dashboard</a></li> -->
 									</ul>
 								</div>
 							</div>
@@ -360,11 +368,7 @@ var modalData = function(){
 							<aside class="sidebar-wrapper pr-5 pr-0-xs">
 								<div class="common-menu-wrapper">
 									<ul class="common-menu-list">
-										<li><a href="guide-detail-setting.html">Dashboard</a></li>
-										<li><a href="guide-detail-setting-edit-profile.html">Edit profile</a></li>
-										<li><a href="guide-detail-setting-guide-information.html">Guide Information</a></li>
-										<li class="active"><a href="guide-detail-setting-my-tour.html">My tour</a></li>
-										<li><a href="guide-detail-setting-my-wihslist.html">My wihslist</a></li>
+										<li><a href="">My Trip Note</a></li>
 										<li><a href="#">Logout</a></li>
 									</ul>
 								</div>
@@ -480,7 +484,7 @@ var modalData = function(){
 										</div>
 									</div>
 									<!-- List End -->
-									<input type="submit" value="수정">
+									<a href="#" class="aTagRight btn btn-primary btn-border ">수정</a>
 								</div>
 								
 							</div>
