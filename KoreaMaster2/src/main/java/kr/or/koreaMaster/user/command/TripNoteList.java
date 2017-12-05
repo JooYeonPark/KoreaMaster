@@ -24,7 +24,8 @@ public class TripNoteList implements TripNoteCommand{
 	public String execute(HttpServletRequest request, HttpServletResponse response  ) throws TripNoteCommandException {
 		HttpSession session = request.getSession();
 		
-		String id = request.getParameter("usersId");
+		Users user = (Users)request.getSession().getAttribute("user");
+		String id = user.getUsersId();
 		System.out.println(id);
 		ArrayList<NoteList> tripName = TripNoteListService.getInstance().getTripNote(id);
 	
