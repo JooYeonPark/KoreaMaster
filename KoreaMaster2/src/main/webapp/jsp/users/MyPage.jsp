@@ -15,34 +15,38 @@
 
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<!-- Title Of Site -->
-	<title>한뽀 - 한반도뽀개기 여행노트</title>
+	<titl>한반도 뽀개기 마이페이지</title>
 	<meta name="description" content="HTML template for multiple tour agency, local agency, traveller, tour hosting based on Twitter Bootstrap 3.x.x" />
 	<meta name="keywords" content="tour agency, tour guide, travel, trip, holiday, vocation, relax, adventure, virtual tour, tour planner" />
 	<meta name="author" content="crenoveative">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
-	<!-- Fav and Touch Icons -->
-	<link rel="apple-touch-icon" sizes="144x144" href=">/images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon" href="/images/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="/images/ico/favicon.png">
+	<%-- Fav and Touch Icons --%>
+<link rel="apple-touch-icon" sizes="144x144"
+	href="/images/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="/images/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="/images/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon"
+	href="/images/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="/images/ico/favicon.png">
 
-	<!-- CSS Plugins -->
-	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">	
-	<link href="/css/main.css" rel="stylesheet">
-	<link href=">/css/plugin.css" rel="stylesheet">
+<%-- CSS Plugins --%>
+<link rel="stylesheet" type="text/css" href="/bootstrap//css/bootstrap.min.css" media="screen">
+<link href="/css/main.css" rel="stylesheet">
+<link href="/css/plugin.css" rel="stylesheet">
 
-	<!-- CSS Custom -->
-	<link href=">/css/style.css" rel="stylesheet">
-	
-	<!-- Add your style -->
-	<link href=">/css/your-style.css" rel="stylesheet">	
+<%-- CSS Custom --%>
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/routeDetail.css" rel="stylesheet">
+<link href="/css/itineraryStyle.css" rel="stylesheet">
+
+<%-- Add your style --%>
+<link href="/css/your-style.css" rel="stylesheet">
+<link href="/css/ksj-style.css" rel="stylesheet">
+<link href="/css/ksj-modal.css" rel="stylesheet">
 </head>
 
 <body>
@@ -124,7 +128,7 @@
 												
 											</div>
 											
-											<div class="GridLex-col-5_sm-12_xs-12_xss-12">
+											<!-- <div class="GridLex-col-5_sm-12_xs-12_xss-12">
 											
 												<div class="GridLex-inner">
 													
@@ -146,7 +150,7 @@
 													
 												</div>
 												
-											</div>
+											</div> -->
 											
 										</div>
 								
@@ -160,25 +164,19 @@
 						</div>
 						
 						<div class="content-bottom">
-						
 							<div class="container">
-							
 								<div class="inner-bottom">
-							
 									<ul class="user-header-menu">
 										<li><a href="guide-detail.html">Profile</a></li>
-										<li><a href="guide-detail-offer.html">Tours <span>12</span></a></li>
-										<li><a href="guide-detail-gallery.html">Gallery</a></li>
+										<li class="active"><a href="">MyTripNote <span>12</span></a></li> <!-- 은지야 여기 mytripnote부분으로 연결해주세요~ -->
+										<!-- <li><a href="guide-detail-gallery.html">Gallery</a></li>
 										<li><a href="guide-detail-reviews.html">Reviews</a></li>
 										<li><a href="guide-detail-following.html">Followings <span>25</span></a></li>
 										<li><a href="guide-detail-follower.html">Followers <span>8</span></a></li>
-										<li class="active"><a href="guide-detail-setting.html">Dashboard</a></li>
+										<li ><a href="guide-detail-setting.html">Dashboard</a></li> -->
 									</ul>
-								
 								</div>
-								
 							</div>
-							
 						</div>
 						
 					</div>
