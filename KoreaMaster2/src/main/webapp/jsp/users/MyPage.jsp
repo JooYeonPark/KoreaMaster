@@ -168,7 +168,7 @@
 								<div class="inner-bottom">
 									<ul class="user-header-menu">
 										<li><a href="guide-detail.html">Profile</a></li>
-										<li class="active"><a href="">MyTripNote <span>12</span></a></li> <!-- 은지야 여기 mytripnote부분으로 연결해주세요~ -->
+										<li class="active"><a href="/note?cmd=my-tripNote&usersId=" + <%= user.getUsersId() %>">MyTripNote <span>12</span></a></li> <!-- 은지야 여기 mytripnote부분으로 연결해주세요~ -->
 										<!-- <li><a href="guide-detail-gallery.html">Gallery</a></li>
 										<li><a href="guide-detail-reviews.html">Reviews</a></li>
 										<li><a href="guide-detail-following.html">Followings <span>25</span></a></li>
