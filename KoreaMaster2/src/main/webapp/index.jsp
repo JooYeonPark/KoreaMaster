@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!doctype html>
+<!DOCTYPE>
 <html>
 
 <head>
@@ -73,32 +72,18 @@
 				<div class="container">
 
 					<h1>Where do you want to go?</h1>
-					<p>Discover and book your unique travel experiences offered by
-						local experts</p>
+					<p>Discover your wonderful and unique travel plan</p>
 
 					<form>
 						<div class="form-group">
-							<input type="text" placeholder="eg: London, Paris, Rome"
-								class="form-control flexdatalist"
-								data-data="data/countries.json"
-								data-search-in='["name","capital"]'
-								data-visible-properties='["capital","name","continent"]'
-								data-group-by="continent" data-selection-required="true"
-								data-focus-first-result="true" data-min-length="1"
-								data-value-property="iso2"
-								data-text-property="{capital}, {name}"
-								data-search-contain="false" name="countries">
+							<input type="text" placeholder="ex: Seoul,Busan,Incheon"
+								class="form-control flexdatalist" name="countries">
 							<button class="btn">
 								<i class="icon-magnifier"></i>
 							</button>
 						</div>
+						
 					</form>
-
-					<div class="top-search">
-						<span class="font700">Top Searches : </span> <a href="#">Thailand</a>
-						<a href="#">Malaysia</a> <a href="#">Japan</a> <a href="#">Hong
-							Kong</a> <a href="#">Singapore</a>
-					</div>
 
 				</div>
 
@@ -110,16 +95,15 @@
 				<div class="container">
 
 					<div class="row">
-
+					
 						<div class="col-xs-12 col-sm-4 mb-20-xs">
 							<div class="horizontal-featured-icon-sm clearfix">
 								<div class="icon">
 									<i class="ri ri-location"></i>
 								</div>
 								<div class="content">
-									<h6>Looking for a tour program?</h6>
-									<span>Inhabiting discretion the her dispatched
-										decisively boisterous joy.</span>
+									<h6>Looking for a tour plan?</h6>
+									<span>We will give you wonderful plan.</span>
 								</div>
 							</div>
 						</div>
@@ -130,9 +114,8 @@
 									<i class="ri ri-user"></i>
 								</div>
 								<div class="content">
-									<h6>Need someone to guide tour?</h6>
-									<span>Great asked oh under together prospect kindness
-										securing six.</span>
+									<h6>Need someone to make your plan?</h6>
+									<span>We give personalized service. It must satisfy you!!</span>
 								</div>
 							</div>
 						</div>
@@ -143,11 +126,39 @@
 									<i class="ri ri-equal-circle"></i>
 								</div>
 								<div class="content">
-									<h6>Want to earn money as guide?</h6>
-									<span>Sometimes studied evident. Conduct replied removal
-										her cordially. </span>
+									<h6>Want to save your time?</h6>
+									<span>You can save your time using our service. Cause we will give perfect plan.</span>
 								</div>
 							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+			
+			
+			<div class="featured-bg pt-80 pb-60 img-bg-02">
+
+				<div class="container">
+
+					<div class="row">
+
+
+					</div>
+
+					<div class="row mt-70">
+
+						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+							<div class="fearured-join-item mb-0">
+								<h2 class="alt-font-size">Create Your Trip?</h2>
+								<p class="mb-25 font20">We will give you wonderful and perfect plan for only you! click below button.
+								Let's time to make your plan!</p>
+								<a href="/jsp/travel/routeRequest.jsp" class="btn btn-primary btn-lg">Make My Plan</a>
+							</div>
+
 						</div>
 
 					</div>
@@ -164,7 +175,7 @@
 
 						<div class="section-title">
 
-							<h2>Top Destinations</h2>
+							<h2 class="uppercase">THEMES</h2>
 
 						</div>
 
@@ -183,14 +194,25 @@
 								<div class="top-destination-item">
 									<a href="#">
 										<div class="image">
-											<img src="images/top-destinations/01.jpg" alt="images" />
+											<img src="images/top-destinations/culture.jpg" alt="images" />
 										</div>
 										<h4 class="uppercase">
-											<span>Italy</span>
+											<span>culture</span>
 										</h4>
-										<p>
-											254 packages<br /> 142 requests<br /> 52 guides
-										</p>
+									</a>
+								</div>
+							</div>
+
+							<div class="GridLex-col-4_sm-4_xs-6_xss-12">
+
+								<div class="top-destination-item">
+									<a href="#">
+										<div class="image">
+											<img src="images/top-destinations/experience.jpg" alt="images" />
+										</div>
+										<h4 class="uppercase">
+											<span>Experience</span>
+										</h4>
 									</a>
 								</div>
 
@@ -201,14 +223,11 @@
 								<div class="top-destination-item">
 									<a href="#">
 										<div class="image">
-											<img src="images/top-destinations/02.jpg" alt="images" />
+											<img src="images/top-destinations/history.jpg" alt="images" />
 										</div>
 										<h4 class="uppercase">
-											<span>USA</span>
+											<span>History</span>
 										</h4>
-										<p>
-											254 packages<br /> 142 requests<br /> 52 guides
-										</p>
 									</a>
 								</div>
 
@@ -219,14 +238,11 @@
 								<div class="top-destination-item">
 									<a href="#">
 										<div class="image">
-											<img src="images/top-destinations/03.jpg" alt="images" />
+											<img src="images/top-destinations/nature.jpg" alt="images" />
 										</div>
 										<h4 class="uppercase">
-											<span>Emerate</span>
+											<span>Nature</span>
 										</h4>
-										<p>
-											254 packages<br /> 142 requests<br /> 52 guides
-										</p>
 									</a>
 								</div>
 
@@ -237,14 +253,11 @@
 								<div class="top-destination-item">
 									<a href="#">
 										<div class="image">
-											<img src="images/top-destinations/04.jpg" alt="images" />
+											<img src="images/top-destinations/shopping.jpg" alt="images" />
 										</div>
 										<h4 class="uppercase">
-											<span>Greece</span>
+											<span>Shopping</span>
 										</h4>
-										<p>
-											254 packages<br /> 142 requests<br /> 52 guides
-										</p>
 									</a>
 								</div>
 
@@ -255,32 +268,11 @@
 								<div class="top-destination-item">
 									<a href="#">
 										<div class="image">
-											<img src="images/top-destinations/05.jpg" alt="images" />
+											<img src="images/top-destinations/sport.jpg" alt="images" />
 										</div>
 										<h4 class="uppercase">
-											<span>Maldives</span>
+											<span>Sport</span>
 										</h4>
-										<p>
-											254 packages<br /> 142 requests<br /> 52 guides
-										</p>
-									</a>
-								</div>
-
-							</div>
-
-							<div class="GridLex-col-4_sm-4_xs-6_xss-12">
-
-								<div class="top-destination-item">
-									<a href="#">
-										<div class="image">
-											<img src="images/top-destinations/06.jpg" alt="images" />
-										</div>
-										<h4 class="uppercase">
-											<span>Australia</span>
-										</h4>
-										<p>
-											254 packages<br /> 142 requests<br /> 52 guides
-										</p>
 									</a>
 								</div>
 
@@ -735,305 +727,10 @@
 
 			</div>
 
-			<div class="clearfix">
 
-				<div class="container pt-70 pb-80">
-
-					<div class="row">
-
-						<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-
-							<div class="section-title">
-
-								<h2>How It Works</h2>
-								<p class="lead">The trips that travellers are looking for
-									local guides or experts for them</p>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div
-						class="GridLex-gap-30 GridLex-gap-20-mdd GridLex-gap-10-xs alt-number-color ">
-
-						<div class="GridLex-grid-noGutter-equalHeight">
-
-							<div class="GridLex-col-4_sm-4_xs-12">
-
-								<div class="how-it-work-item clearfix">
-									<div class="icon">
-										<i class="icon-note"></i>
-									</div>
-									<div class="content">
-										<span class="number">01.</span>
-										<h3>Create a Trip Program</h3>
-										<p class="line-1-45">Denote simple fat denied add worthy
-											little use. Instantly gentleman contained belonging
-											exquisite.</p>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="GridLex-col-4_sm-4_xs-12">
-
-								<div class="how-it-work-item clearfix">
-									<div class="icon">
-										<i class="icon-cloud-upload"></i>
-									</div>
-									<div class="content">
-										<span class="number">02.</span>
-										<h3>Publish Your Trip Program</h3>
-										<p class="line-1-45">With my them if up many. Extremity so
-											attending objection as engrossed gentleman something.</p>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="GridLex-col-4_sm-4_xs-12">
-
-								<div class="how-it-work-item clearfix">
-									<div class="icon">
-										<i class="icon-speech"></i>
-									</div>
-									<div class="content">
-										<span class="number">03.</span>
-										<h3>Traveller Contact With You</h3>
-										<p class="line-1-45">Old education him departure any
-											arranging one prevailed. Behaved the comfort another fifteen
-											eat.</p>
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="featured-bg pt-80 pb-60 img-bg-02">
-
-				<div class="container">
-
-					<div class="row">
-
-						<div class="col-md-10 col-md-offset-1">
-
-							<div class="row gap-0">
-
-								<div class="col-xss-6 col-xs-6 col-sm-3">
-									<div class="counting-item">
-										<div class="icon">
-											<i class="icon-directions"></i>
-										</div>
-										<p class="number">354</p>
-										<p>Packages</p>
-									</div>
-								</div>
-
-								<div class="col-xss-6 col-xs-6 col-sm-3">
-									<div class="counting-item">
-										<div class="icon">
-											<i class="icon-user"></i>
-										</div>
-										<p class="number">241</p>
-										<p>Guides</p>
-									</div>
-								</div>
-
-								<div class="col-xss-6 col-xs-6 col-sm-3">
-									<div class="counting-item">
-										<div class="icon">
-											<i class="icon-location-pin"></i>
-										</div>
-										<p class="number">142</p>
-										<p>Destinations</p>
-									</div>
-								</div>
-
-								<div class="col-xss-6 col-xs-6 col-sm-3">
-									<div class="counting-item">
-										<div class="icon">
-											<i class="icon-envelope-letter"></i>
-										</div>
-										<p class="number">354</p>
-										<p>Requests</p>
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="row mt-70">
-
-						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-
-							<div class="fearured-join-item mb-0">
-								<h2 class="alt-font-size">Create Your Trip?</h2>
-								<p class="mb-25 font20">Rooms oh fully taken by worse do.
-									Points afraid but may end law lasted. Was out laughter raptures
-									returned outweigh outward the him existence assurance.</p>
-								<a href="#" class="btn btn-primary btn-lg">Join for Guide</a>
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
 
 			<div class="bg-white">
-
 				<div class="pt-70 pb-60 max-width-wrapper">
-
-					<div class="container">
-
-						<div class="row">
-
-							<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-
-								<div class="section-title">
-
-									<h2>communities</h2>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="community-wrapper mb-30">
-
-						<div class="GridLex-gap-20 GridLex-gap-15-mdd GridLex-gap-10-xs">
-
-							<div class="GridLex-grid-noGutter-equalHeight">
-
-								<div class="GridLex-col-3_mdd-6_sm-6_xs-6_xss-12">
-
-									<a href="#" class="community-item">
-										<div class="image-object-fit image-object-fit-cover image">
-											<img src="images/blog/01.jpg" alt="images" />
-										</div>
-										<div class="community-item-category">
-											<span class="bg-danger">Travel</span>
-										</div>
-										<div class="community-item-caption">
-											<h3>Behaviour we improving at something to</h3>
-											<p>Evil true high lady roof men had open. To projection
-												considered it precaution...</p>
-											<div class="community-item-meta">
-												<div class="row gap-10">
-													<div class="col-xs-8 col-sm-8">by admin on Jan 12,
-														2016</div>
-													<div class="col-xs-4 col-sm-4 text-right">
-														read <i class="icon-arrow-right-circle font12"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</a>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-6_sm-6_xs-6_xss-12">
-
-									<a href="#" class="community-item">
-										<div class="image-object-fit image-object-fit-cover image">
-											<img src="images/blog/02.jpg" alt="images" />
-										</div>
-										<div class="community-item-category">
-											<span class="bg-info">Hotel</span>
-										</div>
-										<div class="community-item-caption">
-											<h3>Wound young you thing worse along being ham</h3>
-											<p>Dissimilar of favourable solicitude if sympathize
-												middletons at. Forfeited disposing...</p>
-											<div class="community-item-meta">
-												<div class="row gap-10">
-													<div class="col-xs-8 col-sm-8">by admin on Jan 12,
-														2016</div>
-													<div class="col-xs-4 col-sm-4 text-right">
-														read <i class="icon-arrow-right-circle font12"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</a>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-6_sm-6_xs-6_xss-12">
-
-									<a href="#" class="community-item">
-										<div class="image-object-fit image-object-fit-cover image">
-											<img src="images/blog/03.jpg" alt="images" />
-										</div>
-										<div class="community-item-category">
-											<span class="bg-success">Flight</span>
-										</div>
-										<div class="community-item-caption">
-											<h3>perfectly in an eagerness perceived necessary</h3>
-											<p>Belonging sir curiosity discovery extremity yet
-												forfeited prevailed own off...</p>
-											<div class="community-item-meta">
-												<div class="row gap-10">
-													<div class="col-xs-8 col-sm-8">by admin on Jan 12,
-														2016</div>
-													<div class="col-xs-4 col-sm-4 text-right">
-														read <i class="icon-arrow-right-circle font12"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</a>
-
-								</div>
-
-								<div class="GridLex-col-3_mdd-6_sm-6_xs-6_xss-12">
-
-									<a href="#" class="community-item">
-										<div class="image-object-fit image-object-fit-cover image">
-											<img src="images/blog/04.jpg" alt="images" />
-										</div>
-										<div class="community-item-category">
-											<span class="bg-info">Hotel</span>
-										</div>
-										<div class="community-item-caption">
-											<h3>Travelling by introduced of mr terminated</h3>
-											<p>Knew as miss my high hope quit. In curiosity shameless
-												dependent knowledge up...</p>
-											<div class="community-item-meta">
-												<div class="row gap-10">
-													<div class="col-xs-8 col-sm-8">by admin on Jan 12,
-														2016</div>
-													<div class="col-xs-4 col-sm-4 text-right">
-														read <i class="icon-arrow-right-circle font12"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</a>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
 
 				</div>
 
@@ -1057,244 +754,6 @@
 	</div>
 
 	<!-- end Back To Top -->
-
-
-	<!-- start Sign-in Modal -->
-	<div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1"
-		data-width="550" data-backdrop="static" data-keyboard="false"
-		data-replace="true">
-
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-			<h4 class="modal-title text-center">Sign-in into your account</h4>
-		</div>
-
-		<div class="modal-body">
-			<div class="row gap-20">
-
-				<div class="col-sm-6 col-md-6">
-					<button class="btn btn-facebook btn-block mb-5-xs">Log-in
-						with Facebook</button>
-				</div>
-				<div class="col-sm-6 col-md-6">
-					<button class="btn btn-google-plus btn-block">Log-in with
-						Google+</button>
-				</div>
-
-				<div class="col-md-12">
-					<div class="login-modal-or">
-						<div>
-							<span>or</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Username</label> <input class="form-control"
-							placeholder="Min 4 and Max 10 characters" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Password</label> <input class="form-control"
-							placeholder="Min 4 and Max 10 characters" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-6 col-md-6">
-					<div class="checkbox-block">
-						<input id="remember_me_checkbox" name="remember_me_checkbox"
-							class="checkbox" value="First Choice" type="checkbox"> <label
-							class="" for="remember_me_checkbox">Remember me</label>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-6">
-					<div class="login-box-link-action">
-						<a data-toggle="modal" href="#forgotPasswordModal"
-							class="block line18 mt-1">Forgot password?</a>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="login-box-box-action">
-						No account? <a data-toggle="modal" href="#registerModal">Register</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-		<div class="modal-footer text-center">
-			<button type="button" class="btn btn-primary">Log-in</button>
-			<button type="button" data-dismiss="modal"
-				class="btn btn-primary btn-border">Close</button>
-		</div>
-
-	</div>
-	<!-- end Sign-in Modal -->
-
-	<!-- start Register Modal -->
-	<div id="registerModal" class="modal fade login-box-wrapper"
-		tabindex="-1" data-backdrop="static" data-keyboard="false"
-		data-replace="true">
-
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-			<h4 class="modal-title text-center">Create your account for free</h4>
-		</div>
-
-		<div class="modal-body">
-
-			<div class="row gap-20">
-
-				<div class="col-sm-6 col-md-6">
-					<button class="btn btn-facebook btn-block mb-5-xs">Register
-						with Facebook</button>
-				</div>
-				<div class="col-sm-6 col-md-6">
-					<button class="btn btn-google-plus btn-block">Register
-						with Google+</button>
-				</div>
-
-				<div class="col-md-12">
-					<div class="login-modal-or">
-						<div>
-							<span>or</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Username</label> <input class="form-control"
-							placeholder="Min 4 and Max 10 characters" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Email Address</label> <input class="form-control"
-							placeholder="Enter your email address" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Password</label> <input class="form-control"
-							placeholder="Min 8 and Max 20 characters" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Password Confirmation</label> <input class="form-control"
-							placeholder="Re-type password again" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="checkbox-block">
-						<input id="register_accept_checkbox"
-							name="register_accept_checkbox" class="checkbox"
-							value="First Choice" type="checkbox"> <label class=""
-							for="register_accept_checkbox">By register, I read &amp;
-							accept <a href="#">the terms</a>
-						</label>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="login-box-box-action">
-						Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-
-		<div class="modal-footer text-center">
-			<button type="button" class="btn btn-primary">Register</button>
-			<button type="button" data-dismiss="modal"
-				class="btn btn-primary btn-border">Close</button>
-		</div>
-
-	</div>
-	<!-- end Register Modal -->
-
-	<!-- start Forget Password Modal -->
-	<div id="forgotPasswordModal" class="modal fade login-box-wrapper"
-		tabindex="-1" data-backdrop="static" data-keyboard="false"
-		data-replace="true">
-
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-			<h4 class="modal-title text-center">Restore your forgotten
-				password</h4>
-		</div>
-
-		<div class="modal-body">
-			<div class="row gap-20">
-
-				<div class="col-sm-12 col-md-12">
-					<p class="mb-20">Maids table how learn drift but purse stand
-						yet set. Music me house could among oh as their. Piqued our sister
-						shy nature almost his wicket. Hand dear so we hour to.</p>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-
-					<div class="form-group">
-						<label>Email Address</label> <input class="form-control"
-							placeholder="Enter your email address" type="text">
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="checkbox-block">
-						<input id="forgot_password_checkbox"
-							name="forgot_password_checkbox" class="checkbox"
-							value="First Choice" type="checkbox"> <label class=""
-							for="forgot_password_checkbox">Generate new password</label>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-12">
-					<div class="login-box-box-action">
-						Return to <a data-toggle="modal" href="#loginModal">Log-in</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-		<div class="modal-footer text-center">
-			<button type="button" class="btn btn-primary">Restore</button>
-			<button type="button" data-dismiss="modal"
-				class="btn btn-primary btn-border">Close</button>
-		</div>
-
-	</div>
-	<!-- end Forget Password Modal -->
 
 	<!-- Core JS -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>

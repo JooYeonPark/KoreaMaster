@@ -10,10 +10,11 @@
 		user = (Users)obj;
 	}
 %>
+
 <head>
 <!-- 1202 css추가 -->
 <style type="text/css">
-	/* 메뉴들 > 로고에 맞춰 마진 수정 */
+/* 	/* 메뉴들 > 로고에 맞춰 마진 수정 */
 	.nav.navbar-nav {
 		margin : 25px 0 15px 0;
 	}
@@ -44,10 +45,11 @@
 	/* 스크롤 내린 후 헤더 > 패딩 없애버림 */
 	.transparent-header .navbar-sticky {
 		padding: 0;
-	}
-	
+	} */
 </style>
 </head>
+
+<body>
 <!-- start Navbar (Header) -->
 <nav
 	class="navbar navbar-default navbar-fixed-top navbar-sticky-function navbar-arrow">
@@ -57,7 +59,7 @@
 		<div class="logo-wrapper">
 			<div class="logo">
 				<!-- 1202 현희 로고수정 -->
-				<a href="index.jsp"><img src="/images/logo.png" alt="Logo" /></a>
+				<a href="/index.jsp"><img src="/images/logo.png" alt="Logo" /></a>
 			</div>
 		</div>
 
@@ -86,15 +88,17 @@
 				
 				<li><a href="">여행</a>
                     <ul>
-                        <li><a href="/jsp/travel/routeRequest.jsp">여행루트생성</a></li>
-                        <li><a href="/jsp/travel/routelist.jsp">여행리스트</a></li>
+                    	<li><a href="/jsp/travel/routelist.jsp">여행리스트</a></li>
+                        <% if(user != null) { %>
+                       	 	<li><a href="/jsp/travel/routeRequest.jsp">여행루트생성</a></li>
+                        <% }  %>
 					</ul>
 				</li>
 				
 				<!-- 로그인 했을 경우에만 마이페이지 보여주기 -->
 				<% if(user != null) { %>
 				
-				<li><a href="">나의여행노트</a>"target/classes/mappers/SigunguMapper.xml"
+				<li><a href="">나의여행노트</a>
                     <ul>
                         <li><a href="/note?cmd=my-tripNote&usersId=" + <%= user.getUsersId()%>>나의 여행노트</a></li>
 					</ul>
@@ -114,14 +118,15 @@
 
 		<div class="nav-mini-wrapper">
 			<ul class="nav-mini">
-<!-- 1202 현희 한줄정리 후 로그인 회원가입 글씨 추가 -->
-			<% if(user == null) { %>
-				<li><a data-toggle="modal" href="/user?cmd=join-page"><i class="icon-user-follow" data-toggle="tooltip" data-placement="bottom" title="sign up">&nbsp;SIGN UP</i></a></li>
-				<li><a data-toggle="modal" href="/user?cmd=login-page"><i class="icon-login" data-toggle="tooltip" data-placement="bottom" title="login">&nbsp;LOGIN</i> </a></li>
-			<% } else { // user가 로그인을 한 상태이면 환영 메세지와 로그아웃 아이콘 출력 %>
-				<li id="userHello"><b><%= user.getUsersName() %>님,</b> 환영합니다.</li>
-				<li><a href="/user?cmd=logout-page"><i class="icon-logout" data-toggle="tooltip" data-placement="bottom" title="logout"></i></a></li>
-			<% } %>
+			<!-- 1202 현희 한줄정리 후 로그인 회원가입 글씨 추가 -->
+			 <% if(user == null) { %>
+               <li><a data-toggle="modal" href="#registerModal"><i class="icon-user-follow" data-toggle="tooltip" data-placement="bottom" title="sign up">&nbsp;SIGN UP</i></a></li>
+            <!--  <li><a data-toggle="modal" href="#loginModal"><i class="icon-login" data-toggle="tooltip" data-placement="bottom" title="login">&nbsp;LOGIN</i> </a></li>  -->
+            <li><a data-toggle="modal" href="/user?cmd=login-page"><i class="icon-login" data-toggle="tooltip" data-placement="bottom" title="login">&nbsp;LOGIN</i> </a></li>
+            <% } else { // user가 로그인을 한 상태이면 환영 메세지와 로그아웃 아이콘 출력 %>
+               <li id="userHello"><b><%= user.getUsersName() %>님,</b> 환영합니다.</li>
+               <li><a href="/user?cmd=logout-page"><i class="icon-logout" data-toggle="tooltip" data-placement="bottom" title="logout"></i></a></li>
+				<% } %>
 			</ul> 
 		</div>
 	</div>
@@ -130,3 +135,52 @@
 
 </nav>
 <!-- end Navbar (Header) -->
+
+<!-- 1203 현희 모달들 추가 -->
+   <!-- start Login Modal -->
+   <div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true">
+      
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title text-center">Sign-in into your account</h4>
+      </div>
+         
+      <div class="modal-body">
+         <div class="row gap-20">
+                     
+            <!-- 아이디 입력 -->
+            <div class="col-sm-12 col-md-12">
+               <div class="form-group"> 
+                  <label>UserID</label><br/>
+                  <input id="id" name="usersId" class="form-control" placeholder="Min 4 and Max 10 characters" type="text"> 
+               </div>      
+            </div>
+            <!-- 패스워드 입력 -->      
+            <div class="col-sm-12 col-md-12">
+               <div class="form-group"> 
+                  <label>Password</label>
+                  <input id="pw" name="usersPassword" class="form-control" placeholder="Min 4 and Max 10 characters" type="password"> 
+               </div>
+            </div>
+            <!-- 회원가입 창으로 이동 -->
+            <div class="col-sm-12 col-md-12">
+               <div class="login-box-box-action">
+                  No account? <a data-toggle="modal" href="#registerModal">Register</a>
+               </div>
+            </div>
+                  
+         </div>
+      </div>
+      
+      <!-- 로그인 & 닫기 -->
+      <div class="modal-footer text-center">
+         <button id="login" type="button" class="btn btn-primary">Log-in</button>
+         <button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
+      </div>
+      
+   </div>
+   <!-- end Login Modal -->
+   
+
+
+</body>
