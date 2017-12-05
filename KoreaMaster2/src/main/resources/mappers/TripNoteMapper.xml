@@ -50,7 +50,7 @@ WHERE trip_no = #{noteNo}
  						trip_note_end_date, 
  						users_id, 
  						trip_no)
- 	VALUES (#{tripNoteNo},
+ 	VALUES (trip_note_seq.nextval,
  			#{tripNoteName},
  			#{tripNoteDetail},
  			To_date(#{tripNoteStartDate, jdbcType=DATE}, 'YYYY-MM-DD HH24:MI:SS'), 

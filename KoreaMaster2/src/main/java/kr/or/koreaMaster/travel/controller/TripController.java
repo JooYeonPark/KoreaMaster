@@ -44,7 +44,6 @@ public class TripController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		logger.debug("TripController 진입");
 		ModelAndView mav = new ModelAndView();
 
 		String startDate = request.getParameter("startDate");
@@ -53,8 +52,9 @@ public class TripController implements Controller {
 		String strTripNo = request.getParameter("routeSpots");
 		String detail = request.getParameter("detail");
 
-		Users user = (Users)request.getSession().getAttribute("user");
-		String usersId = user.getUsersId();
+//		Users user = (Users)request.getSession().getAttribute("user");
+//		String usersId = user.getUsersId();
+		String usersId = "joo";
 		
 		// route insert
 		Route route = new Route();
@@ -70,7 +70,7 @@ public class TripController implements Controller {
 		Trip trip = new Trip(noteName, startDate, endDate);
 		tripDAO.create(trip);
 		int tripNo = trip.getNo();
-		logger.debug("tripNo:" + tripNo);
+//		logger.debug("tripNo:" + tripNo);
 
 		// small_trip insert
 		SmallTrip small = new SmallTrip(1, tripNo, no);

@@ -61,7 +61,11 @@
 <%-- Address --%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
-
+<style>
+.month-wrapper{
+display: flex;
+}
+</style>
 	
 <script>
 $(document).ready(function(){
@@ -102,17 +106,19 @@ $(document).ready(function(){
 	    var ms = new Date(array[1])-new Date(array[0]);
 	    days = (ms / (1000*60*60*24)) + 1;
 	    
-	    var html = 	
-	        '<div class="col-xs-12 col-sm-12 gap-10"> <div class="form-group">'+
-	        '<div class="col-xs-8 col-sm-8"><input type="text" class="form-control" id="address" name="address"  required></div>'+
-	        '<div class="col-xs-4 col-sm-4"><input type="button" onclick="daumPostcode()" value="주소찾기" class="btn btn-template-main"></div>'+
-	        '</div></div>' ;
+	    var text = 	
+	        '<div class="col-xs-12 col-sm-12 gap-10 form-group">'+ 
+	        	'<div class="form-group">'+
+	        		'<div class="col-xs-8 col-sm-8" style="padding-left:30px;"><input type="text" class="form-control" id="address" name="address"  required></div>'+
+	        		'<div class="col-xs-4 col-sm-4" style="padding-left:30px;"><input type="button" onclick="daumPostcode()" value="주소찾기" class="btn btn-template-main"></div>'+
+	        	'</div>'+
+	        '</div>' ;
 
 	    
-	    $(".departures").html('<label>출발장소</label>');    
+	    $(".departures").html('<div class="form-group"><label style="padding-left:30px;">출발장소</label></div>');    
 	        
 	    for(var i=0; i<days; i++){
-		 	$(".departures").append(html);
+		 	$(".departures").append(text);
 		}; 
 	});
 	
@@ -159,26 +165,6 @@ $(document).ready(function(){
 		});
 		
 	});
-	
-	
-	<%-- 숙소 클릭시 주소 검색창이 뜨게 하고, 다시 터미널,역을 누를시 주소 검색 창을 지운다 --%>
-	<%-- 동적으로 생성되기 때문에 $('.departure').change가 아닌 아래처럼 써준다 --%>
-	/* $(document).on("change", '.departure', function(){
-	    
-        if($(this).val() == "house"){
-            
-            var html = '<br> <div id="detail"><div class="row departureRow"><div class="col-sm-2 form-group"><input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="btn btn-template-main"><br></div>'+
-            '</div><div class="row"><div class="col-sm-6 form-group"><input type="text" class="form-control" id="address" name="address"  required></div>'+
-            '<div class="col-sm-6 form-group"><input type="text" class="form-control" id="addressDetail" name="addressDetail"  required><span id="guide" style="color:#999"></span>'+
-            ' </div></div></div>';
-            
-            ($(this).parent().parent()).append(html);
-        }
-        else{
-            var siblings = ($(this).parent()).siblings(3);
-            siblings.remove();
-        }
-	}); */
 	
 	
 	<%-- Submit --%>
@@ -278,18 +264,9 @@ function daumPostcode() {
             var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
             var extraRoadAddr = ''; // 도로명 조합형 주소 변수
 
-            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                extraRoadAddr += data.bname;
-            }
             // 건물명이 있고, 공동주택일 경우 추가한다.
             if(data.buildingName !== '' && data.apartment === 'Y'){
                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-            }
-            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-            if(extraRoadAddr !== ''){
-                extraRoadAddr = ' (' + extraRoadAddr + ')';
             }
             // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
             if(fullRoadAddr !== ''){
@@ -325,7 +302,7 @@ function daumPostcode() {
 		<div class="main-wrapper scrollspy-container">
 		
 			<%-- start breadcrumb --%>
-			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('images/breadcrumb-bg.jpg');">
+			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('/images/breadcrumb-bg.jpg');">
 				<div class="container">
 					<div class="page-title">
 						<div class="row">
@@ -337,7 +314,7 @@ function daumPostcode() {
 					
 					<div class="breadcrumb-wrapper">
 						<ol class="breadcrumb">
-							<li><a href="/index.jsp">Home</a></li>
+							<li><a href="/">Home</a></li>
 							<li class="active"><span>Trip Create</span></li>
 						</ol>
 					</div>
@@ -403,13 +380,12 @@ function daumPostcode() {
 									</div><%-- ./row --%>
 										
 									<hr>
-									<h5 class="text-uppercase">이번 여행에서 원하는 테마가 있으면 선택해주세요. <br>
-									본인 성향대로 평소처럼 여행하고 싶다면 선택하지 않으셔도 됩니다.</h5>
+									<p class="text-center"><h5 class="text-uppercase">이번 여행에서 원하는 테마가 있으면 선택해주세요. <br>
+									본인 성향대로 평소처럼 여행하고 싶다면 선택하지 않으셔도 됩니다.</h5></p>
 										
 									<%-- 아이콘 모음 시작 --%>
 									<div class="row gap-20">
-										<div class="col-xs-8 col-sm-8">
-											<label class="block">Tour style:</label>
+										<div class="col-xs-8 col-sm-8 col-xs-offset-2 col-sm-offset-2">
 												<div class="category-checkbox-wrapper clearfix mt-10 mb-15">
 					
 													<div class="category-checkbox-item">

@@ -90,7 +90,9 @@
 	       spot_closed_date		AS	"closedDate", 
 	       spot_phone			AS	"phone", 
 	       spot_fare			AS	"fare", 
-	       spot_homepage		AS	"homepage" 
+	       spot_homepage		AS	"homepage",
+	        spot_latitude		AS	"latitude",
+	       spot_longitude		AS	"longitude"
 	FROM   spot, 
 	       sigungu 
 	WHERE  sigungu.city_no = spot.city_no 

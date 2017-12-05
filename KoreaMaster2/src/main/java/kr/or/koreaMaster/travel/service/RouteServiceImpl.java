@@ -44,7 +44,6 @@ public class RouteServiceImpl implements RouteService {
 	@Override
 	/** 루트 구해주는 메소드 */
 	public Map<String, Object> getRoute(Map<String, String> map) {
-		logger.info("getRoute실행");
 
 		SpotsProcess spotsClass = new SpotsProcess();
 		RouteProcess routeClass = new RouteProcess();
@@ -70,15 +69,15 @@ public class RouteServiceImpl implements RouteService {
 			String[] themes = theme.split(",");
 			perThemes.add(Integer.parseInt(themes[0]));
 		}
-		logger.debug("perThemes"+perThemes);
+//		logger.debug("perThemes"+perThemes);
 
 		// #4. 사용자가 선택한 도시에서 사용자의 테마에 맞는 장소들을 추려낸다
 		spotThemeJoinList = spotsClass.getSpots(spotThemeJoinList, perThemes);
-		logger.debug("spotThemeJoinList:"+spotThemeJoinList);
+	//	logger.debug("spotThemeJoinList:"+spotThemeJoinList);
 
 		// #5. 장소간의 거리, 여행일자를 고려하여 루트를 찾아낸다
 		int date = Integer.parseInt(map.get("days"));
-		logger.debug("date:"+date);
+//		logger.debug("date:"+date);
 
 		// #6. 출발장소 split 후 db에 입력 또는 데이터 불러오기 후 list에 저장
 		String[] spots = map.get("departures").split(",");
@@ -89,13 +88,17 @@ public class RouteServiceImpl implements RouteService {
 		for (String departure : spots) {
 				spot = new Spot();
 				
+	//			logger.debug("출발지:"+departure);
 				// 사용자가 입력한 숙소의 정보수집
-//				GeocoderLatLong geocode = new GeocoderLatLong();
-//				coords = geocode.geoCoding(departure);
+				GeocoderLatLong geocode = new GeocoderLatLong();
+				coords = geocode.geoCoding(departure);
+				
 				
 				//여수종합버스터미널
-				coords[0] = (float)34.758084;
-				coords[1] = (float)127.717084;
+//				coords[0] = (float)34.758084;
+//				coords[1] = (float)127.717084;
+				
+//				logger.debug("coodrds:"+coords);
 
 				spot = new Spot();
 				spot.setAddressDetail(departure);
@@ -107,14 +110,14 @@ public class RouteServiceImpl implements RouteService {
 				
 //				spot = spotDAO.readByName("여수종합버스터미널");
 			
-				logger.debug("spot:"+spot);
+//				logger.debug("spot:"+spot);
 			if (spot != null) {
 				spotDAO.create(spot);
 				departures.add(spot);
 			}
 		}
 
-		 logger.debug("departures:"+departures);
+//		 logger.debug("departures:"+departures);
 
 		/** routeDetail 화면에 띄어줄 필요한 정보들을 담는 map */
 		Map<String, Object> route = new HashMap<String, Object>();
@@ -128,7 +131,7 @@ public class RouteServiceImpl implements RouteService {
 			strRouteNo += integer + ",";
 		}
 		route.put("routeNo", strRouteNo);
-		logger.debug("routeNo:"+strRouteNo);
+	//	logger.debug("routeNo:"+strRouteNo);
 
 		// #8. 장소번호로 장소들을 담는 새로운 list 생성
 		List<Spot> routeSpotsByDay = new ArrayList<Spot>();
@@ -137,7 +140,7 @@ public class RouteServiceImpl implements RouteService {
 			routeSpotsByDay.add(tmpSpot);
 		}
 		route.put("routeSpots", routeSpotsByDay);
-		logger.debug("routeSPots:"+routeSpotsByDay);
+	//	logger.debug("routeSPots:"+routeSpotsByDay);
 
 		// #9. 도시번호에 해당하는 이름 put
 		Sigungu city = sigunguDAO.read(cityNo);
@@ -218,7 +221,8 @@ public class RouteServiceImpl implements RouteService {
 			routeInfo.setPhone(rsInfo.getPhone());
 			routeInfo.setFare(rsInfo.getFare());
 			routeInfo.setHomepage(rsInfo.getHomepage());
-
+			routeInfo.setLatitude(rsInfo.getLatitude());
+			routeInfo.setLongitude(rsInfo.getLongitude());
 		} // end for
 
 		return result;
@@ -294,6 +298,8 @@ public class RouteServiceImpl implements RouteService {
 			routeInfo.setFare(rsInfo.getFare());
 			routeInfo.setHomepage(rsInfo.getHomepage());
 			routeInfo.setCityNo(rsInfo.getCityNo());
+			routeInfo.setLatitude(rsInfo.getLatitude());
+			routeInfo.setLongitude(rsInfo.getLongitude());
 		}
 		return result;
 

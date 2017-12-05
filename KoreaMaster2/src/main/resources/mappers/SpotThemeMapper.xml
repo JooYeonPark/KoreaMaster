@@ -19,7 +19,8 @@
 	</insert>
 	
 	 <select id="getSpotThemeJoin" parameterType="int" resultType="SpotThemeJoin">
-       SELECT spot.spot_no			AS "spotNo", 
+       SELECT  distinct
+       		   spot.spot_no			AS "spotNo", 
 		       spot.spot_latitude	AS "latitude", 
 		       spot.spot_longitude	AS "longitude", 
 		       spot_theme.theme_no	AS "themeNo", 

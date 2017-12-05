@@ -23,6 +23,7 @@ public class TripNote {
 		this.tripNoteDetail = tripNoteDetail;
 		this.usersId = usersId;
 		this.tripNo = tripNo;
+		this.tripNoteName = tripNoteName;
 		this.tripNoteStartDate = tripNoteStartDate;
 		this.tripNoteEndDate = tripNoteEndDate;
 	}
