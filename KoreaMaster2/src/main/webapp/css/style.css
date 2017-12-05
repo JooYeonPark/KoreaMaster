@@ -5871,8 +5871,10 @@ ul.social-share-sm.for-useful li a:after {
     margin-top: 20px
 }
 
-.img-bg-01 {
-	background-image:url('../images/hero-header/01.jpg');
+/*indexPage background-image*/
+.img-bg-01 { 
+	background-image:url('../images/hero-header/bgimg.jpg');
+	height:42.5rem;
 }
 
 .img-bg-02 {

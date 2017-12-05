@@ -25,9 +25,10 @@ public class TripNoteList implements TripNoteCommand{
 		HttpSession session = request.getSession();
 		
 		String id = request.getParameter("usersId");
-		
+		System.out.println(id);
 		ArrayList<NoteList> tripName = TripNoteListService.getInstance().getTripNote(id);
 	
+		System.out.println(tripName.get(0));
 		request.setAttribute("tripName", tripName);
 		
 		return next;
