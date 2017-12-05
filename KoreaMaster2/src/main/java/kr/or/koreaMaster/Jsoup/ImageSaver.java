@@ -32,7 +32,7 @@ public class ImageSaver extends Thread {
     }
      
     public void run() {
-        // 파일이 존재하는경우 return
+        // 파일이 존재하는경우
         File saveFile = new File(path + File.separator + saveImageName);
         if(saveFile.isFile()) {
         	logger.info(saveImageName + " : 존재함");

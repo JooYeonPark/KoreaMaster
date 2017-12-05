@@ -59,7 +59,7 @@ var paramSort = <%=request.getParameter("sort")%>;
 var paramSido = <%=request.getParameter("sido")%>;
 var paramSigungu = <%=request.getParameter("sigungu")%>;
 
-var page =1;
+var page = 1;
 if (paramPage != null) {
 	page = paramPage;
 }
@@ -89,12 +89,14 @@ $(function(){
 	
 	$("#theme").change(function() {
 		theme = $("#theme option:selected").val();
+		page = 1;
 		var data = {"page" : page, "themeName" : theme, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
 		listPage(data);
 	});
 	
 	$("#sort").change(function() {
 		sort = $("#sort option:selected").attr("id");
+		page = 1;
 		var data = {"page" : page, "themeName" : theme, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
 		listPage(data);
 	});
@@ -110,25 +112,9 @@ $(function(){
 	
 	$(document).on("change", "#selectSido", function(event) {
 		sido = $("#selectSido option:selected").val();
+		page = 1;
 		
-		// 시군구 가져오기
-		$.ajax({
-			url:"/sigungu.do",
-			type:"get",
-			data : {sidoNo : sido},
-			dataType:"json",
-			success:function(data){
-				//시도 데이터 불러들여 set
-				$.each(data, function(key, value){
-					$("#selectSigungu") .append($("<option></option>").attr("value",key).text(value));		
-				}); 
-				
-				$("#selectSigungu").selectpicker("refresh"); 
-			},
-			error : function(xhr, statusText){
-				console.log("("+xhr.status+", "+statusText+")");
-			}
-		});
+		sigunguAjax();
 		
 		//리스트
 		var data = {"page" : page, "themeName" : theme, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
@@ -136,6 +122,7 @@ $(function(){
 	});
 	
 	$(document).on("change", "#selectSigungu", function(event) {
+		page = 1;
 		sigungu = $("#selectSigungu option:selected").val();
 		var data = {"page" : page, "themeName" : theme, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
 		listPage(data);
@@ -144,6 +131,8 @@ $(function(){
 
 
 function init(){
+	sidoAjax();
+	
 	// sort선택값 지정
 	if(sort ==2){
 		$("#sort").val("name").prop("selected", true);
@@ -166,8 +155,6 @@ function init(){
 	}
 	$("#theme").selectpicker("refresh");
 	
-	sidoAjax();
-	
 	var data = {"page" : page, "themeName" : theme, "sort" : sort, "sido" : sido, "sigungu" : sigungu};
 	listPage(data);
 }
@@ -179,10 +166,39 @@ function sidoAjax(){
 		success:function(data){
 			//시도 데이터 불러들여 set
 			$.each(data, function(key, value){
-				$("#selectSido") .append($("<option></option>").attr("value",key).text(value));		
+				$("#selectSido") .append($("<option></option>").attr("value",key).text(value));	
+					
+			}); 
+			if(sido != 0){
+				$("#selectSido").val(sido+"").prop("selected", true);
+				sigunguAjax();
+			}
+			
+			$("#selectSido").selectpicker("refresh");
+			
+		},
+		error : function(xhr, statusText){
+			console.log("("+xhr.status+", "+statusText+")");
+		}
+	});
+}
+
+function sigunguAjax(){
+	$("#selectSigungu").html("<option value='0'>전체</option>");
+	
+	// 시군구 가져오기
+	$.ajax({
+		url:"/sigungu.do",
+		type:"get",
+		data : {sidoNo : sido},
+		dataType:"json",
+		success:function(data){
+			//시도 데이터 불러들여 set
+			$.each(data, function(key, value){
+				$("#selectSigungu") .append($("<option></option>").attr("value",key).text(value));		
 			}); 
 			
-			$("#selectSido").selectpicker("refresh"); 
+			$("#selectSigungu").selectpicker("refresh"); 
 		},
 		error : function(xhr, statusText){
 			console.log("("+xhr.status+", "+statusText+")");

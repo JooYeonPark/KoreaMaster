@@ -23,6 +23,10 @@ import kr.or.koreaMaster.place.domain.Sigungu;
 import kr.or.koreaMaster.place.domain.Spot;
 import oracle.net.jdbc.TNSAddress.Address;
 
+/**
+ * 장소 데이터 파싱
+ * @author 김수진
+ */
 public class SpotDataParsing {
 	
 	DaoFactory factory = new MyBatisDaoFactory();
@@ -59,6 +63,7 @@ public class SpotDataParsing {
 			Element ele = group1List.get(i);
 			String eleEm = ele.getElementsByTag("em").text();
 			
+			// eleEm에 따라 데이터 담기
 			switch (eleEm) {
 			case "개 요":
 				Element detailContent = ele.getElementsByTag("p").first();

@@ -21,6 +21,10 @@ import kr.or.koreaMaster.place.domain.Restaurant;
 import kr.or.koreaMaster.place.domain.Sido;
 import kr.or.koreaMaster.place.domain.Sigungu;
 
+/**
+ * 식당 데이터 파싱
+ * @author 김수진
+ */
 public class RestaurantDataParsing {
 	
 	DaoFactory factory = new MyBatisDaoFactory();
@@ -28,6 +32,7 @@ public class RestaurantDataParsing {
 	SidoDao sidoDao = (SidoDao)factory.getDao(SidoDaoImpl.class);
 	SigunguDao sigunguDao = (SigunguDao)factory.getDao(SigunguDaoImpl.class);
 	
+	//주소와 공동 데이터
 	AddressParsing addressParsing = new AddressParsing();
 	CommonParsing commonParsing = new CommonParsing();
 	
@@ -36,13 +41,13 @@ public class RestaurantDataParsing {
 		
 		Connection.Response response = null;
 		Document document = null;
+		// 위도 경도 
 		GeocoderLatLong geo = new GeocoderLatLong();
 		
 		try {
 			response = Jsoup.connect(url).method(Connection.Method.GET).execute();
 			document = response.parse();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -60,6 +65,7 @@ public class RestaurantDataParsing {
 			case "개 요":
 				Element detailContent = ele.getElementsByTag("p").first();
 				if(detailContent != null) {
+					// html() : Element의 내용을 html문법 그대로 반환
 					detail = detailContent.html();
 				}
 				break;

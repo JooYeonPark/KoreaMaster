@@ -38,20 +38,27 @@ public class SpotJsoupMain {
 		SpotDao spotDao = (SpotDao) factory2.getDao(SpotDaoImpl.class);
 		MyTravelTypeRepository themeDao = new MyTravelTypeRepository();
 		SpotThemeDAO spotThemeDAO = (SpotThemeDAO) factory2.getDao(SpotThemeDAOImpl.class);
-
 		
 		Connection.Response response = null;
 		Document document = null;
 		for (int i = 0; i < theme.length; i++) {
 			String themeName = theme[i];
 			for (int j = 1; j <= pageNum; j++) {
+				// 접속할 URL
 				url = "http://korean.visitkorea.or.kr/kor/bz15/where/where_tour.jsp?areaCode=&category=" + theme[i]+ "&gotoPage=" + j + "&listType=rdesc&cid=&out_service=";
 
+				/*
+				 * 해당 url에 접속하여  Response반환
+				 * Jsoup.connect(url) : 해당 url에 접속
+				 * execute() : response반환
+				 */
 				response = Jsoup.connect(url).method(Connection.Method.GET).execute();
+				
+				//parse() : response로부터 document 반환
 				document = response.parse();
 
+				// select() : 얻어온 document에서 특정요소를 elements or element로 반환
 				Elements liList = document.select("div[class='whereWrap'] ul li a");
-				System.out.println("페이지 : " + j + ", 개수 : "+ liList.size());
 
 				for (int k = 0; k < liList.size(); k++) {
 					Element aTag = liList.get(k).getElementsByTag("a").first();
@@ -68,10 +75,10 @@ public class SpotJsoupMain {
 							int detailSize = spot.getDetail().length();
 
 							if (detailSize <= 1300) {
-
 								if (spot.getLatitude() != 0) {
 									spotDao.create(spot);
 
+									// 테마 구분
 									switch (themeName) {
 									case "A01":
 										themeName = "자연";

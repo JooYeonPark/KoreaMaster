@@ -14,6 +14,7 @@ public class CommonParsing {
 	public Map<String, Object> commonData(Document document) {
 		Map<String, Object> map = new HashMap<>();
 
+		// select() : 얻어온 document에서 특정요소를 elements or element로 반환
 		Elements titleContent = document.select("h3"); // Spot Name --
 		Elements figcaptiontavleNum = document.select("figcaption li b"); // Spot address, phone, operationHour, closeDate --
 		Elements figcaptiontavle = document.select("figcaption li span"); // Spot address, phone, operationHour, closeDate --
@@ -27,7 +28,8 @@ public class CommonParsing {
 		String operatingHour = "";
 		String closedDate = "";
 
-		// 주소, 전화번호, 시간, 쉬는날
+		// 주소, 전화번호, 시간, 쉬는날 데이터
+		//eachText() : Elements의 내용을  text값으로 반환
 		List<String> bListNum = figcaptiontavleNum.eachText();
 		List<String> spanList = figcaptiontavle.eachText();
 		for (int i = 0; i < bListNum.size(); i++) {

@@ -10,6 +10,10 @@ import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.GeocoderStatus;
 import com.google.code.geocoder.model.LatLng;
 
+/**
+ * 위도 경도 구하는 class
+ * @author 김수진
+ */
 public class GeocoderLatLong {
 	
 	public static Float[] geoCoding(String location) {
@@ -17,10 +21,9 @@ public class GeocoderLatLong {
 			return null;
 
 		Geocoder geocoder = new Geocoder();
-		// setAddress : 변환하려는 주소 (경기도 성남시 분당구 등)
+		// setAddress : 변환하려는 주소
 		// setLanguate : 인코딩 설정
-		GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress(location).setLanguage("ko")
-				.getGeocoderRequest();
+		GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress(location).setLanguage("ko").getGeocoderRequest();
 		GeocodeResponse geocoderResponse;
 
 		try {
@@ -41,12 +44,14 @@ public class GeocoderLatLong {
 		return null;
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		GeocoderLatLong geocode = new GeocoderLatLong();
 		String location = "경상북도 청도군 운문면 운문로 763";
 
 		Float[] coords = geocode.geoCoding(location);
-		System.out.println(location + ": " + coords[0] + ", " + coords[1]);
+		
+		System.out.println(coords[0]);
+		System.out.println(coords[1]);
 
-	}
+	}*/
 }
