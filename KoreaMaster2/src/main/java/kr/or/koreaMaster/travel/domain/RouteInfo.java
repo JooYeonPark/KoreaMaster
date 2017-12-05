@@ -20,13 +20,15 @@ public class RouteInfo {
 	private String phone;
 	private String fare;
 	private String homepage;
+	private double latitude;
+	private double longitude;
 	
 	/** 생성자 */
 	public RouteInfo() {}
-
 	public RouteInfo(int tripNo, int routeNo, int nextRouteNo, int dayNo, int spotNo, int cityNo, String sigunName,
 			String guName, int themeNo, String themeName, String spotName, String tripName, String detail,
-			String addressDetail, String operatingHour, String closedDate, String phone, String fare, String homepage) {
+			String addressDetail, String operatingHour, String closedDate, String phone, String fare, String homepage,
+			double latitude, double longitude) {
 		super();
 		this.tripNo = tripNo;
 		this.routeNo = routeNo;
@@ -47,10 +49,9 @@ public class RouteInfo {
 		this.phone = phone;
 		this.fare = fare;
 		this.homepage = homepage;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
-
-
-
 
 
 	/** Getter, Setter */
@@ -238,10 +239,18 @@ public class RouteInfo {
 		this.tripName = tripName;
 	}
 
-
-
-
-
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
 	@Override
 	public String toString() {
 		return "RouteInfo [tripNo=" + tripNo + ", routeNo=" + routeNo + ", nextRouteNo=" + nextRouteNo + ", dayNo="
@@ -249,8 +258,7 @@ public class RouteInfo {
 				+ guName + ", themeNo=" + themeNo + ", themeName=" + themeName + ", spotName=" + spotName
 				+ ", tripName=" + tripName + ", detail=" + detail + ", addressDetail=" + addressDetail
 				+ ", operatingHour=" + operatingHour + ", closedDate=" + closedDate + ", phone=" + phone + ", fare="
-				+ fare + ", homepage=" + homepage + "]";
+				+ fare + ", homepage=" + homepage + ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
-
 	
 }
