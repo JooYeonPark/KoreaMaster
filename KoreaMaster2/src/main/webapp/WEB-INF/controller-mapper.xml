@@ -5,7 +5,8 @@
 	<bean name="/sigungu" class="kr.or.koreaMaster.place.controller.SigunguController"/>
 	
 	<!-- spot 세부컨트롤러 -->
-	<bean name="/spotPage" class="kr.or.koreaMaster.place.controller.SpotListController"/>
+	<bean name="/spotPage" class="kr.or.koreaMaster.place.controller.SpotPageController"/>
+	<bean name="/spotList" class="kr.or.koreaMaster.place.controller.SpotListController"/>
 	<bean name="/restaurantPage" class="kr.or.koreaMaster.place.controller.RestaurantListController"/>
 	<bean name="/spotDetail" class="kr.or.koreaMaster.place.controller.SpotDetailController"/>
 	<bean name="/restaurantDetail" class="kr.or.koreaMaster.place.controller.RestaurantDetailController"/>
@@ -18,5 +19,6 @@
 	<bean name="/addtrip" class="kr.or.koreaMaster.travel.controller.AddTripController"/>
 	
 	<bean name="/myTripNote" class="kr.or.koreaMaster.travel.controller.MyTripNoteController"/>
+	<bean name="/changeTrip" class="kr.or.koreaMaster.travel.controller.RouteChangeController"/>
 	
 </beans>

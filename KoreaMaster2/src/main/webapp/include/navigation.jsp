@@ -68,7 +68,7 @@
 			<ul class="nav navbar-nav" id="responsive-menu">
 				<li><a href="/jsp/place/spotList.jsp">장소</a>
 					<ul>
-						<li><a href="/jsp/place/spotList.jsp?sido=1">서울</a></li>
+						<li><a href="/jsp/place/spotList.jsp?sido=1">서울</a></li>	
 						<li><a href="/jsp/place/spotList.jsp?sido=21">인천</a></li>
 						<li><a href="/jsp/place/spotList.jsp?sido=27">대구</a></li>
 						<li><a href="/jsp/place/spotList.jsp?sido=34">광주</a></li>
