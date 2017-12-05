@@ -29,8 +29,7 @@
 <link rel="shortcut icon" href="/images/ico/favicon.png">
 
 <%-- CSS Plugins --%>
-<link rel="stylesheet" type="text/css"
-	href="/bootstrap//css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/bootstrap//css/bootstrap.min.css" media="screen">
 <link href="/css/main.css" rel="stylesheet">
 <link href="/css/plugin.css" rel="stylesheet">
 
@@ -42,23 +41,45 @@
 <%-- Add your style --%>
 <link href="/css/your-style.css" rel="stylesheet">
 <link href="/css/ksj-style.css" rel="stylesheet">
+<link href="/css/ksj-modal.css" rel="stylesheet">
 
 <!-- Core JS -->
 <script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/core-plugins.js"></script>
+<script type="text/javascript" src="/js/ksj-core-plugins.js"></script>
 <script type="text/javascript" src="/js/customs.js"></script>
 
 <script type="text/javascript" >
+/* var list = ${list}; */
 var modalCl;
-var count = ${list.size()};
+/* var count = ${list.size()}; */
+var spotSize = $(".routeInfo").size();
 
 $(document).ready(function(){
 	
+	/* $(document).on("click", ".pull-right", function (event) {
+		event.preventDefault();
+		var itemNum = $(this).attr("name");
+		
+		$(this).parents().get(3).remove(); 
+	}); */
+
 	$(document).on("click", ".pull-right", function (event) {
 		event.preventDefault();
 		var itemNum = $(this).attr("name");
+		console.log(itemNum);
 		/*console.log($(this).parents());*/
-		$(this).parents().get(3).remove(); 
+		var tmp = "#"+itemNum;
+		$(tmp).remove();
+		
+		console.log(Number(itemNum)+1);
+		var listCount = $(".routeInfo").last().attr('id');
+		console.log(listCount);
+		for (var i = itemNum+1; i < listCount; i++) {
+			alert(i);
+			 ($(".routeInfo")[i]).attr('id', i-1);
+			console.log($(".routeInfo")[i].attr('id'));
+		}
+		
 	});
 	
  	$(document).on("click", "#spotModal .spotAdd", function(event){
@@ -67,17 +88,16 @@ $(document).ready(function(){
 		var ob = ($(this).children().get(1)).childNodes;
 		var homePage = ob.item(9).textContent.substring(7);
 		
-		// .td-timeline-panel의 name=modalCl의 뒤에 append
 		var spotStr = "";
-		spotStr += "<div class='GridLex-col-12_mdd-12_sm-12_xs-12_xss-12'  id='"+count+"'>"+
-				   "<div class='td-timeline-wrap' name='"+count+"'>"+
+		spotStr += "<div class='GridLex-col-12_mdd-12_sm-12_xs-12_xss-12'  id='"+spotSize+"'>"+
+				   "<div class='td-timeline-wrap' name='"+spotSize+"'>"+
 				   "<ul class='td-timeline'>"+
-				   "<li> <div class='td-timeline-panel' name='"+count+"'>"+
+				   "<li> <div class='td-timeline-panel' name='"+spotSize+"'>"+
 				   "<div class='td-timeline-panel-time'>"+
 				   "<span class='text-darker'>07:00</span> "+
 				   "<span class='text-xs-right'>AM</span>"+
 				   "</div> <div class='td-timeline-panel-bubble'>"+
-				   "<a href='' class='btn pull-right btn-default btn-md	 delbtn ksj-icon-remove' name='"+count+"'><i class='fa fa-fw fa-remove'></i></a>"+
+				   "<a href='' class='btn pull-right btn-default btn-md	 delbtn ksj-icon-remove' name='"+spotSize+"'><i class='fa fa-fw fa-remove'></i></a>"+
 				   "<i class='fa fa-plane text-darker'></i>"+
 				   "<h4 class='timeline-title'>"+ob.item(1).textContent+"</h4>"+
 				   "<p>상세설명</p><hr>"+
@@ -87,10 +107,8 @@ $(document).ready(function(){
 				   "<p>"+ob.item(7).textContent+"</p>"+
 				   "<p>"+ob.item(8).textContent+"</p>"+
 				   "<p>홈페이지 : <a href='"+homePage+"'>"+homePage+"</a></p>"+
-				   "</div> <button class='btn pull-left btn-default btn-md delbtn ksj-icon-plus' name='"+count+"'><i class='fa fa-fw fa-plus'></i></button>"+
+				   "</div> <button class='btn pull-left btn-default btn-md delbtn ksj-icon-plus' name='"+spotSize+"'><i class='fa fa-fw fa-plus'></i></button>"+
 				   "</div> </li> </ul></div> </div>";
-		
-		count += 1;
 		
 		$("#spotModal").modal('hide');
 		
@@ -100,17 +118,18 @@ $(document).ready(function(){
 	
 	$(document).on("click", ".ksj-icon-plus", function(){
 		modalCl = $(this).attr('name');
+		spotSize = $(".td-timeline-panel").size();
+
+		modalData();
 		$("#spotModal").modal();
 	});
 	
-	$('#spotModal').on('show.bs.modal', function (event) {
-		/*  console.log(modalCl); */
-		 var spotSize = $(".td-timeline-panel").size();
-			
+/* 	$('#spotModal').on('show.bs.modal', function (event) {
+		alert(spotSize);
 		if(spotSize >= 5){
+			alert("등록 불가!!");
 			$(".modal-body").html("1일 최대 장소를 초과하셨습니다.(최대 5개)");
 		}else{
-			/*  alert("장소 추가 가능 : " + spotSize); */
 			var cityNo = $("#cityNo").val();
 			var tripNo = $("#tripNo").val();
 			
@@ -120,11 +139,8 @@ $(document).ready(function(){
 				dataType: "json",
 				success : function(data){
 					var list = data.array;
-					/* var str = "<div class='GridLex-grid-noGutter-equalHeight col-sm-12'>"; */
 					 var str = "";
 					$.each(list, function(i, spot) {
-						/* str += "<div class='spotAdd' id='"+spot.no+"'}><img src='/images/spot/"+spot.picture+"' style='width:400px; height:250px;'></div>"+
-								"<div class='trip-guide-content'><h5 styl='vertical-align:center;'>"+spot.name+"</h5></div><br>";  */
 						str+="<div class='td-timeline-panel spotAdd' name='"+spot.no+"'>"+
 							 "<div class='td-timeline-panel-time'  name='"+spot.no+"'>"+
 							 "<span class='text-xs-right'><img src='/images/spot/"+spot.picture+"' style='width:130px;'></span>"+
@@ -142,15 +158,52 @@ $(document).ready(function(){
 							 "</div> </div>";
 							
 					});
-					/* str += "</div>"; */
 					$(".modal-body").append(str);
 				}
 			});
 		}
 		 
-	 });
+	 }); */
 	
 });
+
+var modalData = function(){
+	if(spotSize >= 5){
+		$(".modal-body").html("1일 최대 장소를 초과하셨습니다.(최대 5개)");
+	}else{
+		var cityNo = $("#cityNo").val();
+		var tripNo = $("#tripNo").val();
+		
+		$.ajax({
+			url : "/spotList.do",
+			data : {"cityNo" : cityNo, "tripNo" : tripNo},
+			dataType: "json",
+			success : function(data){
+				var list = data.array;
+				 var str = "<p>추가할 일정을 클릭해주세요 </p>";
+				$.each(list, function(i, spot) {
+					str+="<div class='td-timeline-panel spotAdd' name='"+spot.no+"'>"+
+						 "<div class='td-timeline-panel-time'  name='"+spot.no+"'>"+
+						 "<span class='text-xs-right'><img src='/images/spot/"+spot.picture+"' style='width:130px;'></span>"+
+						 "</div>"+
+						 "<div class='td-timeline-panel-bubble'>"+
+						 "<i class='fa fa-plane text-darker'></i>"+
+						 "<h4 class='timeline-title' name='"+spot.no+"'>" +spot.name+"</h4>"+
+						 "<p>상세설명</p><hr>"+
+						 "<p>주소 : "+spot.addressDetail+"</p>"+
+						 "<p>운영시간 : "+spot.operatingHour+"</p>"+
+						 "<p>휴관일 : "+spot.closedDate+"</p>"+
+						 "<p>연락처 : "+spot.phone+"</p>"+
+						 "<p>요금 : "+spot.fare+"</p>"+
+						 "<p>홈페이지 : "+spot.homepage+"</a></p>"+
+						 "</div> </div>";
+						
+				});
+				$(".modal-body").html(str);
+			}
+		});
+	}
+}
 </script>
 	
 </head>
@@ -335,12 +388,16 @@ $(document).ready(function(){
 												<img src="/images/baggage.png" alt="image" >
 											</div>
 										</div>
-										
+										<form action="">
+										<input type="hidden" name="startDate" value="${trip.startDate}"/>
+		                              	<input type="hidden" name="endDate" value="${trip.endDate}"/>
+		                              	<input type="hidden" name="tripName" value="${trip.name}"/>
+		                              	<input type="hidden" name="routeSpots" value="${route.routeNo}"/>
+		                              	
 										<!-- 여행 일정 리스트 및 내용 -->
 										<div class="content">
 											<div class="GridLex-gap-20 mb-5">
 												<div class="GridLex-grid-noGutter-equalHeight GridLex-grid-middle">
-												
 													<div class="GridLex-col-7_sm-12_xs-12_xss-12">
 														<div class="GridLex-inner">
 															<h6>${trip.name}</h6>
@@ -354,13 +411,13 @@ $(document).ready(function(){
 														<div id="detail-content-sticky-nav-03">
 	
 															<h2 class="font-lg">Itinerary</h2>
-																   <c:forEach var="item" items="${list}" varStatus="status" > 
+																   <c:forEach var="item" items="${list}" varStatus="status"> 
 																	<%-- day --%>
 																	<c:if test="${status.index eq 0 }">
 																		<input type="hidden" id="cityNo" value="${item.cityNo}">
 																	</c:if>
 																	
-																	<div class="GridLex-col-12_mdd-12_sm-12_xs-12_xss-12" id="${status.index}">
+																	<div class="GridLex-col-12_mdd-12_sm-12_xs-12_xss-12 routeInfo" id="${status.index}">
 																		<%--  상세일정 보여주는 div START --%>
 																			<%-- 일정 보여주는 ui START --%>
 																					
@@ -410,7 +467,6 @@ $(document).ready(function(){
 																	<%-- day END --%>
 																	</c:forEach> 
 																	<%-- end of panel --%>
-																	
 															<div class="mb-25"></div>
 															<div class="bb"></div>
 															<div class="mb-25"></div>
@@ -420,43 +476,20 @@ $(document).ready(function(){
 												</div>
 												
 											</div>
-											
+											</form>
 										</div>
-										
-										<!-- Modal START -->
-										<div class="modal fade" tabindex="-1"  role="dialog">
-										    <div class="modal-dialog  modal-lg" id="spotModal" role="document">
-										      <div class="modal-content">
-										        <div class="modal-header">
-										          <button type="button" class="close" data-dismiss="modal">&times;</button>
-										          <h4 class="modal-title">여행 일정 추가</h4>
-										        </div>
-										        <div class="modal-body">
-										        <p>추가할 일정을 클릭해주세요 </p>
-										        
-										        </div>
-										        <div class="modal-footer">
-										          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										          <button type="button" class="btn btn-default">Submit</button>
-										        </div>
-										      </div>
-										    </div>
-										</div>
-										<!-- Modal END -->
 									</div>
 									<!-- List End -->
+									<input type="submit" value="수정">
 								</div>
 								
 							</div>
 						</div>
 						<!-- content START -->
-						
-						
 					</div>
 				</div>
 			</div>
 		</div>
-		
 		<!-- end Main Wrapper -->
 		
 		<!-- start Footer Wrapper -->
@@ -476,6 +509,24 @@ $(document).ready(function(){
 
 <!-- end Back To Top -->
 
+<!-- Modal START -->
+<div class="modal fade" role="dialog">
+	<div class="modal-dialog  modal-lg" id="spotModal" role="modal">
+		<div class="modal-content">
+			<div class="modal-header">   
+				<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+				<h4 class="modal-title">여행 일정 추가</h4>
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal END -->
 
 <!-- Core JS -->
 <script type="text/javascript" src="/js/jquery.min.js"></script>

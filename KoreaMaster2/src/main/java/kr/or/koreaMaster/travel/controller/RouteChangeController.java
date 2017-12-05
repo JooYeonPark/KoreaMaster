@@ -41,6 +41,7 @@ public class RouteChangeController implements Controller {
         
         Map<String, Object> map = new HashMap<String,Object>();
         
+        /*int tripnoteNo = Integer.parseInt(request.getParameter("tripnoteNo"));*/
         int tripNo = Integer.parseInt(request.getParameter("tripNo"));
         Trip trip = tripDAO.read(tripNo);
         List<RouteInfo> list = routeService.routeByTripNo(tripNo);

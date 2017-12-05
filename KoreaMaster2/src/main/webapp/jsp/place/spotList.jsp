@@ -52,7 +52,6 @@
 <script type="text/javascript" src="/js/customs-result.js"></script>
 
 <script type="text/javascript">
-
 var paramPage = <%=request.getParameter("page")%>;
 var paramTheme = <%=request.getParameter("themeName")%>;
 var paramSort = <%=request.getParameter("sort")%>;
