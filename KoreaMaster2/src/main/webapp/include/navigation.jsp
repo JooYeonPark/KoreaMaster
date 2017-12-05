@@ -100,9 +100,9 @@
 				
 				<li><a href="">나의여행노트</a>
                     <ul>
-                        <li><a href="/note?cmd=my-tripNote&usersId=" + <%= user.getUsersId()%>>나의 여행노트</a></li>
-					</ul>
-				</li>	
+                        <li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId()%>">나의 여행노트</a></li>
+               </ul>
+           		</li>
 				
 				
 				<li><a href="/note?cmd=my-page">마이페이지</a>
