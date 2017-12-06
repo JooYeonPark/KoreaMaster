@@ -48,11 +48,13 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
+
+
 </head>
 
-<body class="home transparent-header">
+<!-- <body class="home transparent-header"> -->
 
-	<div id="introLoader" class="introLoading"></div>
+<!--  	<div id="introLoader" class="introLoading"></div>-->
 
 	<!-- start Container Wrapper -->
 
