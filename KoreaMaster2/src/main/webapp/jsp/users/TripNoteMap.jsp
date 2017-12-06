@@ -22,7 +22,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Title Of Site -->
-	<title>한뽀 - 나의 여행 지도</title>
+	<title>한반도 뽀개기 - 나의 여행 지도</title>
 	<meta name="description" content="HTML template for multiple tour agency, local agency, traveller, tour hosting based on Twitter Bootstrap 3.x.x" />
 	<meta name="keywords" content="tour agency, tour guide, travel, trip, holiday, vocation, relax, adventure, virtual tour, tour planner" />
 	<meta name="author" content="crenoveative">
@@ -44,14 +44,8 @@
 	<link href="/css/style.css" rel="stylesheet">
 	
 	<!-- Add your style -->
-	<link href="/css/your-style.css" rel="stylesheet">
+	<link href="/css/user/TripNoteMap.css" rel="stylesheet">
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
-	
-	<style type="text/css">
-		#wrapperDIV {
-			top : 20px;
-		}
-	</style>
 	
 </head>
 
@@ -82,8 +76,8 @@
 			<div class="breadcrumb-wrapper">
 				<div class="container">
 					<ol class="breadcrumb">
-						<li><a href="#">홈</a></li>
-						<li><a href="#">마이페이지</a></li>
+						<li><a href="/user?cmd=main-page">홈</a></li>
+						<li><a href="/">마이페이지</a></li>
 						<li class="active">나의 여행지도</li>
 					</ol>
 				</div>
@@ -104,7 +98,7 @@
 								<div class="inner-top">
 								
 									<div class="image">
-										<img src="/images/man/01.jpg" alt="image" />
+										<img src="/images/users/<%=user.getUsersPicture()%>" alt="image" />
 									</div>
 									
 									<div class="GridLex-gap-20">
@@ -155,8 +149,7 @@
 									<ul class="user-header-menu">
 										<li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행노트</a></li>
 										<li><a href="/guide-detail-offer.html">나의 여행달력</a></li>
-										<li class="active"><a>나의 여행지도</a></li>
-										<li><a href="/note?cmd=my-page">마이페이지</a></li>
+										<li class="active"><a href="/note?cmd=my-map&usersId=<%= user.getUsersId() %>">나의 여행지도</a></li>
 									</ul>
 								
 								</div>
@@ -187,9 +180,7 @@
 										
 										<li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행노트</a></li>
 										<li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행달력</a></li>
-										<li class="active"><a>나의 여행지도</a></li>
-										<li><a href="/note?cmd=my-page">마이페이지</a></li>
-										
+										<li class="active"><a href="/note?cmd=my-map&usersId=<%= user.getUsersId() %>">나의 여행지도</a></li>
 										
 									</ul>
 									
@@ -210,7 +201,7 @@
 									 <div id="map" style="width:750px;height:550px;"></div>
 								</div>
 								<div>
-									<input type="hidden" value="<%=user%>" id="mapUser"/>
+									<input type="hidden" value="<%= user.getUsersId() %>" id="mapUser"/>
 								</div>
 								<!-- End map -->
 								

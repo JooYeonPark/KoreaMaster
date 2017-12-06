@@ -101,8 +101,8 @@
 				<li><a href="">나의여행노트</a>
                     <ul>
                         <li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId()%>">나의 여행노트</a></li>
-                        <li><a href="/note?cmd=my-map">여행 지도</a></li>
-               </ul>
+                        <li><a href="/note?cmd=my-map&usersId=<%= user.getUsersId() %>">여행 지도</a></li>
+               		</ul>
            		</li>
 				
 				

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	
 	$.ajax({ 
 		type:'get',
 		url: '/jsp/users/map.jsp',

@@ -113,8 +113,6 @@
                                     <div class="GridLex-inner">
                                        <div class="heading clearfix">
                                           <h3><%= user.getUsersName() %></h3>
-<!--                                           <span class="label label-success"><i class="fa fa-check mr-3"></i> Verified</span>  -->
-<!--                                           <span class="label label-info"><i class="fa fa-trophy mr-3"></i> Certified Guide</span> -->
                                        </div>
                                        <ul class="user-meta">
                                           <li><i class="fa fa-map-marker"></i> <%= user.getUsersAddress() %> <span class="mh-5 text-muted">|</span>

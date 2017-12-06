@@ -5,6 +5,7 @@
 <%@ page import="org.json.simple.JSONArray" %>
 
 <%
+String id = request.getParameter("userId");
 String driver="oracle.jdbc.driver.OracleDriver";
 String user="koreamaster";
 String pass="koreamaster";
@@ -22,7 +23,7 @@ String dbURL="jdbc:oracle:thin:@192.168.0.124:1521:orcl";
 														"   FROM small_trip   " + 
 		   												"   WHERE small_trip.trip_no IN ( SELECT trip_note.trip_no AS trip_no    " +
 		     			 															"    FROM trip_note    " + 
-		      																		"    WHERE trip_note.users_id = 'user' ) ) )  ";
+		      																		"    WHERE trip_note.users_id = '" + id + "' ) ) )  ";
    
 
    Statement stmt = connection.createStatement();
