@@ -323,13 +323,9 @@ var modalData = function(){
 							<div class="container">
 								<div class="inner-bottom">
 									<ul class="user-header-menu">
-										<li class="active"><a htef="">나의 여행노트</a></li>
-                              			<li><a href="/note?cmd=my-page">마이페이지</a></li>
-										<!-- <li><a href="guide-detail-gallery.html">Gallery</a></li>
-										<li><a href="guide-detail-reviews.html">Reviews</a></li>
-										<li><a href="guide-detail-following.html">Followings <span>25</span></a></li>
-										<li><a href="guide-detail-follower.html">Followers <span>8</span></a></li>
-										<li ><a href="guide-detail-setting.html">Dashboard</a></li> -->
+										<li class="active"><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행노트</a></li>
+										<li><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
+										<li ><a href="/note?cmd=my-map">나의 여행지도</a></li>
 									</ul>
 								</div>
 							</div>
@@ -354,7 +350,7 @@ var modalData = function(){
 									<ul class="common-menu-list">
 		                              <li class="active"><a href="/note?cmd=my-tripNote&usersId=<%=user.getUsersId()%>">나의 여행노트</a></li>
 		                              <li><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
-		                              <li><a href="/note?cmd=my-page">마이페이지</a></li>
+		                              <li class="active"><a href="/note?cmd=my-map">나의 여행지도</a></li>
 		                           </ul>
 								</div>
 							</aside>
