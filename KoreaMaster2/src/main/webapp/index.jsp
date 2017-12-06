@@ -192,7 +192,7 @@
 							<div class="GridLex-col-4_sm-4_xs-6_xss-12">
 
 								<div class="top-destination-item">
-									<a href="#">
+									<a href="/jsp/place/spotList.jsp?themeName=3">
 										<div class="image">
 											<img src="images/top-destinations/culture.jpg" alt="images" />
 										</div>
@@ -206,7 +206,7 @@
 							<div class="GridLex-col-4_sm-4_xs-6_xss-12">
 
 								<div class="top-destination-item">
-									<a href="#">
+									<a href="/jsp/place/spotList.jsp?themeName=2">
 										<div class="image">
 											<img src="images/top-destinations/experience.jpg" alt="images" />
 										</div>
@@ -221,7 +221,7 @@
 							<div class="GridLex-col-4_sm-4_xs-6_xss-12">
 
 								<div class="top-destination-item">
-									<a href="#">
+									<a href="/jsp/place/spotList.jsp?themeName=5">
 										<div class="image">
 											<img src="images/top-destinations/history.jpg" alt="images" />
 										</div>
@@ -236,7 +236,7 @@
 							<div class="GridLex-col-4_sm-4_xs-6_xss-12">
 
 								<div class="top-destination-item">
-									<a href="#">
+									<a href="/jsp/place/spotList.jsp?themeName=1">
 										<div class="image">
 											<img src="images/top-destinations/nature.jpg" alt="images" />
 										</div>
@@ -251,7 +251,7 @@
 							<div class="GridLex-col-4_sm-4_xs-6_xss-12">
 
 								<div class="top-destination-item">
-									<a href="#">
+									<a href="/jsp/place/spotList.jsp?themeName=6">
 										<div class="image">
 											<img src="images/top-destinations/shopping.jpg" alt="images" />
 										</div>
@@ -260,13 +260,12 @@
 										</h4>
 									</a>
 								</div>
-
 							</div>
 
 							<div class="GridLex-col-4_sm-4_xs-6_xss-12">
 
 								<div class="top-destination-item">
-									<a href="#">
+									<a href="/jsp/place/spotList.jsp?themeName=4">
 										<div class="image">
 											<img src="images/top-destinations/sport.jpg" alt="images" />
 										</div>

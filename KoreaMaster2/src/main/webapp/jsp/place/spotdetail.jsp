@@ -190,7 +190,7 @@ function init(){
 			<%-- start breadcrumb --%>
 
 			<div class="breadcrumb-image-bg detail-breadcrumb"
-				style="background-image: url('/images/detail-header.jpg');">
+				style="background-image: url('/images/bannerimage3.jpg');">
 				<div class="container">
 
 					<div class="page-title detail-header-02">
