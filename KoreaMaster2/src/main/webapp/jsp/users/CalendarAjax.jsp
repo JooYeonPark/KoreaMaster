@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*" %>
@@ -13,9 +14,11 @@ String dbURL="jdbc:oracle:thin:@192.168.0.155:1521:orcl";
    Class.forName(driver);
    Connection connection=DriverManager.getConnection(dbURL,user,pass);
    
+   String users_id = request.getParameter("userId");
+   
    String sql = "select to_char(trip_note_start_date, 'YYYY-MM-DD') start_d, to_char(trip_note_end_date, 'YYYY-MM-DD') end_d, trip_name,  trip_note_no " + 
-		   "  from trip t, trip_note n  " + 
-		   "  where t.trip_no = n.trip_no and users_id = '" + request.getParameter("userId") + "'";
+         "  from trip t, trip_note n  " + 
+         "  where t.trip_no = n.trip_no and users_id = '" + users_id + "'";
    Statement stmt = connection.createStatement();
    ResultSet rs = stmt.executeQuery(sql);
    

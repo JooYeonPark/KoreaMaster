@@ -24,7 +24,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
    <!-- Title Of Site -->
-   <title>Togoby - Tour hosting</title>
+   <title>한반도 뽀개기 - 나의 여행 노트</title>
    <meta name="description" content="HTML template for multiple tour agency, local agency, traveller, tour hosting based on Twitter Bootstrap 3.x.x" />
    <meta name="keywords" content="tour agency, tour guide, travel, trip, holiday, vocation, relax, adventure, virtual tour, tour planner" />
    <meta name="author" content="crenoveative">
@@ -207,6 +207,7 @@
                            <ul class="common-menu-list">
                               
                               <li class="active"><a>나의 여행노트</a></li>
+                              <li><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
                               <li><a href="/note?cmd=my-page">마이페이지</a></li>
                               
                            </ul>
