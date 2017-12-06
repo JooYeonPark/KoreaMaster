@@ -108,9 +108,13 @@ $(document).ready(function(){
 	    
 	    var text = 	
 	        '<div class="col-xs-12 col-sm-12 gap-10 form-group">'+ 
-	        	'<div class="form-group">'+
-	        		'<div class="col-xs-8 col-sm-8" style="padding-left:30px;"><input type="text" class="form-control" id="address" name="address"  required></div>'+
-	        		'<div class="col-xs-4 col-sm-4" style="padding-left:30px;"><input type="button" onclick="daumPostcode()" value="주소찾기" class="btn btn-template-main"></div>'+
+	        	'<div class="form-group address-form" id="address-form">'+
+	        		'<div class="col-xs-8 col-sm-8" style="padding-left:30px;">'+
+	        			'<input type="text" class="form-control address" id="address" name="address"  required>'+
+	        		'</div>'+
+	        		'<div class="col-xs-4 col-sm-4" style="padding-left:30px;">'+ 
+	        			'<input type="button" value="주소찾기" class="btn btn-template-main findaddr">'+
+	        		'</div>'+
 	        	'</div>'+
 	        '</div>' ;
 
@@ -121,6 +125,39 @@ $(document).ready(function(){
 		 	$(".departures").append(text);
 		}; 
 	});
+	
+	  <%-- 주소 API --%>
+	    $(document).on("click",".findaddr",function(){
+	      
+	      var grand =  $(this).parent().parent();
+	      var parent = grand.children().first();
+	     var address = parent.children().first();
+	     
+	      new daum.Postcode({
+	          oncomplete: function(data) {
+	              // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	              // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+	              // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	              var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+	              var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+	              // 건물명이 있고, 공동주택일 경우 추가한다.
+	              if(data.buildingName !== '' && data.apartment === 'Y'){
+	                 extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	              }
+	              // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+	              if(fullRoadAddr !== ''){
+	                  fullRoadAddr += extraRoadAddr;
+	              }
+
+	              // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	              address.val(fullRoadAddr);
+	          }
+	      }).open();
+
+	      
+	    });
 	
 	
     
@@ -174,10 +211,10 @@ $(document).ready(function(){
 	    var endDate = $("input[name=endDate]").val();
 	    var city = $("select[name=city] option:selected").val();
 	    var departureList = new String();
-	     $("select[name=departure] option:selected").each(function(){
+/* 	     $("select[name=departure] option:selected").each(function(){
 		     departureList = departureList + $(this).val()+ ',';
 		 }); 
-	    $("input[name=address]").each(function(){
+ */	    $("input[name=address]").each(function(){
 		     departureList = departureList + $(this).val()+ ',';
 		 });
 	    var themes = new String();
@@ -212,14 +249,13 @@ $(document).ready(function(){
 	   } 
 	}); 
 	  
-	 
+
+	
 	
 }); //end $(document).ready
 
 //시도 select 설정
 var inputSido = function(data){
-	console.log(data);
-	
 	var cnt = 0;
 	
 	//시도 데이터 불러들여 set
@@ -251,32 +287,6 @@ var inputSigungu = function(data){
 	
 	$("#selectSigungu").selectpicker("refresh"); 
 	
-}
-
-<%-- 주소 API --%>
-function daumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-
-            // 건물명이 있고, 공동주택일 경우 추가한다.
-            if(data.buildingName !== '' && data.apartment === 'Y'){
-               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-            }
-            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-            if(fullRoadAddr !== ''){
-                fullRoadAddr += extraRoadAddr;
-            }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('address').value = fullRoadAddr;
-        }
-    }).open();
 }
 
 

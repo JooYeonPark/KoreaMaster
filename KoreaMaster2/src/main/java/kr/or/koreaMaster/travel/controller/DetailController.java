@@ -15,6 +15,12 @@ import kr.or.koreaMaster.travel.domain.RouteInfo;
 import kr.or.koreaMaster.travel.service.RouteService;
 import kr.or.koreaMaster.travel.service.RouteServiceImpl;
 
+/**
+ * 
+ * 루트리스트에서 루트상세보기 화면으로 넘어갈 때 필요한 데이터들 넘겨줌
+ * 
+ */
+
 public class DetailController implements Controller{
 	RouteService service;
 	Logger logger = Logger.getLogger(DetailController.class);
@@ -30,6 +36,7 @@ public class DetailController implements Controller{
 		service = new RouteServiceImpl();
 		List<RouteInfo> list = service.routeByTripNo(tripNo);
 		
+		
 		//임의의 도시 이름 가져옴 - 어차피 도시는 다 동일하기때문
 		String cityName;
 		if(list.get(0).getSigunName()!=null) {
@@ -39,9 +46,6 @@ public class DetailController implements Controller{
 			cityName = list.get(0).getGuName();
 		}
 
-//		logger.debug("cityName:"+cityName);
-//		logger.debug("tripName"+list.get(0).getTripName());
-		
 		mav.addObject("cityName", cityName);
 		mav.addObject("tripName", list.get(0).getTripName());
 		mav.addObject("tripNo", list.get(0).getTripNo());

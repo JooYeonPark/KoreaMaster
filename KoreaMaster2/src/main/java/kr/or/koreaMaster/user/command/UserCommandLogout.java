@@ -16,7 +16,7 @@ public class UserCommandLogout implements UserCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response  ) throws UserCommandException {
 		HttpSession session = request.getSession();
 				
-		session.setAttribute("user", null);
+		session.removeAttribute("user");
 		
 		return next;
 	}

@@ -93,8 +93,6 @@ public class TripListController implements Controller {
 				obj.put("cityNo", routeInfo.getCityNo());
 				obj.put("themeName", routeInfo.getThemeName());
 				
-				logger.debug("구:"+routeInfo.getGuName());
-				logger.debug("시:"+routeInfo.getSigunName());
 				
 				if(routeInfo.getGuName() != null) {
 					obj.put("cityName", routeInfo.getGuName());
