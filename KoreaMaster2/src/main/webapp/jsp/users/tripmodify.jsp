@@ -4,7 +4,6 @@
   <% 
     	String projectName = "/koreamaster";
     	Users user = (Users)session.getAttribute("user");
-
     %>
 <!doctype html>
 <html lang="en">
@@ -71,18 +70,17 @@ $(document).ready(function(){
 	$(document).on("click", ".pull-right", function (event) {
 		event.preventDefault();
 		var itemNum = $(this).attr("name");
-		console.log(itemNum);
+		/* console.log(itemNum); */
 		/*console.log($(this).parents());*/
 		var tmp = "#"+itemNum;
 		$(tmp).remove();
 		
-		console.log(Number(itemNum)+1);
+		/* console.log(Number(itemNum)+1); */
 		var listCount = $(".routeInfo").last().attr('id');
-		console.log(listCount);
+		/* console.log(listCount); */
 		for (var i = itemNum+1; i < listCount; i++) {
-			alert(i);
 			 ($(".routeInfo")[i]).attr('id', i-1);
-			console.log($(".routeInfo")[i].attr('id'));
+			/* console.log($(".routeInfo")[i].attr('id')); */
 		}
 		
 	});
@@ -185,25 +183,27 @@ var modalData = function(){
 			dataType: "json",
 			success : function(data){
 				var list = data.array;
-				 var str = "<p>추가할 일정을 클릭해주세요 </p>";
-				$.each(list, function(i, spot) {
-					str+="<div class='td-timeline-panel spotAdd' name='"+spot.no+"'>"+
-						 "<div class='td-timeline-panel-time'  name='"+spot.no+"'>"+
-						 "<span class='text-xs-right'><img src='/images/spot/"+spot.picture+"' style='width:130px;'></span>"+
-						 "</div>"+
-						 "<div class='td-timeline-panel-bubble'>"+
-						 "<i class='fa fa-plane text-darker'></i>"+
-						 "<h4 class='timeline-title' name='"+spot.no+"'>" +spot.name+"</h4>"+
-						 "<p>상세설명</p><hr>"+
-						 "<p>주소 : "+spot.addressDetail+"</p>"+
-						 "<p>운영시간 : "+spot.operatingHour+"</p>"+
-						 "<p>휴관일 : "+spot.closedDate+"</p>"+
-						 "<p>연락처 : "+spot.phone+"</p>"+
-						 "<p>요금 : "+spot.fare+"</p>"+
-						 "<p>홈페이지 : "+spot.homepage+"</a></p>"+
-						 "</div> </div>";
-						
-				});
+				 var str = "<p>추가할 장소가 없습니다.</p>";
+				 if(list != null){
+					str = "<p>추가할 일정을 클릭해주세요 </p>";
+					$.each(list, function(i, spot) {
+						str+="<div class='td-timeline-panel spotAdd' name='"+spot.no+"'>"+
+							 "<div class='td-timeline-panel-time'  name='"+spot.no+"'>"+
+							 "<span class='text-xs-right'><img src='/images/spot/"+spot.picture+"' style='width:130px;'></span>"+
+							 "</div>"+
+							 "<div class='td-timeline-panel-bubble'>"+
+							 "<i class='fa fa-plane text-darker'></i>"+
+							 "<h4 class='timeline-title' name='"+spot.no+"'>" +spot.name+"</h4>"+
+							 "<p>상세설명</p><hr>"+
+							 "<p>주소 : "+spot.addressDetail+"</p>"+
+							 "<p>운영시간 : "+spot.operatingHour+"</p>"+
+							 "<p>휴관일 : "+spot.closedDate+"</p>"+
+							 "<p>연락처 : "+spot.phone+"</p>"+
+							 "<p>요금 : "+spot.fare+"</p>"+
+							 "<p>홈페이지 : "+spot.homepage+"</a></p>"+
+							 "</div> </div>";
+					});
+				 }
 				$(".modal-body").html(str);
 			}
 		});
@@ -372,7 +372,7 @@ var modalData = function(){
 												<img src="/images/baggage.png" alt="image" >
 											</div>
 										</div>
-										<form action="">
+										<!-- <form action=""> -->
 										<input type="hidden" name="startDate" value="${trip.startDate}"/>
 		                              	<input type="hidden" name="endDate" value="${trip.endDate}"/>
 		                              	<input type="hidden" name="tripName" value="${trip.name}"/>
@@ -466,7 +466,7 @@ var modalData = function(){
 												</div>
 												
 											</div>
-											</form>
+											<!-- </form> -->
 										</div>
 									</div>
 									<!-- List End -->

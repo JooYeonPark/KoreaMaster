@@ -39,7 +39,7 @@
 <!-- 회원가입 완료 / 추가할 부분 이메일 인증번호 보내고 확인받기 -->
 <!-- start Register Modal -->
 <!-- <form method="post" action="/user?cmd=join-db" enctype="multipart/form-data"> -->
-<form method="post" action="/user?cmd=join-db" enctype="multipart/form-data">
+<form method="post" action="/userjoin.do" enctype="multipart/form-data">
 <!-- <div id="registerModal" class="modal fade login-box-wrapper" tabindex="-1" data-backdrop="static" data-keyboard="false" data-replace="true"> -->
 
 	<div class="modal-header">

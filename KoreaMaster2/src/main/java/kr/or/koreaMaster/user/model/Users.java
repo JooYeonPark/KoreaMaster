@@ -1,5 +1,7 @@
 package kr.or.koreaMaster.user.model;
 
+import java.util.HashMap;
+
 public class Users {
 	private String usersId;				// 회원아이디
 	private String usersName;			// 이름
@@ -81,5 +83,24 @@ public class Users {
 		this.usersPicture = usersPicture;
 	}
 	
+	public void setDataMap(HashMap<String, String> dataMap) {
+		setUsersName(dataMap.get("usersName"));
+		setUsersId(dataMap.get("usersId"));
+		setUsersPassword(dataMap.get("usersPassword"));
+		setUsersEmail(dataMap.get("usersEmail"));
+		setUsersTelephone(dataMap.get("tel1")+"-"+dataMap.get("tel2")+"-"+dataMap.get("tel3"));
+		setUsersPostcode(dataMap.get("usersPostcode"));
+		setUsersAddress(dataMap.get("usersAddress"));
+		setUsersAddressDetail(dataMap.get("usersAddressDetail"));
+	}
+	
+	@Override
+	public String toString() {
+		return "Users [usersId=" + usersId + ", usersName=" + usersName + ", usersPassword=" + usersPassword
+				+ ", usersTelephone=" + usersTelephone + ", usersEmail=" + usersEmail + ", usersPostcode="
+				+ usersPostcode + ", usersAddress=" + usersAddress + ", usersAddressDetail=" + usersAddressDetail
+				+ ", usersRegdate=" + usersRegdate + ", usersAdminFlag=" + usersAdminFlag + ", usersPicture="
+				+ usersPicture + "]";
+	}
 	
 }
