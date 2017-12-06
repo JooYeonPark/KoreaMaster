@@ -13,6 +13,7 @@ import kr.or.koreaMaster.user.command.UserCommand;
 import kr.or.koreaMaster.user.command.UserCommandException;
 import kr.or.koreaMaster.user.command.UserCommandJoin;
 import kr.or.koreaMaster.user.command.UserCommandLogin;
+import kr.or.koreaMaster.user.command.UserCommandLogout;
 import kr.or.koreaMaster.user.command.UserCommandNull;
 
 
@@ -39,6 +40,9 @@ public class UserControl extends HttpServlet {
 		// 로그인
 		commandMap.put("login-page", new UserCommandNull("UserLogin.jsp") );
 		commandMap.put("login-db", new UserCommandLogin("../../index.jsp") );
+		
+		//로그아웃
+		commandMap.put("logout-page", new UserCommandLogout("../../index.jsp"));
 		
 	}
 	

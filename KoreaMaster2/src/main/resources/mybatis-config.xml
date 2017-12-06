@@ -4,9 +4,15 @@
 
 <!-- MyBatis XML 설정 파일(MyBatis설정의 중앙 허브 역할) -->
 <configuration>
+
 	
 	<!-- Database properties 설정파일 경로 설정 -->
 	<properties resource="db-config.properties"/>
+	
+	<settings>
+	   <setting name="mapUnderscoreToCamelCase" value="true"/>
+	 </settings>
+	
 	
 	<!--  MyBatis에서 사용할 자바클래스(패키지명 포함 풀네임)에 대한 짧은 별칭 등록 -->
 	<typeAliases>
@@ -25,6 +31,8 @@
 		<typeAlias type="kr.or.koreaMaster.user.model.Users" alias="user"/>
  		<typeAlias type="kr.or.koreaMaster.user.model.TripNote" alias="note"/> 
  		<typeAlias type="kr.or.koreaMaster.travel.domain.RouteInfo" alias="RouteInfo"/> 
+		<typeAlias type="kr.or.koreaMaster.user.model.NoteList" alias="noteList"/>
+		<typeAlias type="kr.or.koreaMaster.user.model.TripNoteDetail" alias="noteDetail"/>
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->
