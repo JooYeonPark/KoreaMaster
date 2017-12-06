@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <% 
 	Users user = (Users)request.getAttribute("user");
-	
+
 %>
 
 <!doctype>
@@ -40,57 +40,89 @@
 	<!-- Add your style -->
 	<link href="/css/your-style.css" rel="stylesheet">
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+	<style type="text/css">
+		form {
+			width : 45%;
+			height: 500px;
+			margin : 0 auto;
+			font-size: 20px;
+		}
+		#loginForm {
+			height: 100%;
+		}
+		/* 아이디 비번 입력창 크기 키움 */
+		#usersId, #usersPassword {
+			height: 50px;
+		}
+		.form-group > label {
+			margin: 20px 0;
+		}
+		#login {
+			width: 100%;
+			height: 55px;
+			font-size: 20px;
+		}
+		/* 헤더부분 간격 조절 */
+		.detail-breadcrumb.breadcrumb-image-bg {
+			padding: 90px;
+		}
+		/* 회원가입, 비밀번호 찾기  */
+		#change {
+			width: 100%;
+			font-size: 22px;
+		}
+	</style>
 	
+	<script type="text/javascript">
+	
+	</script>
 </head>
 
 <body class="home transparent-header">
 
-<header id="header">
+<!-- start breadcrumb -->
 
-			<!-- start Navbar (Header) -->
-<%-- 			<jsp:include page="/include/navigation.jsp"/> --%>
-			<!-- end Navbar (Header) -->
+			<div class="breadcrumb-image-bg detail-breadcrumb"
+				style="background-image: url('/images/detail-header.jpg');">
+				<div class="container">
 
-		</header>
+					<div class="page-title detail-header-02">
 
-<!-- start Back To Top -->
+						<div class="row">
 
-<div id="back-to-top">
-   <a href="#"><i class="ion-ios-arrow-up"></i></a>
-</div>
+							<div
+								class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 
-<!-- end Back To Top -->
+								<h2>Sign-in into your account</h2>
+								<span class="labeling text-white mt-25"><span>Welcome KoreaMaster</span></span>
+								<div class="rating-item rating-item-lg mb-25">
+								</div>
+								<ul class="list-with-icon list-inline-block">
+									<li><i class="ion-android-done text-primary"></i>SuJin Kim</li>
+									<li><i class="ion-android-done text-primary"></i>HyunHee Kim</li>
+									<li><i class="ion-android-done text-primary"></i>JooYeon Park</li>
+									<li><i class="ion-android-done text-primary"></i>EunJi Yang</li>
+								</ul>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+			<!-- end breadcrumb -->
 
 <!-- 로그인 완료  -->
 <!-- start Sign-in Modal -->
 <!-- <div id="loginModal" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false" data-replace="true"> -->
 <form method="post" action="/user?cmd=login-db">
-<div>
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h4 class="modal-title text-center">Sign-in into your account</h4>
-	</div>
-	
+<div id="loginForm">
+		
 	<div class="modal-body">
 		<div class="row gap-20">
-		
-			<div class="col-sm-6 col-md-6">
-				<button class="btn btn-facebook btn-block mb-5-xs">Log-in with Facebook</button>
-			</div>
-			<div class="col-sm-6 col-md-6">
-				<button class="btn btn-google-plus btn-block">Log-in with Google+</button>
-			</div>
-			
-			<div class="col-md-12">
-				<div class="login-modal-or">
-					<div><span>or</span></div>
-				</div>
-			</div>
 			
 			<div class="col-sm-12 col-md-12">
 	
@@ -110,31 +142,24 @@
 			
 			</div>
 			
-			<div class="col-sm-6 col-md-6">
-				<div class="checkbox-block"> 
-					<input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-					<label class="" for="remember_me_checkbox">Remember me</label>
-				</div>
-			</div>
-			
-			<div class="col-sm-6 col-md-6">
-				<div class="login-box-link-action">
-					<a data-toggle="modal" href="#forgotPasswordModal" class="block line18 mt-1">Forgot password?</a> 
-				</div>
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-				<div class="login-box-box-action">
+			<div id="change" class="col-sm-6 col-md-6">
+				<div  class="login-box-box-action">
 					No account? <a data-toggle="modal" href="#registerModal">Register</a>
 				</div>
+				<div  class="login-box-link-action">
+					<a data-toggle="modal" href="#forgotPasswordModal" class="block line18 mt-1">Forgot password?</a> 
+				</div>
+				
 			</div>
 			
 		</div>
 	</div>
 	
+
+	
 	<div class="modal-footer text-center">
-		<input type="submit" class="btn btn-primary" value="Log-in" />
-		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
+		<input type="submit" class="btn btn-primary" value="Log-in" id="login" />
+<!-- 		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button> -->
 	</div>
 	
 </div>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.koreaMaster.user.command.MyCalendarCommand;
+import kr.or.koreaMaster.user.command.MyPofileEditCommnd;
 import kr.or.koreaMaster.user.command.TripNoteCommand;
 import kr.or.koreaMaster.user.command.TripNoteCommandException;
 import kr.or.koreaMaster.user.command.TripNoteCommandNull;
@@ -39,7 +40,9 @@ public class TripNoteControl extends HttpServlet {
 		commandMap.put("my-tripNote", new TripNoteList("MyTripNote.jsp") );
 		commandMap.put("my-delete", new TripNoteDeleteCommand("MyTripNote.jsp"));
 		commandMap.put("my-detail", new TripNoteDetailCommand("MyTripNoteDetail.jsp"));
-		commandMap.put("my-calendar", new MyCalendarCommand("MyCalendar.jsp")); 
+		commandMap.put("my-calendar", new MyCalendarCommand("MyCalendar.jsp"));
+		commandMap.put("my-map", new TripNoteCommandNull("TripNoteMap.jsp"));
+		commandMap.put("my-profile-edit", new MyPofileEditCommnd("MyProfileEdit.jsp"));
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -13,6 +13,8 @@ import kr.or.koreaMaster.user.command.UserCommand;
 import kr.or.koreaMaster.user.command.UserCommandException;
 import kr.or.koreaMaster.user.command.UserCommandJoin;
 import kr.or.koreaMaster.user.command.UserCommandLogin;
+import kr.or.koreaMaster.user.command.UserCommandLoginDB;
+import kr.or.koreaMaster.user.command.UserCommandLoginPage;
 import kr.or.koreaMaster.user.command.UserCommandLogout;
 import kr.or.koreaMaster.user.command.UserCommandNull;
 
@@ -22,7 +24,7 @@ public class UserControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private HashMap commandMap;
-	private String jspDir = "/jsp/users/";
+	private String jspDir = "/jsp/";
 	private String error = "error.jsp";
 	
 	public UserControl() {
@@ -33,16 +35,17 @@ public class UserControl extends HttpServlet {
 	private void initCommand(){
 		commandMap = new HashMap();
 
-		commandMap.put("main-page",	new UserCommandNull("../../index.jsp") );
+		commandMap.put("main-page",	new UserCommandNull("../index.jsp") );
 		// 회원가입
-		commandMap.put("join-page", new UserCommandNull("UserJoin.jsp") );
-		commandMap.put("join-db", new UserCommandJoin("UserLogin.jsp"));
+		commandMap.put("join-page", new UserCommandNull("users/UserJoin.jsp") );
+		commandMap.put("join-db", new UserCommandJoin("users/UserLogin.jsp"));
+		
 		// 로그인
-		commandMap.put("login-page", new UserCommandNull("UserLogin.jsp") );
-		commandMap.put("login-db", new UserCommandLogin("../../index.jsp") );
+		commandMap.put("login-page", new UserCommandLoginPage("users/UserLogin.jsp") );
+		commandMap.put("login-db", new UserCommandLogin("../index.jsp") );
 		
 		//로그아웃
-		commandMap.put("logout-page", new UserCommandLogout("../../index.jsp"));
+		commandMap.put("logout-page", new UserCommandLogout("../index.jsp"));
 		
 	}
 	
