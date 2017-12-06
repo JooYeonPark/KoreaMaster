@@ -120,7 +120,7 @@
 			<ul class="nav-mini">
 			<!-- 1202 현희 한줄정리 후 로그인 회원가입 글씨 추가 -->
 			 <% if(user == null) { %>
-               <li><a data-toggle="modal" href="#registerModal"><i class="icon-user-follow" data-toggle="tooltip" data-placement="bottom" title="sign up">&nbsp;SIGN UP</i></a></li>
+               <li><a data-toggle="modal" href="/jsp/users/UserJoin.jsp"><i class="icon-user-follow" data-toggle="tooltip" data-placement="bottom" title="sign up">&nbsp;SIGN UP</i></a></li>
             <!--  <li><a data-toggle="modal" href="#loginModal"><i class="icon-login" data-toggle="tooltip" data-placement="bottom" title="login">&nbsp;LOGIN</i> </a></li>  -->
             <li><a data-toggle="modal" href="/user?cmd=login-page"><i class="icon-login" data-toggle="tooltip" data-placement="bottom" title="login">&nbsp;LOGIN</i> </a></li>
             <% } else { // user가 로그인을 한 상태이면 환영 메세지와 로그아웃 아이콘 출력 %>
