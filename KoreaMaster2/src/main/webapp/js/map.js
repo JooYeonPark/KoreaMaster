@@ -26,7 +26,7 @@ $(document).ready(function() {
 		var map = new daum.maps.Map(mapContainer, mapOption);
 		var positions = JSON.parse(data); 
 		
-		var imageSrc = '/images/flag.png';
+		var imageSrc = '/images/map/flag.png';
 	    
 		for (var i = 0; i < positions.length; i ++) {
 			
