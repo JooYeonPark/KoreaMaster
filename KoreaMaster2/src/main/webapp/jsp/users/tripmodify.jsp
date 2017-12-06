@@ -1,10 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@page import="kr.or.koreaMaster.user.model.Users"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <% 
-    	String projectName = "/koreamaster";
-    	Users user = (Users)session.getAttribute("user");
-    %>
+<%    
+   // 로그인한 유저 얻어오기
+   Object obj = session.getAttribute("user");
+   Users user = null;
+   
+   // 로그인을 했다면 user에 설정
+   if(obj != null) {
+      user = (Users)obj;
+   }
+%>
 <!doctype html>
 <html lang="en">
 
@@ -60,30 +66,28 @@ var spotSize = $(".routeInfo").size();
 
 $(document).ready(function(){
 	
-	/* $(document).on("click", ".pull-right", function (event) {
+	$(document).on("click", ".pull-right", function (event) {
 		event.preventDefault();
+		
 		var itemNum = $(this).attr("name");
 		
 		$(this).parents().get(3).remove(); 
-	}); */
+	});
 
-	$(document).on("click", ".pull-right", function (event) {
+	/* $(document).on("click", ".pull-right", function (event) {
+		alert("삭제");
+		
 		event.preventDefault();
 		var itemNum = $(this).attr("name");
-		/* console.log(itemNum); */
-		/*console.log($(this).parents());*/
 		var tmp = "#"+itemNum;
 		$(tmp).remove();
 		
-		/* console.log(Number(itemNum)+1); */
 		var listCount = $(".routeInfo").last().attr('id');
-		/* console.log(listCount); */
 		for (var i = itemNum+1; i < listCount; i++) {
 			 ($(".routeInfo")[i]).attr('id', i-1);
-			/* console.log($(".routeInfo")[i].attr('id')); */
 		}
 		
-	});
+	}); */
 	
  	$(document).on("click", "#spotModal .spotAdd", function(event){
 		var no = $(this).attr('name');
@@ -259,7 +263,7 @@ var modalData = function(){
 								
 									<!--프로필 사진 START -->
 									<div class="image">
-										<img src="/images/man/01.jpg" alt="image" />
+										<img src="/images/users/<%=user.getUsersPicture()%>" alt="image" />
 									</div>
 									<!--프로필 사진 END -->
 									
@@ -319,8 +323,8 @@ var modalData = function(){
 							<div class="container">
 								<div class="inner-bottom">
 									<ul class="user-header-menu">
-										<li><a href="guide-detail.html">Profile</a></li>
-										<li class="active"><a href="/note?cmd=my-tripNote&usersId=" + <%= user.getUsersId() %>">MyTripNote <span>12</span></a></li> <!-- 은지야 여기 mytripnote부분으로 연결해주세요~ -->
+										<li class="active"><a htef="">나의 여행노트</a></li>
+                              			<li><a href="/note?cmd=my-page">마이페이지</a></li>
 										<!-- <li><a href="guide-detail-gallery.html">Gallery</a></li>
 										<li><a href="guide-detail-reviews.html">Reviews</a></li>
 										<li><a href="guide-detail-following.html">Followings <span>25</span></a></li>
@@ -470,7 +474,7 @@ var modalData = function(){
 										</div>
 									</div>
 									<!-- List End -->
-									<a href="#" class="aTagRight btn btn-primary btn-border ">수정</a>
+									<a href="/note?cmd=my-tripNote&usersId=<%=user.getUsersId()%>" class="aTagRight btn btn-primary btn-border">수정</a>
 								</div>
 								
 							</div>

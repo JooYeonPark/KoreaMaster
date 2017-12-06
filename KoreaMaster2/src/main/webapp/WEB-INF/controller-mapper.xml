@@ -2,6 +2,7 @@
 <beans>	
 	<!-- user 세부컨트롤러 등록 -->
 	<bean name="/userjoin" class="kr.or.koreaMaster.user.control.UserJoinController"/>
+	<bean name="/checkId" class="kr.or.koreaMaster.user.control.joinIDcheckController"/>
 
 	<!-- sido, sigungu 세부컨트롤러 등록 -->
 	<bean name="/sido" class="kr.or.koreaMaster.place.controller.SidoListController"/>
@@ -23,5 +24,6 @@
 	
 	<bean name="/myTripNote" class="kr.or.koreaMaster.travel.controller.MyTripNoteController"/>
 	<bean name="/changeTrip" class="kr.or.koreaMaster.travel.controller.RouteChangeController"/>
+	<bean name="/modicyTripNote" class="kr.or.koreaMaster.travel.controller.RouteSaveController"/>
 	
 </beans>
