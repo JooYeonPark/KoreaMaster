@@ -352,9 +352,10 @@ var modalData = function(){
 							<aside class="sidebar-wrapper pr-5 pr-0-xs">
 								<div class="common-menu-wrapper">
 									<ul class="common-menu-list">
-										<li><a href="">My Trip Note</a></li>
-										<li><a href="#">Logout</a></li>
-									</ul>
+		                              <li class="active"><a href="/note?cmd=my-tripNote&usersId=<%=user.getUsersId()%>">나의 여행노트</a></li>
+		                              <li><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
+		                              <li><a href="/note?cmd=my-page">마이페이지</a></li>
+		                           </ul>
 								</div>
 							</aside>
 						</div>
