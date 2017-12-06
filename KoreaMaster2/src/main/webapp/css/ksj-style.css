@@ -24,7 +24,7 @@
 }
 
 .idcheckMargin{
-	margin-top : 13%;
+	margin-top : 15%;
 	
 }
 
@@ -38,4 +38,8 @@
 
 .joinPostBtn{
 	width: 80%;
+}
+
+.divMargin{
+	margin-top: 3%;
 }

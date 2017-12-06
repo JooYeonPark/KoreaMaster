@@ -80,6 +80,8 @@ public class UserJoinController implements Controller {
 
 					/*ServletContext context = request.getSession().getServletContext();
 					String path = context.getRealPath("/images/users/");*/
+					
+					// 경로 자기 경로로 바꿔주세요~
 					String path = "C:/Users/kosta/git/KoreaMaster/KoreaMaster2/src/main/webapp/images/users";
 				    
 					File file = new File(path, fileName);

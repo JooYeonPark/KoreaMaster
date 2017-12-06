@@ -22,4 +22,10 @@
  	</where>
  </select>
  
+ <select id="idCheck" parameterType="string" resultType="user">
+ 	SELECT *
+ 	FROM users
+ 	WHERE USERS_ID = #{value}
+ </select>
+ 
  </mapper>

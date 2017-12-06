@@ -59,4 +59,13 @@ public class UserRepository {
 		}
 	}
 
+	// ID 유효성 검사
+	public Users idCheck(String id) {
+		SqlSession sess = getSqlSessionFactory().openSession();
+		try {
+			return sess.selectOne(namespace + ".idCheck", id);
+		} finally {
+			sess.close();
+		}
+	}
 }
