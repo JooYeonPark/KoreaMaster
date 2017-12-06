@@ -23,6 +23,7 @@
 	<!-- CSS Plugins -->
 	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" media="screen">	
 	<link href="/css/main.css" rel="stylesheet">
+	<link href="/css/ksj-style.css" rel="stylesheet">
 	<link href="/css/plugin.css" rel="stylesheet">
 
 	<!-- CSS Custom -->
@@ -30,12 +31,6 @@
 	
 	<!-- Add your style -->
 	<link href="/css/your-style.css" rel="stylesheet">
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 	
 </head>
 <body>
@@ -49,123 +44,91 @@
 
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h4 class="modal-title text-center">Create your account for free</h4>
+		<h4 class="modal-title text-center">Create your account</h4>
 	</div>
 	
-	<div class="modal-body">
+	<div class="modal-body joinBody">
 	
 		<div class="row gap-20">
-		
-			<div class="col-sm-6 col-md-6">
-				<button class="btn btn-facebook btn-block mb-5-xs">Register with Facebook</button>
-			</div>
-			<div class="col-sm-6 col-md-6">
-				<button class="btn btn-google-plus btn-block">Register with Google+</button>
-			</div>
-			
-			<div class="col-md-12">
-				<div class="login-modal-or">
-					<div><span>or</span></div>
+			<div class="col-sm-12 col-md-12 joinBotyInputMargin">
+				<div class="col-sm-5 col-md-5"> 
+					<label>이름</label>
+					<input id="usersName" name="usersName" class="form-control" placeholder="" type="text" required> 
 				</div>
 			</div>
 			
-			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
-					<label>Username</label>
-					<input id="usersName" name="usersName" class="form-control" placeholder="Min 4 and Max 10 characters" type="text"> 
+			<div class="col-sm-12 col-md-12 joinBotyInputMargin">
+				<div class="col-sm-5 col-md-5"> 
+					<label>아이디</label> <br/>
+					<input id="usersId" name="usersId" class="form-control" placeholder="Enter your ID" type="text" required>
 				</div>
-			
+				<div class="col-sm-3 col-md-3">
+					<input id="id-confirm"class="idcheckMargin form-control btnJoin" value="ID Check" type="button" > 
+				</div>
 			</div>
 			
-			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
-					<label>UserID</label> <br/>
-					<input id="usersId" name="usersId" class="form-control" placeholder="Enter your ID" type="text">
-					<input id="id-confirm"class="form-control" value="ID Check" type="button" /> 
-				</div>
-			
-			</div>
-			
-			<div class="col-sm-12 col-md-12">
-			
-				<div class="form-group"> 
+			<div class="col-sm-12 col-md-12 joinBotyInputMargin">
+				<div class="col-sm-6 col-md-6"> 
 					<label>Password</label>
-					<input id="usersPassword" name="usersPassword" class="form-control" placeholder="Min 8 and Max 20 characters" type="password"> 
+					<input id="usersPassword" name="usersPassword" class="form-control" placeholder="Min 4 and Max 20 characters" type="password" required> 
 				</div>
-			
 			</div>
 			
-			<div class="col-sm-12 col-md-12">
-			
-				<div class="form-group"> 
+			<div class="col-sm-12 col-md-12 joinBotyInputMargin">
+				<div class="col-sm-6 col-md-6"> 
 					<label>Password Confirmation</label>
-					<input class="form-control" placeholder="Re-type password again" type="password"> 
+					<input class="form-control" placeholder="Re-type password again" type="password" required> 
 				</div>
-			
 			</div>
 			
-			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
+			<div class="col-sm-12 col-md-12 joinBotyInputMargin">
+				<div class="col-sm-6 col-md-6"> 
 					<label>Email Address</label>
-					<input id="usersEmail" name="usersEmail" class="form-control" placeholder="Enter your email address" type="text"> 
+					<input id="usersEmail" name="usersEmail" class="form-control" placeholder="Enter your email address" type="text" required> 
 				</div>
-			
 			</div>
 			
-			<div class="col-sm-12 col-md-12">
-			
-				<div class="form-group"> 
+			<div class="col-sm-12 col-md-12 joinBotyInputMargin">
+				<div class="col-sm-8 col-md-8"> 
 					<label>Tel</label> <br/>
 					<select class="form-control tel" name="tel1">
 						<option>010</option>
 						<option>011</option>
 						<option>017</option>						
 					</select> -
-					<input class="form-control tel" name="tel2" placeholder="1234" type="text"> -
-					<input class="form-control tel" name="tel3" placeholder="5678" type="text">
+					<input class="form-control tel " name="tel2" placeholder="1234" type="text" required> -
+					<input class="form-control tel " name="tel3" placeholder="5678" type="text" required>
 				</div>
-			
 			</div>			
 	
-	<!-- 우편번호 API 연결하기 -->
-			
+			<!-- 우편번호 API 연결하기 -->
 			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
+				<div class="col-sm-8 col-md-8 "> 
 					<label>Address</label><br/>
-					<input id="usersPostcode" name="usersPostcode" class="form-control" placeholder="12345" type="text">
-					<input onclick="sample6_execDaumPostcode()" id="searchPostcode"class="form-control" value="search" type="button">
-					<input id="usersAddress" name="usersAddress" class="form-control" placeholder="충남 계룡시 두마면 두계리" type="text">
-					<input id="usersAddressDetail" name="usersAddressDetail" class="form-control" placeholder="e-편한세상 102동" type="text"> 
+					<input id="usersPostcode" name="usersPostcode" class="form-control joinBotyInputMargin" placeholder="12345" type="text">
+					<input onclick="sample6_execDaumPostcode()" id="searchPostcode"class="form-control joinPostBtn joinBotyInputMargin" value="search" type="button">
+					<input id="usersAddress" name="usersAddress" class="form-control joinBotyInputMargin" placeholder="충남 계룡시 두마면 두계리" type="text" required>
+					<input id="usersAddressDetail" name="usersAddressDetail" class="form-control joinBotyInputMargin" placeholder="e-편한세상 102동" type="text" > 
 				</div>
 			</div>
 
-
-			
 			<!-- 사진 파일 업로드 -->
-			
 			<div class="col-sm-12 col-md-12">
-	
-				<div class="form-group"> 
+				<div class="col-sm-5 col-md-5"> 
 					<label>Profile</label><br/>
-					 <input type="file" name="usersPicture"/>
+					<input type="file" class="joinBotyInputMargin" name="usersPicture" required>
 				</div>
-			
 			</div>
 			
 			<div class="col-sm-12 col-md-12">
-				<div class="checkbox-block"> 
+				<div class="checkbox-block joinBotyInputMargin"> 
 					<input id="register_accept_checkbox" name="register_accept_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
 					<label class="" for="register_accept_checkbox">By register, I read &amp; accept <a href="#">the terms</a></label>
 				</div>
-				
 			</div>
 			
 			<div class="col-sm-12 col-md-12">
-				<div class="login-box-box-action">
+				<div class="login-box-box-action joinBotyInputMargin">
 <!-- 					Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a> -->
 					Already have account? <a data-toggle="modal" href="#loginModal">Log-in</a>
 				</div>
@@ -177,7 +140,7 @@
 	
 	<div class="modal-footer text-center">
 		<input type="submit" class="btn btn-primary" value="Register"/>
-		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button>
+		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border joinBotyInputMargin">Close</button>
 	</div>
 	
 <!-- </div> -->

@@ -4,10 +4,7 @@
   <% 
     	String projectName = "/koreamaster";
     	Users user = (Users)session.getAttribute("user");
-//     	Object obj = request.getAttribute("user");
-//     	if(obj != null) {
-//     		Users user = (Users)obj;
-//     	}
+
     %>
 <!doctype html>
 <html lang="en">
@@ -303,24 +300,7 @@ var modalData = function(){
 												<div class="GridLex-inner">
 													<div class="row gap-20">
 													
-														<!-- 별점 및 리뷰 수 START -->
-														<div class="col-xss-6 col-xs-6 col-sm-6 col-md-12 text-right text-left-sm">
-															<div class="rating-wrapper mb-10">
-																<div class="rating-item rating-item-lg">
-																	<input type="hidden" class="rating" data-filled="fa fa-star rating-rated" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="4.5"/>
-																	<span class="block line14">based on <a href="#">32 reviews</a></span>
-																</div>
-															</div>
-														</div>
-														<!-- 별점 및 리뷰 수 END -->
 														
-														<!-- START -->
-														<div class="col-xss-6 col-xs-6 col-sm-6 col-md-12 text-right text-left-sm">
-															<div class="user-header-price mt-5-sm">
-																<span class="block-sm">From</span> <span class="text-primary number">USD32.00</span> / hour
-															</div>
-														</div>
-														<!-- END -->
 													</div>
 												</div>
 											</div>
@@ -435,8 +415,14 @@ var modalData = function(){
 																						<%-- 세부일정 시작 --%>
 																						<div class="td-timeline-panel" name="${status.index}">
 																								<div class="td-timeline-panel-time">
-																									<span class="text-darker">07:00</span> 
+																								<c:if test="${9+2*status.index < 12}">
+																									<span class="text-darker">0${9+2*status.index}:00</span> 
 																									<span class="text-xs-right">AM</span>
+																								</c:if>
+																								<c:if test="${9+2*status.index >= 12}">
+																									<span class="text-darker">${9+2*status.index}:00</span> 
+																									<span class="text-xs-right">PM</span>
+																								</c:if>
 																								</div>
 																								<div class="td-timeline-panel-bubble">
 																								<c:if test="${(status.index)%5 ne 0}">
