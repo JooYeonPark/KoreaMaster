@@ -325,7 +325,7 @@ var modalData = function(){
 									<ul class="user-header-menu">
 										<li class="active"><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행노트</a></li>
 										<li><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
-										<li ><a href="/note?cmd=my-map">나의 여행지도</a></li>
+										<li><a href="/note?cmd=my-map">나의 여행지도</a></li>
 									</ul>
 								</div>
 							</div>
@@ -350,7 +350,7 @@ var modalData = function(){
 									<ul class="common-menu-list">
 		                              <li class="active"><a href="/note?cmd=my-tripNote&usersId=<%=user.getUsersId()%>">나의 여행노트</a></li>
 		                              <li><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
-		                              <li class="active"><a href="/note?cmd=my-map">나의 여행지도</a></li>
+		                              <li><a href="/note?cmd=my-map">나의 여행지도</a></li>
 		                           </ul>
 								</div>
 							</aside>
