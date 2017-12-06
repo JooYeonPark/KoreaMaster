@@ -16,7 +16,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Title Of Site -->
-	<title>한뽀 - 한반도뽀개기</title>
+	<title>한반도 뽀개기 - 로그인</title>
 	<meta name="description" content="HTML template for multiple tour agency, local agency, traveller, tour hosting based on Twitter Bootstrap 3.x.x" />
 	<meta name="keywords" content="tour agency, tour guide, travel, trip, holiday, vocation, relax, adventure, virtual tour, tour planner" />
 	<meta name="author" content="crenoveative">
@@ -38,44 +38,8 @@
 	<link href="/css/style.css" rel="stylesheet">
 	
 	<!-- Add your style -->
-	<link href="/css/your-style.css" rel="stylesheet">
-
-	<style type="text/css">
-		form {
-			width : 45%;
-			height: 500px;
-			margin : 0 auto;
-			font-size: 20px;
-		}
-		#loginForm {
-			height: 100%;
-		}
-		/* 아이디 비번 입력창 크기 키움 */
-		#usersId, #usersPassword {
-			height: 50px;
-		}
-		.form-group > label {
-			margin: 20px 0;
-		}
-		#login {
-			width: 100%;
-			height: 55px;
-			font-size: 20px;
-		}
-		/* 헤더부분 간격 조절 */
-		.detail-breadcrumb.breadcrumb-image-bg {
-			padding: 90px;
-		}
-		/* 회원가입, 비밀번호 찾기  */
-		#change {
-			width: 100%;
-			font-size: 22px;
-		}
-	</style>
+	<link type="text/css" href="/css/user/UserLogin.css" rel="stylesheet"/>
 	
-	<script type="text/javascript">
-	
-	</script>
 </head>
 
 <body class="home transparent-header">
@@ -159,7 +123,6 @@
 	
 	<div class="modal-footer text-center">
 		<input type="submit" class="btn btn-primary" value="Log-in" id="login" />
-<!-- 		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border">Close</button> -->
 	</div>
 	
 </div>
