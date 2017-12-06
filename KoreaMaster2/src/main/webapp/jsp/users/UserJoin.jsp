@@ -29,8 +29,75 @@
 	<!-- CSS Custom -->
 	<link href="/css/style.css" rel="stylesheet">
 	
+	
 	<!-- Add your style -->
 	<link href="/css/your-style.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		// 비밀번호 확인
+		$("#usersPassword2").keyup(function() {
+			var passwd = $("#usersPassword").val();
+			var passwd2 = $("#usersPassword2").val();
+			
+			if (passwd2 == "") {
+				document.getElementById("passwordCheckText").innerHTML = "";
+			} else if (passwd != passwd2) {
+				document.getElementById("passwordCheckText").innerHTML = "<font color=#DF3F32 size=3pt> 비밀번호가 맞지 않습니다. </font>"
+				$('#pwChk').val('N');		
+			} else {
+				document.getElementById("passwordCheckText").innerHTML = "<font color=#4F84C4 size=3pt> 비밀번호가 올바르게 입력 되었습니다. </font>"
+				$('#pwChk').val('Y');	
+			}
+		});
+		
+		$("#id-confirm").click(function(){
+			var id = $("#usersId").val();
+			
+			if (id == "") {
+				$("#idResult").innerHTML ="<font color=#DF3F32 size=3pt> 아이디를 입력해주세요. </font>";
+				return;
+			}
+			
+			$.ajax({
+				type : 'POST',
+				data : "usersId=" + id,
+				dataType : "text",
+				url : '/checkId.do',
+				success : function(data) {
+					var chkRst = data;
+					if (chkRst == "Y") {
+						document.getElementById("idResult").innerHTML ="<font color=#4F84C4 size=3pt>사용가능한 아이디 입니다.</font>";
+						$("#idChk").val('Y');
+					} else{
+						document.getElementById("idResult").innerHTML ="<font color=#DF3F32 size=3pt>이미 등록된 아이디입니다.</font>";
+						$("#idChk").val('N');
+					}
+				},
+				error : function(xhr, status, e) {
+					alert(e);
+				}
+			}); 
+		});
+		
+		$("#register").click(function(event) {
+			event.preventDefault();
+			
+			if($("#idChk").val() =='N'){
+				alert("아이디 중복을 확인해주세요");
+				return;
+			}
+				 
+			if($("#pwChk").val() =='N'){
+				alert("비밀번호가 일치하지 않습니다");
+				return;
+			}
+			
+			$('#UserForm').submit();
+		});
+	});
+	</script>
 	
 </head>
 <body>
@@ -39,7 +106,7 @@
 <!-- 회원가입 완료 / 추가할 부분 이메일 인증번호 보내고 확인받기 -->
 <!-- start Register Modal -->
 <!-- <form method="post" action="/user?cmd=join-db" enctype="multipart/form-data"> -->
-<form method="post" action="/userjoin.do" enctype="multipart/form-data">
+<form method="post" action="/userjoin.do" id="UserForm" enctype="multipart/form-data">
 <!-- <div id="registerModal" class="modal fade login-box-wrapper" tabindex="-1" data-backdrop="static" data-keyboard="false" data-replace="true"> -->
 
 	<div class="modal-header">
@@ -58,12 +125,16 @@
 			</div>
 			
 			<div class="col-sm-12 col-md-12 joinBotyInputMargin">
-				<div class="col-sm-5 col-md-5"> 
+				<div class="col-sm-4 col-md-4"> 
 					<label>아이디</label> <br/>
 					<input id="usersId" name="usersId" class="form-control" placeholder="Enter your ID" type="text" required>
 				</div>
-				<div class="col-sm-3 col-md-3">
+				<div class="col-sm-2 col-md-2">
 					<input id="id-confirm"class="idcheckMargin form-control btnJoin" value="ID Check" type="button" > 
+				</div>
+				<div class="col-sm-6 col-md-6 divMargin">
+					<b id="idResult"></b>
+					<input type="hidden" id="idChk" value="N">
 				</div>
 			</div>
 			
@@ -77,7 +148,11 @@
 			<div class="col-sm-12 col-md-12 joinBotyInputMargin">
 				<div class="col-sm-6 col-md-6"> 
 					<label>Password Confirmation</label>
-					<input class="form-control" placeholder="Re-type password again" type="password" required> 
+					<input class="form-control"  id="usersPassword2" placeholder="Re-type password again" type="password" required> 
+				</div>
+				<div class="col-sm-6 col-md-6 divMargin"> 
+					<b id="passwordCheckText"></b> 
+					<input type="hidden" id="pwChk" value="N">
 				</div>
 			</div>
 			
@@ -139,7 +214,7 @@
 	</div>
 	
 	<div class="modal-footer text-center">
-		<input type="submit" class="btn btn-primary" value="Register"/>
+		<input type="submit" class="btn btn-primary"  id="register" value="Register"/>
 		<button type="button" data-dismiss="modal" class="btn btn-primary btn-border joinBotyInputMargin">Close</button>
 	</div>
 	
