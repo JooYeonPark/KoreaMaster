@@ -171,38 +171,12 @@ public class PageBuilder {
 		PageBuilder pageBuilder = new PageBuilder(params, selectCount);
 		pageBuilder.build();
 		
-		System.out.println("검색된 행수: " + pageBuilder.getTotalRowCount());
-		System.out.println("요청페이지: " + pageBuilder.getParams().getPage());
-		
-		System.out.println("전체페이지수: " + pageBuilder.getTotalPageCount());
-		
-		System.out.println("현재목록의 시작페이지: " + pageBuilder.getCurrentStartPage());
-		System.out.println("현재목록의 끝페이지: " + pageBuilder.getCurrentEndPage());
-		
-		System.out.println("처음으로 보여주기 여부: " + pageBuilder.isShowFirst());
-		System.out.println("이전목록 보여주기 여부: " + pageBuilder.isShowPrevious());
-		
-		System.out.println("다음목록 보여주기 여부: " + pageBuilder.isShowNext());
-		System.out.println("끝으로 보여주기 여부: " + pageBuilder.isShowLast());
-		
-		// JSP에서 페이지 번호 직접 출력 시		
-		for(int i=pageBuilder.getCurrentStartPage(); i<=pageBuilder.getCurrentEndPage(); i++){
-			System.out.print(i + " | ");
-		}
-		System.out.println();
-		
-		
-		System.out.println("-----------------------------------------------");
 		
 		// 이름으로 검색 시
 		Params searchParams = new Params(1, "name", "김기정", 10, 10);
 		int searchCount = 11;
 		PageBuilder pageBuilder2 = new PageBuilder(searchParams, searchCount);
 		pageBuilder2.build();
-		System.out.println("검색된 행수: " + pageBuilder2.getTotalRowCount());
-		System.out.println("요청페이지: " + pageBuilder2.getParams().getPage());
-		
-		System.out.println("전체페이지수: " + pageBuilder2.getTotalPageCount());
 		
 	}
 }

@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<%-- Title Of Site --%>
-	<title>Create Trip</title>
+	<title>한반도 뽀개기 - 일정 요청</title>
 	<meta name="description" content="HTML template for multiple tour agency, local agency, traveller, tour hosting based on Twitter Bootstrap 3.x.x" />
 	<meta name="keywords" content="tour agency, tour guide, travel, trip, holiday, vocation, relax, adventure, virtual tour, tour planner" />
 	<meta name="author" content="crenoveative">
@@ -168,9 +168,6 @@ $(document).ready(function(){
 		dataType:"json",
 		success:function(data){
 			inputSigungu(data);
-		},
-		error : function(xhr, statusText){
-			console.log("("+xhr.status+", "+statusText+")");
 		}
 	});
 	
@@ -180,9 +177,6 @@ $(document).ready(function(){
 		dataType:"json",
 		success:function(data){
 			inputSido(data);
-		},
-		error : function(xhr, statusText){
-			console.log("("+xhr.status+", "+statusText+")");
 		}
 	});
 	
@@ -195,9 +189,6 @@ $(document).ready(function(){
 			dataType:"json",
 			success:function(data){
 				inputSigungu(data);
-			},
-			error : function(xhr, statusText){
-				console.log("("+xhr.status+", "+statusText+")");
 			}
 		});
 		
@@ -211,10 +202,7 @@ $(document).ready(function(){
 	    var endDate = $("input[name=endDate]").val();
 	    var city = $("select[name=city] option:selected").val();
 	    var departureList = new String();
-/* 	     $("select[name=departure] option:selected").each(function(){
-		     departureList = departureList + $(this).val()+ ',';
-		 }); 
- */	    $("input[name=address]").each(function(){
+	    $("input[name=address]").each(function(){
 		     departureList = departureList + $(this).val()+ ',';
 		 });
 	    var themes = new String();
@@ -385,7 +373,7 @@ var inputSigungu = function(data){
 									
 									                                    
                                       <div class="row departures" >
-                                       </div><!-- ./col-xs-12 col-sm-12 -->    
+                                       </div><%-- ./col-xs-12 col-sm-12 --%>    
                                         
 									</div><%-- ./row --%>
 										

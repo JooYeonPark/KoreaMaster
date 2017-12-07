@@ -52,8 +52,7 @@
 <script type="text/javascript" src="/js/core-plugins.js"></script>
 <script type="text/javascript" src="/js/customs.js"></script>
 
-<script>
-</script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe5c486a8814f29e31748670f4045400"></script>
 
 </head>
 
@@ -92,7 +91,6 @@
 								class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 
 								<h2>${tripName} </h2>
-								<span class="labeling text-white mt-25"><span> days nights</span></span>
 							</div>
 
 						</div>
@@ -182,15 +180,13 @@
 																							<div class="td-timeline-panel-bubble">
 																								<i class="fa fa-plane text-darker"></i>
 																								<h4 class="timeline-title">${item.spotName}</h4>
-																								<c:if test="${(status.index)%5 ne 0}">
-																								<p>${item.detail}</p><hr>
-																								</c:if>
-																								<p>주소 : ${item.addressDetail}</p>
-																								<p>운영시간 : ${item.operatingHour}</p>
-																								<p>휴관일 : ${item.closedDate}</p>
-																								<p>연락처 : ${item.phone}</p>
-																								<p>요금 : ${item.fare}</p>
-																								<p>홈페이지 : <a href="${item.homepage}">${item.homepage}</a></p>
+																									<p>${item.detail}</p><hr>
+																									<p>주소 : ${item.addressDetail}</p>
+																									<p>운영시간 : ${item.operatingHour}</p>
+																									<p>휴관일 : ${item.closedDate}</p>
+																									<p>연락처 : ${item.phone}</p>
+																									<p>요금 : ${item.fare}</p>
+																									<p>홈페이지 : <a href="${item.homepage}">${item.homepage}</a></p>
 																							</div>
 																						</div>
 																					<%-- 세부일정 끝 --%>
@@ -211,6 +207,8 @@
 											<div class="mb-25"></div>
 	
 										</div><%-- 여행일정 END --%>
+										
+									<div id="map" style="width:100%;height:350px;"></div>  	
 									
 									</div>
 								</div>

@@ -140,15 +140,18 @@
 			            		</if>
 			            
 					             <if test="cityNo.size() != 0">
-								 	and city_no in
+								 	and sigungu.city_no in
 								 	 <foreach item="value" index="index" collection="cityNo" open="(" separator="," close=")">
 								        #{value}
 								  </foreach>
 								  </if>
+								  and trip.personal_flag = 'N'
               </where> 
+                order by trip_no desc         
                                 
                     )
                      where request_page = #{page} 
+                    
             
 </select>
 
@@ -179,6 +182,7 @@
 								        #{name}
 								  </foreach>
 								</if>
+								and t.personal_flag = 'N'
 					  </where>
 	            )
 </select>

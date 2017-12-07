@@ -17,7 +17,6 @@ import kr.or.koreaMaster.place.domain.Spot;
 import kr.or.koreaMaster.spotTheme.domain.SpotThemeJoin;
 
 public class RouteProcess {
-	Logger logger = Logger.getLogger(RouteProcess.class);
 
 	/** 생성자 */
 	public RouteProcess() {}
@@ -50,7 +49,6 @@ public class RouteProcess {
 			routeSpots.add(departure.getNo());
 			start = departure.getLatitude( ) + ","+departure.getLongitude();
 			start = start.trim(); //혹시 모를 때를 대비해 공백 제거
-//			logger.debug("start:"+departure.getNo());
 			
 			//4개의 장소로 하루의 루트가 다 짜지면 break
 			while(routeSpots.size() < 5) {
@@ -59,8 +57,6 @@ public class RouteProcess {
 				if(size!=-1) {
 					start = spotThemeJoinList.get(size).getLatitude()+ "," + spotThemeJoinList.get(size).getLongitude();
 					start = start.trim();
-//					logger.debug("==============================");
-//					logger.debug("start:"+spotThemeJoinList.get(size).getSpotNo());
 				}
 				
 				//다음장소
@@ -75,13 +71,10 @@ public class RouteProcess {
 						end = end.trim(); //혹시 모를 때를 대비해 공백 제거
 						
 						
-//						logger.debug("end:"+spotThemeJoinList.get(i).getSpotNo());
-						
 						//두 장소 사이의 소요시간을 구함
 						start = start.trim();
 						end = end.trim();
 						duration = getDistance(start,end);
-//						logger.debug("duration:"+duration);
 						
 						
 						//현재 장소와 가장 가까운 장소를 구함
@@ -90,15 +83,11 @@ public class RouteProcess {
 							spotNo = spotThemeJoinList.get(i).getSpotNo();
 							size = i;
 						} 
-//						logger.debug("min:"+min+", spotNo:"+spotNo+", size:"+size);
 					}// end if
 				}//end for
 				
 				routeSpots.add(spotNo);
 				 spotThemeJoinList.get(size).setPass(true);
-//				 logger.debug("spotThemeJoinList["+size+"]false처리 : "+spotThemeJoinList.get(size).getPass());
-//				 logger.debug("============================================");
-//				 logger.debug(routeSpots);
 			}
 			
 			
@@ -135,7 +124,6 @@ public class RouteProcess {
 			br.close();
 			conn.disconnect();
 
-//			logger.debug(sb.toString());
 			
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(sb.toString());

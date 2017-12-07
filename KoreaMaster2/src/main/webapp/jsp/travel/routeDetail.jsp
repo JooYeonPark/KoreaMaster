@@ -42,7 +42,6 @@
 <%-- CSS Custom --%>
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/routeDetail.css" rel="stylesheet">
-<link href="/css/itineraryStyle.css" rel="stylesheet">
 
 <%-- Add your style --%>
 <link href="/css/your-style.css" rel="stylesheet">
@@ -52,8 +51,21 @@
 <script type="text/javascript" src="/js/core-plugins.js"></script>
 <script type="text/javascript" src="/js/customs.js"></script>
 
-<script>
-</script>
+   <%-- Detail Page JS --%>
+   <script type="text/javascript" src="/js/jquery.stickit.js"></script>
+   <script type="text/javascript" src="/js/bootstrap-tokenfield.js"></script>
+   <script type="text/javascript" src="/js/typeahead.bundle.min.js"></script>
+   <script type="text/javascript" src="/js/jquery.sumogallery.js"></script>
+   <script type="text/javascript" src="/js/images-grid.js"></script>
+   <script type="text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
+   <script type="text/javascript" src="/js/customs-detail.js"></script>
+   <script type="text/javascript" src="/js/moment.min.js"></script>
+   <script type="text/javascript" src="/js/jquery.daterangepicker.js"></script>
+   <script type="text/javascript" src="/js/customs-datepicker.js"></script>
+
+   <%-- Custom JS --%>
+   <script type="text/javascript" src="/js/routeDetail.js"></script>
+
 
 </head>
 
@@ -85,7 +97,7 @@
             <div class="container">
 
                <div class="page-title detail-header-02">
-
+               
                   <div class="row">
 
                      <div
@@ -108,7 +120,8 @@
          <div class="pt-50 pb-50">
             <div id="detail-content-sticky-nav-01">
                <div class="container">
-                  <div class="row">
+                  <div class="row">	
+                  
                      <div class="col-xs-12 col-sm-12 col-md-8">
                         <div class="content-wrapper">
                            <h3 class="section-title">${route.cityName} 여행</h3>
@@ -167,7 +180,6 @@
    
                                  <h2 class="font-lg">Itinerary</h2>
    
-                                       
                                        <c:forEach var="item" items="${route.routeSpots}" varStatus="status" > 
                                        <%-- day --%>
                                        
@@ -183,22 +195,20 @@
                                                             </c:if>
                                                                      <%-- 세부일정 시작 --%>
                                                                      <div class="td-timeline-panel">
-                                                                     <div class="td-timeline-panel-time">
-                                                                        <span class="text-darker">07:00</span> <span
-                                                                           class="text-xs-right">AM</span>
-                                                                     </div>
                                                                      <div class="td-timeline-panel-bubble">
                                                                         <i class="fa fa-plane text-darker"></i>
                                                                         <h4 class="timeline-title">${item.name}</h4>
                                                                         <c:if test="${(status.index)%5 ne 0}">
-                                                                        <p>${item.detail}</p><hr>
-                                                                        </c:if>
-                                                                        <p>주소 : ${item.addressDetail}</p>
-                                                                        <p>운영시간 : ${item.operatingHour}</p>
-                                                                        <p>휴관일 : ${item.closedDate}</p>
-                                                                        <p>연락처 : ${item.phone}</p>
-                                                                        <p>요금 : ${item.fare}</p>
-                                                                        <p>홈페이지 : <a href="${item.homepage}">${item.homepage}</a></p>
+                                                                        	<p>${item.detail}</p><hr>
+	                                                                        <p>주소 : ${item.addressDetail}</p>
+	                                                                        <p>운영시간 : ${item.operatingHour}</p>
+	                                                                        <p>휴관일 : ${item.closedDate}</p>
+	                                                                        <p>연락처 : ${item.phone}</p>
+	                                                                        <p>요금 : ${item.fare}</p>
+	                                                                        <p>홈페이지 : <a href="${item.homepage}">${item.homepage}</a></p>
+	                                                                        
+	                                                                        
+                                                                     </c:if>
                                                                      </div>
                                                                   </div>
                                                                <%-- 세부일정 끝 --%>
@@ -284,28 +294,6 @@
 
    <%-- end Back To Top --%>
 
-   <%-- Core JS --%>
-   <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
-   <script type="text/javascript" src="/js/core-plugins.js"></script>
-   <script type="text/javascript" src="/js/customs.js"></script>
-
-   <%-- Detail Page JS --%>
-   <script type="text/javascript" src="/js/jquery.stickit.js"></script>
-   <script type="text/javascript" src="/js/bootstrap-tokenfield.js"></script>
-   <script type="text/javascript" src="/js/typeahead.bundle.min.js"></script>
-   <script type="text/javascript" src="/js/jquery.sumogallery.js"></script>
-   <script type="text/javascript" src="/js/images-grid.js"></script>
-   <script type="text/javascript" src="/js/jquery.bootstrap-touchspin.js"></script>
-   <script type="text/javascript" src="/js/customs-detail.js"></script>
-
-
-   <script type="text/javascript" src="/js/moment.min.js"></script>
-   <script type="text/javascript" src="/js/jquery.daterangepicker.js"></script>
-   <script type="text/javascript" src="/js/customs-datepicker.js"></script>
-
-   <%-- Custom JS --%>
-   <script type="text/javascript" src="/js/routeDetail.js"></script>
 
 </body>
-
 </html>
