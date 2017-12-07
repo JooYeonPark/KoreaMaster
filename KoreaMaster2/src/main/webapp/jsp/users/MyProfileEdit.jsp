@@ -22,7 +22,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Title Of Site -->
-	<title>한반도 뽀개기 - 회원정보수정</title>
+	<title>한반도 뽀개기 - 회원 정보 수정</title>
 	<meta name="description" content="HTML template for multiple tour agency, local agency, traveller, tour hosting based on Twitter Bootstrap 3.x.x" />
 	<meta name="keywords" content="tour agency, tour guide, travel, trip, holiday, vocation, relax, adventure, virtual tour, tour planner" />
 	<meta name="author" content="crenoveative">
@@ -88,7 +88,7 @@
 								<div class="inner-top">
 								
 									<div class="image">
-										<img src="/images/man/01.jpg" alt="image" />
+										<img src="/images/users/<%=user.getUsersPicture()%>" alt="image" />
 									</div>
 									
 									<div class="GridLex-gap-20">
