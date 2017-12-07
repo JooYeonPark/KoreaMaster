@@ -52,9 +52,8 @@ public class TripController implements Controller {
 		String strTripNo = request.getParameter("routeSpots");
 		String detail = request.getParameter("detail");
 
-//		Users user = (Users)request.getSession().getAttribute("user");
-//		String usersId = user.getUsersId();
-		String usersId = "joo";
+		Users user = (Users)request.getSession().getAttribute("user");
+		String usersId = user.getUsersId();
 		
 		// route insert
 		Route route = new Route();
