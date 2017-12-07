@@ -37,10 +37,6 @@ public class MyTripNoteController implements Controller{
 		else{
 			cityName = list.get(0).getGuName();
 		}
-		System.out.println("여기까지 옴");
-
-//		logger.debug("cityName:"+cityName);
-//		logger.debug("tripName"+list.get(0).getTripName());
 		
 		mav.addObject("cityName", cityName);
 		mav.addObject("tripName", list.get(0).getTripName());

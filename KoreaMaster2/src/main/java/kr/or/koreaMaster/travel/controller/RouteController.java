@@ -68,7 +68,9 @@ public class RouteController implements Controller {
         */
         route.put("startDate", startDate);
         route.put("endDate", endDate);
+        
         mav.addObject("route", route);
+        
         mav.setView("/jsp/travel/routeDetail.jsp");
         
         return mav;

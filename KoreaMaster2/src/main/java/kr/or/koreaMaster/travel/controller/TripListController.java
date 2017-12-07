@@ -44,7 +44,6 @@ public class TripListController implements Controller {
 	MyTravelTypeRepository themeDao = new MyTravelTypeRepository();
 	SigunguDao sigunguDao = (SigunguDao) factory.getDao(SigunguDaoImpl.class);
 	TripDAO tripDao = (TripDAO) factory.getDao(TripDAOImpl.class);
-	Logger logger = Logger.getLogger(SpotPageController.class);
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)

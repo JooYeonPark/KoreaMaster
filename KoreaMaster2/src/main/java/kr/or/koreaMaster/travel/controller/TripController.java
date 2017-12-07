@@ -39,7 +39,6 @@ public class TripController implements Controller {
 	TripDAO tripDAO = (TripDAO) factory.getDao(TripDAOImpl.class);
 	SmallTripDAO smallTripDAO = (SmallTripDAO) factory.getDao(SmallTripDAOImpl.class);
 	RouteDAO routeDAO = (RouteDAO) factory.getDao(RouteDAOImpl.class);
-	Logger logger = Logger.getLogger(TripController.class);
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -69,7 +68,6 @@ public class TripController implements Controller {
 		Trip trip = new Trip(noteName, startDate, endDate);
 		tripDAO.create(trip);
 		int tripNo = trip.getNo();
-//		logger.debug("tripNo:" + tripNo);
 
 		// small_trip insert
 		SmallTrip small = new SmallTrip(1, tripNo, no);

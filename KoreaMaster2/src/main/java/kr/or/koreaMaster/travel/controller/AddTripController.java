@@ -21,7 +21,6 @@ public class AddTripController implements Controller{
 	
 	private DaoFactory factory = new MyBatisDaoFactory();
 	TripDAO dao;
-	Logger logger = Logger.getLogger(AddTripController.class);
 	TripNoteListRepository noteRepo;
 	
 	@Override
@@ -36,7 +35,6 @@ public class AddTripController implements Controller{
 		String noteName = request.getParameter("noteName");
 		
 		Users user = (Users)request.getSession().getAttribute("user");
-		logger.debug("id:"+user.getUsersId());
 		
 		dao = (TripDAO)factory.getDao(TripDAOImpl.class);
 		Trip trip = dao.read(tripNo);
@@ -49,12 +47,11 @@ public class AddTripController implements Controller{
 		note.setTripNoteStartDate(trip.getStartDate());
 		note.setTripNoteEndDate(trip.getEndDate());
 		
-		logger.debug("note:"+note);
 		
 		noteRepo = new TripNoteListRepository();
 		int result = noteRepo.create(note);
 		
-		if(result == 1) { logger.debug("note create 성공" );}
+		if(result == 1) { }
 			
 		mav.setView("redirect:/");
 		

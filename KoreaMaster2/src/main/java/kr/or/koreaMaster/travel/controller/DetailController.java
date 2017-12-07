@@ -23,7 +23,6 @@ import kr.or.koreaMaster.travel.service.RouteServiceImpl;
 
 public class DetailController implements Controller{
 	RouteService service;
-	Logger logger = Logger.getLogger(DetailController.class);
 	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
