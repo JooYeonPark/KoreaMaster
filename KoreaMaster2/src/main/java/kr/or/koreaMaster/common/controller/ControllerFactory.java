@@ -33,7 +33,6 @@ public class ControllerFactory {
 			document = parser.parse(controllerMapperLocation);
 	
 			NodeList beanList = document.getElementsByTagName("bean");
-			System.out.println("--- 컨트롤러 생성 목록 ---");
 			for (int i = 0; i < beanList.getLength(); i++) {
 				Element bean = (Element)beanList.item(i);
 				String name = bean.getAttribute("name");
@@ -41,7 +40,6 @@ public class ControllerFactory {
 				Controller controllerObject = null;
 				controllerObject = (Controller) Class.forName(className).newInstance();
 				controllerMap.put(name, controllerObject);
-				System.out.println(name + "=" + controllerObject);
 			}
 		}catch (Exception e) {
 			throw new MallException("ControllerFactory 세부컨트롤러 생성 중 예외 발생", e);

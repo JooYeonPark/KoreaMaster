@@ -110,9 +110,6 @@ $(function(){
 				}); 
 				
 				$("#selectSigungu").selectpicker("refresh"); 
-			},
-			error : function(xhr, statusText){
-				console.log("("+xhr.status+", "+statusText+")");
 			}
 		});
 		
@@ -164,9 +161,6 @@ function sidoAjax(){
 			}); 
 			
 			$("#selectSido").selectpicker("refresh"); 
-		},
-		error : function(xhr, statusText){
-			console.log("("+xhr.status+", "+statusText+")");
 		}
 	});
 }
@@ -182,8 +176,6 @@ function listPage(data){
 		dataType: "json",
 		success : function(data){
 		    if(data.array!=null){
-			    console.log('success');
-			    console.log(data);
 				var maxPage = data.maxPage
 				var startPage = data.startPage
 				var pageStr = "";
@@ -208,7 +200,6 @@ function listPage(data){
 				
 				var str = "";
 				$.each(data.array, function(index, array) {
-				    console.log("tripNo:"+array.tripNo);
 					 str +='<div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">'+				   									
 					   		'<div class="wanted-trip-item bg-light">'+
 					   			'<div class="wanted-trip-header">'+
@@ -331,7 +322,7 @@ function listPage(data){
 												<!-- 시군구별 end div -->
 													
 													<!-- 여행 테마별 검색 start div -->
-													<div class="col-xss-12 col-xs-6 col-sm-7" >
+													<div class="col-sm-6" >
 														<div class="filter-item mmr">
 															<div class="input-group input-group-addon-icon no-border no-br-xs">
 																<span class="input-group-addon input-group-addon-icon bg-white"><label><i class="fa fa-sort-amount-asc"></i> Trip Style:</label></span>
@@ -351,7 +342,9 @@ function listPage(data){
 													
 												</div>
 											</div>
-										</div>
+										</div><%--./col-xs-12 col-sm-12 col-md-6 --%>
+										
+										
 									</div>
 								</div>
 							</div>
