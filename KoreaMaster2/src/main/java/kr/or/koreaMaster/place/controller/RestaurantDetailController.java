@@ -63,9 +63,6 @@ public class RestaurantDetailController implements Controller {
 		String sidoName = sido.getName();
 		
 		List<Restaurant> relatedSpot = restaurantDao.readBycityNo(restaurant.getCityNo(), restaurant.getNo());
-/*		for (Spot spot2 : relatedSpot) {
-			System.out.println(spot2.toString());
-		} */
 		
 		try {
 			JSONObject obj = new JSONObject();

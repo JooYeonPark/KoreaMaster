@@ -78,9 +78,6 @@ public class UserJoinController implements Controller {
 					upload.setFileSizeMax(1024 * 1024 * 10);
 					long size = item.getSize();
 
-					/*ServletContext context = request.getSession().getServletContext();
-					String path = context.getRealPath("/images/users/");*/
-					
 					// 경로 자기 경로로 바꿔주세요~
 					String path = "C:/Users/kosta/git/KoreaMaster/KoreaMaster2/src/main/webapp/images/users";
 				    

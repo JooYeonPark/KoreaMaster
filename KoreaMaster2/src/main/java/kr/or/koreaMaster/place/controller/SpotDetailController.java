@@ -62,9 +62,6 @@ public class SpotDetailController implements Controller {
 		
 		List<Integer> themeList = spotThemeDAO.readThemeBySpot(spot.getNo());
 		List<Spot> relatedSpot = spotDao.readBycityNo(spot.getCityNo(), spot.getNo());
-/*		for (Spot spot2 : relatedSpot) {
-			System.out.println(spot2.toString());
-		} */
 		
 		try {
 			JSONObject obj = new JSONObject();

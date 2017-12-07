@@ -20,8 +20,11 @@ import kr.or.koreaMaster.travel.dao.SmallTripDAOImpl;
 import kr.or.koreaMaster.travel.dao.TripDAO;
 import kr.or.koreaMaster.travel.dao.TripDAOImpl;
 import kr.or.koreaMaster.travel.domain.Route;
+import kr.or.koreaMaster.travel.domain.RouteInfo;
 import kr.or.koreaMaster.travel.domain.SmallTrip;
 import kr.or.koreaMaster.travel.domain.Trip;
+import kr.or.koreaMaster.travel.service.RouteService;
+import kr.or.koreaMaster.travel.service.RouteServiceImpl;
 import kr.or.koreaMaster.user.model.TripNote;
 import kr.or.koreaMaster.user.model.Users;
 import kr.or.koreaMaster.user.session.TripNoteListRepository;
@@ -31,58 +34,19 @@ public class RouteSaveController implements Controller {
 	Logger logger = Logger.getLogger(RouteSaveController.class);
 
 	DaoFactory factory = new MyBatisDaoFactory();
+	RouteService routeService = new RouteServiceImpl();
 	TripDAO tripDAO = (TripDAO) factory.getDao(TripDAOImpl.class);
-	SmallTripDAO smallTripDAO = (SmallTripDAO) factory.getDao(SmallTripDAOImpl.class);
-	RouteDAO routeDAO = (RouteDAO) factory.getDao(RouteDAOImpl.class);
-
+	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		logger.debug("RouteSaveController 진입");
 		ModelAndView mav = new ModelAndView();
-
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
-		String noteName = request.getParameter("noteName");
-		String strTripNo = request.getParameter("routeSpots");
-		String detail = request.getParameter("detail");
-
-		Users user = (Users) request.getSession().getAttribute("user");
-		String usersId = user.getUsersId();
-
-		// route insert
-		Route route = new Route();
-		String[] tripNoArr = strTripNo.split(",");
-		int no = 0;
-		for (int i = tripNoArr.length; i >= 1; i--) {
-			route = new Route(Integer.parseInt(tripNoArr[i - 1]), no);
-			logger.info(route);
-			/*routeDAO.create(route);*/
-			/*no = route.getNo();*/
-		}
-
-		// trip insert
-		Trip trip = new Trip(noteName, startDate, endDate);
-		/*tripDAO.create(trip);*/
-		/*int tripNo = trip.getNo();*/
-		logger.debug("trip:" + trip);
-
-		// small_trip insert
-		/*SmallTrip small = new SmallTrip(1, tripNo, no);
-		smallTripDAO.create(small);*/
-
-		// route_theme insert
-		/*MyTravelTypeRepository rep = new MyTravelTypeRepository();
-		List<Integer> Themes = rep.getNoById(usersId);
-		for (Integer theme : Themes) {
-			rep.createRouteTheme(theme, tripNo);
-		}*/
-
-		// trip_note insert
-		/*TripNoteListRepository listRep = new TripNoteListRepository();
-		TripNote tripNote = new TripNote(detail, noteName, usersId, String.valueOf(tripNo), startDate, endDate);
-		listRep.create(tripNote);*/
-
+		
+		int tripNo = Integer.parseInt(request.getParameter("tripNo"));
+		Trip trip = tripDAO.read(tripNo);
+		List<RouteInfo> list = routeService.routeByTripNo(tripNo);
+		
+		
 		mav.setView("redirect:/index.jsp");
 		return mav;
 

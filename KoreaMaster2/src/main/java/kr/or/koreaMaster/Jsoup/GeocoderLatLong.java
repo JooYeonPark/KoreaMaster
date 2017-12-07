@@ -44,14 +44,4 @@ public class GeocoderLatLong {
 		return null;
 	}
 
-	/*public static void main(String[] args) {
-		GeocoderLatLong geocode = new GeocoderLatLong();
-		String location = "경상북도 청도군 운문면 운문로 763";
-
-		Float[] coords = geocode.geoCoding(location);
-		
-		System.out.println(coords[0]);
-		System.out.println(coords[1]);
-
-	}*/
 }

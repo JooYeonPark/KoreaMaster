@@ -56,7 +56,6 @@ public class joinIDcheckController implements Controller {
 			pw = response.getWriter();
 			pw.write(check);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

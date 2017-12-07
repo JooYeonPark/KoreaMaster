@@ -70,7 +70,6 @@ public class RestaurantJsoupMain {
 					if(tmp == null) {
 						if(restaurant.getLatitude() != 0) {
 							restaurantDao.create(restaurant);
-//							logger.info(restaurant.getNo());
 						}
 					}else {
 						restaurantDao.update(restaurant);

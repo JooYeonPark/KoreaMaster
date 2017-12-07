@@ -3,7 +3,6 @@
     pageEncoding="UTF-8"%>
 <% 
 	Users user = (Users)request.getAttribute("user");
-
 %>
 
 <!doctype>

@@ -282,7 +282,8 @@ var modalData = function(){
 													
 													<!-- 회원 주소, 전화번호 등 정보  -->
 													<ul class="user-meta">
-														<li><i class="fa fa-map-marker"></i> <%= user.getUsersAddress() %> <span class="mh-5 text-muted">|</span> <i class="fa fa-phone"></i> +4 8547 985</li>
+														<li><i class="fa fa-map-marker"></i> <%= user.getUsersAddress() %> <span class="mh-5 text-muted">|</span> 
+														<i class="fa fa-phone"></i> <%=user.getUsersTelephone() %></li>
 														<li>
 															<div class="user-social inline-block">
 																<a href="#"><i class="icon-social-twitter" data-toggle="tooltip" data-placement="top" title="twitter"></i></a>

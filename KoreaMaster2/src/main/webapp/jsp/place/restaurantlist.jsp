@@ -120,7 +120,6 @@ $(function(){
 				$("#selectSigungu").selectpicker("refresh"); 
 			},
 			error : function(xhr, statusText){
-				console.log("("+xhr.status+", "+statusText+")");
 			}
 		});
 		
@@ -172,7 +171,6 @@ function sidoAjax(){
 			$("#selectSido").selectpicker("refresh"); 
 		},
 		error : function(xhr, statusText){
-			console.log("("+xhr.status+", "+statusText+")");
 		}
 	});
 }

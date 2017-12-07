@@ -62,9 +62,7 @@ public class JsoupDataParsing {
 					if (spot != null) {
 						Spot stmp = spotDao.readByNameCity(spot.getName(), spot.getCityNo());
 						if (stmp == null) {
-							System.out.println("!!!!!  THEME   insert!!!!");
 							int detailSize = spot.getDetail().length();
-							System.out.println("size = " + detailSize);
 
 							if (detailSize <= 1300) {
 								spotDao.create(spot);

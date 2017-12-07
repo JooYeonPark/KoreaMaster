@@ -46,10 +46,6 @@ public class RouteChangeController implements Controller {
         Trip trip = tripDAO.read(tripNo);
         List<RouteInfo> list = routeService.routeByTripNo(tripNo);
         
-       /* for (RouteInfo routeInfo : list) {
-			logger.info(routeInfo.toString());
-		}*/
-        
         map.put("list", list);
         map.put("days", list.get(0).getDayNo());
         map.put("trip", trip);
