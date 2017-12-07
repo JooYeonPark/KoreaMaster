@@ -50,6 +50,7 @@
    <!-- Add your style -->
    <link href="/css/your-style.css" rel="stylesheet">
    <link href="/css/ksj-style.css" rel="stylesheet">
+   <link href="/css/user/TripNoteMap.css" rel="stylesheet">
 <!--    <link href="/css/ksj-modal.css" rel="stylesheet"> -->
 
    <!-- MyCalendar -->
@@ -65,7 +66,7 @@
 <body>
 
    <!-- start Container Wrapper -->
-   <div class="container-wrapper">
+   <div id="wrapperDIV" class="container-wrapper">
 
       <!-- start Header -->
       
@@ -88,11 +89,10 @@
          <div class="breadcrumb-wrapper">
             <div class="container">
                <ol class="breadcrumb">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Pages</a></li>
-                  <li><a href="#">Shortcodes</a></li>
-                  <li class="active">Components</li>
-               </ol>
+					<li><a href="/user?cmd=main-page">홈</a></li>
+					<li><a href="/note?cmd=my-profile-edit">마이페이지</a></li>
+					<li class="active"><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
+				</ol>
             </div>
          </div>
          
