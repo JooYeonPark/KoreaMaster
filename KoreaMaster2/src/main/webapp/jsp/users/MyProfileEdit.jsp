@@ -44,14 +44,14 @@
 	<link href="/css/style.css" rel="stylesheet">
 	
 	<!-- Add your style -->
-	<link href="/css/your-style.css" rel="stylesheet">
+	<link href="/css/user/TripNoteMap.css" rel="stylesheet">
 
 </head>
 
 <body>
 
 	<!-- start Container Wrapper -->
-	<div class="container-wrapper">
+	<div id="wrapperDIV" class="container-wrapper">
 
 		<!-- start Header -->
 			<jsp:include page="/include/navigation.jsp"></jsp:include>		
@@ -89,6 +89,7 @@
 								
 									<div class="image">
 										<img src="/images/users/<%=user.getUsersPicture()%>" alt="image" />
+										<input type="hidden" id="userPicture" value="<%=user.getUsersPicture()%>"/>
 									</div>
 									
 									<div class="GridLex-gap-20">
