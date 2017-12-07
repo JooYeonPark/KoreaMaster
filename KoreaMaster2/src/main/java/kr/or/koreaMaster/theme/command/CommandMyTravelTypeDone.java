@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.or.koreaMaster.theme.model.UsersTheme;
 import kr.or.koreaMaster.theme.service.MyTravelTypeService;
+import kr.or.koreaMaster.user.model.Users;
 
 /**
  *  jsp 전 화면에서 사용자 별 우선순위 얻어와서  model에 저장, service로 전송
@@ -25,7 +26,8 @@ public class CommandMyTravelTypeDone implements MyTravelTypeCommand {
 		int score = 100;			// 우선순위 기준 값.  **** 최대 값 : 100, 최소 값 : 70 ****
 		
 		String type[] = {request.getParameter("1"), request.getParameter("2"), request.getParameter("3"), request.getParameter("4")};
-		String id = (String)session.getAttribute("user");				// 로그인 아이디 값 얻어옴
+		Users user = (Users)session.getAttribute("user");
+		String id = user.getUsersId();
 		
 		for (int i = 0; i < type.length; i++) {
 			int themeNo = service.findThemeId(type[i]);
