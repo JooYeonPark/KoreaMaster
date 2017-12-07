@@ -107,6 +107,7 @@
 				  
 				<li><a href="/note?cmd=my-page">마이페이지</a>
                     <ul>
+                    	<li><a href="/note?cmd=my-profile-edit">회원 정보 수정</a></li>
 						<li><a href="/type?cmd=myTravelType">나의 성향 테스트</a></li>
 					</ul>
 				</li>
