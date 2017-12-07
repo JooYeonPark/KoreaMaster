@@ -2,7 +2,7 @@
 jQuery(function($) {
 
 	"use strict";
-
+	var picture = $("#userPicture").val();
 
 	/**
 	* Fileinput
@@ -23,7 +23,7 @@ jQuery(function($) {
 		allowedFileTypes: ['image' ],
 		allowedFileExtensions: ['jpg', 'gif', 'png', 'tiff'],
 			initialPreview: [
-				'<img src="images/man/01.jpg" class="file-preview-image" alt="The Moon" title="The Moon">',
+				'<img src="images/users/'+ picture + '" class="file-preview-image" alt="The Moon" title="The Moon">',
 		],
 		overwriteInitial: true,
 	});
