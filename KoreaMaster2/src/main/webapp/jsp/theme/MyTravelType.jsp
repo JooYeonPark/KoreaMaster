@@ -64,7 +64,7 @@
 	
 	<header id="header">
 		<!-- start Navbar (Header) -->
-<%-- 		<jsp:include page="/include/navigation.jsp"/> --%>
+		<jsp:include page="/include/navigation.jsp"/>
 		<!-- end Navbar (Header) -->
 	</header>
 	
@@ -74,7 +74,8 @@
 		
 			<!-- start breadcrumb -->
 			
-			<div class="breadcrumb-image-bg pb-100 no-bg" style="background-image:url('/images/breadcrumb-bg.jpg');">
+			<div class="breadcrumb-image-bg detail-breadcrumb"
+				style="background-image: url('/images/detail-header.jpg');">
 				<div class="container">
 					<div class="page-title">
 						<div class="row">

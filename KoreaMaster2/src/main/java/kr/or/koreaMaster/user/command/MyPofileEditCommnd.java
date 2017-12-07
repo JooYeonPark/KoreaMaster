@@ -19,10 +19,7 @@ public class MyPofileEditCommnd implements TripNoteCommand {
 		HttpSession session = request.getSession();
 		
 		Users user = (Users)session.getAttribute("user");
-		String id = user.getUsersId();
-		
-		
-		
+		String id = user.getUsersId();		
 		
 		return next;
 	}

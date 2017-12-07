@@ -50,6 +50,7 @@
    <!-- Add your style -->
    <link href="/css/your-style.css" rel="stylesheet">
    <link href="/css/ksj-style.css" rel="stylesheet">
+   <link href="/css/user/TripNoteMap.css" rel="stylesheet">
 <!--    <link href="/css/ksj-modal.css" rel="stylesheet"> -->
 
    <!-- MyCalendar -->
@@ -65,7 +66,7 @@
 <body>
 
    <!-- start Container Wrapper -->
-   <div class="container-wrapper">
+   <div id="wrapperDIV" class="container-wrapper">
 
       <!-- start Header -->
       
@@ -88,11 +89,10 @@
          <div class="breadcrumb-wrapper">
             <div class="container">
                <ol class="breadcrumb">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Pages</a></li>
-                  <li><a href="#">Shortcodes</a></li>
-                  <li class="active">Components</li>
-               </ol>
+					<li><a href="/user?cmd=main-page">홈</a></li>
+					<li><a href="/note?cmd=my-profile-edit">마이페이지</a></li>
+					<li class="active"><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
+				</ol>
             </div>
          </div>
          
@@ -184,8 +184,9 @@
                      <div class="container">
                         <div class="inner-bottom">
                            <ul class="user-header-menu">
-                              <li class="active"><a>나의 여행달력</a></li>
-                              <li><a href="/note?cmd=my-page">마이페이지</a></li>
+                           	  <li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행노트</a></li>
+                              <li class="active"><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
+                              <li><a href="/note?cmd=my-map">나의 여행지도</a></li>
                               <!-- <li><a href="guide-detail-gallery.html">Gallery</a></li>
                               <li><a href="guide-detail-reviews.html">Reviews</a></li>
                               <li><a href="guide-detail-following.html">Followings <span>25</span></a></li>
@@ -216,7 +217,7 @@
                      
                            <ul class="common-menu-list">
 	                            <li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행노트</a></li>
-								<li class="active"><a href="/guide-detail-offer.html">나의 여행달력</a></li>
+								<li class="active"><a href="/note?cmd=my-calendar">나의 여행달력</a></li>
 								<li><a href="/note?cmd=my-map">나의 여행지도</a></li>
                            </ul>
                            
