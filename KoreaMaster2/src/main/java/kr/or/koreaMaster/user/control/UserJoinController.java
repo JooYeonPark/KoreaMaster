@@ -71,9 +71,7 @@ public class UserJoinController implements Controller {
 				if (item.getFieldName().equals("usersPicture")) {
 					if (item.getName() == "" || item.getName() == null) continue;
 					
-					UUID uid = UUID.randomUUID();
-					
-					String fileName = uid+"_"+item.getName();
+					String fileName = item.getName();
 
 					upload.setFileSizeMax(1024 * 1024 * 10);
 					long size = item.getSize();
