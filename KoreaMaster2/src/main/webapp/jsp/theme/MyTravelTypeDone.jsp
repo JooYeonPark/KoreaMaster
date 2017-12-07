@@ -65,7 +65,7 @@
 			<div class="breadcrumb-wrapper">
 				<div class="container">
 					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
+						<li><a href="/user?cmd=main-page">Home</a></li>
 						<li class="active">Travel type create done!</li>
 					</ol>
 				</div>
@@ -92,7 +92,7 @@
 								<h1 class="text-lowercase">Congratulation!</h1>
 								<p class="lead">Your travel type have been successfully saved</p>
 								<h3>Start search your own travel plan</h3>
-								<a href="#" class="btn btn-primary btn-wide">Home Page</a>
+								<a href="/user?cmd=main-page" class="btn btn-primary btn-wide">Home Page</a>
 								<a href="/note?cmd=my-page" class="btn btn-primary btn-wide btn-border">마이 페이지</a>
 								<br/><br/><br/><br/><br/><br/>
 							</div>
