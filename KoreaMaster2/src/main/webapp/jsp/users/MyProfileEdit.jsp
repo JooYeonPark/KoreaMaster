@@ -67,7 +67,7 @@
 				<div class="container">
 					<ol class="breadcrumb">
 						<li><a href="/user?cmd=main-page">홈</a></li>
-						<li><a href="#">마이페이지</a></li>
+						<li><a href="/note?cmd=my-profile-edit">마이페이지</a></li>
 						<li class="active">회원정보수정</li>
 					</ol>
 				</div>
@@ -138,10 +138,8 @@
 								<div class="inner-bottom">
 							
 									<ul class="user-header-menu">
-										<li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행노트</a></li>
-										<li><a href="/guide-detail-offer.html">나의 여행달력</a></li>
-										<li><a href="/note?cmd=my-map">나의 여행지도</a></li>
-										<li class="active"><a>마이페이지</a></li>
+										<li class="active"><a href="/note?cmd=my-profile-edit">회원 정보 수정</a></li>
+										<li><a href="/type?cmd=myTravelType">나의 성향 테스트</a></li>
 									</ul>
 								
 								</div>
@@ -169,12 +167,8 @@
 								<div class="common-menu-wrapper">
 							
 									<ul class="common-menu-list">
-										
-										<li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행노트</a></li>
-										<li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId() %>">나의 여행달력</a></li>
-										<li><a href="/note?cmd=my-map">나의 여행지도</a></li>
-										<li class="active"><a>마이페이지</a></li>
-										
+										<li class="active"><a href="/note?cmd=my-profile-edit">회원 정보 수정</a></li>
+										<li><a href="/type?cmd=myTravelType">나의 성향 테스트</a></li>
 									</ul>
 									
 								</div>
