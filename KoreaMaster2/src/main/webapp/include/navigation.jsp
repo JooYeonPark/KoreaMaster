@@ -86,7 +86,7 @@
 				<li><a href="/jsp/place/restaurantlist.jsp">식당</a>
 				</li>
 				
-				<li><a href="">여행</a>
+				<li><a href="/jsp/travel/routelist.jsp">여행</a>
                     <ul>
                     	<li><a href="/jsp/travel/routelist.jsp">여행리스트</a></li>
                         <% if(user != null) { %>
@@ -98,14 +98,14 @@
 				<!-- 로그인 했을 경우에만 마이페이지 보여주기 -->
 				<% if(user != null) { %>
 				
-				<li><a href="">나의여행노트</a>
+				<li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId()%>">나의여행노트</a>
                     <ul>
                         <li><a href="/note?cmd=my-tripNote&usersId=<%= user.getUsersId()%>">나의 여행노트</a></li>
                         <li><a href="/note?cmd=my-map&usersId=<%= user.getUsersId() %>">여행 지도</a></li>
                		</ul>
            		</li>
 				  
-				<li><a href="/note?cmd=my-page">마이페이지</a>
+				<li><a href="/note?cmd=my-profile-edit">마이페이지</a>
                     <ul>
                     	<li><a href="/note?cmd=my-profile-edit">회원 정보 수정</a></li>
 						<li><a href="/type?cmd=myTravelType">나의 성향 테스트</a></li>
