@@ -17,7 +17,7 @@ Contributor
 Used Technique
 -------------
 
-![Used Technique](https://github.com/JooYeonPark/KoreaMaster/tree/master/KoreaMaster2/UsedTech.png)
+![Used Technique](https://github.com/JooYeonPark/KoreaMaster/blob/master/KoreaMaster2/UsedTech.png)
 <ul> 
 <strong>FrontEnd </strong> 
 <li> HTML5, CSS</li>
