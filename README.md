@@ -11,7 +11,7 @@ Contributor
 > - <i class="icon-user"></i> Park Joo-Yeon (Project Manager) [GitHub](https://github.com/JooYeonPark)
 > -  <i class="icon-user"></i> Kim Su-Jin [GitHub](https://github.com/sujjiny)
 > -  <i class="icon-user"></i> Yang Eun-Ji [GitHub](https://github.com/yangyongyong)
-> -  <i class="icon-user"></i> Kim Hyeon-Hui 
+> -  <i class="icon-user"></i> Kim Hyun-Hee [GitHub](https://github.com/h-hee)
 
 
 Used Technique
